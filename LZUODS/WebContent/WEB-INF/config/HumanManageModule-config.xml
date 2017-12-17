@@ -10,7 +10,7 @@
 	<bean name="/test/TestA" class="TestPackage.TestKlass"></bean>
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix">
-			<value>/WEB-INF/views/testPages/</value>
+			<value>/WEB-INF/views/HMPages/</value>
 		</property>
 		<property name="suffix">
 			<value>.jsp</value>

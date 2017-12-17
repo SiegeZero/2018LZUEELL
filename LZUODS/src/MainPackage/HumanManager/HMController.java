@@ -27,4 +27,10 @@ public class HMController {
 		Target t = Target.getById( id);
 		return t;
 	}
+	
+	@RequestMapping(value="/HMHome")
+	public ModelAndView home(ModelAndView mv) {
+		return mv;
+	}
+	
 }

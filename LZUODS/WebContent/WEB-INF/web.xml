@@ -10,53 +10,51 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
-  	<servlet-name>main</servlet-name>
-  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-  	<load-on-startup>1</load-on-startup>
+    <servlet-name>main</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>main</servlet-name>
-  	<url-pattern>/test/*</url-pattern>
+    <servlet-name>main</servlet-name>
+    <url-pattern>/test/*</url-pattern>
   </servlet-mapping>
   <servlet>
-  	<servlet-name>HumanManageModule</servlet-name>
-  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-  	<init-param>
-  		<param-name>contextConfigLocation</param-name>
-  		<param-value>/WEB-INF/config/HumanManageModule-config.xml</param-value>
-  	</init-param>
-  	<load-on-startup>1</load-on-startup>
+    <servlet-name>HumanManageModule</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>/WEB-INF/config/HumanManageModule-config.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>HumanManageModule</servlet-name>
-  	<url-pattern>/HMM/*</url-pattern>
+    <servlet-name>HumanManageModule</servlet-name>
+    <url-pattern>/HMM/*</url-pattern>
   </servlet-mapping>
   <servlet>
-  	<servlet-name>name_only</servlet-name>
-  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-  	<init-param>
-  		<param-name>contextConfigLocation</param-name>
-  		<param-value>/WEB-INF/config/TestNameOnly-config.xml</param-value>
-  	</init-param>
-  	<load-on-startup>1</load-on-startup>
+    <servlet-name>name_only</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>/WEB-INF/config/TestNameOnly-config.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>name_only</servlet-name>
-  	<url-pattern>/NameOnlyTest/*</url-pattern>
+    <servlet-name>name_only</servlet-name>
+    <url-pattern>/NameOnlyTest/*</url-pattern>
   </servlet-mapping>
-  
   <servlet>
-  	<servlet-name>with_title</servlet-name>
-  	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-  	<init-param>
-  		<param-name>contextConfigLocation</param-name>
-  		<param-value>/WEB-INF/config/TestKlassWithTitle-config.xml</param-value>
-  	</init-param>
-  	<load-on-startup>1</load-on-startup>
+    <servlet-name>with_title</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <init-param>
+      <param-name>contextConfigLocation</param-name>
+      <param-value>/WEB-INF/config/TestKlassWithTitle-config.xml</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>with_title</servlet-name>
-  	<url-pattern>/WithTitle/*</url-pattern>
+    <servlet-name>with_title</servlet-name>
+    <url-pattern>/WithTitle/*</url-pattern>
   </servlet-mapping>
-  
 </web-app>
