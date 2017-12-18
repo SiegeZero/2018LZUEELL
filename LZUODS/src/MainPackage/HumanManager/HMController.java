@@ -33,4 +33,14 @@ public class HMController {
 		return mv;
 	}
 	
+	@RequestMapping(value="/HMMang")
+	public ModelAndView manage( ModelAndView mv) {
+		return mv;
+	}
+	
+	@RequestMapping(value="/HMPaty")
+	public ModelAndView party( ModelAndView mv) {
+		return mv;
+	}
+	
 }
