@@ -8,10 +8,5 @@
 </head>
 <body>
 	<jsp:include page="NavigationBar.jsp"></jsp:include>
-	<div>
-		<div id="home_page">
-			<p>这是首页。</p>
-		</div>
-	</div>
 </body>
 </html>
