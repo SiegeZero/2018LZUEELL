@@ -4,15 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>党建管理</title>
 </head>
 <body>
-	<div id="banner">
-		<h1>离退休工作管理系统</h1>
-		<a id="home_page_btn" href="HMHome">首页</a>
-		<a id="human_manage_btn" href="HMMang">人员管理</a>
-		<a id="party_manage_btn" href="HMPaty">党建管理</a>
-		<a id="others_btn">其他模块</a>
-	</div>
+	<jsp:include page="NavigationBar.jsp"></jsp:include>
+
 </body>
 </html>
