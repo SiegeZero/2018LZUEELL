@@ -22,10 +22,11 @@ public class HMController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/query", method=RequestMethod.POST)
-	public Target query( @RequestParam("id") String id) {
+	@RequestMapping(value="/HMDtal", method=RequestMethod.GET)
+	public ModelAndView query( @RequestParam("id") String id, ModelAndView mv) {
 		Target t = Target.getById( id);
-		return t;
+		mv.addObject("target", t);
+		return mv;
 	}
 	
 	@RequestMapping(value="/HMHome")
@@ -38,9 +39,12 @@ public class HMController {
 		return mv;
 	}
 	
+	
+	
 	@RequestMapping(value="/HMPaty")
 	public ModelAndView party( ModelAndView mv) {
 		return mv;
 	}
+	
 	
 }

@@ -158,7 +158,7 @@
 				<tr>
 					<td>11</td>
 					<td>93003</td>
-					<td>夏志坚</td>
+					<td><a href="HMDtal?id=001">夏志坚</a></td>
 					<td>离休一分会</td>
 					<td>后勤集团</td>
 					<td>93前</td>
