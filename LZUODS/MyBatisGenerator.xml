@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+
+	<context id="MysqlTable" targetRuntime="MyBatis3">
+		<commentGenerator>
+			<property name="suppressAllComments" value="true"/>
+		</commentGenerator>
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/LZUODS" userId="root"
+			password="">
+		</jdbcConnection>
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<javaModelGenerator targetPackage="BasicObject.MBG"
+			targetProject=".\src">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="mapper"
+			targetProject=".\src">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="BasicObject.MBGDAO" targetProject=".\src">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+		<table tableName="department_table" domainObjectName="Department">
+		</table>
+		<table tableName="educational_bg_table" domainObjectName="EduBG">
+		</table>
+		<table tableName="salary_lib_table" domainObjectName="SalaryLib">
+		</table>
+		<table tableName="helping_table" domainObjectName="HelpRecord">
+		</table>
+		<table tableName="sociaty_table" domainObjectName="Sociaty">
+		</table>
+		<table tableName="party_branch_info_table" domainObjectName="PartyBranch">
+		</table>
+		<table tableName="basic_info_table" domainObjectName="Person">
+		</table>
+		<table tableName="job_exp_table" domainObjectName="JobExp">
+		</table>
+		<table tableName="family_info_table" domainObjectName="FamilyInfo">
+		</table>
+		<table tableName="sympathy_table" domainObjectName="Sympathy">
+		</table>
+		<table tableName="sympathy_activities_table" domainObjectName="SympathyAct">
+		</table>
+		<table tableName="pension_model_table" domainObjectName="PensionModel">
+		</table>
+	</context>
+</generatorConfiguration>

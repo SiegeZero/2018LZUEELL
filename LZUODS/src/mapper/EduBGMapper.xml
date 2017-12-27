@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="BasicObject.MBGDAO.EduBGMapper">
+  <resultMap id="BaseResultMap" type="BasicObject.MBG.EduBG">
+    <id column="edu_bg_lv" jdbcType="INTEGER" property="eduBgLv" />
+    <result column="edu_bg" jdbcType="VARCHAR" property="eduBg" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="BasicObject.MBG.EduBG">
+    <result column="edu_bg_emark" jdbcType="LONGVARCHAR" property="eduBgEmark" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    edu_bg_lv, edu_bg
+  </sql>
+  <sql id="Blob_Column_List">
+    edu_bg_emark
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="BasicObject.MBG.EduBGExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from educational_bg_table
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="BasicObject.MBG.EduBGExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from educational_bg_table
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from educational_bg_table
+    where edu_bg_lv = #{eduBgLv,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from educational_bg_table
+    where edu_bg_lv = #{eduBgLv,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="BasicObject.MBG.EduBGExample">
+    delete from educational_bg_table
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="BasicObject.MBG.EduBG">
+    insert into educational_bg_table (edu_bg_lv, edu_bg, edu_bg_emark
+      )
+    values (#{eduBgLv,jdbcType=INTEGER}, #{eduBg,jdbcType=VARCHAR}, #{eduBgEmark,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="BasicObject.MBG.EduBG">
+    insert into educational_bg_table
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="eduBgLv != null">
+        edu_bg_lv,
+      </if>
+      <if test="eduBg != null">
+        edu_bg,
+      </if>
+      <if test="eduBgEmark != null">
+        edu_bg_emark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="eduBgLv != null">
+        #{eduBgLv,jdbcType=INTEGER},
+      </if>
+      <if test="eduBg != null">
+        #{eduBg,jdbcType=VARCHAR},
+      </if>
+      <if test="eduBgEmark != null">
+        #{eduBgEmark,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="BasicObject.MBG.EduBGExample" resultType="java.lang.Long">
+    select count(*) from educational_bg_table
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update educational_bg_table
+    <set>
+      <if test="record.eduBgLv != null">
+        edu_bg_lv = #{record.eduBgLv,jdbcType=INTEGER},
+      </if>
+      <if test="record.eduBg != null">
+        edu_bg = #{record.eduBg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.eduBgEmark != null">
+        edu_bg_emark = #{record.eduBgEmark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update educational_bg_table
+    set edu_bg_lv = #{record.eduBgLv,jdbcType=INTEGER},
+      edu_bg = #{record.eduBg,jdbcType=VARCHAR},
+      edu_bg_emark = #{record.eduBgEmark,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update educational_bg_table
+    set edu_bg_lv = #{record.eduBgLv,jdbcType=INTEGER},
+      edu_bg = #{record.eduBg,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="BasicObject.MBG.EduBG">
+    update educational_bg_table
+    <set>
+      <if test="eduBg != null">
+        edu_bg = #{eduBg,jdbcType=VARCHAR},
+      </if>
+      <if test="eduBgEmark != null">
+        edu_bg_emark = #{eduBgEmark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where edu_bg_lv = #{eduBgLv,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="BasicObject.MBG.EduBG">
+    update educational_bg_table
+    set edu_bg = #{eduBg,jdbcType=VARCHAR},
+      edu_bg_emark = #{eduBgEmark,jdbcType=LONGVARCHAR}
+    where edu_bg_lv = #{eduBgLv,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="BasicObject.MBG.EduBG">
+    update educational_bg_table
+    set edu_bg = #{eduBg,jdbcType=VARCHAR}
+    where edu_bg_lv = #{eduBgLv,jdbcType=INTEGER}
+  </update>
+</mapper>

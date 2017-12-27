@@ -276,16 +276,7 @@ body, td, th {
 				<table>
 					<tr>
 						<th>基本：</th>
-						<td id="sex" style="position: relative">性别
-							<div id="sexesn"
-								style="position: fixed; padding: 10px; margin-right: 110px; margin-top: 8px; border: thin solid #BEBEBE; background: #EEEFFF">
-								<span>男 <input type="checkbox" onClick="select_attribute"
-									check />
-								</span> <span>女 <input type="checkbox"
-									onClick="select_attribute" check />
-								</span>
-							</div>
-						</td>
+						<td id="sex" >性别</td>
 						<td>离休情况</td>
 						<td>兵役情况</td>
 						<td>政治面貌</td>
@@ -294,82 +285,91 @@ body, td, th {
 						<td>慰问情况</td>
 						<td>学历</td>
 					</tr>
-					<tr style="height: 30px">
+					<tr>
+						<td colspan="8">
+						·	<div id="sexesn"
+									style="padding: 10px; border: thin solid #BEBEBE; background: #EEEFFF">
+									<span>男 <input type="checkbox" onClick="select_attribute"
+										check />
+									</span> <span>女 <input type="checkbox"
+										onClick="select_attribute" check />
+									</span>
+								</div>
+						</td>
 					<tr>
 						<th>年龄：</th>
 						<td>50-60 <input type="checkbox" onClick="select_attribute"
-							check /></td>
+							 /></td>
 						<td>60-70 <input type="checkbox" onClick="select_attribute"
-							check /></td>
+							 /></td>
 						<td>70-80 <input type="checkbox" onClick="select_attribute"
-							check /></td>
+							 /></td>
 						<td>80-90 <input type="checkbox" onClick="select_attribute"
-							check /></td>
+							 /></td>
 						<td>90-100 <input type="checkbox" onClick="select_attribute"
-							check /></td>
+							 /></td>
 						<td>100+ <input type="checkbox" onClick="select_attribute"
-							check /></td>
+							 /></td>
 					</tr>
 					<tr>
 						<th>职级：</th>
-						<td>副科 <input type="checkbox" onClick="select_attribute"
-							check /></td>
+						<td>副科 <input type="checkbox" onClick="select_attribute" /></td>
 						<td>正科 <input type="checkbox" onClick="select_attribute"
-							check /></td>
+							 /></td>
 						<td>科长 <input type="checkbox" onClick="select_attribute"
-							check /></td>
+							 /></td>
 						<td>副地级 <input type="checkbox" onClick="select_attribute"
-							check /></td>
+							 /></td>
 						<td>地级 <input type="checkbox" onClick="select_attribute"
-							check /></td>
+							 /></td>
 						<td>副厅级 <input type="checkbox" onClick="select_attribute"
-							check /></td>
+							 /></td>
 						<td>正厅级 <input type="checkbox" onClick="select_attribute"
-							check /></td>
+							 /></td>
 						<td>更多+</td>
 					</tr>
 					<tr>
 						<th>职称：</th>
 						<td>工人 <input type="checkbox" onClick="select_attribute"
-							check /></td>
+							 /></td>
 						<td>技师 <input type="checkbox" onClick="select_attribute"
-							check /></td>
+							 /></td>
 						<td>中级 <input type="checkbox" onClick="select_attribute"
-							check /></td>
+							 /></td>
 						<td>高级 <input type="checkbox" onClick="select_attribute"
-							check /></td>
+							 /></td>
 						<td>副高 <input type="checkbox" onClick="select_attribute"
-							check /></td>
+							 /></td>
 						<td>正高 <input type="checkbox" onClick="select_attribute"
-							check /></td>
+							 /></td>
 						<td>实验师 <input type="checkbox" onClick="select_attribute"
-							check /></td>
+							 /></td>
 						<td>更多+</td>
 					</tr>
 					<tr>
 						<th>分会：</th>
 						<td>离休一分会 <input type="checkbox" onClick="select_attribute"
-							check /></td>
+							 /></td>
 						<td>离休二分会 <input type="checkbox" onClick="select_attribute"
-							check /></td>
+							 /></td>
 						<td>机关一分会 <input type="checkbox" onClick="select_attribute"
-							check /></td>
+							 /></td>
 						<td>机关二分会 <input type="checkbox" onClick="select_attribute"
-							check /></td>
+							 /></td>
 						<td>文科一分会 <input type="checkbox" onClick="select_attribute"
-							check /></td>
+							 /></td>
 						<td>文科二分会 <input type="checkbox" onClick="select_attribute"
-							check /></td>
+							 /></td>
 						<td>理科一分会 <input type="checkbox" onClick="select_attribute"
-							check /></td>
+							 /></td>
 						<td>更多+</td>
 					</tr>
 					<tr>
 						<th>民族：</th>
 						<td>汉族 <input type="checkbox" onClick="select_attribute"
-							check /></td>
+							 /></td>
 						<td>回族 <input type="checkbox" onClick="select_attribute"
-							check /></td>
+							 /></td>
 						<td>维吾尔族 <input type="checkbox" onClick="select_attribute"
 							check /></td>
 						<td>苗族 <input type="checkbox" onClick="select_attribute"
