@@ -1,6 +1,5 @@
 package com.gsb.MainPackage.HumanManager;
 
-import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -49,7 +48,7 @@ public class HMController {
 	
 	
 	
-	@RequestMapping(value="/HMPaty")
+	@RequestMapping(value="/PTMang")
 	public ModelAndView party( ModelAndView mv) {
 		return mv;
 	}

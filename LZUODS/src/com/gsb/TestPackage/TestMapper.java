@@ -49,6 +49,7 @@ public class TestMapper{
 	SociatyMapper sociaty_mapper;
 	
 	@Test
+	@Rollback
 	public void  insertSociaty() {
 		try {
 			Set sets = OpenWorkSheet.countLibsAmount( "现所在分会", new File("src/data-new.xls"));
@@ -78,14 +79,9 @@ public class TestMapper{
 	
 	@Autowired
 	ReadDBInfos info_reader;
-	@Test
-	public void  printContent() {
-		List<Long> amountEachSociaty = info_reader.getAmountEachSociaty();
-		
-	}
+	
 	
 	@Test
-	@Rollback
 	public void insertPerson() throws ParseException, BiffException, IOException {
 		sfis.init();
 		String[] headers = new String[sfis.headers.size()];
@@ -97,6 +93,14 @@ public class TestMapper{
 		sfis.storeBasicInfoWith(
 				headers
 		);
+	}
+	
+	@Test
+	public void  printContent() {
+		info_reader.getAllAmount();
+		info_reader.getAmountEachSociaty();
+		info_reader.getPartyMembersAmount();
+		info_reader.getAgeRangeAmount();
 	}
 	
 }
