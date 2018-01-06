@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gsb.BasicObject.MBGDAO.SympathyAtvMapper">
+  <resultMap id="BaseResultMap" type="com.gsb.BasicObject.MBG.SympathyAtv">
+    <id column="activity_no" jdbcType="INTEGER" property="activityNo" />
+    <result column="sympathy_time" jdbcType="DATE" property="sympathyTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.gsb.BasicObject.MBG.SympathyAtv">
+    <result column="activity_remark" jdbcType="LONGVARCHAR" property="activityRemark" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    activity_no, sympathy_time
+  </sql>
+  <sql id="Blob_Column_List">
+    activity_remark
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.gsb.BasicObject.MBG.SympathyAtvExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sympathy_activities_table
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.gsb.BasicObject.MBG.SympathyAtvExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from sympathy_activities_table
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from sympathy_activities_table
+    where activity_no = #{activityNo,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from sympathy_activities_table
+    where activity_no = #{activityNo,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.gsb.BasicObject.MBG.SympathyAtvExample">
+    delete from sympathy_activities_table
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.gsb.BasicObject.MBG.SympathyAtv">
+    insert into sympathy_activities_table (activity_no, sympathy_time, activity_remark
+      )
+    values (#{activityNo,jdbcType=INTEGER}, #{sympathyTime,jdbcType=DATE}, #{activityRemark,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gsb.BasicObject.MBG.SympathyAtv">
+    insert into sympathy_activities_table
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="activityNo != null">
+        activity_no,
+      </if>
+      <if test="sympathyTime != null">
+        sympathy_time,
+      </if>
+      <if test="activityRemark != null">
+        activity_remark,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="activityNo != null">
+        #{activityNo,jdbcType=INTEGER},
+      </if>
+      <if test="sympathyTime != null">
+        #{sympathyTime,jdbcType=DATE},
+      </if>
+      <if test="activityRemark != null">
+        #{activityRemark,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.gsb.BasicObject.MBG.SympathyAtvExample" resultType="java.lang.Long">
+    select count(*) from sympathy_activities_table
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update sympathy_activities_table
+    <set>
+      <if test="record.activityNo != null">
+        activity_no = #{record.activityNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.sympathyTime != null">
+        sympathy_time = #{record.sympathyTime,jdbcType=DATE},
+      </if>
+      <if test="record.activityRemark != null">
+        activity_remark = #{record.activityRemark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update sympathy_activities_table
+    set activity_no = #{record.activityNo,jdbcType=INTEGER},
+      sympathy_time = #{record.sympathyTime,jdbcType=DATE},
+      activity_remark = #{record.activityRemark,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update sympathy_activities_table
+    set activity_no = #{record.activityNo,jdbcType=INTEGER},
+      sympathy_time = #{record.sympathyTime,jdbcType=DATE}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gsb.BasicObject.MBG.SympathyAtv">
+    update sympathy_activities_table
+    <set>
+      <if test="sympathyTime != null">
+        sympathy_time = #{sympathyTime,jdbcType=DATE},
+      </if>
+      <if test="activityRemark != null">
+        activity_remark = #{activityRemark,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where activity_no = #{activityNo,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.gsb.BasicObject.MBG.SympathyAtv">
+    update sympathy_activities_table
+    set sympathy_time = #{sympathyTime,jdbcType=DATE},
+      activity_remark = #{activityRemark,jdbcType=LONGVARCHAR}
+    where activity_no = #{activityNo,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gsb.BasicObject.MBG.SympathyAtv">
+    update sympathy_activities_table
+    set sympathy_time = #{sympathyTime,jdbcType=DATE}
+    where activity_no = #{activityNo,jdbcType=INTEGER}
+  </update>
+</mapper>

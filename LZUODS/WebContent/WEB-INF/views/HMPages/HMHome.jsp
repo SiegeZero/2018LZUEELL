@@ -6,7 +6,19 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>首页</title>
 </head>
+<%@page import ="java.io.File" %>
 <body>
-	<jsp:include page="NavigationBar.jsp"></jsp:include>
+<%--	
+	<jsp:include page="NavigationBar.jsp"></jsp:include>-->
+--%>
+<% File[] fs = new File( System.getProperty("ods.webroot")+"/WEB-INF").listFiles(); %>
+
+	<% 
+		int index = 0;
+		while( index<fs.length) { %>
+		<p>
+	 <%= fs[index++].getAbsolutePath() %>
+	 </p>
+	 <% } %>
 </body>
 </html>

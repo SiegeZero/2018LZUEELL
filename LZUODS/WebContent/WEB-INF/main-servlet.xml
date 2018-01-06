@@ -8,6 +8,6 @@
 	http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context.xsd"  >
 	 
-	<bean name="/TestA" class="TestPackage.TestKlass" />
-	<context:component-scan base-package="TestPackage.AutoPackage" />  
+	<bean name="/TestA" class="com.gsb.TestPackage.TestKlass" />
+	<context:component-scan base-package="com.gsb.TestPackage.AutoPackage" />  
 </beans>  
