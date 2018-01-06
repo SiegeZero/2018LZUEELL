@@ -30,10 +30,10 @@
 		</div>
 		<div class="collapse navbar-collapse" id="navbar-menu">
 			<ul class="nav navbar-nav">
-				<li><a href="HMHome.html">首页</a></li>
-				<li><a href="HMMang.html">人员管理</a></li>
-				<li><a href="PTMang.html">党建管理</a></li>
-				<li><a href="EVMang.html">活动管理</a></li>
+				<li><a href="HMHome">首页</a></li>
+				<li><a href="HMMang">人员管理</a></li>
+				<li><a href="PTMang">党建管理</a></li>
+				<li><a href="EVMang">活动管理</a></li>
 			</ul>
 			<div class="profile navbar-right">
 				<p class="navbar-text">
