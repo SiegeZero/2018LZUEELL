@@ -8,17 +8,5 @@
 </head>
 <%@page import ="java.io.File" %>
 <body>
-<%--	
-	<jsp:include page="NavigationBar.jsp"></jsp:include>-->
---%>
-<% File[] fs = new File( System.getProperty("ods.webroot")+"/WEB-INF").listFiles(); %>
-
-	<% 
-		int index = 0;
-		while( index<fs.length) { %>
-		<p>
-	 <%= fs[index++].getAbsolutePath() %>
-	 </p>
-	 <% } %>
 </body>
 </html>
