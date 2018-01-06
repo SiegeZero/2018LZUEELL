@@ -1,0 +1,56 @@
+@charset "UTF-8";
+body {
+    padding-top: 4%;
+}
+
+.navbar-form input[type="text"] {
+    width: 50%;
+    background: #FFFFFF;
+    border: thin solid #999999;
+    color: #999;
+}
+
+.navbar-form {
+    position: relative;
+}
+
+.navbar-form button[type="submit"] {
+    font-size: 20px;
+    vertical-align: middle;
+    background: none;
+    border: none;
+}
+
+.navbar-form .glyphicon {
+    color: #999;
+}
+
+.tool-btn {
+    margin-left: 8px;
+    color: #000;
+}
+
+.tool-btn input[type="checkbox"] {
+    vertical-align: top;
+}
+
+.table th {
+	color: #3B78E7;
+}
+
+.table td {
+    font-size: 90%;
+}
+
+.col-md-2 a {
+    display: block;
+    color: #999;
+    -webkit-transition: background-color 0.3s ease, color 0.3s ease, border-bottom 0.3s ease;
+    -moz-transition: background-color 0.3s ease, color 0.3s ease, border-bottom 0.3s ease;
+    -o-transition: background-color 0.3s ease, color 0.3s ease, border-bottom 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease, border-bottom 0.3s ease;
+}
+
+.table {
+    font-size: 14px;
+}

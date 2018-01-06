@@ -4,14 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>党建管理</title>
+<title>Insert title here</title>
 </head>
 <body>
-	<jsp:include page="NavigationBar.jsp"></jsp:include>
-
-    <div class="container-fluid">
-        <p class="alert alert-info"><strong>党建管理模块</strong></p>
-    </div>
 
 </body>
 </html>
