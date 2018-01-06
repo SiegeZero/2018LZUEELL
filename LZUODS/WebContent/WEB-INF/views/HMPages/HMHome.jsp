@@ -6,11 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>首页</title>
 </head>
+<%@page import ="java.io.File" %>
 <body>
-	<jsp:include page="NavigationBar.jsp"></jsp:include>
-
-    <div class="container-fluid">
-        <p class="alert alert-info">兰州大学离退休工作管理系统</p>
-    </div>
 </body>
 </html>
