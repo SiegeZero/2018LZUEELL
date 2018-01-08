@@ -34,11 +34,11 @@
 				<li><a href="PTMang">党建管理</a></li>
 				<li><a href="EVMang">活动管理</a></li>
 			</ul>
-			<div class="profile navbar-right">
+			<!-- <div class="profile navbar-right">
 				<p class="navbar-text">
 					欢迎回来, <a href="#" class="navbar-link">王科长</a>
 				</p>
-			</div>
+			</div> -->
 		</div>
 	</div>
 	</nav>
@@ -46,7 +46,7 @@
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="js/function.js"></script>
+	<script src="js/functions.js"></script>
 
 </body>
 
