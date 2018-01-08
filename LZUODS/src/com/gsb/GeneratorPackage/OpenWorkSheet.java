@@ -12,22 +12,15 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import com.gsb.BasicObject.MBG.Person;
-import com.gsb.BasicObject.MBG.SalaryLib;
 
 import jxl.Cell;
-import jxl.CellFeatures;
 import jxl.CellType;
 import jxl.DateCell;
 import jxl.Sheet;
 import jxl.Workbook;
 import jxl.read.biff.BiffException;
 import jxl.write.Label;
-import jxl.write.Number;
-import jxl.write.NumberFormat;
 import jxl.write.WritableCell;
-import jxl.write.WritableCellFeatures;
-import jxl.write.WritableCellFormat;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 import jxl.write.WriteException;;
@@ -44,7 +37,7 @@ public class OpenWorkSheet {
 	}
 	
 	
-	private static void CompareTwoWorkbook() {
+	public static void CompareTwoWorkbook() {
 		// TODO Auto-generated method stub
 		
 		
@@ -80,14 +73,11 @@ public class OpenWorkSheet {
 		
 	}
 
-	public static Set countLibsAmount( String colName, File file) throws BiffException, IOException, ParseException {
-		SimpleDateFormat sdf =   new SimpleDateFormat( "yyyyMMdd" );
+	public static Set<String> countLibsAmount( String colName, File file) throws BiffException, IOException, ParseException {
 		Workbook wb = Workbook.getWorkbook( file);
 		Sheet sheet = wb.getSheet(0);
 		int rowAmount = sheet.getRows();
 		int colAmount = sheet.getColumns();
-		List<Person> person_list = new ArrayList<>();
-		
 		boolean foundHeader = false;
 		List<String> headers = null;
 		headers = new ArrayList<>();
@@ -119,7 +109,6 @@ public class OpenWorkSheet {
 //			}
 		}
 		System.out.println("不重复选项数目：" + salary_libs.size());
-		int i=0;
 		Iterator<String> it = salary_libs.iterator();
 		while(it.hasNext()) {
 			System.out.println( String.valueOf(it.next()));

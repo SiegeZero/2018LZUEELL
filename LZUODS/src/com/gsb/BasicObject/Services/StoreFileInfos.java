@@ -48,6 +48,20 @@ public class StoreFileInfos {
 	int rowAmount;
 	int colAmount;
 	int first_data_row_index;
+	
+	public List<String> CompareOpen() throws BiffException, IOException {
+		String path = "src/1.xls";
+		wb = Workbook.getWorkbook(new File( path));
+		sheet = wb.getSheet(0);
+		rowAmount = sheet.getRows();
+		colAmount = sheet.getColumns();
+		List<String> names = new ArrayList<>();
+		for (int row_index = 0, col_index = 0; row_index < rowAmount; row_index++) {
+			Cell cell = sheet.getCell(2, row_index);
+			names.add( cell.getContents());
+		}
+		return names;
+	}
 
 	public StoreFileInfos() {
 		

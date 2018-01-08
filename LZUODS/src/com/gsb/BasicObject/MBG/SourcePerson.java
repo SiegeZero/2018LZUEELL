@@ -11,9 +11,9 @@ import com.gsb.BasicObject.MBGDAO.SalaryLibMapper;
 import com.gsb.BasicObject.MBGDAO.SociatyMapper;
 
 public class SourcePerson extends PersonWithBLOBs {
-	private String dept;
-	private String sociaty;
-	private String slib;
+	private Department dept;
+	private Sociaty sociaty;
+	private SalaryLib slib;
 	private String gender;
 	private String birth;
 	private String start_job;
@@ -22,8 +22,19 @@ public class SourcePerson extends PersonWithBLOBs {
 	private String need_help;
 	
 
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+	private SimpleDateFormat sdf;
 	
+	
+	
+	
+	public SourcePerson() {
+		super();
+		dept = new Department();
+		sociaty = new Sociaty();
+		slib = new SalaryLib();
+		sdf = new SimpleDateFormat("yyyyMMdd");
+	}
+
 	public PersonWithBLOBs format(Map<String, Integer> depts_map, Map<String, Integer> sociaties_map, Map<String, Integer> slib_map){
 		
 		this.setDeptNo( depts_map.get( dept));
@@ -31,6 +42,11 @@ public class SourcePerson extends PersonWithBLOBs {
 		this.setSalaryLibNo(slib_map.get( slib));
 		this.setConscriptionSituation( conscriptio_situation.equals("非军属")?null:conscriptio_situation);
 		this.setIsHelpNeeded( need_help.equals( "是")?true:false);
+		if( birth.endsWith("0000")) {
+			birth = birth.substring(0,4).concat("0101");
+		} else if( birth.endsWith("00")) {
+			birth = birth.substring(0,6).concat("01");
+		}
 		try {
 			this.setBirthTime(birth.equals("")?null:sdf.parse(birth));
 		} catch (ParseException e) {
@@ -54,22 +70,22 @@ public class SourcePerson extends PersonWithBLOBs {
 	}
 	
 	public String getDept() {
-		return dept;
+		return dept.getDeptName();
 	}
 	public void setDept(String dept) {
-		this.dept = dept;
+		this.dept.setDeptName(dept);;
 	}
 	public String getSociaty() {
-		return sociaty;
+		return sociaty.getSociatyName();
 	}
 	public void setSociaty(String sociaty) {
-		this.sociaty = sociaty;
+		this.sociaty.setSociatyName(sociaty);;
 	}
 	public String getSlib() {
-		return slib;
+		return slib.getSalaryVersion();
 	}
 	public void setSlib(String slib) {
-		this.slib = slib;
+		this.slib.setSalaryVersion( slib);;
 	}
 	public String getGender() {
 		return gender;

@@ -104,7 +104,7 @@
       order by ${orderByClause}
     </if>
   </select>
-    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
     select 
     <include refid="Base_Column_List" />
     ,
@@ -112,7 +112,6 @@
     from dept_table
     where dept_no = #{deptNo,jdbcType=INTEGER}
   </select>
-  
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from dept_table
     where dept_no = #{deptNo,jdbcType=INTEGER}

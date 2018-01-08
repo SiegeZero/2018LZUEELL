@@ -1,6 +1,7 @@
 package com.gsb.BasicObject.Services;
 
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -28,6 +29,11 @@ public class ReadDBInfos {
 	Calendar cal = Calendar.getInstance();
 	@Autowired
 	PersonMapper person_mapper;
+	
+	
+	public List<String> getAllNations() {
+		return person_mapper.selectAllNations();
+	}
 	
 	public List<Person> getBasicInfos( PersonExample example) {
 		return person_mapper.selectByExample( example);
@@ -207,4 +213,96 @@ public class ReadDBInfos {
 		
 		return results;
 	}
+	
+	public List<Long> getLastYearAmount( int year) throws ParseException {
+		
+		PersonExample example = new PersonExample();
+		Criteria c = example.createCriteria();
+		cal = Calendar.getInstance();
+		cal.set(Calendar.YEAR, year);
+		cal.setTime( sdf.parse(String.valueOf(year)+"0101"));
+		Date newer = cal.getTime();
+		cal.setTime( sdf.parse(String.valueOf(year)+"1231"));
+		Date older = cal.getTime();
+		c.andQuitOfficeTypeLike("%退%");
+		c.andJobEndTimeBetween(newer, older);
+		example.or( c);
+		long total_amount = person_mapper.countByExample(example);
+		c.andGenderEqualTo("男");
+		example.or(c);
+		long male_amount = person_mapper.countByExample(example);
+		System.out.println( male_amount);
+		System.out.println( total_amount);
+		return null;
+	}
+	
+	public List<Long> getAverageAge( boolean exact) throws ParseException {
+		Calendar birth = Calendar.getInstance();
+		cal = Calendar.getInstance();
+		if( !exact) {
+			cal.setTime(sdf.parse("20180100"));
+		}
+		PersonExample example = new PersonExample();
+		Criteria c = example.createCriteria();
+		c.andGenderEqualTo("男");
+		example.or(c);
+		List<Person> male = person_mapper.selectByExample(example);
+		long male_age = 0;
+		for(Person p:male) {
+			Date birthday = p.getBirthTime();
+			birth.setTime(birthday);
+			int age = cal.get( Calendar.YEAR)-birth.get(Calendar.YEAR);
+			birth.set( Calendar.YEAR, cal.get(Calendar.YEAR));
+			if(birth.equals(cal)|| birth.before(cal)) {
+				age++;
+			}
+			male_age+=age;
+		}
+		example = new PersonExample();
+		c = example.createCriteria();
+		c.andGenderEqualTo("女");
+		example.or(c);
+		List<Person> female = person_mapper.selectByExample(example);
+		long female_age = 0;
+		for(Person p:female) {
+			Date birthday = p.getBirthTime();
+			birth.setTime(birthday);
+			int age = cal.get( Calendar.YEAR)-birth.get(Calendar.YEAR);
+			birth.set( Calendar.YEAR, cal.get(Calendar.YEAR));
+			if( birth.equals(cal)|| birth.before(cal)) {
+				age++;
+			}
+			female_age+=age;
+		}
+//		System.out.println( "男性年龄和：" + male_age);
+//		System.out.println( "女性年龄和：" + female_age);
+//		System.out.println("总年龄和："+(male_age + female_age));
+		System.out.println( "男性平均年龄：" + df.format(male_age*1.0/male.size()));
+		System.out.println( "女性平均年龄：" + df.format(female_age*1.0/female.size()));
+		System.out.println( "平均年龄：" + df.format((female_age+male_age)*1.0/(male.size()+female.size())));
+		return null;
+	}
+	
+	public List<Long> getRecentBirthday( List<String> names) throws ParseException {
+		Calendar current =Calendar.getInstance();
+//		current.set( Calendar.DATE, 9);
+		Calendar birth = Calendar.getInstance();
+		int amount = 0;
+		List<Person> ps = person_mapper.selectByExample(null);
+		for( Person p:ps) {
+			birth.setTime(p.getBirthTime());
+			current.set( Calendar.YEAR, birth.get(Calendar.YEAR));
+			if( current.after(birth)) {
+				if(names!=null&&!names.contains( p.getName())) {
+					System.out.println(p.getName());
+				}
+				amount++;
+			}
+		}
+		
+		System.out.println( amount);
+		
+		return null;
+	}
+	
 }
