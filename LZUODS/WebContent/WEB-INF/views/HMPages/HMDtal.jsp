@@ -10,8 +10,8 @@
     <!--移动设备响应-->
     <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
-    <title>Bootstrap 3</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <title>详细信息</title>
 </head>
 
 <body>
