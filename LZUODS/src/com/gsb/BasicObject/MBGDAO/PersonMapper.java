@@ -24,6 +24,11 @@ public interface PersonMapper {
     List<Person> selectByExample(PersonExample example);
     
     List<String> selectAllNations(); 
+    
+    List<String> selectAllSociaties(); 
+    
+    List<String> selectAllDepts(); 
+    
 
     PersonWithBLOBs selectByPrimaryKey(Integer sysNo);
 

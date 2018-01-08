@@ -35,6 +35,15 @@ public class ReadDBInfos {
 		return person_mapper.selectAllNations();
 	}
 	
+	public List<String> getAllSociaties() {
+		return person_mapper.selectAllSociaties();
+	}
+	
+	public List<String> getAllDepts() {
+		return person_mapper.selectAllDepts();
+	}
+	
+	
 	public List<Person> getBasicInfos( PersonExample example) {
 		return person_mapper.selectByExample( example);
 	}

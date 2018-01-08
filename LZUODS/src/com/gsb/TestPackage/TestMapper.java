@@ -129,7 +129,9 @@ public class TestMapper{
 	
 	@Test
 	public void testNationPrinting() {
-		List<String> nations = info_reader.getAllNations();
+//		List<String> nations = info_reader.getAllNations();
+//		List<String> nations = info_reader.getAllSociaties();
+		List<String> nations = info_reader.getAllDepts();
 		for( String nation:nations) {
 			System.out.println( nation);
 		}

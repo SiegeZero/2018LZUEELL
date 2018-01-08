@@ -648,4 +648,16 @@
 		select distinct nation
 		from basic_info_table
 	</select>
+	
+	<select id="selectAllDepts"
+		resultType="string">
+		select distinct dept_name
+		from dept_table
+	</select>
+	
+	<select id="selectAllSociaties"
+		resultType="string">
+		select distinct sociaty_name
+		from sociaty_table
+	</select>
 </mapper>
