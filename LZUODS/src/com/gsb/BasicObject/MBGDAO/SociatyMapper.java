@@ -19,6 +19,8 @@ public interface SociatyMapper {
     List<Sociaty> selectByExampleWithBLOBs(SociatyExample example);
 
     List<Sociaty> selectByExample(SociatyExample example);
+    
+    List<String> selectAllSociaties(); 
 
     Sociaty selectByPrimaryKey(Integer sociatyNo);
 

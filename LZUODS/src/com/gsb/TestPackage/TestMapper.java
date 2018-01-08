@@ -49,8 +49,6 @@ public class TestMapper{
 	@Autowired
 	SociatyMapper sociaty_mapper;
 	
-	@Test
-	@Rollback
 	public void  insertSociaty() {
 		try {
 			Set sets = OpenWorkSheet.countLibsAmount( "现所在分会", new File("src/data-new.xls"));
@@ -73,7 +71,6 @@ public class TestMapper{
 	@Autowired
 	StoreFileInfos sfis;
 	
-	@Test
 	public void  insertDept() {
 		sfis.storeDeptsWith( "");
 	}
@@ -98,11 +95,11 @@ public class TestMapper{
 	
 	@Test
 	public void  printContent() throws ParseException {
-//		info_reader.getAllAmount();
-//		info_reader.getAmountEachSociaty();
-//		info_reader.getPartyMembersAmount();
-//		info_reader.getAgeRangeAmount();
-//		info_reader.getLastYearAmount(2017);
+		info_reader.getAllAmount();
+		info_reader.getAmountEachSociaty();
+		info_reader.getPartyMembersAmount();
+		info_reader.getAgeRangeAmount();
+		info_reader.getLastYearAmount(2017);
 		System.out.println("精确到今天:");
 		info_reader.getAverageAge( true);
 		System.out.println("精确到17年最后一天:");
@@ -129,12 +126,19 @@ public class TestMapper{
 	
 	@Test
 	public void testNationPrinting() {
-//		List<String> nations = info_reader.getAllNations();
-//		List<String> nations = info_reader.getAllSociaties();
-		List<String> nations = info_reader.getAllDepts();
-		for( String nation:nations) {
-			System.out.println( nation);
+		List<String> strings;
+//		strings = info_reader.getAllNations();
+//		strings = info_reader.getAllSociaties();
+//		strings = info_reader.getAllDepts();
+//		strings = info_reader.getAllFunc();
+		strings = info_reader.getAllTitleLv();
+		for( String s:strings) {
+			System.out.println( s);
 		}
+	}
+	
+	@Test
+	public void testFuncGet() {
 	}
 	
 }

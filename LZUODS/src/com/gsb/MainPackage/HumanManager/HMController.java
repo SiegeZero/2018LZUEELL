@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.gsb.BasicObject.Target;
 import com.gsb.BasicObject.MBG.Person;
+import com.gsb.BasicObject.MBG.SourcePerson;
 import com.gsb.BasicObject.MBGDAO.DepartmentMapper;
 import com.gsb.BasicObject.Services.ReadDBInfos;
 
@@ -51,12 +52,12 @@ public class HMController {
 	
 	@RequestMapping(value="/HMMang")
 	public ModelAndView manage( ModelAndView mv) {
-		List<Person> list =  db_reader.getBasicInfos(null);
+		List<SourcePerson> list =  db_reader.getBasicInfos(null);
 		System.out.println( list.size());
 		mv.addObject("size", list.size());
 		mv.addObject("person_list", list);
-		mv.addObject("nations_list", new ArrayList<String>());
-		mv.addObject("sociaties_list", new ArrayList<String>());
+		mv.addObject("nations_list", db_reader.getAllNations());
+		mv.addObject("sociaties_list", db_reader.getAllSociaties());
 		return mv;
 	}
 	

@@ -37,9 +37,9 @@ public class SourcePerson extends PersonWithBLOBs {
 
 	public PersonWithBLOBs format(Map<String, Integer> depts_map, Map<String, Integer> sociaties_map, Map<String, Integer> slib_map){
 		
-		this.setDeptNo( depts_map.get( dept));
-		this.setSociatyNo(sociaties_map.get( sociaty));
-		this.setSalaryLibNo(slib_map.get( slib));
+		this.setDeptNo( depts_map.get( this.dept.getDeptName()));
+		this.setSociatyNo(sociaties_map.get( this.sociaty.getSociatyName()));
+		this.setSalaryLibNo(slib_map.get( this.slib.getSalaryVersion()));
 		this.setConscriptionSituation( conscriptio_situation.equals("非军属")?null:conscriptio_situation);
 		this.setIsHelpNeeded( need_help.equals( "是")?true:false);
 		if( birth.endsWith("0000")) {
@@ -47,6 +47,17 @@ public class SourcePerson extends PersonWithBLOBs {
 		} else if( birth.endsWith("00")) {
 			birth = birth.substring(0,6).concat("01");
 		}
+		if( start_job.endsWith("0000")) {
+			start_job = start_job.substring(0,4).concat("0101");
+		} else if( birth.endsWith("00")) {
+			start_job = start_job.substring(0,6).concat("01");
+		}
+		if( end_job.endsWith("0000")) {
+			end_job = end_job.substring(0,4).concat("0101");
+		} else if( end_job.endsWith("00")) {
+			end_job = end_job.substring(0,6).concat("01");
+		}
+		
 		try {
 			this.setBirthTime(birth.equals("")?null:sdf.parse(birth));
 		} catch (ParseException e) {

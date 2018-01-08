@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gsb.BasicObject.MBG.Person;
+import com.gsb.BasicObject.MBG.SourcePerson;
 import com.gsb.BasicObject.Services.ReadDBInfos;
 
 @Controller
@@ -18,7 +19,7 @@ public class TestKlassWithTitle {
 	
 	@RequestMapping( value="/TestNameOnlyPage")
 	public Model showInfos( Model m) {
-		List<Person> list =  db_reader.getBasicInfos(null);
+		List<SourcePerson> list =  db_reader.getBasicInfos(null);
 		System.out.println( list.size());
 		m.addAttribute("size", list.size());
 		m.addAttribute("person_list", list);

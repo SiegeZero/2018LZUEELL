@@ -21,14 +21,11 @@ public interface PersonMapper {
 
     List<PersonWithBLOBs> selectByExampleWithBLOBs(PersonExample example);
 
-    List<Person> selectByExample(PersonExample example);
+    List<SourcePerson> selectByExample(PersonExample example);
     
     List<String> selectAllNations(); 
     
-    List<String> selectAllSociaties(); 
-    
-    List<String> selectAllDepts(); 
-    
+    List<String> selectAllSlib();
 
     PersonWithBLOBs selectByPrimaryKey(Integer sysNo);
 
@@ -45,4 +42,8 @@ public interface PersonMapper {
     int updateByPrimaryKey(Person record);
 
 	List<SourcePerson> selectWithDeptName(Integer id);
+
+	List<String> selectAllFunc();
+
+	List<String> selectAllTitleLv();
 }

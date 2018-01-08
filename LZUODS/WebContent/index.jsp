@@ -9,6 +9,7 @@
 <%@ page import="com.gsb.BasicObject.MBG.AtvInfo" %>
 <body>
 <% AtvInfo atv_info = (AtvInfo) request.getAttribute("atv_info"); %>
-活动地点：<%= atv_info.getAtvTopic() %>
+活动地点：<%= atv_info!=null?atv_info.getAtvTopic():"没有数据" %>
+<a href="/<%= this.getServletContext().getServletContextName() %>/HMM/HMHome">Homepage</a>
 </body>
 </html>

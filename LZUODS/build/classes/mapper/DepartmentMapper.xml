@@ -1,251 +1,267 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gsb.BasicObject.MBGDAO.DepartmentMapper">
-  <resultMap id="BaseResultMap" type="com.gsb.BasicObject.MBG.Department">
-    <id column="dept_no" jdbcType="INTEGER" property="deptNo" />
-    <result column="dept_name" jdbcType="VARCHAR" property="deptName" />
-    <result column="dept_leader" jdbcType="VARCHAR" property="deptLeader" />
-    <result column="dept_phone" jdbcType="VARCHAR" property="deptPhone" />
-  </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.gsb.BasicObject.MBG.Department">
-    <result column="dept_remark" jdbcType="LONGVARCHAR" property="deptRemark" />
-  </resultMap>
-  <sql id="Example_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause">
-    <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
-            </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List">
-    dept_no, dept_name, dept_leader, dept_phone
-  </sql>
-  <sql id="Blob_Column_List">
-    dept_remark
-  </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.gsb.BasicObject.MBG.DepartmentExample" resultMap="ResultMapWithBLOBs">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from dept_table
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByExample" parameterType="com.gsb.BasicObject.MBG.DepartmentExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from dept_table
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
-    select 
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from dept_table
-    where dept_no = #{deptNo,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from dept_table
-    where dept_no = #{deptNo,jdbcType=INTEGER}
-  </delete>
-  <delete id="deleteByExample" parameterType="com.gsb.BasicObject.MBG.DepartmentExample">
-    delete from dept_table
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="com.gsb.BasicObject.MBG.Department">
-    insert into dept_table (dept_no, dept_name, dept_leader, 
-      dept_phone, dept_remark)
-    values (#{deptNo,jdbcType=INTEGER}, #{deptName,jdbcType=VARCHAR}, #{deptLeader,jdbcType=VARCHAR}, 
-      #{deptPhone,jdbcType=VARCHAR}, #{deptRemark,jdbcType=LONGVARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.gsb.BasicObject.MBG.Department">
-    insert into dept_table
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="deptNo != null">
-        dept_no,
-      </if>
-      <if test="deptName != null">
-        dept_name,
-      </if>
-      <if test="deptLeader != null">
-        dept_leader,
-      </if>
-      <if test="deptPhone != null">
-        dept_phone,
-      </if>
-      <if test="deptRemark != null">
-        dept_remark,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="deptNo != null">
-        #{deptNo,jdbcType=INTEGER},
-      </if>
-      <if test="deptName != null">
-        #{deptName,jdbcType=VARCHAR},
-      </if>
-      <if test="deptLeader != null">
-        #{deptLeader,jdbcType=VARCHAR},
-      </if>
-      <if test="deptPhone != null">
-        #{deptPhone,jdbcType=VARCHAR},
-      </if>
-      <if test="deptRemark != null">
-        #{deptRemark,jdbcType=LONGVARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="com.gsb.BasicObject.MBG.DepartmentExample" resultType="java.lang.Long">
-    select count(*) from dept_table
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
-    update dept_table
-    <set>
-      <if test="record.deptNo != null">
-        dept_no = #{record.deptNo,jdbcType=INTEGER},
-      </if>
-      <if test="record.deptName != null">
-        dept_name = #{record.deptName,jdbcType=VARCHAR},
-      </if>
-      <if test="record.deptLeader != null">
-        dept_leader = #{record.deptLeader,jdbcType=VARCHAR},
-      </if>
-      <if test="record.deptPhone != null">
-        dept_phone = #{record.deptPhone,jdbcType=VARCHAR},
-      </if>
-      <if test="record.deptRemark != null">
-        dept_remark = #{record.deptRemark,jdbcType=LONGVARCHAR},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map">
-    update dept_table
-    set dept_no = #{record.deptNo,jdbcType=INTEGER},
-      dept_name = #{record.deptName,jdbcType=VARCHAR},
-      dept_leader = #{record.deptLeader,jdbcType=VARCHAR},
-      dept_phone = #{record.deptPhone,jdbcType=VARCHAR},
-      dept_remark = #{record.deptRemark,jdbcType=LONGVARCHAR}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map">
-    update dept_table
-    set dept_no = #{record.deptNo,jdbcType=INTEGER},
-      dept_name = #{record.deptName,jdbcType=VARCHAR},
-      dept_leader = #{record.deptLeader,jdbcType=VARCHAR},
-      dept_phone = #{record.deptPhone,jdbcType=VARCHAR}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.gsb.BasicObject.MBG.Department">
-    update dept_table
-    <set>
-      <if test="deptName != null">
-        dept_name = #{deptName,jdbcType=VARCHAR},
-      </if>
-      <if test="deptLeader != null">
-        dept_leader = #{deptLeader,jdbcType=VARCHAR},
-      </if>
-      <if test="deptPhone != null">
-        dept_phone = #{deptPhone,jdbcType=VARCHAR},
-      </if>
-      <if test="deptRemark != null">
-        dept_remark = #{deptRemark,jdbcType=LONGVARCHAR},
-      </if>
-    </set>
-    where dept_no = #{deptNo,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.gsb.BasicObject.MBG.Department">
-    update dept_table
-    set dept_name = #{deptName,jdbcType=VARCHAR},
-      dept_leader = #{deptLeader,jdbcType=VARCHAR},
-      dept_phone = #{deptPhone,jdbcType=VARCHAR},
-      dept_remark = #{deptRemark,jdbcType=LONGVARCHAR}
-    where dept_no = #{deptNo,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.gsb.BasicObject.MBG.Department">
-    update dept_table
-    set dept_name = #{deptName,jdbcType=VARCHAR},
-      dept_leader = #{deptLeader,jdbcType=VARCHAR},
-      dept_phone = #{deptPhone,jdbcType=VARCHAR}
-    where dept_no = #{deptNo,jdbcType=INTEGER}
-  </update>
+	<resultMap id="BaseResultMap" type="com.gsb.BasicObject.MBG.Department">
+		<id column="dept_no" jdbcType="INTEGER" property="deptNo" />
+		<result column="dept_name" jdbcType="VARCHAR" property="deptName" />
+		<result column="dept_leader" jdbcType="VARCHAR" property="deptLeader" />
+		<result column="dept_phone" jdbcType="VARCHAR" property="deptPhone" />
+	</resultMap>
+	<resultMap extends="BaseResultMap" id="ResultMapWithBLOBs"
+		type="com.gsb.BasicObject.MBG.Department">
+		<result column="dept_remark" jdbcType="LONGVARCHAR" property="deptRemark" />
+	</resultMap>
+	<sql id="Example_Where_Clause">
+		<where>
+			<foreach collection="oredCriteria" item="criteria" separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" prefixOverrides="and" suffix=")">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach close=")" collection="criterion.value" item="listItem"
+										open="(" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Update_By_Example_Where_Clause">
+		<where>
+			<foreach collection="example.oredCriteria" item="criteria"
+				separator="or">
+				<if test="criteria.valid">
+					<trim prefix="(" prefixOverrides="and" suffix=")">
+						<foreach collection="criteria.criteria" item="criterion">
+							<choose>
+								<when test="criterion.noValue">
+									and ${criterion.condition}
+								</when>
+								<when test="criterion.singleValue">
+									and ${criterion.condition} #{criterion.value}
+								</when>
+								<when test="criterion.betweenValue">
+									and ${criterion.condition} #{criterion.value} and
+									#{criterion.secondValue}
+								</when>
+								<when test="criterion.listValue">
+									and ${criterion.condition}
+									<foreach close=")" collection="criterion.value" item="listItem"
+										open="(" separator=",">
+										#{listItem}
+									</foreach>
+								</when>
+							</choose>
+						</foreach>
+					</trim>
+				</if>
+			</foreach>
+		</where>
+	</sql>
+	<sql id="Base_Column_List">
+		dept_no, dept_name, dept_leader, dept_phone
+	</sql>
+	<sql id="Blob_Column_List">
+		dept_remark
+	</sql>
+	<select id="selectByExampleWithBLOBs" parameterType="com.gsb.BasicObject.MBG.DepartmentExample"
+		resultMap="ResultMapWithBLOBs">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from dept_table
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByExample" parameterType="com.gsb.BasicObject.MBG.DepartmentExample"
+		resultMap="BaseResultMap">
+		select
+		<if test="distinct">
+			distinct
+		</if>
+		<include refid="Base_Column_List" />
+		from dept_table
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
+	</select>
+	<select id="selectByPrimaryKey" parameterType="java.lang.Integer"
+		resultMap="ResultMapWithBLOBs">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from dept_table
+		where dept_no = #{deptNo,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from dept_table
+		where dept_no = #{deptNo,jdbcType=INTEGER}
+	</delete>
+	<delete id="deleteByExample" parameterType="com.gsb.BasicObject.MBG.DepartmentExample">
+		delete from dept_table
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</delete>
+	<insert id="insert" parameterType="com.gsb.BasicObject.MBG.Department">
+		insert into dept_table (dept_no, dept_name, dept_leader,
+		dept_phone, dept_remark)
+		values (#{deptNo,jdbcType=INTEGER}, #{deptName,jdbcType=VARCHAR},
+		#{deptLeader,jdbcType=VARCHAR},
+		#{deptPhone,jdbcType=VARCHAR}, #{deptRemark,jdbcType=LONGVARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.gsb.BasicObject.MBG.Department">
+		insert into dept_table
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="deptNo != null">
+				dept_no,
+			</if>
+			<if test="deptName != null">
+				dept_name,
+			</if>
+			<if test="deptLeader != null">
+				dept_leader,
+			</if>
+			<if test="deptPhone != null">
+				dept_phone,
+			</if>
+			<if test="deptRemark != null">
+				dept_remark,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="deptNo != null">
+				#{deptNo,jdbcType=INTEGER},
+			</if>
+			<if test="deptName != null">
+				#{deptName,jdbcType=VARCHAR},
+			</if>
+			<if test="deptLeader != null">
+				#{deptLeader,jdbcType=VARCHAR},
+			</if>
+			<if test="deptPhone != null">
+				#{deptPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="deptRemark != null">
+				#{deptRemark,jdbcType=LONGVARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<select id="countByExample" parameterType="com.gsb.BasicObject.MBG.DepartmentExample"
+		resultType="java.lang.Long">
+		select count(*) from dept_table
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+	</select>
+
+	<select id="selectAllDepts" resultType="string">
+		select distinct dept_name
+		from dept_table
+	</select>
+	<update id="updateByExampleSelective" parameterType="map">
+		update dept_table
+		<set>
+			<if test="record.deptNo != null">
+				dept_no = #{record.deptNo,jdbcType=INTEGER},
+			</if>
+			<if test="record.deptName != null">
+				dept_name = #{record.deptName,jdbcType=VARCHAR},
+			</if>
+			<if test="record.deptLeader != null">
+				dept_leader = #{record.deptLeader,jdbcType=VARCHAR},
+			</if>
+			<if test="record.deptPhone != null">
+				dept_phone = #{record.deptPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="record.deptRemark != null">
+				dept_remark = #{record.deptRemark,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExampleWithBLOBs" parameterType="map">
+		update dept_table
+		set dept_no = #{record.deptNo,jdbcType=INTEGER},
+		dept_name = #{record.deptName,jdbcType=VARCHAR},
+		dept_leader = #{record.deptLeader,jdbcType=VARCHAR},
+		dept_phone = #{record.deptPhone,jdbcType=VARCHAR},
+		dept_remark = #{record.deptRemark,jdbcType=LONGVARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByExample" parameterType="map">
+		update dept_table
+		set dept_no = #{record.deptNo,jdbcType=INTEGER},
+		dept_name = #{record.deptName,jdbcType=VARCHAR},
+		dept_leader = #{record.deptLeader,jdbcType=VARCHAR},
+		dept_phone = #{record.deptPhone,jdbcType=VARCHAR}
+		<if test="_parameter != null">
+			<include refid="Update_By_Example_Where_Clause" />
+		</if>
+	</update>
+	<update id="updateByPrimaryKeySelective" parameterType="com.gsb.BasicObject.MBG.Department">
+		update dept_table
+		<set>
+			<if test="deptName != null">
+				dept_name = #{deptName,jdbcType=VARCHAR},
+			</if>
+			<if test="deptLeader != null">
+				dept_leader = #{deptLeader,jdbcType=VARCHAR},
+			</if>
+			<if test="deptPhone != null">
+				dept_phone = #{deptPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="deptRemark != null">
+				dept_remark = #{deptRemark,jdbcType=LONGVARCHAR},
+			</if>
+		</set>
+		where dept_no = #{deptNo,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.gsb.BasicObject.MBG.Department">
+		update dept_table
+		set dept_name = #{deptName,jdbcType=VARCHAR},
+		dept_leader = #{deptLeader,jdbcType=VARCHAR},
+		dept_phone = #{deptPhone,jdbcType=VARCHAR},
+		dept_remark = #{deptRemark,jdbcType=LONGVARCHAR}
+		where dept_no = #{deptNo,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.gsb.BasicObject.MBG.Department">
+		update dept_table
+		set dept_name = #{deptName,jdbcType=VARCHAR},
+		dept_leader = #{deptLeader,jdbcType=VARCHAR},
+		dept_phone = #{deptPhone,jdbcType=VARCHAR}
+		where dept_no = #{deptNo,jdbcType=INTEGER}
+	</update>
 </mapper>

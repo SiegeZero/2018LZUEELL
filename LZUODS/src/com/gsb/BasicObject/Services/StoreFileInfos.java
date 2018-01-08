@@ -185,12 +185,15 @@ public class StoreFileInfos {
 	 * 【18家庭住址、19电话号码、20手机号码、21家庭成员和生活状况】 【22身体情况、23军属、24是否贫困】
 	 */
 	public boolean storeBasicInfoWith(String[] targetHeaders) throws ParseException {
-		
+		sociaty_mapper.deleteByExample(null);
+		dept_mapper.deleteByExample(null);
+		slib_mapper.deleteByExample(null);
 		if( !this.storeSociatieWith(headers.get(3)) 
 				|| !this.storeDeptsWith(headers.get(4))
 					||!this.storeSLibWith( headers.get(5))) {
 			return false;
 		}
+		person_mapper.deleteByExample(null);
 		for (int row_index = first_data_row_index; row_index < rowAmount; row_index++) {
 			SourcePerson person = new SourcePerson();
 			person.setSalaryNo(sheet.getCell(headers.indexOf(targetHeaders[1]), row_index).getContents());
@@ -231,7 +234,7 @@ public class StoreFileInfos {
 			if( person.getBirthTime() != null)
 				criteria.andBirthTimeEqualTo( person.getBirthTime());
 			personExample.or( criteria);
-			List<Person> selectByExample = person_mapper.selectByExample( personExample);
+			List<SourcePerson> selectByExample = person_mapper.selectByExample( personExample);
 		}
 		return true;
 	}

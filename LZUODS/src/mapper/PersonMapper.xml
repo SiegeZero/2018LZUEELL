@@ -35,12 +35,15 @@
 		<result column="living_situation" jdbcType="LONGVARCHAR"
 			property="livingSituation" />
 	</resultMap>
-	
-	<resultMap id="ResultMapWithDept"
+
+	<resultMap extends="BaseResultMap" id="ResultMapWithDept"
 		type="com.gsb.BasicObject.MBG.SourcePerson">
+		<result column="address" jdbcType="LONGVARCHAR" property="address" />
+		<result column="living_situation" jdbcType="LONGVARCHAR"
+			property="livingSituation" />
 		<result column="dept_name" jdbcType="VARCHAR" property="dept" />
 	</resultMap>
-	
+
 	<sql id="Example_Where_Clause">
 		<where>
 			<foreach collection="oredCriteria" item="criteria" separator="or">
@@ -55,7 +58,8 @@
 									and ${criterion.condition} #{criterion.value}
 								</when>
 								<when test="criterion.betweenValue">
-									and ${criterion.condition} #{criterion.value} and
+									and ${criterion.condition} #{criterion.value}
+									and
 									#{criterion.secondValue}
 								</when>
 								<when test="criterion.listValue">
@@ -87,7 +91,8 @@
 									and ${criterion.condition} #{criterion.value}
 								</when>
 								<when test="criterion.betweenValue">
-									and ${criterion.condition} #{criterion.value} and
+									and ${criterion.condition} #{criterion.value}
+									and
 									#{criterion.secondValue}
 								</when>
 								<when test="criterion.listValue">
@@ -105,13 +110,17 @@
 		</where>
 	</sql>
 	<sql id="Base_Column_List">
-		sys_no, name, gender, native_place, nation, salary_no, salary_lib_no,
+		sys_no, name, gender, native_place, nation, salary_no,
+		salary_lib_no,
 		dept_no, func,
-		telephone_num, title_lv, latest_sympathy_year, job_end_time, job_start_time,
+		telephone_num, title_lv,
+		latest_sympathy_year, job_end_time, job_start_time,
 		birth_time,
-		sociaty_no, edu_bg, political_status, quit_office_type, pension_model_no,
+		sociaty_no, edu_bg, political_status, quit_office_type,
+		pension_model_no,
 		physical_situation,
-		conscription_situation, is_help_needed
+		conscription_situation,
+		is_help_needed
 	</sql>
 	<sql id="Blob_Column_List">
 		address, living_situation
@@ -158,7 +167,8 @@
 		where sys_no = #{sysNo,jdbcType=INTEGER}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from basic_info_table
+		delete from
+		basic_info_table
 		where sys_no = #{sysNo,jdbcType=INTEGER}
 	</delete>
 	<delete id="deleteByExample" parameterType="com.gsb.BasicObject.MBG.PersonExample">
@@ -168,24 +178,34 @@
 		</if>
 	</delete>
 	<insert id="insert" parameterType="com.gsb.BasicObject.MBG.PersonWithBLOBs">
-		insert into basic_info_table (sys_no, name, gender,
+		insert into basic_info_table
+		(sys_no, name, gender,
 		native_place, nation, salary_no,
-		salary_lib_no, dept_no, func,
+		salary_lib_no,
+		dept_no, func,
 		telephone_num, title_lv, latest_sympathy_year,
 		job_end_time, job_start_time, birth_time,
-		sociaty_no, edu_bg, political_status,
-		quit_office_type, pension_model_no, physical_situation,
+		sociaty_no, edu_bg,
+		political_status,
+		quit_office_type, pension_model_no,
+		physical_situation,
 		conscription_situation, is_help_needed, address,
 		living_situation)
-		values (#{sysNo,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
+		values (#{sysNo,jdbcType=INTEGER},
+		#{name,jdbcType=VARCHAR},
 		#{gender,jdbcType=CHAR},
-		#{nativePlace,jdbcType=VARCHAR}, #{nation,jdbcType=VARCHAR}, #{salaryNo,jdbcType=VARCHAR},
-		#{salaryLibNo,jdbcType=INTEGER}, #{deptNo,jdbcType=INTEGER},
+		#{nativePlace,jdbcType=VARCHAR}, #{nation,jdbcType=VARCHAR},
+		#{salaryNo,jdbcType=VARCHAR},
+		#{salaryLibNo,jdbcType=INTEGER},
+		#{deptNo,jdbcType=INTEGER},
 		#{func,jdbcType=VARCHAR},
-		#{telephoneNum,jdbcType=VARCHAR}, #{titleLv,jdbcType=VARCHAR}, #{latestSympathyYear,jdbcType=DATE},
-		#{jobEndTime,jdbcType=DATE}, #{jobStartTime,jdbcType=DATE},
+		#{telephoneNum,jdbcType=VARCHAR}, #{titleLv,jdbcType=VARCHAR},
+		#{latestSympathyYear,jdbcType=DATE},
+		#{jobEndTime,jdbcType=DATE},
+		#{jobStartTime,jdbcType=DATE},
 		#{birthTime,jdbcType=DATE},
-		#{sociatyNo,jdbcType=INTEGER}, #{eduBg,jdbcType=VARCHAR}, #{politicalStatus,jdbcType=VARCHAR},
+		#{sociatyNo,jdbcType=INTEGER}, #{eduBg,jdbcType=VARCHAR},
+		#{politicalStatus,jdbcType=VARCHAR},
 		#{quitOfficeType,jdbcType=VARCHAR},
 		#{pensionModelNo,jdbcType=INTEGER},
 		#{physicalSituation,jdbcType=VARCHAR},
@@ -394,7 +414,8 @@
 				title_lv = #{record.titleLv,jdbcType=VARCHAR},
 			</if>
 			<if test="record.latestSympathyYear != null">
-				latest_sympathy_year = #{record.latestSympathyYear,jdbcType=DATE},
+				latest_sympathy_year =
+				#{record.latestSympathyYear,jdbcType=DATE},
 			</if>
 			<if test="record.jobEndTime != null">
 				job_end_time = #{record.jobEndTime,jdbcType=DATE},
@@ -412,19 +433,24 @@
 				edu_bg = #{record.eduBg,jdbcType=VARCHAR},
 			</if>
 			<if test="record.politicalStatus != null">
-				political_status = #{record.politicalStatus,jdbcType=VARCHAR},
+				political_status =
+				#{record.politicalStatus,jdbcType=VARCHAR},
 			</if>
 			<if test="record.quitOfficeType != null">
-				quit_office_type = #{record.quitOfficeType,jdbcType=VARCHAR},
+				quit_office_type =
+				#{record.quitOfficeType,jdbcType=VARCHAR},
 			</if>
 			<if test="record.pensionModelNo != null">
-				pension_model_no = #{record.pensionModelNo,jdbcType=INTEGER},
+				pension_model_no =
+				#{record.pensionModelNo,jdbcType=INTEGER},
 			</if>
 			<if test="record.physicalSituation != null">
-				physical_situation = #{record.physicalSituation,jdbcType=VARCHAR},
+				physical_situation =
+				#{record.physicalSituation,jdbcType=VARCHAR},
 			</if>
 			<if test="record.conscriptionSituation != null">
-				conscription_situation = #{record.conscriptionSituation,jdbcType=VARCHAR},
+				conscription_situation =
+				#{record.conscriptionSituation,jdbcType=VARCHAR},
 			</if>
 			<if test="record.isHelpNeeded != null">
 				is_help_needed = #{record.isHelpNeeded,jdbcType=BIT},
@@ -433,7 +459,8 @@
 				address = #{record.address,jdbcType=LONGVARCHAR},
 			</if>
 			<if test="record.livingSituation != null">
-				living_situation = #{record.livingSituation,jdbcType=LONGVARCHAR},
+				living_situation =
+				#{record.livingSituation,jdbcType=LONGVARCHAR},
 			</if>
 		</set>
 		<if test="_parameter != null">
@@ -444,30 +471,52 @@
 		update basic_info_table
 		set sys_no = #{record.sysNo,jdbcType=INTEGER},
 		name = #{record.name,jdbcType=VARCHAR},
-		gender = #{record.gender,jdbcType=CHAR},
-		native_place = #{record.nativePlace,jdbcType=VARCHAR},
-		nation = #{record.nation,jdbcType=VARCHAR},
-		salary_no = #{record.salaryNo,jdbcType=VARCHAR},
-		salary_lib_no = #{record.salaryLibNo,jdbcType=INTEGER},
-		dept_no = #{record.deptNo,jdbcType=INTEGER},
-		func = #{record.func,jdbcType=VARCHAR},
-		telephone_num = #{record.telephoneNum,jdbcType=VARCHAR},
-		title_lv = #{record.titleLv,jdbcType=VARCHAR},
-		latest_sympathy_year = #{record.latestSympathyYear,jdbcType=DATE},
-		job_end_time = #{record.jobEndTime,jdbcType=DATE},
-		job_start_time = #{record.jobStartTime,jdbcType=DATE},
-		birth_time = #{record.birthTime,jdbcType=DATE},
-		sociaty_no = #{record.sociatyNo,jdbcType=INTEGER},
-		edu_bg = #{record.eduBg,jdbcType=VARCHAR},
-		political_status = #{record.politicalStatus,jdbcType=VARCHAR},
-		quit_office_type = #{record.quitOfficeType,jdbcType=VARCHAR},
-		pension_model_no = #{record.pensionModelNo,jdbcType=INTEGER},
-		physical_situation = #{record.physicalSituation,jdbcType=VARCHAR},
+		gender =
+		#{record.gender,jdbcType=CHAR},
+		native_place =
+		#{record.nativePlace,jdbcType=VARCHAR},
+		nation =
+		#{record.nation,jdbcType=VARCHAR},
+		salary_no =
+		#{record.salaryNo,jdbcType=VARCHAR},
+		salary_lib_no =
+		#{record.salaryLibNo,jdbcType=INTEGER},
+		dept_no =
+		#{record.deptNo,jdbcType=INTEGER},
+		func =
+		#{record.func,jdbcType=VARCHAR},
+		telephone_num =
+		#{record.telephoneNum,jdbcType=VARCHAR},
+		title_lv =
+		#{record.titleLv,jdbcType=VARCHAR},
+		latest_sympathy_year =
+		#{record.latestSympathyYear,jdbcType=DATE},
+		job_end_time =
+		#{record.jobEndTime,jdbcType=DATE},
+		job_start_time =
+		#{record.jobStartTime,jdbcType=DATE},
+		birth_time =
+		#{record.birthTime,jdbcType=DATE},
+		sociaty_no =
+		#{record.sociatyNo,jdbcType=INTEGER},
+		edu_bg =
+		#{record.eduBg,jdbcType=VARCHAR},
+		political_status =
+		#{record.politicalStatus,jdbcType=VARCHAR},
+		quit_office_type =
+		#{record.quitOfficeType,jdbcType=VARCHAR},
+		pension_model_no =
+		#{record.pensionModelNo,jdbcType=INTEGER},
+		physical_situation =
+		#{record.physicalSituation,jdbcType=VARCHAR},
 		conscription_situation =
 		#{record.conscriptionSituation,jdbcType=VARCHAR},
-		is_help_needed = #{record.isHelpNeeded,jdbcType=BIT},
-		address = #{record.address,jdbcType=LONGVARCHAR},
-		living_situation = #{record.livingSituation,jdbcType=LONGVARCHAR}
+		is_help_needed =
+		#{record.isHelpNeeded,jdbcType=BIT},
+		address =
+		#{record.address,jdbcType=LONGVARCHAR},
+		living_situation =
+		#{record.livingSituation,jdbcType=LONGVARCHAR}
 		<if test="_parameter != null">
 			<include refid="Update_By_Example_Where_Clause" />
 		</if>
@@ -476,28 +525,48 @@
 		update basic_info_table
 		set sys_no = #{record.sysNo,jdbcType=INTEGER},
 		name = #{record.name,jdbcType=VARCHAR},
-		gender = #{record.gender,jdbcType=CHAR},
-		native_place = #{record.nativePlace,jdbcType=VARCHAR},
-		nation = #{record.nation,jdbcType=VARCHAR},
-		salary_no = #{record.salaryNo,jdbcType=VARCHAR},
-		salary_lib_no = #{record.salaryLibNo,jdbcType=INTEGER},
-		dept_no = #{record.deptNo,jdbcType=INTEGER},
-		func = #{record.func,jdbcType=VARCHAR},
-		telephone_num = #{record.telephoneNum,jdbcType=VARCHAR},
-		title_lv = #{record.titleLv,jdbcType=VARCHAR},
-		latest_sympathy_year = #{record.latestSympathyYear,jdbcType=DATE},
-		job_end_time = #{record.jobEndTime,jdbcType=DATE},
-		job_start_time = #{record.jobStartTime,jdbcType=DATE},
-		birth_time = #{record.birthTime,jdbcType=DATE},
-		sociaty_no = #{record.sociatyNo,jdbcType=INTEGER},
-		edu_bg = #{record.eduBg,jdbcType=VARCHAR},
-		political_status = #{record.politicalStatus,jdbcType=VARCHAR},
-		quit_office_type = #{record.quitOfficeType,jdbcType=VARCHAR},
-		pension_model_no = #{record.pensionModelNo,jdbcType=INTEGER},
-		physical_situation = #{record.physicalSituation,jdbcType=VARCHAR},
+		gender =
+		#{record.gender,jdbcType=CHAR},
+		native_place =
+		#{record.nativePlace,jdbcType=VARCHAR},
+		nation =
+		#{record.nation,jdbcType=VARCHAR},
+		salary_no =
+		#{record.salaryNo,jdbcType=VARCHAR},
+		salary_lib_no =
+		#{record.salaryLibNo,jdbcType=INTEGER},
+		dept_no =
+		#{record.deptNo,jdbcType=INTEGER},
+		func =
+		#{record.func,jdbcType=VARCHAR},
+		telephone_num =
+		#{record.telephoneNum,jdbcType=VARCHAR},
+		title_lv =
+		#{record.titleLv,jdbcType=VARCHAR},
+		latest_sympathy_year =
+		#{record.latestSympathyYear,jdbcType=DATE},
+		job_end_time =
+		#{record.jobEndTime,jdbcType=DATE},
+		job_start_time =
+		#{record.jobStartTime,jdbcType=DATE},
+		birth_time =
+		#{record.birthTime,jdbcType=DATE},
+		sociaty_no =
+		#{record.sociatyNo,jdbcType=INTEGER},
+		edu_bg =
+		#{record.eduBg,jdbcType=VARCHAR},
+		political_status =
+		#{record.politicalStatus,jdbcType=VARCHAR},
+		quit_office_type =
+		#{record.quitOfficeType,jdbcType=VARCHAR},
+		pension_model_no =
+		#{record.pensionModelNo,jdbcType=INTEGER},
+		physical_situation =
+		#{record.physicalSituation,jdbcType=VARCHAR},
 		conscription_situation =
 		#{record.conscriptionSituation,jdbcType=VARCHAR},
-		is_help_needed = #{record.isHelpNeeded,jdbcType=BIT}
+		is_help_needed =
+		#{record.isHelpNeeded,jdbcType=BIT}
 		<if test="_parameter != null">
 			<include refid="Update_By_Example_Where_Clause" />
 		</if>
@@ -536,7 +605,8 @@
 				title_lv = #{titleLv,jdbcType=VARCHAR},
 			</if>
 			<if test="latestSympathyYear != null">
-				latest_sympathy_year = #{latestSympathyYear,jdbcType=DATE},
+				latest_sympathy_year =
+				#{latestSympathyYear,jdbcType=DATE},
 			</if>
 			<if test="jobEndTime != null">
 				job_end_time = #{jobEndTime,jdbcType=DATE},
@@ -563,10 +633,12 @@
 				pension_model_no = #{pensionModelNo,jdbcType=INTEGER},
 			</if>
 			<if test="physicalSituation != null">
-				physical_situation = #{physicalSituation,jdbcType=VARCHAR},
+				physical_situation =
+				#{physicalSituation,jdbcType=VARCHAR},
 			</if>
 			<if test="conscriptionSituation != null">
-				conscription_situation = #{conscriptionSituation,jdbcType=VARCHAR},
+				conscription_situation =
+				#{conscriptionSituation,jdbcType=VARCHAR},
 			</if>
 			<if test="isHelpNeeded != null">
 				is_help_needed = #{isHelpNeeded,jdbcType=BIT},
@@ -575,89 +647,133 @@
 				address = #{address,jdbcType=LONGVARCHAR},
 			</if>
 			<if test="livingSituation != null">
-				living_situation = #{livingSituation,jdbcType=LONGVARCHAR},
+				living_situation =
+				#{livingSituation,jdbcType=LONGVARCHAR},
 			</if>
 		</set>
 		where sys_no = #{sysNo,jdbcType=INTEGER}
 	</update>
 	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.gsb.BasicObject.MBG.PersonWithBLOBs">
-		update basic_info_table
+		update
+		basic_info_table
 		set name = #{name,jdbcType=VARCHAR},
-		gender = #{gender,jdbcType=CHAR},
-		native_place = #{nativePlace,jdbcType=VARCHAR},
+		gender =
+		#{gender,jdbcType=CHAR},
+		native_place =
+		#{nativePlace,jdbcType=VARCHAR},
 		nation = #{nation,jdbcType=VARCHAR},
 		salary_no = #{salaryNo,jdbcType=VARCHAR},
-		salary_lib_no = #{salaryLibNo,jdbcType=INTEGER},
+		salary_lib_no =
+		#{salaryLibNo,jdbcType=INTEGER},
 		dept_no = #{deptNo,jdbcType=INTEGER},
 		func = #{func,jdbcType=VARCHAR},
-		telephone_num = #{telephoneNum,jdbcType=VARCHAR},
-		title_lv = #{titleLv,jdbcType=VARCHAR},
-		latest_sympathy_year = #{latestSympathyYear,jdbcType=DATE},
-		job_end_time = #{jobEndTime,jdbcType=DATE},
-		job_start_time = #{jobStartTime,jdbcType=DATE},
+		telephone_num =
+		#{telephoneNum,jdbcType=VARCHAR},
+		title_lv =
+		#{titleLv,jdbcType=VARCHAR},
+		latest_sympathy_year =
+		#{latestSympathyYear,jdbcType=DATE},
+		job_end_time =
+		#{jobEndTime,jdbcType=DATE},
+		job_start_time =
+		#{jobStartTime,jdbcType=DATE},
 		birth_time = #{birthTime,jdbcType=DATE},
 		sociaty_no = #{sociatyNo,jdbcType=INTEGER},
-		edu_bg = #{eduBg,jdbcType=VARCHAR},
-		political_status = #{politicalStatus,jdbcType=VARCHAR},
-		quit_office_type = #{quitOfficeType,jdbcType=VARCHAR},
-		pension_model_no = #{pensionModelNo,jdbcType=INTEGER},
-		physical_situation = #{physicalSituation,jdbcType=VARCHAR},
-		conscription_situation = #{conscriptionSituation,jdbcType=VARCHAR},
-		is_help_needed = #{isHelpNeeded,jdbcType=BIT},
-		address = #{address,jdbcType=LONGVARCHAR},
-		living_situation = #{livingSituation,jdbcType=LONGVARCHAR}
-		where sys_no = #{sysNo,jdbcType=INTEGER}
+		edu_bg =
+		#{eduBg,jdbcType=VARCHAR},
+		political_status =
+		#{politicalStatus,jdbcType=VARCHAR},
+		quit_office_type =
+		#{quitOfficeType,jdbcType=VARCHAR},
+		pension_model_no =
+		#{pensionModelNo,jdbcType=INTEGER},
+		physical_situation =
+		#{physicalSituation,jdbcType=VARCHAR},
+		conscription_situation =
+		#{conscriptionSituation,jdbcType=VARCHAR},
+		is_help_needed =
+		#{isHelpNeeded,jdbcType=BIT},
+		address =
+		#{address,jdbcType=LONGVARCHAR},
+		living_situation =
+		#{livingSituation,jdbcType=LONGVARCHAR}
+		where sys_no =
+		#{sysNo,jdbcType=INTEGER}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="com.gsb.BasicObject.MBG.Person">
-		update basic_info_table
+		update
+		basic_info_table
 		set name = #{name,jdbcType=VARCHAR},
-		gender = #{gender,jdbcType=CHAR},
-		native_place = #{nativePlace,jdbcType=VARCHAR},
+		gender =
+		#{gender,jdbcType=CHAR},
+		native_place =
+		#{nativePlace,jdbcType=VARCHAR},
 		nation = #{nation,jdbcType=VARCHAR},
 		salary_no = #{salaryNo,jdbcType=VARCHAR},
-		salary_lib_no = #{salaryLibNo,jdbcType=INTEGER},
+		salary_lib_no =
+		#{salaryLibNo,jdbcType=INTEGER},
 		dept_no = #{deptNo,jdbcType=INTEGER},
 		func = #{func,jdbcType=VARCHAR},
-		telephone_num = #{telephoneNum,jdbcType=VARCHAR},
-		title_lv = #{titleLv,jdbcType=VARCHAR},
-		latest_sympathy_year = #{latestSympathyYear,jdbcType=DATE},
-		job_end_time = #{jobEndTime,jdbcType=DATE},
-		job_start_time = #{jobStartTime,jdbcType=DATE},
+		telephone_num =
+		#{telephoneNum,jdbcType=VARCHAR},
+		title_lv =
+		#{titleLv,jdbcType=VARCHAR},
+		latest_sympathy_year =
+		#{latestSympathyYear,jdbcType=DATE},
+		job_end_time =
+		#{jobEndTime,jdbcType=DATE},
+		job_start_time =
+		#{jobStartTime,jdbcType=DATE},
 		birth_time = #{birthTime,jdbcType=DATE},
 		sociaty_no = #{sociatyNo,jdbcType=INTEGER},
-		edu_bg = #{eduBg,jdbcType=VARCHAR},
-		political_status = #{politicalStatus,jdbcType=VARCHAR},
-		quit_office_type = #{quitOfficeType,jdbcType=VARCHAR},
-		pension_model_no = #{pensionModelNo,jdbcType=INTEGER},
-		physical_situation = #{physicalSituation,jdbcType=VARCHAR},
-		conscription_situation = #{conscriptionSituation,jdbcType=VARCHAR},
-		is_help_needed = #{isHelpNeeded,jdbcType=BIT}
+		edu_bg =
+		#{eduBg,jdbcType=VARCHAR},
+		political_status =
+		#{politicalStatus,jdbcType=VARCHAR},
+		quit_office_type =
+		#{quitOfficeType,jdbcType=VARCHAR},
+		pension_model_no =
+		#{pensionModelNo,jdbcType=INTEGER},
+		physical_situation =
+		#{physicalSituation,jdbcType=VARCHAR},
+		conscription_situation =
+		#{conscriptionSituation,jdbcType=VARCHAR},
+		is_help_needed =
+		#{isHelpNeeded,jdbcType=BIT}
 		where sys_no = #{sysNo,jdbcType=INTEGER}
 	</update>
 
 	<select id="selectWithDeptName" parameterType="java.lang.Integer"
 		resultMap="ResultMapWithDept">
-		select dept_name
-		from basic_info_table join dept_table on 
-		basic_info_table.dept_no = dept_table.dept_no 
-		where sys_no = #{sysNo,jdbcType=INTEGER}
+		select
+		dept_name
+		,
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from basic_info_table join dept_table on
+		basic_info_table.dept_no =
+		dept_table.dept_no
+		where sys_no =
+		#{sysNo,jdbcType=INTEGER}
 	</select>
-	
-	<select id="selectAllNations"
-		resultType="string">
+
+	<select id="selectAllNations" resultType="string">
 		select distinct nation
 		from basic_info_table
 	</select>
-	
-	<select id="selectAllDepts"
-		resultType="string">
-		select distinct dept_name
-		from dept_table
+
+	<select id="selectAllFunc" resultType="string">
+		select distinct func
+		from
+		basic_info_table
 	</select>
-	
-	<select id="selectAllSociaties"
-		resultType="string">
-		select distinct sociaty_name
-		from sociaty_table
+	<select id="selectAllTitleLv" resultType="string">
+		select distinct
+		title_lv
+		from
+		basic_info_table
 	</select>
+
+
 </mapper>
