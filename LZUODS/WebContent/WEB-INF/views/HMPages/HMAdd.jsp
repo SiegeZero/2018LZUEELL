@@ -186,12 +186,8 @@
         </div>
     </div>
     <div>
-        <button type="button" class="btn btn-primary"><a href="#">确认</button>
-        <button type="button" class="btn btn-info"><a href="#">取消</button>
-        <!--<input type="button" value="新增人员" title="点击添加新用户"><a href="HMAdd.html"></a>
-                <input type="button" value="导出PDF" onClick="" title="导出为PDF格式">
-                <input type="button" value="导出Excel" onClick="printtable(hmdtaltable)" title="导出为Excel表格">
-                <input type="button" value="下载模板" title="下载个人信息模板">-->
+        <a href="#"><button type="button" class="btn btn-primary">确认</button></a>
+        <a href="HMMang.html"><button type="button" class="btn btn-info">取消</button></a>
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
