@@ -8,5 +8,10 @@
 </head>
 <%@page import ="java.io.File" %>
 <body>
+	<jsp:include page="NavigationBar.jsp"></jsp:include>
+
+    <div class="container-fluid">
+        <p class="alert alert-info"><strong>主页</strong></p>
+    </div>
 </body>
 </html>

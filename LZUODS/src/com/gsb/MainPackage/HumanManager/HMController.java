@@ -1,5 +1,8 @@
 package com.gsb.MainPackage.HumanManager;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -9,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.gsb.BasicObject.Target;
+import com.gsb.BasicObject.MBG.Person;
 import com.gsb.BasicObject.MBGDAO.DepartmentMapper;
+import com.gsb.BasicObject.Services.ReadDBInfos;
 
 
 @Controller
@@ -41,17 +46,33 @@ public class HMController {
 		return mv;
 	}
 	
+	@Autowired
+	ReadDBInfos db_reader;
+	
 	@RequestMapping(value="/HMMang")
 	public ModelAndView manage( ModelAndView mv) {
+		List<Person> list =  db_reader.getBasicInfos(null);
+		System.out.println( list.size());
+		mv.addObject("size", list.size());
+		mv.addObject("person_list", list);
+		mv.addObject("nations_list", new ArrayList<String>());
+		mv.addObject("sociaties_list", new ArrayList<String>());
 		return mv;
 	}
-	
-	
 	
 	@RequestMapping(value="/PTMang")
 	public ModelAndView party( ModelAndView mv) {
 		return mv;
 	}
+
+	@RequestMapping(value="/EVMang")
+	public ModelAndView event( ModelAndView mv) {
+		return mv;
+	}
 	
+	@RequestMapping(value="/HMAdd")
+	public ModelAndView add( ModelAndView mv) {
+		return mv;
+	}
 	
 }
