@@ -19,8 +19,6 @@ public interface DepartmentMapper {
     List<Department> selectByExampleWithBLOBs(DepartmentExample example);
 
     List<Department> selectByExample(DepartmentExample example);
-    
-    List<Integer> selectPKWithName( String deptName);
 
     Department selectByPrimaryKey(Integer deptNo);
 

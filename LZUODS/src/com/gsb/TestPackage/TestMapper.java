@@ -21,6 +21,7 @@ import com.gsb.BasicObject.MBGDAO.DepartmentMapper;
 import com.gsb.BasicObject.MBGDAO.SociatyMapper;
 import com.gsb.BasicObject.Services.ReadDBInfos;
 import com.gsb.BasicObject.Services.StoreFileInfos;
+import com.gsb.BasicObject.Services.StoreNewInfos;
 import com.gsb.GeneratorPackage.OpenWorkSheet;
 
 import jxl.read.biff.BiffException;
@@ -96,11 +97,44 @@ public class TestMapper{
 	}
 	
 	@Test
-	public void  printContent() {
-		info_reader.getAllAmount();
-		info_reader.getAmountEachSociaty();
-		info_reader.getPartyMembersAmount();
-		info_reader.getAgeRangeAmount();
+	public void  printContent() throws ParseException {
+//		info_reader.getAllAmount();
+//		info_reader.getAmountEachSociaty();
+//		info_reader.getPartyMembersAmount();
+//		info_reader.getAgeRangeAmount();
+//		info_reader.getLastYearAmount(2017);
+		System.out.println("精确到今天:");
+		info_reader.getAverageAge( true);
+		System.out.println("精确到17年最后一天:");
+		info_reader.getAverageAge( false);
+//		info_reader.getRecentBirthday( null);
+	}
+	
+	@Autowired
+	StoreNewInfos sni;
+	
+	@Test
+	public void printWithString() {
+
+		System.out.println( sni.showRecordWith(1).get(0).getDept());
+	}
+	
+	@Autowired
+	StoreFileInfos sfi;
+	
+	@Test
+	public void compareFileAndDB() throws BiffException, IOException, ParseException {
+		info_reader.getRecentBirthday( sfi.CompareOpen());
+	}
+	
+	@Test
+	public void testNationPrinting() {
+//		List<String> nations = info_reader.getAllNations();
+//		List<String> nations = info_reader.getAllSociaties();
+		List<String> nations = info_reader.getAllDepts();
+		for( String nation:nations) {
+			System.out.println( nation);
+		}
 	}
 	
 }

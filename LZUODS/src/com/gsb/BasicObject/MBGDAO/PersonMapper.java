@@ -3,6 +3,8 @@ package com.gsb.BasicObject.MBGDAO;
 import com.gsb.BasicObject.MBG.Person;
 import com.gsb.BasicObject.MBG.PersonExample;
 import com.gsb.BasicObject.MBG.PersonWithBLOBs;
+import com.gsb.BasicObject.MBG.SourcePerson;
+
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
@@ -20,6 +22,13 @@ public interface PersonMapper {
     List<PersonWithBLOBs> selectByExampleWithBLOBs(PersonExample example);
 
     List<Person> selectByExample(PersonExample example);
+    
+    List<String> selectAllNations(); 
+    
+    List<String> selectAllSociaties(); 
+    
+    List<String> selectAllDepts(); 
+    
 
     PersonWithBLOBs selectByPrimaryKey(Integer sysNo);
 
@@ -34,4 +43,6 @@ public interface PersonMapper {
     int updateByPrimaryKeyWithBLOBs(PersonWithBLOBs record);
 
     int updateByPrimaryKey(Person record);
+
+	List<SourcePerson> selectWithDeptName(Integer id);
 }

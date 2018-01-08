@@ -9,7 +9,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 	 
 	<bean name="/TestA" class="com.gsb.TestPackage.TestKlass" />
-	<context:component-scan base-package="com.gsb.TestPackage.AutoPackage" />  
+	<context:component-scan base-package="com.gsb.TestPackage" />  
 	<mvc:default-servlet-handler/>
 	<mvc:annotation-driven />
 </beans>
