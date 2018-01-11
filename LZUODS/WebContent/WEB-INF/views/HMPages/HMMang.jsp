@@ -10,7 +10,18 @@
 <!--移动设备响应-->
 <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
 <title>人员管理</title>
+<script>
+function show(){
+	if(func.style.display=="none"){
+		func.style.display="block";
+	}
+	else if(func.style.display=="block"){
+		func.style.display="none";
+	}
+}
+</script>
 </head>
+
 <%@page import="java.util.List,com.gsb.BasicObject.MBG.Person"%>
 
 <body style="height: 100%">
@@ -30,13 +41,26 @@
 		</div>
 		<div style=" float:left;width:85%">
 			<form action="" method="post" class="navbar-form">
-				<div>
+				<div class="container-fluid">
+					<div class="col-md-12">
 					<center>
-						<input type="text" placeholder="输入姓名或者工资号" class="form-control" />
+						<button type="button" onclick="show()">
+							<span class="glyphicon glyphicon-exclamation-sign"></span>
+							<span>查看所有职级</span>
+						</button>
+						<input type="text" placeholder="输入职级查询，多个职级用空格分开" class="form-control" />
 						<button type="submit" action="#" method="post">
 							<span class="glyphicon glyphicon-search"></span>
 						</button>
 					</center>
+					</div>
+					<div style="display:none" id="func">
+						<table>
+							<tr>
+								<td>厅级</td>
+							</tr>
+						</table>
+					</div>
 					<table class="table">
 						<%
 							List<Person> person_list = (List<Person>) request.getAttribute("person_list");
@@ -101,7 +125,7 @@
 						<tr>
 							<th>分会：</th>
 							<%
-								for (int row_index = 0; sociaties_list != null && row_index < sociaties_list.size(); row_index++) {
+								for (int row_index = 0; sociaties_list != null && row_index < sociaties_list.size()&&row_index%8==0; row_index++) {
 							%>
 
 							<td><%=sociaties_list.get(row_index)%></td>
@@ -112,7 +136,7 @@
 						</tr>
 						<th>民族：</th>
 						<%
-							for (int row_index = 0; nations_list != null && row_index < nations_list.size(); row_index++) {
+							for (int row_index = 0; nations_list != null && row_index < nations_list.size()&&row_index%8==0; row_index++) {
 						%>
 
 						<td><%=nations_list.get(row_index)%></td>
@@ -170,8 +194,7 @@
 				<div class="pull-right">
 					<a href="HMAdd.html"><button type="button" class="btn btn-info">新增人员</button></a>
 					<button type="button" class="btn btn-warning">导出PDF</button>
-					<button type="button" class="btn btn-warning"
-						onclick="printtable(personitem)">导出Excel</button>
+					<button type="button" class="btn btn-warning" onclick="printtable(personitem)">导出Excel</button>
 					<button type="button" class="btn btn-info">下载模板</button>
 				</div>
 			</div>
