@@ -11,32 +11,33 @@
 <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
 <title>人员管理</title>
 <script>
-function show_func(){
-	if(func.style.display=="none"){
-		func.style.display="block";
+	function show_func() {
+		if (func.style.display == "none") {
+			func.style.display = "block";
+		} else if (func.style.display == "block") {
+			func.style.display = "none";
+		}
 	}
-	else if(func.style.display=="block"){
-		func.style.display="none";
-	}
-}
 </script>
 </head>
 
 <%@page import="java.util.List,com.gsb.BasicObject.MBG.Person"%>
-						<%
-							List<Person> person_list = (List<Person>) request.getAttribute("person_list");
-							List<String> nations_list = (List<String>) request.getAttribute("nations_list");
-							List<String> sociaties_list = (List<String>) request.getAttribute("sociaties_list");
-							List<String> func_list = (List<String>) request.getAttribute("func_list");
-						%>
+<%
+	List<Person> person_list = (List<Person>) request.getAttribute("person_list");
+	List<String> nations_list = (List<String>) request.getAttribute("nations_list");
+	List<String> sociaties_list = (List<String>) request.getAttribute("sociaties_list");
+	List<String> func_list = (List<String>) request.getAttribute("func_list");
+%>
 
 <body style="height: 100%">
 
 	<jsp:include page="NavigationBar.jsp"></jsp:include>
 	<div class="row" style="height: 100%;">
-		<div class="navbar-inverse navbar-collapse" style="height: 100%; float:left; width:15%">
+		<div class="navbar-inverse navbar-collapse"
+			style="height: 100%; float: left; width: 15%">
 			<ul class="nav">
-				<li><a href="#">人员管理&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="caret"></span></a></li>
+				<li><a href="#">人员管理&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+						class="caret"></span></a></li>
 				<ul class="nav">
 					<li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;人员信息</a></li>
 					<li><a href="#"><span class="glyphicon glyphicon-yen"></span>&nbsp;工资管理</a></li>
@@ -45,34 +46,42 @@ function show_func(){
 				</ul>
 			</ul>
 		</div>
-		<div style=" float:left;width:85%">
+		<div style="float: left; width: 85%">
 			<form action="ConfirmPage" method="post" class="navbar-form">
 				<div class="container-fluid">
 					<div class="col-md-12">
 						<center>
-							<button type="button" onclick="show_func()">
-								<span class="glyphicon glyphicon-exclamation-sign" title="点击这里查看所有的职级"></span>
-								<span title="点击这里查看可用的职级">参考</span>
+							<button class="btn btn-info" type="button" onclick="show_func()" title="点击这里查看可用的职级\n再次点击关闭该参考页面">
+								<span>参考</span>
 							</button>
-							<input type="text" name="func_condition" placeholder="输入职级查询" class="form-control" />
+							<input type="text" name="func_condition"
+								value="<%=request.getAttribute("func_str") != null ? request.getAttribute("func_str") : ""%>"
+								placeholder="输入职级查询" class="form-control" />
 							<button type="submit">
 								<span class="glyphicon glyphicon-search"></span>
 							</button>
 						</center>
 					</div>
-					<div style="display:none" id="func">
-						<table>
+					<div style="display: none" id="func">
+						<table class="table table-bordered">
 							<tr>
-							<%for(int row_index=0;func_list!=null&&row_index<func_list.size();row_index++){
-								if(row_index%6==0){
+								<%
+									for (int row_index = 0; func_list != null && row_index < func_list.size(); row_index++) {
+										if (row_index % 6 == 0) {
 								%>
 							</tr>
 							<tr>
-								<td style="width:10%"><%=func_list.get(row_index) %></td>
-							<%} else{%>
-							<td style="width:10%"><%=func_list.get(row_index) %></td>
-							<%} %>
-							<%} %>
+								<td style="width: 10%"><%=func_list.get(row_index)%></td>
+								<%
+									} else {
+								%>
+								<td style="width: 10%"><%=func_list.get(row_index)%></td>
+								<%
+									}
+								%>
+								<%
+									}
+								%>
 							</tr>
 						</table>
 					</div>
@@ -88,9 +97,12 @@ function show_func(){
 							<td>学历</td>
 							<td>更多条件 ↓</td>
 						</tr>
-						<!--<tr style="height: 30px"></tr>-->
 						<tr>
 							<th>年龄：</th>
+							<td><input type="checkbox" onClick="select_attribute" />
+								50-</td>
+							<td><input type="checkbox" onClick="select_attribute" /> 50
+								- 60</td>
 							<td><input type="checkbox" onClick="select_attribute" /> 60
 								- 70</td>
 							<td><input type="checkbox" onClick="select_attribute" /> 70
@@ -131,7 +143,8 @@ function show_func(){
 						<tr>
 							<th>分会：</th>
 							<%
-								for (int row_index = 0; sociaties_list != null && row_index < sociaties_list.size()&&row_index%8==0; row_index++) {
+								for (int row_index = 0; sociaties_list != null && row_index < sociaties_list.size()
+										&& row_index % 8 == 0; row_index++) {
 							%>
 
 							<td><%=sociaties_list.get(row_index)%></td>
@@ -142,7 +155,8 @@ function show_func(){
 						</tr>
 						<th>民族：</th>
 						<%
-							for (int row_index = 0; nations_list != null && row_index < nations_list.size()&&row_index%8==0; row_index++) {
+							for (int row_index = 0; nations_list != null && row_index < nations_list.size()
+									&& row_index % 8 == 0; row_index++) {
 						%>
 
 						<td><%=nations_list.get(row_index)%></td>
@@ -200,7 +214,8 @@ function show_func(){
 				<div class="pull-right">
 					<a href="HMAdd.html"><button type="button" class="btn btn-info">新增人员</button></a>
 					<button type="button" class="btn btn-warning">导出PDF</button>
-					<button type="button" class="btn btn-warning" onclick="printtable(personitem)">导出Excel</button>
+					<button type="button" class="btn btn-warning"
+						onclick="printtable(personitem)">导出Excel</button>
 					<button type="button" class="btn btn-info">下载模板</button>
 				</div>
 			</div>

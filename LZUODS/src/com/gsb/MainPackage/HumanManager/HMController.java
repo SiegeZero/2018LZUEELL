@@ -71,6 +71,7 @@ public class HMController {
 			}
 			c.andFuncIn(funcs);
 			example.or(c);
+			mv.addObject("func_str",func_condition);
 		}
 		
 		List<SourcePerson> list =  db_reader.getBasicInfos(example);
