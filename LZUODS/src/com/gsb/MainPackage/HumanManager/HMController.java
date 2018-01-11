@@ -3,9 +3,12 @@ package com.gsb.MainPackage.HumanManager;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,6 +16,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.gsb.BasicObject.Target;
 import com.gsb.BasicObject.MBG.Person;
+import com.gsb.BasicObject.MBG.PersonExample;
+import com.gsb.BasicObject.MBG.PersonExample.Criteria;
 import com.gsb.BasicObject.MBG.SourcePerson;
 import com.gsb.BasicObject.MBGDAO.DepartmentMapper;
 import com.gsb.BasicObject.Services.ReadDBInfos;
@@ -51,13 +56,21 @@ public class HMController {
 	ReadDBInfos db_reader;
 	
 	@RequestMapping(value="/HMMang")
-	public ModelAndView manage( ModelAndView mv) {
-		List<SourcePerson> list =  db_reader.getBasicInfos(null);
+	public ModelAndView manage( ModelAndView mv,HttpServletRequest request) {
+		PersonExample example=new PersonExample();
+		Criteria c = example.createCriteria();
+		c.andFuncEqualTo(request.getParameter("func_condition"));
+		System.out.println("啊"+request.getParameter("func_condition"));
+		example.or(c);
+		List<SourcePerson> list =  db_reader.getBasicInfos(example);
 		System.out.println( list.size());
 		mv.addObject("size", list.size());
 		mv.addObject("person_list", list);
 		mv.addObject("nations_list", db_reader.getAllNations());
 		mv.addObject("sociaties_list", db_reader.getAllSociaties());
+
+		mv.addObject("func_list", db_reader.getAllFunc());
+		
 		return mv;
 	}
 	
@@ -73,6 +86,11 @@ public class HMController {
 	
 	@RequestMapping(value="/HMAdd")
 	public ModelAndView add( ModelAndView mv) {
+		return mv;
+	}
+	
+	@RequestMapping(value="/ConfirmPage")
+	public ModelAndView confirm( ModelAndView mv,HttpServletRequest request) {
 		return mv;
 	}
 	

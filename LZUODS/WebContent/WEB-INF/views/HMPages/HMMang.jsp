@@ -11,7 +11,7 @@
 <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
 <title>人员管理</title>
 <script>
-function show(){
+function show_func(){
 	if(func.style.display=="none"){
 		func.style.display="block";
 	}
@@ -23,6 +23,12 @@ function show(){
 </head>
 
 <%@page import="java.util.List,com.gsb.BasicObject.MBG.Person"%>
+						<%
+							List<Person> person_list = (List<Person>) request.getAttribute("person_list");
+							List<String> nations_list = (List<String>) request.getAttribute("nations_list");
+							List<String> sociaties_list = (List<String>) request.getAttribute("sociaties_list");
+							List<String> func_list = (List<String>) request.getAttribute("func_list");
+						%>
 
 <body style="height: 100%">
 
@@ -40,37 +46,37 @@ function show(){
 			</ul>
 		</div>
 		<div style=" float:left;width:85%">
-			<form action="" method="post" class="navbar-form">
+			<form action="ConfirmPage" method="post" class="navbar-form">
 				<div class="container-fluid">
 					<div class="col-md-12">
-					<center>
-						<button type="button" onclick="show()">
-							<span class="glyphicon glyphicon-exclamation-sign"></span>
-							<span>查看所有职级</span>
-						</button>
-						<input type="text" placeholder="输入职级查询，多个职级用空格分开" class="form-control" />
-						<button type="submit" action="#" method="post">
-							<span class="glyphicon glyphicon-search"></span>
-						</button>
-					</center>
+						<center>
+							<button type="button" onclick="show_func()">
+								<span class="glyphicon glyphicon-exclamation-sign" title="点击这里查看所有的职级"></span>
+								<span title="点击这里查看可用的职级">参考</span>
+							</button>
+							<input type="text" name="func_condition" placeholder="输入职级查询" class="form-control" />
+							<button type="submit">
+								<span class="glyphicon glyphicon-search"></span>
+							</button>
+						</center>
 					</div>
 					<div style="display:none" id="func">
 						<table>
 							<tr>
-								<td>厅级</td>
+							<%for(int row_index=0;func_list!=null&&row_index<func_list.size();row_index++){
+								if(row_index%6==0){
+								%>
+							</tr>
+							<tr>
+								<td style="width:10%"><%=func_list.get(row_index) %></td>
+							<%} else{%>
+							<td style="width:10%"><%=func_list.get(row_index) %></td>
+							<%} %>
+							<%} %>
 							</tr>
 						</table>
 					</div>
 					<table class="table">
-						<%
-							List<Person> person_list = (List<Person>) request.getAttribute("person_list");
-						%>
-						<%
-							List<String> nations_list = (List<String>) request.getAttribute("nations_list");
-						%>
-						<%
-							List<String> sociaties_list = (List<String>) request.getAttribute("sociaties_list");
-						%>
 						<tr>
 							<th>基本：</th>
 							<td>离休情况</td>
@@ -154,8 +160,8 @@ function show(){
 					<tr>
 						<th class="info">序号</th>
 						<th class="info">姓名</th>
-						<th class="info">工资编码</th>
-						<th class="info">工资库</th>
+						<th class="info">职称</th>
+						<th class="info">职务</th>
 						<th class="info">所在分会</th>
 						<th class="info">原单位编号</th>
 						<th class="info">离/退</th>
@@ -171,8 +177,8 @@ function show(){
 					<tr>
 						<td><input type="checkbox" /><%=person_list.get(cow_index).getSysNo()%></td>
 						<td><%=person_list.get(cow_index).getName()%></td>
-						<td><%=person_list.get(cow_index).getSalaryNo()%></td>
-						<td><%=person_list.get(cow_index).getSalaryLibNo()%></td>
+						<td><%=person_list.get(cow_index).getTitleLv()%></td>
+						<td><%=person_list.get(cow_index).getFunc()%></td>
 						<td><%=person_list.get(cow_index).getSociatyNo()%></td>
 						<td><%=person_list.get(cow_index).getDeptNo()%></td>
 						<td><%=person_list.get(cow_index).getQuitOfficeType()%></td>
