@@ -1,26 +1,3 @@
-/**
- * 
- */
-// person select
-$(function () {
-	$("personitem").click(function () {
-		this.value = 1;
-	})
-})
-
-// Use "Request.Form["personitem"]" in background to received the value of
-// checkbox.
-
-
-// submit form
-$(document).ready(function(){  
-            $("#被单击按钮的ID").click(function(){  
-            if(document.all.文本框名字.value.length==0){  
-                alert("输入不能为空");  
-                return false;  
-            }  
-            document.all.表单名字submit();  
-            return true;});  
 
 // Export Excel
 var idTmr;
