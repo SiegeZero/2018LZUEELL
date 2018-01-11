@@ -36,7 +36,6 @@ import jxl.read.biff.BiffException;
 @Service
 public class StoreFileInfos {
 
-
 	Workbook wb;
 	Sheet sheet;
 
@@ -48,31 +47,32 @@ public class StoreFileInfos {
 	int rowAmount;
 	int colAmount;
 	int first_data_row_index;
-	
+
 	public List<String> CompareOpen() throws BiffException, IOException {
 		String path = "src/1.xls";
-		wb = Workbook.getWorkbook(new File( path));
+		wb = Workbook.getWorkbook(new File(path));
 		sheet = wb.getSheet(0);
 		rowAmount = sheet.getRows();
 		colAmount = sheet.getColumns();
 		List<String> names = new ArrayList<>();
 		for (int row_index = 0, col_index = 0; row_index < rowAmount; row_index++) {
 			Cell cell = sheet.getCell(2, row_index);
-			names.add( cell.getContents());
+			names.add(cell.getContents());
 		}
 		return names;
 	}
 
 	public StoreFileInfos() {
-		
+
 		person_list = new ArrayList<>();
 		headers = new ArrayList<>();
 	}
-	
+
 	public StoreFileInfos init() throws BiffException, IOException {
-//		String path = System.getProperty("ods.webroot")+"WEB-INF/classes/data-new.xls";
+		// String path =
+		// System.getProperty("ods.webroot")+"WEB-INF/classes/data-new.xls";
 		String path = "src/data-new.xls";
-		wb = Workbook.getWorkbook(new File( path));
+		wb = Workbook.getWorkbook(new File(path));
 		sheet = wb.getSheet(0);
 		rowAmount = sheet.getRows();
 		colAmount = sheet.getColumns();
@@ -117,8 +117,8 @@ public class StoreFileInfos {
 		}
 		List<Department> selectByExample = dept_mapper.selectByExample(null);
 		depts_map = new HashMap<String, Integer>();
-		for( int index=0; index < selectByExample.size(); index++) {
-			depts_map.put( selectByExample.get(index).getDeptName(), selectByExample.get(index).getDeptNo());
+		for (int index = 0; index < selectByExample.size(); index++) {
+			depts_map.put(selectByExample.get(index).getDeptName(), selectByExample.get(index).getDeptNo());
 		}
 		return true;
 	}
@@ -141,19 +141,19 @@ public class StoreFileInfos {
 			sociaty.setSociatyName(it.next());
 			sociaty_mapper.insert(sociaty);
 		}
-		
+
 		List<Sociaty> selectByExample = sociaty_mapper.selectByExample(null);
 		sociaties_map = new HashMap<String, Integer>();
-		for( int index=0; index < selectByExample.size(); index++) {
-			sociaties_map.put( selectByExample.get(index).getSociatyName(), selectByExample.get(index).getSociatyNo());
+		for (int index = 0; index < selectByExample.size(); index++) {
+			sociaties_map.put(selectByExample.get(index).getSociatyName(), selectByExample.get(index).getSociatyNo());
 		}
 		return true;
 	}
-	
+
 	@Autowired
 	SalaryLibMapper slib_mapper;
-	
-	public boolean storeSLibWith( String targetHeader) {
+
+	public boolean storeSLibWith(String targetHeader) {
 		if (first_data_row_index == 0) {
 			return false;
 		}
@@ -165,13 +165,13 @@ public class StoreFileInfos {
 		Iterator<String> it = slibs.iterator();
 		while (it.hasNext()) {
 			SalaryLib slib = new SalaryLib();
-			slib.setSalaryVersion( it.next());
+			slib.setSalaryVersion(it.next());
 			slib_mapper.insert(slib);
 		}
 		List<SalaryLib> selectByExample = slib_mapper.selectByExample(null);
 		slib_map = new HashMap<>();
-		for( int index = 0; index < selectByExample.size(); index++) {
-			slib_map.put( selectByExample.get(index).getSalaryVersion(), selectByExample.get(index).getSalaryLibNo());
+		for (int index = 0; index < selectByExample.size(); index++) {
+			slib_map.put(selectByExample.get(index).getSalaryVersion(), selectByExample.get(index).getSalaryLibNo());
 		}
 		return true;
 	}
@@ -188,9 +188,8 @@ public class StoreFileInfos {
 		sociaty_mapper.deleteByExample(null);
 		dept_mapper.deleteByExample(null);
 		slib_mapper.deleteByExample(null);
-		if( !this.storeSociatieWith(headers.get(3)) 
-				|| !this.storeDeptsWith(headers.get(4))
-					||!this.storeSLibWith( headers.get(5))) {
+		if (!this.storeSociatieWith(headers.get(3)) || !this.storeDeptsWith(headers.get(4))
+				|| !this.storeSLibWith(headers.get(5))) {
 			return false;
 		}
 		person_mapper.deleteByExample(null);
@@ -198,45 +197,77 @@ public class StoreFileInfos {
 			SourcePerson person = new SourcePerson();
 			person.setSalaryNo(sheet.getCell(headers.indexOf(targetHeaders[1]), row_index).getContents());
 			person.setName(sheet.getCell(headers.indexOf(targetHeaders[2]), row_index).getContents());
-			person.setSociaty( sheet.getCell(headers.indexOf(targetHeaders[3]), row_index).getContents());
-			person.setDept( sheet.getCell(headers.indexOf(targetHeaders[4]), row_index).getContents());
-			person.setSlib( sheet.getCell(headers.indexOf(targetHeaders[5]), row_index).getContents());
-			person.setQuitOfficeType( sheet.getCell(headers.indexOf(targetHeaders[6]), row_index).getContents());
-			person.setGender( sheet.getCell(headers.indexOf(targetHeaders[7]), row_index).getContents());
-			person.setNation( sheet.getCell(headers.indexOf(targetHeaders[8]), row_index).getContents());
-			person.setNativePlace( sheet.getCell(headers.indexOf(targetHeaders[9]), row_index).getContents());
-			person.setEduBg( sheet.getCell(headers.indexOf(targetHeaders[10]), row_index).getContents());
+			person.setSociaty(sheet.getCell(headers.indexOf(targetHeaders[3]), row_index).getContents());
+			person.setDept(sheet.getCell(headers.indexOf(targetHeaders[4]), row_index).getContents());
+			person.setSlib(sheet.getCell(headers.indexOf(targetHeaders[5]), row_index).getContents());
+			person.setQuitOfficeType(sheet.getCell(headers.indexOf(targetHeaders[6]), row_index).getContents());
+			person.setGender(sheet.getCell(headers.indexOf(targetHeaders[7]), row_index).getContents());
+			person.setNation(sheet.getCell(headers.indexOf(targetHeaders[8]), row_index).getContents());
+			person.setNativePlace(sheet.getCell(headers.indexOf(targetHeaders[9]), row_index).getContents());
+			person.setEduBg(sheet.getCell(headers.indexOf(targetHeaders[10]), row_index).getContents());
 			person.setPoliticalStatus(sheet.getCell(headers.indexOf(targetHeaders[11]), row_index).getContents());
-			person.setBirth( sheet.getCell(headers.indexOf(targetHeaders[13]), row_index).getContents());
-			person.setStart_job( sheet.getCell(headers.indexOf(targetHeaders[14]), row_index).getContents());
-			person.setEnd_job( sheet.getCell(headers.indexOf(targetHeaders[15]), row_index).getContents());
-			person.setFunc( sheet.getCell(headers.indexOf(targetHeaders[16]), row_index).getContents());
-			person.setTitleLv( sheet.getCell(headers.indexOf(targetHeaders[17]), row_index).getContents());
+			person.setBirth(sheet.getCell(headers.indexOf(targetHeaders[13]), row_index).getContents());
+			person.setStart_job(sheet.getCell(headers.indexOf(targetHeaders[14]), row_index).getContents());
+			person.setEnd_job(sheet.getCell(headers.indexOf(targetHeaders[15]), row_index).getContents());
+			person.setFunc(sheet.getCell(headers.indexOf(targetHeaders[16]), row_index).getContents());
+			person.setTitleLv(sheet.getCell(headers.indexOf(targetHeaders[17]), row_index).getContents());
 			person.setAddress(sheet.getCell(headers.indexOf(targetHeaders[18]), row_index).getContents());
-			person.setTelephoneNum( sheet.getCell(headers.indexOf(targetHeaders[19]), row_index).getContents());
-			String tmp = sheet.getCell(headers.indexOf(targetHeaders[21]), row_index).getContents() 
+			person.setTelephoneNum(sheet.getCell(headers.indexOf(targetHeaders[19]), row_index).getContents());
+			String tmp = sheet.getCell(headers.indexOf(targetHeaders[21]), row_index).getContents()
 					+ sheet.getCell(headers.indexOf(targetHeaders[20]), row_index).getContents();
-			person.setLivingSituation( tmp);
-			person.setPhysicalSituation( sheet.getCell(headers.indexOf(targetHeaders[22]), row_index).getContents());
-			person.setConscriptio_situation( sheet.getCell(headers.indexOf(targetHeaders[23]), row_index).getContents());
-			person.setNeed_help( sheet.getCell(headers.indexOf(targetHeaders[24]), row_index).getContents());
-			person_mapper.insert(person.format( depts_map, sociaties_map, slib_map));
+			person.setLivingSituation(tmp);
+			person.setPhysicalSituation(sheet.getCell(headers.indexOf(targetHeaders[22]), row_index).getContents());
+			person.setConscriptio_situation(sheet.getCell(headers.indexOf(targetHeaders[23]), row_index).getContents());
+			person.setNeed_help(sheet.getCell(headers.indexOf(targetHeaders[24]), row_index).getContents());
+			person_mapper.insert(person.format(depts_map, sociaties_map, slib_map));
 			PersonExample personExample = new PersonExample();
 			Criteria criteria = personExample.createCriteria();
-			if( person.getName() != null)
-				criteria.andNameEqualTo( person.getName());
-			if( person.getDeptNo() != null)
-				criteria.andDeptNoEqualTo( person.getDeptNo());
-			if( person.getSociatyNo() != null)
-				criteria.andSociatyNoEqualTo( person.getSociatyNo());
-			if( person.getSalaryNo() != null)
-				criteria.andSalaryNoEqualTo( person.getSalaryNo());
-			if( person.getBirthTime() != null)
-				criteria.andBirthTimeEqualTo( person.getBirthTime());
-			personExample.or( criteria);
-			List<SourcePerson> selectByExample = person_mapper.selectByExample( personExample);
+			if (person.getName() != null)
+				criteria.andNameEqualTo(person.getName());
+			if (person.getDeptNo() != null)
+				criteria.andDeptNoEqualTo(person.getDeptNo());
+			if (person.getSociatyNo() != null)
+				criteria.andSociatyNoEqualTo(person.getSociatyNo());
+			if (person.getSalaryNo() != null)
+				criteria.andSalaryNoEqualTo(person.getSalaryNo());
+			if (person.getBirthTime() != null)
+				criteria.andBirthTimeEqualTo(person.getBirthTime());
+			personExample.or(criteria);
+			List<SourcePerson> selectByExample = person_mapper.selectByExample(personExample);
 		}
 		return true;
+	}
+
+	public List<String>[] init(int year, int judgerAmount, String stuffFilePath, String[] levels, int[] total_point,
+			String[] judgeItems, double[] itemsWeight) throws BiffException, IOException {
+		return readStuffFile(new File(stuffFilePath), levels);
+
+	}
+
+	private List<String>[] readStuffFile(File stuffFile, String[] levels) throws BiffException, IOException {
+		List<String>[] results = new ArrayList[levels.length];
+		for( int i=0;i<levels.length;i++ ) {
+			results[i] = new ArrayList<String>();
+		}
+		results[0] = new ArrayList<String>();
+		Workbook wb = Workbook.getWorkbook(stuffFile);
+		Sheet sheet = wb.getSheet(0);
+		int colAmount = sheet.getColumns();
+		int rowAmount = sheet.getRows();
+		int col_index = 0, row_index = 0;
+		int current_level = 0;
+		while (row_index < rowAmount) {
+			if (current_level+1<levels.length&&sheet.getCell(0, row_index).getContents().equals(levels[current_level])) {
+				current_level++;
+			} else {
+				String content = sheet.getCell(0, row_index).getContents();
+				if( !content.equals("")) {
+					results[current_level].add( content);
+				}
+			}
+			row_index++;
+		}
+		return results;
 	}
 
 }

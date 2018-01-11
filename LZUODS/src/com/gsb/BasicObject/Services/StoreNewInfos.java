@@ -24,6 +24,6 @@ public class StoreNewInfos {
 	PersonMapper person_mapper;
 	
 	public List<SourcePerson> showRecordWith( Integer id) {
-		return person_mapper.selectWithDeptName(id);
+		return person_mapper.selectAllForShow();
 	}
 }

@@ -1,8 +1,11 @@
 package com.gsb.BasicObject.MBGDAO;
 
+import com.gsb.BasicObject.MBG.Department;
 import com.gsb.BasicObject.MBG.Person;
 import com.gsb.BasicObject.MBG.PersonExample;
 import com.gsb.BasicObject.MBG.PersonWithBLOBs;
+import com.gsb.BasicObject.MBG.SalaryLib;
+import com.gsb.BasicObject.MBG.Sociaty;
 import com.gsb.BasicObject.MBG.SourcePerson;
 
 import java.util.List;
@@ -22,12 +25,22 @@ public interface PersonMapper {
     List<PersonWithBLOBs> selectByExampleWithBLOBs(PersonExample example);
 
     List<SourcePerson> selectByExample(PersonExample example);
-    
-    List<String> selectAllNations(); 
-    
-    List<String> selectAllSlib();
 
     PersonWithBLOBs selectByPrimaryKey(Integer sysNo);
+    
+    List<SourcePerson> selectAllForShow();
+
+	List<String> selectAllFunc();
+
+	List<String> selectAllTitleLv();
+	
+	List<String> selectAllNations();
+	
+	Department selectDeptWithId(Integer dept_no);
+	
+	Sociaty selectSociatyWithId( Integer sociaty_no);
+	
+	SalaryLib selectSLibWithId( Integer salary_lib_no);
 
     int updateByExampleSelective(@Param("record") PersonWithBLOBs record, @Param("example") PersonExample example);
 
@@ -40,10 +53,4 @@ public interface PersonMapper {
     int updateByPrimaryKeyWithBLOBs(PersonWithBLOBs record);
 
     int updateByPrimaryKey(Person record);
-
-	List<SourcePerson> selectWithDeptName(Integer id);
-
-	List<String> selectAllFunc();
-
-	List<String> selectAllTitleLv();
 }

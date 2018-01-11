@@ -18,6 +18,7 @@ import com.gsb.BasicObject.MBG.Department;
 import com.gsb.BasicObject.MBG.Sociaty;
 import com.gsb.BasicObject.MBG.SourcePerson;
 import com.gsb.BasicObject.MBGDAO.DepartmentMapper;
+import com.gsb.BasicObject.MBGDAO.PersonMapper;
 import com.gsb.BasicObject.MBGDAO.SociatyMapper;
 import com.gsb.BasicObject.Services.ReadDBInfos;
 import com.gsb.BasicObject.Services.StoreFileInfos;
@@ -79,7 +80,7 @@ public class TestMapper{
 	ReadDBInfos info_reader;
 	
 	
-	@Test
+//	@Test
 	public void insertPerson() throws ParseException, BiffException, IOException {
 		sfis.init();
 		String[] headers = new String[sfis.headers.size()];
@@ -137,8 +138,16 @@ public class TestMapper{
 		}
 	}
 	
+	@Autowired
+	PersonMapper person_mapper;
+	
 	@Test
 	public void testFuncGet() {
+		
+		List<SourcePerson> selectAllForShow = person_mapper.selectAllForShow();
+		for( SourcePerson sp: selectAllForShow) {
+			System.out.println( sp.getDept().getDeptName());
+		}
 	}
 	
 }

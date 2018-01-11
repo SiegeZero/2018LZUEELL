@@ -2,6 +2,8 @@ package com.gsb.BasicObject.MBGDAO;
 
 import com.gsb.BasicObject.MBG.Department;
 import com.gsb.BasicObject.MBG.DepartmentExample;
+import com.gsb.BasicObject.MBG.SourcePerson;
+
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 

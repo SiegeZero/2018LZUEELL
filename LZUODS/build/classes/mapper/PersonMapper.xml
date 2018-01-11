@@ -36,14 +36,19 @@
 			property="livingSituation" />
 	</resultMap>
 
-	<resultMap extends="BaseResultMap" id="ResultMapWithDept"
+	<resultMap extends="BaseResultMap" id="ResultMapForShow"
 		type="com.gsb.BasicObject.MBG.SourcePerson">
 		<result column="address" jdbcType="LONGVARCHAR" property="address" />
 		<result column="living_situation" jdbcType="LONGVARCHAR"
 			property="livingSituation" />
-		<result column="dept_name" jdbcType="VARCHAR" property="dept" />
+		<association property="dept" column="dept_no"
+			javaType="com.gsb.BasicObject.MBG.Department" select="selectDeptWithId" />
+		<association property="sociaty" column="sociaty_no"
+			javaType="com.gsb.BasicObject.MBG.Sociaty" select="selectSociatyWithId" />
+		<association property="slib" column="salary_lib_no"
+			javaType="com.gsb.BasicObject.MBG.SalaryLib" select="selectSLibWithId" />
 	</resultMap>
-
+	
 	<sql id="Example_Where_Clause">
 		<where>
 			<foreach collection="oredCriteria" item="criteria" separator="or">
@@ -166,6 +171,42 @@
 		from basic_info_table
 		where sys_no = #{sysNo,jdbcType=INTEGER}
 	</select>
+	<select id="selectAllForShow" resultMap="ResultMapForShow">
+		select
+		<include refid="Base_Column_List" />
+		,
+		<include refid="Blob_Column_List" />
+		from basic_info_table
+	</select>
+
+	<select id="selectAllNations" resultType="string">
+		select distinct nation
+		from basic_info_table
+	</select>
+
+	<select id="selectAllFunc" resultType="string">
+		select distinct func
+		from
+		basic_info_table
+	</select>
+	<select id="selectAllTitleLv" resultType="string">
+		select distinct title_lv
+		from
+		basic_info_table
+	</select>
+	
+	<select id="selectDeptWithId" resultType="com.gsb.BasicObject.MBG.Department">
+		select * from dept_table where dept_no=#{dept_no}
+	</select>
+	
+	<select id="selectSociatyWithId" resultType="com.gsb.BasicObject.MBG.Sociaty">
+		select * from sociaty_table where sociaty_no=#{sociaty_no}
+	</select>
+	
+	<select id="selectSLibWithId" resultType="com.gsb.BasicObject.MBG.SalaryLib">
+		select * from salary_lib_table where salary_lib_no=#{salary_lib_no}
+	</select>
+	
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
 		delete from
 		basic_info_table
@@ -742,38 +783,5 @@
 		#{isHelpNeeded,jdbcType=BIT}
 		where sys_no = #{sysNo,jdbcType=INTEGER}
 	</update>
-
-	<select id="selectWithDeptName" parameterType="java.lang.Integer"
-		resultMap="ResultMapWithDept">
-		select
-		dept_name
-		,
-		<include refid="Base_Column_List" />
-		,
-		<include refid="Blob_Column_List" />
-		from basic_info_table join dept_table on
-		basic_info_table.dept_no =
-		dept_table.dept_no
-		where sys_no =
-		#{sysNo,jdbcType=INTEGER}
-	</select>
-
-	<select id="selectAllNations" resultType="string">
-		select distinct nation
-		from basic_info_table
-	</select>
-
-	<select id="selectAllFunc" resultType="string">
-		select distinct func
-		from
-		basic_info_table
-	</select>
-	<select id="selectAllTitleLv" resultType="string">
-		select distinct
-		title_lv
-		from
-		basic_info_table
-	</select>
-
 
 </mapper>
