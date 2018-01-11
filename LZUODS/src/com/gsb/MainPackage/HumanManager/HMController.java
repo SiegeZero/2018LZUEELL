@@ -58,10 +58,21 @@ public class HMController {
 	@RequestMapping(value="/HMMang")
 	public ModelAndView manage( ModelAndView mv,HttpServletRequest request) {
 		PersonExample example=new PersonExample();
-		Criteria c = example.createCriteria();
-		c.andFuncEqualTo(request.getParameter("func_condition"));
-		System.out.println("啊"+request.getParameter("func_condition"));
-		example.or(c);
+		String func_condition = request.getParameter("func_condition");
+		if( func_condition != null) {
+			Criteria c = example.createCriteria();
+			String str = " ";
+			if( func_condition.contains("\t")) {
+				str = "\t";
+			}
+			List<String> funcs = new ArrayList<>();
+			for( String f:func_condition.split(str)) {
+				funcs.add( f);
+			}
+			c.andFuncIn(funcs);
+			example.or(c);
+		}
+		
 		List<SourcePerson> list =  db_reader.getBasicInfos(example);
 		System.out.println( list.size());
 		mv.addObject("size", list.size());
