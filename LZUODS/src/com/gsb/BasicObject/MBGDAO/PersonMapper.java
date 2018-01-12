@@ -36,6 +36,8 @@ public interface PersonMapper {
 	
 	List<String> selectAllNations();
 	
+	List<String> selectAllConscriptionSituation();
+	
 	Department selectDeptWithId(Integer dept_no);
 	
 	Sociaty selectSociatyWithId( Integer sociaty_no);

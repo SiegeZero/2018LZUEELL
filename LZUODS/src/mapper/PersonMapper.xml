@@ -194,6 +194,12 @@
 		from
 		basic_info_table
 	</select>
+	<select id="selectAllConscriptionSituation" resultType="string">
+		select distinct conscription_situation
+		from
+		basic_info_table
+	</select>
+	
 	
 	<select id="selectDeptWithId" resultType="com.gsb.BasicObject.MBG.Department">
 		select * from dept_table where dept_no=#{dept_no}

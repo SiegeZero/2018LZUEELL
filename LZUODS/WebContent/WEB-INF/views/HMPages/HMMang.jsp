@@ -11,12 +11,40 @@
 <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
 <title>人员管理</title>
 <script>
+	window.onload = function(){
+		flag = quit_office_types;
+	}
+	var flag;
 	function show_func() {
 		if (func.style.display == "none") {
 			func.style.display = "block";
 		} else if (func.style.display == "block") {
 			func.style.display = "none";
 		}
+	}
+	function show_title_lv() {
+		if (title_lv.style.display == "none") {
+			title_lv.style.display = "block";
+		} else if (title_lv.style.display == "block") {
+			title_lv.style.display = "none";
+		}
+	}
+	function show_quit_office_types() {
+		if (quit_office_types.style.display == "none") {
+			flag.style.display = "none";
+			quit_office_types.style.display = "block";
+		} /* else if (quit_office_types.style.display == "block") {
+			quit_office_types.style.display = "none";
+		}*/
+		flag = quit_office_types;
+	}
+	function show_conscription_situations() {
+		/* alert("result:"+quit_office_types.style.display+"end"); */
+		if (conscription_situations.style.display == "none") {
+			flag.style.display = "none";
+			conscription_situations.style.display = "block";
+		}
+		flag = conscription_situations;
 	}
 </script>
 </head>
@@ -27,6 +55,8 @@
 	List<String> nations_list = (List<String>) request.getAttribute("nations_list");
 	List<String> sociaties_list = (List<String>) request.getAttribute("sociaties_list");
 	List<String> func_list = (List<String>) request.getAttribute("func_list");
+	List<String> title_lv_list = (List<String>) request.getAttribute("title_lv_list");
+	List<String> conscription_situation_list = (List<String>) request.getAttribute("conscription_situation_list");
 %>
 
 <body style="height: 100%">
@@ -49,53 +79,123 @@
 		<div style="float: left; width: 85%">
 			<form action="ConfirmPage" method="post" class="navbar-form">
 				<div class="container-fluid">
-					<div class="col-md-12">
-						<center>
-							<button class="btn btn-info" type="button" onclick="show_func()" title="点击这里查看可用的职级\n再次点击关闭该参考页面">
-								<span>参考</span>
-							</button>
-							<input type="text" name="func_condition"
-								value="<%=request.getAttribute("func_str") != null ? request.getAttribute("func_str") : ""%>"
-								placeholder="输入职级查询" class="form-control" />
-							<button type="submit">
-								<span class="glyphicon glyphicon-search"></span>
-							</button>
-						</center>
+					<div width="100%">
+						<div>
+							<center>
+								<input type="text" name="name_condition"
+									value="<%=request.getAttribute("name_str") != null ? request.getAttribute("name_str") : ""%>"
+									placeholder="输入姓名查询，多个姓名用空格分隔开" class="form-control" />
+							</center>
+						</div>
 					</div>
-					<div style="display: none" id="func">
-						<table class="table table-bordered">
-							<tr>
-								<%
-									for (int row_index = 0; func_list != null && row_index < func_list.size(); row_index++) {
-										if (row_index % 6 == 0) {
-								%>
-							</tr>
-							<tr>
-								<td style="width: 10%"><%=func_list.get(row_index)%></td>
-								<%
-									} else {
-								%>
-								<td style="width: 10%"><%=func_list.get(row_index)%></td>
-								<%
-									}
-								%>
-								<%
-									}
-								%>
-							</tr>
-						</table>
+					<br>
+					<div width="100%">
+						<div>
+							<center>
+								<button class="btn btn-info" type="button" onclick="show_func()" title="点击这里查看可选的职级&#xd再次点击关闭该参考页面">
+									<span>职级列表</span>
+								</button>
+								<input type="text" name="func_condition"
+									value="<%=request.getAttribute("func_str") != null ? request.getAttribute("func_str") : ""%>"
+									placeholder="输入职级查询" class="form-control" />
+							</center>
+						</div>
+						<div style="display: none" id="func">
+							<table class="table table-bordered">
+								<tr>
+									<%
+										for (int row_index = 0; func_list != null && row_index < func_list.size(); row_index++) {
+											if (row_index % 6 == 0) {
+									%>
+								</tr>
+								<tr>
+									<td style="width: 10%"><%=func_list.get(row_index)%></td>
+									<%
+										} else {
+									%>
+									<td style="width: 10%"><%=func_list.get(row_index)%></td>
+									<%
+										}
+									%>
+									<%
+										}
+									%>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<br>
+					<div stye="width:100%">
+						<div>
+							<center>
+								<button class="btn btn-info" type="button" onclick="show_title_lv()" title="点击这里查看可选的职务&#xd再次点击关闭该参考页面">
+									<span>职务列表</span>
+								</button>
+								<input type="text" name="title_lv_condition"
+									value="<%=request.getAttribute("title_lv_str") != null ? request.getAttribute("title_lv_str") : ""%>"
+									placeholder="输入职级查询" class="form-control" />
+								<button type="submit">
+									<span class="glyphicon glyphicon-search"></span>
+								</button>
+							</center>
+						</div>
+						<div style="display: none" id="title_lv">
+							<table class="table table-bordered">
+								<tr>
+									<%
+										for (int row_index = 0; title_lv_list != null && row_index < title_lv_list.size(); row_index++) {
+											if (row_index % 6 == 0) {
+									%>
+								</tr>
+								<tr>
+									<td style="width: 10%"><%=title_lv_list.get(row_index)%></td>
+									<%
+										} else {
+									%>
+									<td style="width: 10%"><%=title_lv_list.get(row_index)%></td>
+									<%
+										}
+									%>
+									<%
+										}
+									%>
+								</tr>
+							</table>
+						</div>
 					</div>
 					<table class="table">
 						<tr>
 							<th>基本：</th>
-							<td>离休情况</td>
-							<td>兵役情况</td>
+							<td><a type="button" onclick="show_quit_office_types()">离休情况</a></td>
+							<td><a type="button" onclick="show_conscription_situations()">兵役情况</a></td>
 							<td>政治面貌</td>
 							<td>在世情况</td>
 							<td>贫困状况</td>
 							<td>慰问情况</td>
 							<td>学历</td>
 							<td>更多条件 ↓</td>
+						</tr>
+						<tr>
+							<td colspan="9">
+								<ul style="display:block" class="nav navbar-nav" id="quit_office_types">
+									<li>
+										<input type="checkbox" onClick="select_attribute" />离休
+									</li>
+									<li>
+										<input type="checkbox" onClick="select_attribute" />退休
+									</li>
+								</ul>
+								<ul style="display:none" class="nav navbar-nav" id="conscription_situations">
+								<%for(int li_index=0;conscription_situation_list!=null && li_index<conscription_situation_list.size();li_index++){
+									if(conscription_situation_list.get(li_index).equals(""))
+										continue;
+									%>
+									<li>
+										<input type="checkbox" onClick="select_attribute" /><%=conscription_situation_list.get(li_index) %>
+									</li>
+									<%} %>
+								</ul>
+							</td>
 						</tr>
 						<tr>
 							<th>年龄：</th>

@@ -18,7 +18,17 @@
 		<div class="container-fluid">
 			<form action="HMMang" method="post">
 				<div class="container-fluid">
+					<strong>输入的姓名包含：</strong>
+					<input type="text" class="form-control" name="name_condition" value="<%=request.getParameter("name_condition")%>" readonly/>
+				</div>
+				<div class="container-fluid">
+					<strong>输入的职务包含：</strong>
 					<input type="text" class="form-control" name="func_condition" value="<%=request.getParameter("func_condition")%>" readonly/>
+				</div>
+				<div class="container-fluid" style="margin-top:10px">
+				<div class="container-fluid">
+					<strong>输入的职级包含：</strong>
+					<input type="text" class="form-control" name="title_lv_condition" value="<%=request.getParameter("title_lv_condition")%>" readonly/>
 				</div>
 				<div class="container-fluid" style="margin-top:10px">
 					<button class="btn btn-warning" type="submit">确认查询</button>

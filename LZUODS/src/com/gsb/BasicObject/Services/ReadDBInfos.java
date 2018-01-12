@@ -65,6 +65,10 @@ public class ReadDBInfos {
 		return dept_mapper.selectAllDepts();
 	}
 
+	public List<String> getAllConscriptionSituation() {
+		return person_mapper.selectAllConscriptionSituation();
+	}
+
 	public List<SourcePerson> getBasicInfos(PersonExample example) {
 		return person_mapper.selectByExample(example);
 	}
