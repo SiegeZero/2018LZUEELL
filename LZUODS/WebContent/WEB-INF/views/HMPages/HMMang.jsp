@@ -179,10 +179,10 @@
 							<td colspan="9">
 								<ul style="display:block" class="nav navbar-nav" id="quit_office_types">
 									<li>
-										<input type="checkbox" onClick="select_attribute" />离休
+										<input type="checkbox" value="离休" name="quit_office_type0" onClick="select_attribute" />离休
 									</li>
 									<li>
-										<input type="checkbox" onClick="select_attribute" />退休
+										<input type="checkbox" value="退休" name="quit_office_type1" onClick="select_attribute" />退休
 									</li>
 								</ul>
 								<ul style="display:none" class="nav navbar-nav" id="conscription_situations">
@@ -191,7 +191,7 @@
 										continue;
 									%>
 									<li>
-										<input type="checkbox" onClick="select_attribute" /><%=conscription_situation_list.get(li_index) %>
+										<input type="checkbox" name="conscription_situation<%=li_index %>" onClick="select_attribute" /><%=conscription_situation_list.get(li_index) %>
 									</li>
 									<%} %>
 								</ul>
