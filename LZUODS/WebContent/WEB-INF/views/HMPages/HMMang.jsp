@@ -290,7 +290,7 @@
 					%>
 					<tr>
 						<td><input type="checkbox" /><%=person_list.get(cow_index).getSysNo()%></td>
-						<td><%=person_list.get(cow_index).getName()%></td>
+						<td><a href="HMDtal?id=<%=person_list.get(cow_index).getSysNo()%>"><%=person_list.get(cow_index).getName()%></a></td>
 						<td><%=person_list.get(cow_index).getTitleLv()%></td>
 						<td><%=person_list.get(cow_index).getFunc()%></td>
 						<td><%=person_list.get(cow_index).getSociatyNo()%></td>

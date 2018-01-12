@@ -42,8 +42,8 @@ public class HMController {
 	
 	@RequestMapping(value="/HMDtal", method=RequestMethod.GET)
 	public ModelAndView query( @RequestParam("id") String id, ModelAndView mv) {
-		Target t = Target.getById( id);
-		mv.addObject("target", t);
+		System.out.println("1234"+db_reader.getBasicInfosBy(Integer.parseInt(id)));
+		mv.addObject("target", db_reader.getBasicInfosBy(Integer.parseInt(id)));
 		return mv;
 	}
 	

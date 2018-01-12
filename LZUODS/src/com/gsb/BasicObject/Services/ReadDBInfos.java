@@ -72,6 +72,10 @@ public class ReadDBInfos {
 	public List<SourcePerson> getBasicInfos(PersonExample example) {
 		return person_mapper.selectByExample(example);
 	}
+	
+	public SourcePerson getBasicInfosBy( Integer sysNo) {
+		return person_mapper.selectByPrimaryKey(sysNo);
+	}
 
 	@Autowired
 	SociatyMapper sociaty_mapper;

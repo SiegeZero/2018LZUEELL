@@ -1,28 +1,28 @@
-<! doctype html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html lang="zh-hans">
-
 <head>
-    <meta charset="utf-8">
-    <!--编码格式UTF-8-->
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!--IE浏览器渲染方式-->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--移动设备响应-->
-    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../css/style.css">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!--IE浏览器渲染方式-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--移动设备响应-->
+<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <title>详细信息</title>
 </head>
 
+<%@page import="com.gsb.BasicObject.MBG.SourcePerson" %>
+
+<%
+SourcePerson person = (SourcePerson)request.getAttribute("target");
+
+
+%>
+
 <body>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a href="#" class="navbar-brand"><strong>LZUODS</strong>.net</a>
-            </div>
-        </div>
-    </nav>
+	<jsp:include page="NavigationBar.jsp"></jsp:include>
 
     <div class="container-fluid">
         <p class="alert alert-info"><strong>详细信息</strong></p>
@@ -33,34 +33,33 @@
             <table class="table">
                 <tr>
                     <th>工资编号:</th>
-                    <td>10001</td>
+                    <td><%=person.getSalaryNo() %></td>
                     <th>姓名:</th>
-                    <td>张三</td>
+                    <td><%=person.getName() %></td>
                     <th>籍贯:</th>
-                    <td>甘肃兰州</td>
+                    <td><%=person.getNativePlace()%></td>
                     <th>工作单位:</th>
-                    <td>文学院</td>
-                    <td rowspan="3" style="width: 100px"><img src="sources/snipaste_20171111_233556.png" height="100px" width="100px"></td>
+                    <td><%=person.getDept().getDeptName() %></td>
                 </tr>
                 <tr>
                     <th>性别:</th>
-                    <td>男</td>
+                    <td><%=person.getGender() %></td>
                     <th>工资库:</th>
-                    <td>93前</td>
+                    <td><%=person.getSlib().getSalaryVersion() %></td>
                     <th>离休情况:</th>
-                    <td>离休</td>
+                    <td><%=person.getQuitOfficeType() %></td>
                     <th>兵役情况:</th>
-                    <td>军人</td>
+                    <td><%=person.getConscriptio_situation() %></td>
                 </tr>
                 <tr>
                     <th>所在分会:</th>
-                    <td>离休一分会</td>
+                    <td><%=person.getSociaty().getSociatyName() %></td>
                     <th>学历:</th>
-                    <td>本科</td>
+                    <td><%=person.getEduBg() %></td>
                     <th>政治面貌:</th>
-                    <td>党员</td>
+                    <td><%=person.getPoliticalStatus() %></td>
                     <th>民族:</th>
-                    <td>汉</td>
+                    <td><%=person.getNation() %></td>
                 </tr>
             </table>
             </center>

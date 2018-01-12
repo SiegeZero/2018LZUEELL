@@ -26,7 +26,7 @@ public interface PersonMapper {
 
     List<SourcePerson> selectByExample(PersonExample example);
 
-    PersonWithBLOBs selectByPrimaryKey(Integer sysNo);
+    SourcePerson selectByPrimaryKey(Integer sysNo);
     
     List<SourcePerson> selectAllForShow();
 

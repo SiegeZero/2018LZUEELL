@@ -9,21 +9,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!--移动设备响应-->
 <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<link rel="stylesheet" href="css/style.css">
     <title>新增人员</title>
 </head>
 
 <body>
 
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <a href="#" class="navbar-brand"><strong>LZUODS</strong>.net</a>
-            </div>
-        </div>
-    </nav>
-
+	<jsp:include page="NavigationBar.jsp"></jsp:include>
+	
     <div class="container-fluid">
         <p class="alert alert-info"><strong>新增人员</strong></p>
     </div>
@@ -48,7 +40,6 @@
                     <div class="input-group input-group-sm">
                         <td><input type="text" class="form-control" placeholder="原工作单位" /></td>
                     </div>
-                    <!--<td rowspan="3" style="width: 100px"><img src="sources/snipaste_20171111_233556.png" height="100px" width="100px"></td>-->
                 </tr>
                 <tr>
                     <th>性别:</th>
