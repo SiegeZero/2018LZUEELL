@@ -155,7 +155,11 @@ public class TestMapper{
 	public void testNullPrint() {
 		List<String> list = new ArrayList<>();
 		list.add(null);
-		System.out.println( list.contains(null));
+		List<String> list2 = new ArrayList<>();
+		list2.add("11");
+		list2.add(null);
+		list2.removeAll(list);
+		System.out.println( list2.get(0));
 		return;
 	}
 	

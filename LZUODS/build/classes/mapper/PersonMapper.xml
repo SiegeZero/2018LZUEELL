@@ -171,12 +171,22 @@
 		from basic_info_table
 		where sys_no = #{sysNo,jdbcType=INTEGER}
 	</select>
-	<select id="selectAllForShow" resultMap="ResultMapForShow">
+	<select id="selectAllForShow" parameterType="com.gsb.BasicObject.MBG.PersonExample" 
+		resultMap="ResultMapForShow">
 		select
+		<if test="distinct">
+			distinct
+		</if>
 		<include refid="Base_Column_List" />
 		,
 		<include refid="Blob_Column_List" />
 		from basic_info_table
+		<if test="_parameter != null">
+			<include refid="Example_Where_Clause" />
+		</if>
+		<if test="orderByClause != null">
+			order by ${orderByClause}
+		</if>
 	</select>
 
 	<select id="selectAllNations" resultType="string">

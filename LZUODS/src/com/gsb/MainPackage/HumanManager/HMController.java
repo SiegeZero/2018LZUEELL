@@ -66,7 +66,11 @@ public class HMController {
 			for( String f:name_condition.split(str)) {
 				funcs.add( f);
 			}
-			c.andNameIn(funcs);
+			if( funcs.size() > 1) {
+				c.andNameIn(funcs);	
+			} else if( funcs.size() == 1) {
+				c.andNameLike("%"+funcs.get(0)+"%");
+			}
 			example.or(c);
 			mv.addObject("name_str",name_condition);
 		}
@@ -80,7 +84,11 @@ public class HMController {
 			for( String f:func_condition.split(str)) {
 				funcs.add( f);
 			}
-			c.andFuncIn(funcs);
+			if( funcs.size() > 1) {
+				c.andFuncIn(funcs);	
+			} else if( funcs.size() == 1) {
+				c.andFuncLike("%"+funcs.get(0)+"%");
+			}
 			example.or(c);
 			mv.addObject("func_str",func_condition);
 		}
@@ -94,7 +102,11 @@ public class HMController {
 			for( String f:title_lv_condition.split(str)) {
 				funcs.add( f);
 			}
-			c.andTitleLvIn(funcs);
+			if( funcs.size() > 1) {
+				c.andTitleLvIn(funcs);	
+			} else if( funcs.size() == 1) {
+				c.andTitleLvLike("%"+funcs.get(0)+"%");
+			}
 			example.or(c);
 			mv.addObject("title_lv_str",title_lv_condition);
 		}

@@ -46,9 +46,9 @@
 </script>
 </head>
 
-<%@page import="java.util.List,com.gsb.BasicObject.MBG.Person"%>
+<%@page import="java.util.List,com.gsb.BasicObject.MBG.SourcePerson"%>
 <%
-	List<Person> person_list = (List<Person>) request.getAttribute("person_list");
+	List<SourcePerson> person_list = (List<SourcePerson>) request.getAttribute("person_list");
 	List<String> nations_list = (List<String>) request.getAttribute("nations_list");
 	List<String> sociaties_list = (List<String>) request.getAttribute("sociaties_list");
 	List<String> func_list = (List<String>) request.getAttribute("func_list");
@@ -287,12 +287,13 @@
 						for (int cow_index = 0; cow_index < person_list.size() && cow_index < 5; cow_index++) {
 					%>
 					<tr>
-						<td><input type="checkbox" /><%=person_list.get(cow_index).getSysNo()%></td>
-						<td><a href="HMDtal?id=<%=person_list.get(cow_index).getSysNo()%>"><%=person_list.get(cow_index).getName()%></a></td>
+						<td><input type="checkbox" value="<%=person_list.get(cow_index).getSysNo()%>" /></td>
+						<td><a href="HMDtal?id=<%=person_list.get(cow_index).getSysNo()%>">
+						<%=person_list.get(cow_index).getName()%></a></td>
 						<td><%=person_list.get(cow_index).getTitleLv()%></td>
 						<td><%=person_list.get(cow_index).getFunc()%></td>
-						<td><%=person_list.get(cow_index).getSociatyNo()%></td>
-						<td><%=person_list.get(cow_index).getDeptNo()%></td>
+						<td><%=person_list.get(cow_index).getSociaty().getSociatyName()%></td>
+						<td><%=person_list.get(cow_index).getDept().getDeptName()%></td>
 						<td><%=person_list.get(cow_index).getQuitOfficeType()%></td>
 						<td><%=person_list.get(cow_index).getGender()%></td>
 						<td><%=person_list.get(cow_index).getNation()%></td>

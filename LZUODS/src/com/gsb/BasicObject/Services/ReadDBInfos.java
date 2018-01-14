@@ -74,7 +74,7 @@ public class ReadDBInfos {
 	}
 
 	public List<SourcePerson> getBasicInfos(PersonExample example) {
-		return person_mapper.selectByExample(example);
+		return person_mapper.selectAllForShow(example);
 	}
 	
 	public SourcePerson getBasicInfosBy( Integer sysNo) {

@@ -28,7 +28,7 @@ public interface PersonMapper {
 
     SourcePerson selectByPrimaryKey(Integer sysNo);
     
-    List<SourcePerson> selectAllForShow();
+    List<SourcePerson> selectAllForShow(PersonExample example);
 
 	List<String> selectAllFunc();
 
