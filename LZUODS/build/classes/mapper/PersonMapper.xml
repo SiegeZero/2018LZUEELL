@@ -181,18 +181,21 @@
 
 	<select id="selectAllNations" resultType="string">
 		select distinct nation
-		from basic_info_table
+		from
+		basic_info_table
 	</select>
 
 	<select id="selectAllFunc" resultType="string">
 		select distinct func
 		from
 		basic_info_table
+		where func != ''
 	</select>
 	<select id="selectAllTitleLv" resultType="string">
 		select distinct title_lv
 		from
 		basic_info_table
+		where title_lv != ''
 	</select>
 	<select id="selectAllConscriptionSituation" resultType="string">
 		select distinct conscription_situation

@@ -33,13 +33,10 @@
 		if (quit_office_types.style.display == "none") {
 			flag.style.display = "none";
 			quit_office_types.style.display = "block";
-		} /* else if (quit_office_types.style.display == "block") {
-			quit_office_types.style.display = "none";
-		}*/
+		}
 		flag = quit_office_types;
 	}
 	function show_conscription_situations() {
-		/* alert("result:"+quit_office_types.style.display+"end"); */
 		if (conscription_situations.style.display == "none") {
 			flag.style.display = "none";
 			conscription_situations.style.display = "block";
@@ -87,7 +84,6 @@
 									placeholder="输入姓名查询，多个姓名用空格分隔开" class="form-control" />
 							</center>
 						</div>
-					</div>
 					<br>
 					<div width="100%">
 						<div>
@@ -187,8 +183,7 @@
 								</ul>
 								<ul style="display:none" class="nav navbar-nav" id="conscription_situations">
 								<%for(int li_index=0;conscription_situation_list!=null && li_index<conscription_situation_list.size();li_index++){
-									if(conscription_situation_list.get(li_index).equals(""))
-										continue;
+									
 									%>
 									<li>
 										<input type="checkbox" name="conscription_situation<%=li_index %>" onClick="select_attribute" /><%=conscription_situation_list.get(li_index) %>
@@ -243,6 +238,9 @@
 						<tr>
 							<th>分会：</th>
 							<%
+								while( sociaties_list.contains("")) {
+									sociaties_list.remove("");
+								}
 								for (int row_index = 0; sociaties_list != null && row_index < sociaties_list.size()
 										&& row_index % 8 == 0; row_index++) {
 							%>

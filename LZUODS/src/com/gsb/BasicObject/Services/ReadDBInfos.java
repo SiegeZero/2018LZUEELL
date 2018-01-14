@@ -46,11 +46,15 @@ public class ReadDBInfos {
 	}
 
 	public List<String> getAllTitleLv() {
-		return person_mapper.selectAllTitleLv();
+		List<String> results = person_mapper.selectAllTitleLv();
+		results.remove("");
+		return results;
 	}
 
 	public List<String> getAllFunc() {
-		return person_mapper.selectAllFunc();
+		List<String> results = person_mapper.selectAllFunc();
+		results.remove("");
+		return results;
 	}
 
 	public List<String> getAllNations() {

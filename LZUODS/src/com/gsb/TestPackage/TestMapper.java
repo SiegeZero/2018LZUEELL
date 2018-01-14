@@ -2,6 +2,7 @@ package com.gsb.TestPackage;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -148,6 +149,14 @@ public class TestMapper{
 		for( SourcePerson sp: selectAllForShow) {
 			System.out.println( sp.getDept().getDeptName());
 		}
+	}
+	
+	@Test
+	public void testNullPrint() {
+		List<String> list = new ArrayList<>();
+		list.add(null);
+		System.out.println( list.contains(null));
+		return;
 	}
 	
 }

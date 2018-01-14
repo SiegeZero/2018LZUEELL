@@ -1,3 +1,4 @@
+<%@page import="com.sun.java.swing.plaf.windows.resources.windows"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -6,18 +7,26 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script>
-	
 </script>
 </head>
+<%@ page import="java.util.List,java.util.ArrayList" %>
+<%
+int quit_office_type_size=2,conscription_situation_conditions_size=0;
 
-<%int size=0;
-Set<String>
-for(int index=0;index<size;index++){
+List<String> quit_office_types = new ArrayList<>();
+for(int index=0;index < quit_office_type_size; index++){
+	String str = (String)request.getParameter("quit_office_type"+index);
+	quit_office_types.add( str);
+}
+List<String> conscription_situation_conditions = new ArrayList<>();
+for(int index=0;index<conscription_situation_conditions_size;index++){
 	String str = (String)request.getParameter("conscription_situation"+index);
-	if(str!=null&&!str.equals("")){
-		
-	}
-}%>
+	conscription_situation_conditions.add( str);
+}
+String name_str = request.getParameter("name_condition");
+String func_str = request.getParameter("func_condition");
+String title_lv_str = request.getParameter("title_lv_condition");
+%>
 
 <body>
 	<jsp:include page="NavigationBar.jsp"></jsp:include>
@@ -30,30 +39,61 @@ for(int index=0;index<size;index++){
 	<div class="container-fluid">
 		<div class="container-fluid">
 			<form action="HMMang" method="post">
+				<%
+				if( name_str != null && !name_str.equals("")) {
+				%>
 				<div class="container-fluid">
 					<strong>选择的姓名包含：</strong>
-					<input type="text" class="form-control" name="name_condition" value="<%=request.getParameter("name_condition")%>" readonly/>
+					<input type="text" class="form-control" name="name_condition" value="<%=name_str %>" readonly/>
 				</div>
+				<%
+				}
+				if( func_str != null && !func_str.equals("")) {
+				%>
 				<div class="container-fluid">
 					<strong>选择的职务包含：</strong>
-					<input type="text" class="form-control" name="func_condition" value="<%=request.getParameter("func_condition")%>" readonly/>
+					<input type="text" class="form-control" name="func_condition" value="<%=func_str %>" readonly/>
 				</div>
+				<%
+				}
+				if( title_lv_str != null && !title_lv_str.equals("")) {
+				%>
 				<div class="container-fluid">
 					<strong>选择的职级包含：</strong>
-					<input type="text" class="form-control" name="title_lv_condition" value="<%=request.getParameter("title_lv_condition")%>" readonly/>
+					<input type="text" class="form-control" name="title_lv_condition" value="<%=title_lv_str %>" readonly/>
 				</div>
+				<%
+				}
+				while( quit_office_types.contains(null))
+					quit_office_types.remove(null);
+				if( !quit_office_types.isEmpty()) {
+				%>
 				<div class="container-fluid">
 					<strong>选择的离退休情况包含：</strong>
-					<%for(int index=0;index<2;index++){ %>
-					<input type="text" class="form-control" name="title_lv_condition" value="<%=request.getParameter("quit_office_type"+index)%>" readonly/>
+					<%for(int index=0;index< quit_office_types.size();index++){ %>
+						<input type="text" class="form-control" name="quit_office_type" value="<%=quit_office_types.get(index)%>" readonly/>
 					<%} %>
 				</div>
+				<%
+				}
+				while( conscription_situation_conditions.contains(null))
+					conscription_situation_conditions.remove(null);
+				if( !conscription_situation_conditions.isEmpty()) {
+				%>
 				<div class="container-fluid">
 					<strong>选择的兵役情况包含：</strong>
-					<%for(int index=0;index<2;index++){ %>
-					<input type="text" class="form-control" name="#" value="<%=request.getParameter("#")%>" readonly/>
-					<%} %>
+					<%for(int index=0;index<conscription_situation_conditions.size();index++){ 
+						String tmp = conscription_situation_conditions.get(index);
+						if(tmp!=null && !tmp.equals("")){
+					%>
+							<input type="text" class="form-control" name="#" value="<%=tmp%>" readonly/>
+					<%	} 
+					}
+					%>
 				</div>
+				<%
+				}
+				%>
 				<div class="container-fluid" style="margin-top:10px">
 					<button class="btn btn-warning" type="submit">确认查询</button>
 					<button class="btn btn-info" type="button" onclick="javascript:history.back(-1);">返回修改</button>

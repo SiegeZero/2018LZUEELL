@@ -8,14 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-
-import com.gsb.BasicObject.Target;
-import com.gsb.BasicObject.MBG.Person;
 import com.gsb.BasicObject.MBG.PersonExample;
 import com.gsb.BasicObject.MBG.PersonExample.Criteria;
 import com.gsb.BasicObject.MBG.SourcePerson;
@@ -41,9 +37,8 @@ public class HMController {
 	}
 	
 	@RequestMapping(value="/HMDtal", method=RequestMethod.GET)
-	public ModelAndView query( @RequestParam("id") String id, ModelAndView mv) {
-		System.out.println("1234"+db_reader.getBasicInfosBy(Integer.parseInt(id)));
-		mv.addObject("target", db_reader.getBasicInfosBy(Integer.parseInt(id)));
+	public ModelAndView query( @RequestParam("id") int id, ModelAndView mv) {
+		mv.addObject("target", db_reader.getBasicInfosBy(id));
 		return mv;
 	}
 	
@@ -62,10 +57,6 @@ public class HMController {
 		String name_condition = request.getParameter("name_condition");
 		String func_condition = request.getParameter("func_condition");
 		String title_lv_condition = request.getParameter("title_lv_condition");
-		String conscription_situation_condition = request.getParameter("conscription_situation_condition");
-
-		System.out.println("a"+func_condition);
-		
 		if( name_condition != null && !removeUselessHeaderStr(name_condition).equals("") ) {
 			String str = " ";
 			if( name_condition.contains("\t")) {
@@ -108,15 +99,24 @@ public class HMController {
 			mv.addObject("title_lv_str",title_lv_condition);
 		}
 		
-		List<SourcePerson> list =  db_reader.getBasicInfos(example);
-		System.out.println( list.size());
-		mv.addObject("size", list.size());
-		mv.addObject("person_list", list);
-		mv.addObject("nations_list", db_reader.getAllNations());
-		mv.addObject("sociaties_list", db_reader.getAllSociaties());
-		mv.addObject("func_list", db_reader.getAllFunc());
-		mv.addObject("title_lv_list", db_reader.getAllTitleLv());
-		mv.addObject("conscription_situation_list", db_reader.getAllConscriptionSituation());
+		List<SourcePerson> person_list =  db_reader.getBasicInfos(example);
+		List<String> nations_list = db_reader.getAllNations();
+		List<String> sociaties_list = db_reader.getAllSociaties();
+		List<String> func_list = db_reader.getAllFunc();
+		List<String> title_lv_list = db_reader.getAllTitleLv();
+		List<String> cs_list = db_reader.getAllConscriptionSituation();
+		mv.addObject("person_amount", person_list.size());
+		mv.addObject("person_list", person_list);
+		mv.addObject("nations_amount", nations_list.size());
+		mv.addObject("nations_list", nations_list);
+		mv.addObject("sociaties_amount", sociaties_list.size());
+		mv.addObject("sociaties_list", sociaties_list);
+		mv.addObject("func_amount", func_list.size());
+		mv.addObject("func_list", func_list);
+		mv.addObject("title_lv_amount", title_lv_list.size());
+		mv.addObject("title_lv_list", title_lv_list);
+		mv.addObject("conscription_situation_amount", cs_list.size());
+		mv.addObject("conscription_situation_list", cs_list);
 		
 		return mv;
 	}
@@ -145,6 +145,7 @@ public class HMController {
 	
 	@RequestMapping(value="/ConfirmPage")
 	public ModelAndView confirm( ModelAndView mv,HttpServletRequest request) {
+		
 		return mv;
 	}
 	
