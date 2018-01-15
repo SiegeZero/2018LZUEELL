@@ -1,6 +1,5 @@
 package com.gsb.BasicObject.Services;
 
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +22,8 @@ public class StoreNewInfos {
 	@Autowired
 	PersonMapper person_mapper;
 	
-	public List<SourcePerson> showRecordWith() {
-		return person_mapper.selectAllForShow(null);
+	public boolean storeBasicInfo( SourcePerson record) {
+		person_mapper.insertSelective( record);
+		return true;
 	}
 }

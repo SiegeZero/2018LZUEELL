@@ -115,7 +115,6 @@ public class TestMapper{
 	@Test
 	public void printWithString() {
 
-		System.out.println( sni.showRecordWith().get(0).getDept());
 	}
 	
 	@Autowired

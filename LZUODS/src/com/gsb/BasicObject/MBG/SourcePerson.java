@@ -20,6 +20,7 @@ public class SourcePerson extends PersonWithBLOBs {
 	private String end_job;
 	private String conscriptio_situation;
 	private String need_help;
+	private String lastest_sympathy_year;
 	
 
 	private SimpleDateFormat sdf;
@@ -36,17 +37,20 @@ public class SourcePerson extends PersonWithBLOBs {
 	}
 
 	public PersonWithBLOBs format(Map<String, Integer> depts_map, Map<String, Integer> sociaties_map, Map<String, Integer> slib_map){
+		
 		int deptNo = depts_map.get( this.dept.getDeptName());
 		this.setDeptNo( deptNo);
 		this.dept.setDeptNo(deptNo);
 		int sociatyNo = sociaties_map.get( this.sociaty.getSociatyName());
 		this.setSociatyNo( sociatyNo);
 		this.sociaty.setSociatyNo( sociatyNo);
-		int slibNo = slib_map.get( this.slib.getSalaryVersion());
-		this.setSalaryLibNo( slibNo);
-		this.slib.setSalaryLibNo( slibNo);
-		
-		this.setConscriptionSituation( conscriptio_situation.equals("非军属")?null:conscriptio_situation);
+		if( this.slib.getSalaryVersion() != null) {
+			int slibNo = slib_map.get( this.slib.getSalaryVersion());
+			this.setSalaryLibNo( slibNo);
+			this.slib.setSalaryLibNo( slibNo);
+		}
+		if( conscriptio_situation != null)
+			this.setConscriptionSituation( conscriptio_situation.equals("非军属")?null:conscriptio_situation);
 		this.setIsHelpNeeded( need_help.equals( "是")?true:false);
 		if( birth.endsWith("0000")) {
 			birth = birth.substring(0,4).concat("0101");
@@ -163,6 +167,16 @@ public class SourcePerson extends PersonWithBLOBs {
 	public void setNeed_help(String need_help) {
 		this.need_help = need_help;
 	}
+
+	public String getLastest_sympathy_year() {
+		return lastest_sympathy_year;
+	}
+
+	public void setLastest_sympathy_year(String lastest_sympathy_year) {
+		this.lastest_sympathy_year = lastest_sympathy_year;
+	}
+	
+	
 	
 	
 }
