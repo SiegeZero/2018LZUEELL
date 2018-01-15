@@ -309,7 +309,7 @@
 					<input type="checkbox"><strong>&nbsp;全选</strong>
 				</div>
 				<div class="pull-right">
-					<a href="HMAdd.html"><button type="button" class="btn btn-info">新增人员</button></a>
+					<a href="HMAdd"><button type="button" class="btn btn-info">新增人员</button></a>
 					<button type="button" class="btn btn-warning">导出PDF</button>
 					<button type="button" class="btn btn-warning"
 						onclick="printtable(personitem)">导出Excel</button>

@@ -153,6 +153,14 @@ public class HMController {
 		return mv;
 	}
 	
+	@RequestMapping(value="/save_basic_info")
+	public String sava_basic_info( HttpServletRequest request) {
+		int id = 2139;
+		// TODO 数据库插入数据，生成id
+		
+		return "redirect:/HMM/HMDtal?id="+id;
+	}
+	
 	@RequestMapping(value="/HMAdd")
 	public ModelAndView add( ModelAndView mv) {
 		List<String> nations_list = db_reader.getAllNations();

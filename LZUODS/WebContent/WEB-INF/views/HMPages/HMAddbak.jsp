@@ -25,7 +25,7 @@ List<SalaryLib> slib_list =(List<SalaryLib>) request.getAttribute("slib_list");
     </div>
 
     <div class="container-fluid">
-        <form action="save_basic_info" method="post" id="BaseInfo">
+        <div id="BaseInfo">
             <table class="table">
                 <tr>
                     <th>姓名:</th>
@@ -33,23 +33,34 @@ List<SalaryLib> slib_list =(List<SalaryLib>) request.getAttribute("slib_list");
                         <td><input type="text" class="form-control" placeholder="姓名" /></td>
                     </div>
                     <th>性别:</th>
-                    <div name="gender" class="input-group input-group-sm">
-                        <td><input type="text" class="form-control" placeholder="性别" /></td>
-                    </div>
+                    <td>
+                        <input name="gender" type="radio" value="男" checked />&nbsp;男&nbsp;
+                        <input name="gender" type="radio" value="女" />&nbsp;女&nbsp;
+                    </td>
                     <th>籍贯:</th>
                     <div name="native_place" class="input-group input-group-sm">
                         <td><input type="text" class="form-control" placeholder="籍贯" /></td>
                     </div>
-                    <th>民族:</th>
-                    <div name="nation" class="input-group input-group-sm">
-                        <td><input type="text" class="form-control" placeholder="民族" /></td>
+                    <%-- <th>民族:</th>
+                    <td>
+                        <select>
+                        <%
+                        while(false){
+                        %>
+                        <option value="民族"></option>
+                        <%
+                        }
+                        %>
+                        </select>
+                    </td> --%>
+                    <th>工作单位:</th>
+                    <div name="dept" class="input-group input-group-sm">
+                        <td><input type="text" class="form-control" placeholder="原工作单位" /></td>
                     </div>
                 </tr>
                 <tr>
                     <th>出生日期:</th>
-                    <div name="birth_date" class="input-group input-group-sm">
-                        <td><input type="text" class="form-control" placeholder="出生日期" /></td>
-                    </div>
+                        <td><input type="date" placeholder="出生日期" /></td>
                     <th>工资编号:</th>
                     <div name="salary_no" class="input-group input-group-sm">
                         <td><input type="text" class="form-control" placeholder="工资编号" /></td>
@@ -58,39 +69,67 @@ List<SalaryLib> slib_list =(List<SalaryLib>) request.getAttribute("slib_list");
                     <div name="slary_lib_no" class="input-group input-group-sm">
                         <td><input type="text" class="form-control" placeholder="工资库" /></td>
                     </div>
+                    <%-- <%
+                    for( int i=0;i<slib_list.size();i++){
+                    %>
+                    <td>
+                        <input name="salarylibno" type="radio" value="工资库" />&nbsp;<%=slib_list.get(i).getSalaryVersion() %>&nbsp;
+                    </td>
+                    <%
+                    }
+                    %>
                     <th>所在分会:</th>
-                    <div name="dept" class="input-group input-group-sm">
-                        <td><input type="text" class="form-control" placeholder="所在分会" /></td>
-                    </div>
+                    <td>
+                        <select>
+                            <%
+                            
+                            for(int i=0;i<sociaty_list.size();i++){
+                            %>
+                                <option value="分会"><%=sociaty_list.get(i) %></option>
+                            <%
+                            }
+                            %>
+                        </select>
+                    </td> --%>	
                 </tr>
                 <tr>
                 	<th>职级：</th>
-                    <div name="func" class="input-group input-group-sm">
-                        <td><input type="text" class="form-control" placeholder="职级" /></td>
-                    </div>
                 	<th>职称：</th>
-                    <div name="title_lv" class="input-group input-group-sm">
-                        <td><input type="text" class="form-control" placeholder="职称" /></td>
-                    </div>
-                    <th>学历:</th>
-                    <div name="edu_bg" class="input-group input-group-sm">
-                        <td><input type="text" class="form-control" placeholder="学历" /></td>
-                    </div>
-                    <th>政治面貌:</th>
-                    <div name="political_status" class="input-group input-group-sm">
-                        <td><input type="text" class="form-control" placeholder="政治面貌" /></td>
-                    </div>
+                    <%-- <th>学历:</th>
+                    <td>
+                        <select>
+                        <%
+                        while(false) {
+                        %>
+                        <option value="学位"></option>
+                        <%
+                        }
+                        %>
+                        </select>
                     </td>
+                    <th>政治面貌:</th>
+                    <td>
+                        <select>
+                        <%
+                        while(false){
+                        %>
+                        <option value="政治面貌"></option>
+                        <%
+                        }
+                        %>
+                        </select>
+                    </td> --%>
                 </tr>
                 <tr>
                     <th>离休情况:</th>
-                    <div name="quit_office_type" class="input-group input-group-sm">
-                        <td><input type="text" class="form-control" placeholder="离休情况" /></td>
-                    </div>
+                    <td><input type="radio" name="离休情况" value="离休" checked />&nbsp;离休&nbsp;
+                        <input type="radio" name="离休情况" value="退休" />&nbsp;退休&nbsp;
+                    </td>
                     <th>兵役情况:</th>
-                    <div name="conscription_situation" class="input-group input-group-sm">
-                        <td><input type="text" class="form-control" placeholder="兵役情况" /></td>
-                    </div>
+                    <td>
+                        <input type="radio" name="military" value="非军人" checked />&nbsp;非军人&nbsp;
+                        <input type="radio" name="military" value="军人" />&nbsp;军人&nbsp;
+                    </td>
                     <th>贫困情况：</th>
 	                    <div name="is_help_needed" class="input-group input-group-sm">
 	                        <td><input type="text" class="form-control" placeholder="是否贫困" /></td>
@@ -107,14 +146,32 @@ List<SalaryLib> slib_list =(List<SalaryLib>) request.getAttribute("slib_list");
             <table class="table">
                 <tr class="info">
                     <th>时间</th>
-                    <th>工作单位</th>
+                    <th>工作内容</th>
+                </tr>
+                <tr>
+                    <td><input type="date" />&nbsp;&nbsp;&nbsp;至&nbsp;&nbsp;&nbsp;<input type="date" /></td>
+                    <div class="input-group input-group-sm">
+                        <td><input type="text" class="form-control" placeholder="工作内容" /></td>
+                    </div>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <table class="table">
+                <tr class="info">
+                    <th>与本人关系</th>
+                    <th>姓名</th>
+                    <th>联系方式</th>
                 </tr>
                 <tr>
                     <div class="input-group input-group-sm">
-                        <td><input type="text" class="form-control" placeholder="起止日期" /></td>
+                        <td><input type="text" class="form-control" placeholder="称呼" /></td>
                     </div>
                     <div class="input-group input-group-sm">
-                        <td><input type="text" class="form-control" placeholder="工作单位" /></td>
+                        <td><input type="text" class="form-control" placeholder="姓名" /></td>
+                    </div>
+                    <div class="input-group input-group-sm">
+                        <td><input type="text" class="form-control" placeholder="联系方式" /></td>
                     </div>
                 </tr>
             </table>
@@ -138,19 +195,17 @@ List<SalaryLib> slib_list =(List<SalaryLib>) request.getAttribute("slib_list");
                     <th>居住住址</th>
                 </tr>
                 <tr>
-                    <div class="input-group input-group-sm">
-                        <td><input type="text" class="form-control" placeholder="起止日期" /></td>
-                    </div>
+                    <td><input type="date" />&nbsp;&nbsp;&nbsp;至&nbsp;&nbsp;&nbsp;<input type="date" /></td>
                     <div class="input-group input-group-sm">
                         <td><input type="text" class="form-control" placeholder="居住地住" /></td>
                     </div>
                 </tr>
             </table>
-		    <div>
-		        <button type="submit" class="btn btn-primary">确认</button>
-		        <a href="HMMang"><button type="button" class="btn btn-info">取消</button></a>
-		    </div>
-        </form>
+        </div>
+    </div>
+    <div>
+        <a href="#"><button type="button" class="btn btn-primary">确认</button></a>
+        <a href="HMMang.html"><button type="button" class="btn btn-info">取消</button></a>
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

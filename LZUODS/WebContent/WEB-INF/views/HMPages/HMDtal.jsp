@@ -12,11 +12,11 @@
     <title>详细信息</title>
 </head>
 
-<%@page import="com.gsb.BasicObject.MBG.SourcePerson" %>
+<%@page import="com.gsb.BasicObject.MBG.SourcePerson,java.text.SimpleDateFormat" %>
 
 <%
 SourcePerson person = (SourcePerson)request.getAttribute("target");
-
+SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日");
 
 %>
 
@@ -32,37 +32,61 @@ SourcePerson person = (SourcePerson)request.getAttribute("target");
         <div id="BaseInfo">
             <table class="table">
                 <tr>
-                    <th>工资编号:</th>
-                    <td><%=person.getSalaryNo() %></td>
                     <th>姓名:</th>
                     <td><%=person.getName() %></td>
-                    <th>籍贯:</th>
-                    <td><%=person.getNativePlace()%></td>
-                    <th>工作单位:</th>
-                    <td><%=person.getDept().getDeptName() %></td>
-                </tr>
-                <tr>
                     <th>性别:</th>
                     <td><%=person.getGender() %></td>
-                    <th>工资库:</th>
-                    <td><%=person.getSlib().getSalaryVersion() %></td>
-                    <th>离休情况:</th>
-                    <td><%=person.getQuitOfficeType() %></td>
-                    <th>兵役情况:</th>
-                    <td><%=person.getConscriptio_situation() %></td>
+                    <th>籍贯:</th>
+                    <td><%=person.getNativePlace()%></td>
+                    <th>民族:</th>
+                    <td><%=person.getNation() %></td>
                 </tr>
                 <tr>
+                    <th>出生日期:</th>
+                    <td><%=sdf.format(person.getBirthTime()) %></td>
+                    <th>工资编号:</th>
+                    <td><%=person.getSalaryNo() %></td>
+                    <th>工资库:</th>
+                    <td><%=person.getSlib().getSalaryVersion() %></td>
                     <th>所在分会:</th>
                     <td><%=person.getSociaty().getSociatyName() %></td>
+                </tr>
+                <tr>
+                    <th>职级:</th>
+                    <td><%=person.getFunc() %></td>
+                    <th>职称:</th>
+                    <td><%=person.getTitleLv() %></td>
                     <th>学历:</th>
                     <td><%=person.getEduBg() %></td>
                     <th>政治面貌:</th>
                     <td><%=person.getPoliticalStatus() %></td>
-                    <th>民族:</th>
-                    <td><%=person.getNation() %></td>
+                </tr>
+                <tr>
+                    <th>离休情况:</th>
+                    <td><%=person.getQuitOfficeType() %></td>
+                    <th>兵役情况:</th>
+                    <td><%=person.getConscriptio_situation() %></td>
+                    <th>贫困情况:</th>
+                    <td><%=person.getIsHelpNeeded() %></td>
+                    <th>慰问情况:</th>
+                    <td><%=person.getLatestSympathyYear() %></td>
                 </tr>
             </table>
             </center>
+        </div>
+        <div>
+            <table class="table">
+                <tr>
+                    <th class="info">工作时间</th>
+                    <th class="info">离退时间</th>
+                    <th class="info">工作单位</th>
+                </tr>
+                <tr>
+                	<td><%=sdf.format(person.getJobStartTime()) %></td>
+                	<td><%=sdf.format(person.getJobEndTime()) %></td>
+                    <td><%=person.getDept().getDeptName() %></td>
+                </tr>
+            </table>
         </div>
         <div>
             <table class="table">
@@ -76,11 +100,6 @@ SourcePerson person = (SourcePerson)request.getAttribute("target");
                     <td>李四</td>
                     <td>123456789</td>
                 </tr>
-                <tr>
-                    <td>长子</td>
-                    <td>王五</td>
-                    <td>123456789</td>
-                </tr>
             </table>
         </div>
         <div>
@@ -89,23 +108,17 @@ SourcePerson person = (SourcePerson)request.getAttribute("target");
                     <th class="info">健康情况</th>
                 </tr>
                 <tr>
-                    <td>行动不便，有子女照顾。</td>
+                    <td><%=person.getLivingSituation() %></td>
                 </tr>
             </table>
         </div>
         <div>
             <table class="table">
                 <tr>
-                    <th class="info">居住住址</th>
-                    <th class="info">居住时间</th>
+                    <th class="info">现居住地</th>
                 </tr>
                 <tr>
-                    <td>兰州大学</td>
-                    <td>1990-2000</td>
-                </tr>
-                <tr>
-                    <td>XXX小区</td>
-                    <td>2001-2015</td>
+                    <td><%=person.getAddress() %></td>
                 </tr>
             </table>
         </div>
@@ -113,7 +126,7 @@ SourcePerson person = (SourcePerson)request.getAttribute("target");
     <hr />
     <div>
         <button type="button" class="btn btn-warning"><a href="#">编辑</button>
-        <button type="button" class="btn btn-primary"><a href="#">返回</button>
+        <button type="button" class="btn btn-primary"><a href="HMMang.html">返回</button>
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
