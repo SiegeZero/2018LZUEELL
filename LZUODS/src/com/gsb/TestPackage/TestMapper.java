@@ -115,7 +115,7 @@ public class TestMapper{
 	@Test
 	public void printWithString() {
 
-		System.out.println( sni.showRecordWith(1).get(0).getDept());
+		System.out.println( sni.showRecordWith().get(0).getDept());
 	}
 	
 	@Autowired
@@ -145,7 +145,7 @@ public class TestMapper{
 	@Test
 	public void testFuncGet() {
 		
-		List<SourcePerson> selectAllForShow = person_mapper.selectAllForShow();
+		List<SourcePerson> selectAllForShow = person_mapper.selectAllForShow(null);
 		for( SourcePerson sp: selectAllForShow) {
 			System.out.println( sp.getDept().getDeptName());
 		}

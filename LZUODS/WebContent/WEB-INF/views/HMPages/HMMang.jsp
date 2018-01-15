@@ -241,8 +241,7 @@
 								while( sociaties_list.contains("")) {
 									sociaties_list.remove("");
 								}
-								for (int row_index = 0; sociaties_list != null && row_index < sociaties_list.size()
-										&& row_index % 8 == 0; row_index++) {
+								for (int row_index = 0; sociaties_list != null && row_index < sociaties_list.size(); row_index++) {
 							%>
 
 							<td><%=sociaties_list.get(row_index)%></td>
@@ -253,8 +252,7 @@
 						</tr>
 						<th>民族：</th>
 						<%
-							for (int row_index = 0; nations_list != null && row_index < nations_list.size()
-									&& row_index % 8 == 0; row_index++) {
+							for (int row_index = 0; nations_list != null && row_index < nations_list.size(); row_index++) {
 						%>
 
 						<td><%=nations_list.get(row_index)%></td>

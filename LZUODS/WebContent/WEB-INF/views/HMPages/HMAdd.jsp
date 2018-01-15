@@ -11,7 +11,11 @@
 <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <title>新增人员</title>
 </head>
-
+<%@ page import="java.util.List,com.gsb.BasicObject.MBG.SalaryLib" %>
+<%
+List<String> sociaty_list = request.getAttribute("sociaties_list");
+List<SalaryLib> slib_list = request.getAttribute("slib_list");
+%>
 <body>
 
 	<jsp:include page="NavigationBar.jsp"></jsp:include>
@@ -25,33 +29,38 @@
             <table class="table">
                 <tr>
                     <th>工资编号:</th>
-                    <div class="input-group input-group-sm">
+                    <div name="salary_no" class="input-group input-group-sm">
                         <td><input type="text" class="form-control" placeholder="工资编号" /></td>
                     </div>
                     <th>姓名:</th>
-                    <div class="input-group input-group-sm">
+                    <div name="name" class="input-group input-group-sm">
                         <td><input type="text" class="form-control" placeholder="姓名" /></td>
                     </div>
                     <th>籍贯:</th>
-                    <div class="input-group input-group-sm">
+                    <div name="native_place" class="input-group input-group-sm">
                         <td><input type="text" class="form-control" placeholder="籍贯" /></td>
                     </div>
                     <th>工作单位:</th>
-                    <div class="input-group input-group-sm">
+                    <div name="dept" class="input-group input-group-sm">
                         <td><input type="text" class="form-control" placeholder="原工作单位" /></td>
                     </div>
                 </tr>
                 <tr>
                     <th>性别:</th>
                     <td>
-                        <input name="sex" type="radio" value="男" checked />&nbsp;男&nbsp;
-                        <input name="sex" type="radio" value="女" />&nbsp;女&nbsp;
+                        <input name="gender" type="radio" value="男" checked />&nbsp;男&nbsp;
+                        <input name="gender" type="radio" value="女" />&nbsp;女&nbsp;
                     </td>
                     <th>工资库:</th>
+                    <%
+                    for( int i=0;i<slib_list.size();i++){
+                    %>
                     <td>
-                        <input name="salary" type="radio" value="93后" checked />&nbsp;93后&nbsp;
-                        <input name="salary" type="radio" value="93前" />&nbsp;93前&nbsp;
+                        <input name="salary" type="radio" value="93后" />&nbsp;<%=slib_list.get(i).getSalaryVersion() %>&nbsp;
                     </td>
+                    <%
+                    }
+                    %>
                     <th>离休情况:</th>
                     <td><input type="radio" name="离休情况" value="离休" checked />&nbsp;离休&nbsp;
                         <input type="radio" name="离休情况" value="退休" />&nbsp;退休&nbsp;
@@ -67,48 +76,54 @@
                     <td>
                         <div class="dropdown">
                             <button type="button" class="btn btn-default" data-toggle="dropdown">
-                           所属分会
-                           <span class="caret"></span>
+                           <span class="caret">所属分会</span>
                            </button>
                             <ul class="dropdown-menu">
-                                <li>离休一分会</li>
-                                <li>离休一分会</li>
-                                <li>理科一分会</li>
-                                <li>文科一分会</li>
+                            <%
+                            
+                            for(int i=0;i<sociaty_list;i++){
+                            %>
+                                <li><%=sociaty_list.get(i) %></li>
+                            <%
+                            }
+                            %>
                             </ul>
                         </div>
                     </td>
                     <th>学历:</th>
                     <td>
                         <select>
+                        <%
+                        while() {
+                        %>
                         <option value="博士">博士</option>
-                        <option value="硕士">硕士</option>
-                        <option value="本科">本科</option>
-                        <option value="专科">专科</option>
-                        <option value="高中">高中</option>
-                        <option value="初中">初中</option>
-                        <option value="小学">小学</option>
-                        <option value="文盲">文盲</option>
+                        <%
+                        }
+                        %>
                         </select>
                     </td>
                     <th>政治面貌:</th>
                     <td>
                         <select>
-                        <option value="共产党员">共产党员</option>
-                        <option value="民主党员">民主党员</option>
-                        <option value="共青团员">共青团员</option>
-                        <option value="群众">群众</option>
+                        <%
+                        while(){
+                        %>
+                        <option value="党员">党员</option>
+                        <%
+                        }
+                        %>
                         </select>
                     </td>
                     <th>民族:</th>
                     <td>
                         <select>
+                        <%
+                        while(){
+                        %>
                         <option value="汉族">汉族</option>
-                        <option value="苗族">苗族</option>
-                        <option value="维吾尔族">维吾尔族</option>
-                        <option value="回族">回族</option>
-                        <option value="壮族">壮族</option>
-                        <option value="蒙古族">蒙古族</option>
+                        <%
+                        }
+                        %>
                         </select>
                     </td>
                 </tr>
@@ -156,7 +171,7 @@
                 </tr>
                 <tr>
                     <div class="input-group input-group-sm">
-                        <td><input type="text" class="form-control" placeholder="健康状况" /></td>
+                        <td><input name="living_situation"  type="text" class="form-control" placeholder="健康状况" /></td>
                     </div>
                 </tr>
             </table>

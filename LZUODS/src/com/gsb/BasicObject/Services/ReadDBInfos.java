@@ -350,4 +350,9 @@ public class ReadDBInfos {
 		return null;
 	}
 
+	public List<SalaryLib> getAllSLibs() {
+		
+		return slib_mapper.selectByExample(null);
+	}
+
 }

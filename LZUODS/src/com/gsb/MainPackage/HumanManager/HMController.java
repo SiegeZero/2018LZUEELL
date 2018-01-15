@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import com.gsb.BasicObject.MBG.PersonExample;
 import com.gsb.BasicObject.MBG.PersonExample.Criteria;
+import com.gsb.BasicObject.MBG.SalaryLib;
 import com.gsb.BasicObject.MBG.SourcePerson;
 import com.gsb.BasicObject.MBGDAO.DepartmentMapper;
 import com.gsb.BasicObject.Services.ReadDBInfos;
@@ -113,7 +114,9 @@ public class HMController {
 		
 		List<SourcePerson> person_list =  db_reader.getBasicInfos(example);
 		List<String> nations_list = db_reader.getAllNations();
+		System.out.println( "show nation size:"+nations_list.size());
 		List<String> sociaties_list = db_reader.getAllSociaties();
+		System.out.println( "show sociaties size:"+sociaties_list.size());
 		List<String> func_list = db_reader.getAllFunc();
 		List<String> title_lv_list = db_reader.getAllTitleLv();
 		List<String> cs_list = db_reader.getAllConscriptionSituation();
@@ -152,6 +155,25 @@ public class HMController {
 	
 	@RequestMapping(value="/HMAdd")
 	public ModelAndView add( ModelAndView mv) {
+		List<String> nations_list = db_reader.getAllNations();
+		List<String> sociaties_list = db_reader.getAllSociaties();
+		List<String> func_list = db_reader.getAllFunc();
+		List<String> title_lv_list = db_reader.getAllTitleLv();
+		List<String> cs_list = db_reader.getAllConscriptionSituation();
+		List<SalaryLib> slib_list = db_reader.getAllSLibs();
+
+		mv.addObject("slib_list_amount", slib_list.size());
+		mv.addObject("slib_list", slib_list);
+		mv.addObject("nations_amount", nations_list.size());
+		mv.addObject("nations_list", nations_list);
+		mv.addObject("sociaties_amount", sociaties_list.size());
+		mv.addObject("sociaties_list", sociaties_list);
+		mv.addObject("func_amount", func_list.size());
+		mv.addObject("func_list", func_list);
+		mv.addObject("title_lv_amount", title_lv_list.size());
+		mv.addObject("title_lv_list", title_lv_list);
+		mv.addObject("conscription_situation_amount", cs_list.size());
+		mv.addObject("conscription_situation_list", cs_list);
 		return mv;
 	}
 	

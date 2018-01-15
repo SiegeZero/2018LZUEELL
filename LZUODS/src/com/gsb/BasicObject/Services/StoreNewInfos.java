@@ -23,7 +23,7 @@ public class StoreNewInfos {
 	@Autowired
 	PersonMapper person_mapper;
 	
-	public List<SourcePerson> showRecordWith( Integer id) {
-		return person_mapper.selectAllForShow();
+	public List<SourcePerson> showRecordWith() {
+		return person_mapper.selectAllForShow(null);
 	}
 }
