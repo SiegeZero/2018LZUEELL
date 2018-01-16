@@ -239,4 +239,38 @@ public class HMController {
 		return mv;
 	}
 	
+	@RequestMapping(value="/UpdateConfirmPage", method=RequestMethod.POST)
+	public ModelAndView updateConfirm(  @RequestParam("id") int id,ModelAndView mv,HttpServletRequest request) {
+		mv.addObject("target", db_reader.getBasicInfosBy(id));
+		return mv;
+	}
+	
+	@RequestMapping(value="/update_basic_info")
+	public String update_basic_info( HttpServletRequest request) {
+		int id = 2139;
+		// TODO 数据库插入数据，生成id
+		SourcePerson new_person = new SourcePerson();
+		new_person.setName( request.getParameter("name"));
+		new_person.setGender( request.getParameter("gender"));
+		new_person.setNativePlace( request.getParameter("native_place"));
+		new_person.setNation( request.getParameter( "nation"));
+		new_person.setBirth( request.getParameter("birth_date"));
+		new_person.setSalaryNo( request.getParameter( "salary_no"));
+		new_person.setDept( request.getParameter( "dept"));
+		new_person.setSlib( request.getParameter("slary_lib"));
+		new_person.setFunc( request.getParameter( "func"));
+		new_person.setSociaty( request.getParameter("sociaty"));
+		new_person.setTitleLv( request.getParameter( "title_lv"));
+		new_person.setEduBg( request.getParameter( "edu_bg"));
+		new_person.setStart_job( request.getParameter("start_time"));
+		new_person.setEnd_job( request.getParameter("end_time"));
+		new_person.setPoliticalStatus( request.getParameter("political_status"));
+		new_person.setQuitOfficeType( request.getParameter("quit_office_type"));
+		new_person.setConscriptio_situation( request.getParameter( "conscription_situation"));
+		new_person.setNeed_help(request.getParameter("is_help_needed"));
+		new_person.setLivingSituation( request.getParameter("living_situation"));
+		new_person.setAddress( request.getParameter("address"));
+		return "redirect:/HMM/HMDtal?id="+id;
+	}
+	
 }

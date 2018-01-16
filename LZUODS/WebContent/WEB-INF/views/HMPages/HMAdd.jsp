@@ -100,14 +100,28 @@ List<SalaryLib> slib_list =(List<SalaryLib>) request.getAttribute("slib_list");
 	                        <td><input name="lastest_sympathy_year" type="text" class="form-control" placeholder="最近慰问年份" /></td>
 	                    </div>
                 </tr>
+                <tr>
+                    <th>联系方式:</th>
+                    <div  class="input-group input-group-sm">
+                        <td><input name="telephone_num" type="text" class="form-control" value="" placeholder="联系方式" /></td>
+                    </div>
+                    <th>养老模式:</th>
+                    <div  class="input-group input-group-sm">
+                        <td><input name="pension_model_no" type="text" class="form-control" value="" placeholder="养老模式" /></td>
+                    </div>
+                    <th>身体状况：</th>
+	                    <div class="input-group input-group-sm">
+	                        <td><input name="physical_situation"  type="text" class="form-control" value="" placeholder="身体状况" /></td>
+	                    </div>
+                </tr>
             </table>
             </center>
         </div>
         <div>
             <table class="table">
                 <tr class="info">
-                    <th>时间</th>
-                    <th>时间</th>
+                    <th>开始时间</th>
+                    <th>结束时间</th>
                     <th>工作单位</th>
                 </tr>
                 <tr>
@@ -138,13 +152,9 @@ List<SalaryLib> slib_list =(List<SalaryLib>) request.getAttribute("slib_list");
         <div>
             <table class="table">
                 <tr class="info">
-                    <th>居住时间</th>
                     <th>居住住址</th>
                 </tr>
                 <tr>
-                    <div class="input-group input-group-sm">
-                        <td><input type="text" class="form-control" placeholder="起止日期" /></td>
-                    </div>
                     <div class="input-group input-group-sm">
                         <td><input name="address" type="text" class="form-control" placeholder="居住地住" /></td>
                     </div>
