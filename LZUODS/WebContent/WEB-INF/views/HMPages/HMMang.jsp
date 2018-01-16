@@ -46,7 +46,7 @@
 </script>
 </head>
 
-<%@page import="java.util.List,com.gsb.BasicObject.MBG.SourcePerson"%>
+<%@page import="java.util.List,com.gsb.BasicObject.MBG.SourcePerson,java.util.Calendar,java.util.Date"%>
 <%
 	int Age = 0;
 	List<SourcePerson> person_list = (List<SourcePerson>) request.getAttribute("person_list");
@@ -189,11 +189,11 @@
 								</ul>
 								<ul style="display:none" class="nav navbar-nav" id="conscription_situations">
 								<%
-								while( conscription_situation_list.contains("")) {
-									conscription_situation_list.remove("");
-								}
+								
 								for(int li_index=0;conscription_situation_list!=null && li_index<conscription_situation_list.size();li_index++){
-									
+									if( conscription_situation_list.get(li_index).equals("")){
+										continue;
+									}
 									%>
 									<li>
 										<input type="checkbox" name="conscription_situation<%=li_index %>" onClick="select_attribute" /><%=conscription_situation_list.get(li_index) %>
@@ -271,7 +271,14 @@
 						<th class="info">联系方式</th>
 					</tr>
 					<%
+						Calendar cal = Calendar.getInstance();
+						int thisYear = cal.get( Calendar.YEAR);
+						Calendar b = Calendar.getInstance();
 						for (int cow_index = 0; cow_index < person_list.size() && cow_index < 5; cow_index++) {
+							Date birth = person_list.get(cow_index).getBirthTime();
+							b.setTime( birth);
+							cal.set( Calendar.YEAR, b.get(Calendar.YEAR));
+							Age = (thisYear - b.get(Calendar.YEAR)) - (birth.before(cal.getTime())?0:1);
 					%>
 					<tr>
 						<td><input type="checkbox" value="<%=person_list.get(cow_index).getSysNo()%>" /></td>
