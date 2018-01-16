@@ -50,7 +50,7 @@ public class SourcePerson extends PersonWithBLOBs {
 			this.slib.setSalaryLibNo( slibNo);
 		}
 		if( conscriptio_situation != null)
-			this.setConscriptionSituation( conscriptio_situation.equals("非军属")?null:conscriptio_situation);
+			this.setConscriptionSituation( conscriptio_situation.equals("非军属")?"":conscriptio_situation);
 		this.setIsHelpNeeded( need_help.equals( "是")?true:false);
 		if( birth.endsWith("0000")) {
 			birth = birth.substring(0,4).concat("0101");

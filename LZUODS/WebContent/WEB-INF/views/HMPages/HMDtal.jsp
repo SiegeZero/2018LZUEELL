@@ -65,7 +65,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日");
                     <th>离休情况:</th>
                     <td><%=person.getQuitOfficeType() %></td>
                     <th>兵役情况:</th>
-                    <td><%=person.getConscriptio_situation() %></td>
+                    <td><%=person.getConscriptionSituation() %></td>
                     <th>贫困情况:</th>
                     <td><%=person.getIsHelpNeeded() %></td>
                     <th>慰问情况:</th>

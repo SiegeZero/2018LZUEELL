@@ -52,7 +52,7 @@ List<SalaryLib> slib_list =(List<SalaryLib>) request.getAttribute("slib_list");
                     </div>
                     <th>工资编号:</th>
                     <div class="input-group input-group-sm">
-                        <td><input name="salary_no" type="text" class="form-control" placeholder="工资编号" /></td>
+                        <td><input name="salary_no" type="text" class="form-control" value="" placeholder="工资编号" /></td>
                     </div>
                     <th>工资库:</th>
                     <div class="input-group input-group-sm">
@@ -89,7 +89,7 @@ List<SalaryLib> slib_list =(List<SalaryLib>) request.getAttribute("slib_list");
                     </div>
                     <th>兵役情况:</th>
                     <div  class="input-group input-group-sm">
-                        <td><input name="conscription_situation" type="text" class="form-control" placeholder="兵役情况" /></td>
+                        <td><input name="conscription_situation" type="text" class="form-control" value="" placeholder="兵役情况" /></td>
                     </div>
                     <th>贫困情况：</th>
 	                    <div class="input-group input-group-sm">
@@ -130,7 +130,7 @@ List<SalaryLib> slib_list =(List<SalaryLib>) request.getAttribute("slib_list");
                 </tr>
                 <tr>
                     <div class="input-group input-group-sm">
-                        <td><input name="living_situation"  type="text" class="form-control" placeholder="健康状况" /></td>
+                        <td><input name="living_situation"  type="text" class="form-control" value="" placeholder="健康状况" /></td>
                     </div>
                 </tr>
             </table>
@@ -146,7 +146,7 @@ List<SalaryLib> slib_list =(List<SalaryLib>) request.getAttribute("slib_list");
                         <td><input type="text" class="form-control" placeholder="起止日期" /></td>
                     </div>
                     <div class="input-group input-group-sm">
-                        <td><input type="text" class="form-control" placeholder="居住地住" /></td>
+                        <td><input name="address" type="text" class="form-control" placeholder="居住地住" /></td>
                     </div>
                 </tr>
             </table>

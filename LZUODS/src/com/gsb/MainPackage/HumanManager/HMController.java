@@ -115,7 +115,7 @@ public class HMController {
 			example.or(c);
 			mv.addObject("title_lv_str",title_lv_condition);
 		}
-		if( age_range != null) {
+		if( age_range != null && ! age_range.equals("全部")) {
 			Calendar cal = Calendar.getInstance();
 			if( age_range.contains("+")) {
 				cal.add( Calendar.YEAR, Integer.parseInt(age_range.substring(0, age_range.indexOf("+"))));
@@ -188,6 +188,7 @@ public class HMController {
 		new_person.setBirth( request.getParameter("birth_date"));
 		new_person.setSalaryNo( request.getParameter( "salary_no"));
 		new_person.setDept( request.getParameter( "dept"));
+		new_person.setSlib( request.getParameter("slary_lib"));
 		new_person.setFunc( request.getParameter( "func"));
 		new_person.setSociaty( request.getParameter("sociaty"));
 		new_person.setTitleLv( request.getParameter( "title_lv"));
@@ -198,6 +199,8 @@ public class HMController {
 		new_person.setQuitOfficeType( request.getParameter("quit_office_type"));
 		new_person.setConscriptio_situation( request.getParameter( "conscription_situation"));
 		new_person.setNeed_help(request.getParameter("is_help_needed"));
+		new_person.setLivingSituation( request.getParameter("living_situation"));
+		new_person.setAddress( request.getParameter("address"));
 		sao.init();
 		int temp = sao.addAPerson( new_person);
 		if( temp != -1) {
