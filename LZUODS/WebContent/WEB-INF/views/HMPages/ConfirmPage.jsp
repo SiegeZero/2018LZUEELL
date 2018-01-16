@@ -100,6 +100,7 @@ String age_range = request.getParameter("age");
 				<div class="container-fluid">
 					<strong>选择的年龄范围包含：</strong>
 					<input name="age_range" type="text" class="form-control" value="<%=age_range%>" readonly/>
+					<input name="deadline" type="text" class="form-control" placeholder="输入一个具体的截止日期，日期输入格式为yyyymmdd">
 				</div>
 				<%
 				}

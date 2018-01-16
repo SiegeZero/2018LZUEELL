@@ -151,8 +151,8 @@ List<SalaryLib> slib_list =(List<SalaryLib>) request.getAttribute("slib_list");
                 </tr>
             </table>
 		    <div>
-		        <button type="submit" class="btn btn-primary">确认</button>
-		        <a href="HMMang"><button type="button" class="btn btn-info">取消</button></a>
+		        <button type="submit" class="btn btn-primary tool-btn">确认</button>
+		        <a href="HMMang"><button type="button" class="btn btn-info tool-btn">取消</button></a>
 		    </div>
         </form>
     </div>

@@ -48,6 +48,7 @@
 
 <%@page import="java.util.List,com.gsb.BasicObject.MBG.SourcePerson"%>
 <%
+	int Age = 0;
 	List<SourcePerson> person_list = (List<SourcePerson>) request.getAttribute("person_list");
 	List<String> nations_list = (List<String>) request.getAttribute("nations_list");
 	List<String> sociaties_list = (List<String>) request.getAttribute("sociaties_list");
@@ -60,7 +61,7 @@
 
 	<jsp:include page="NavigationBar.jsp"></jsp:include>
 	<div class="row" style="height: 100%;">
-		<div class="navbar-inverse navbar-collapse"
+		<div class="navbar navbar-inverse navbar-collapse"
 			style="height: 100%; float: left; width: 15%">
 			<ul class="nav">
 				<li><a href="#">人员管理&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
@@ -130,9 +131,6 @@
 								<input type="text" name="title_lv_condition"
 									value="<%=request.getAttribute("title_lv_str") != null ? request.getAttribute("title_lv_str") : ""%>"
 									placeholder="输入职级查询" class="form-control" />
-								<button type="submit">
-									<span class="glyphicon glyphicon-search"></span>
-								</button>
 							</center>
 						</div>
 						<div style="display: none" id="title_lv">
@@ -159,6 +157,14 @@
 							</table>
 						</div>
 					</div>
+					<div stye="width:100%">
+						<div>
+							<center>
+								<button type="submit" style="padding:5px" title="点击查询">
+									<span class="glyphicon glyphicon-search"></span>
+								</button>
+						</div>
+					</div>
 					<table class="table">
 						<tr>
 							<th>基本：</th>
@@ -182,7 +188,11 @@
 									</li>
 								</ul>
 								<ul style="display:none" class="nav navbar-nav" id="conscription_situations">
-								<%for(int li_index=0;conscription_situation_list!=null && li_index<conscription_situation_list.size();li_index++){
+								<%
+								while( conscription_situation_list.contains("")) {
+									conscription_situation_list.remove("");
+								}
+								for(int li_index=0;conscription_situation_list!=null && li_index<conscription_situation_list.size();li_index++){
 									
 									%>
 									<li>
@@ -195,7 +205,7 @@
 						<tr>
 							<th>年龄：</th>
 							<%
-							String[] ages = new String[]{"0-50","50-60","60-70","70-80","80-90","90-100","100+"};
+							String[] ages = new String[]{"0-50","50-60","60-70","70-80","80-90","90-100","100+","全部"};
 							int age_i=0;
 							String checked_str = request.getParameter("age_range");
 							for(String s:ages){
@@ -206,43 +216,31 @@
 							%>
 						</tr>
 						<tr>
-							<th>职级：</th>
-							<%
-							for (int row_index = 0; func_list != null && row_index < func_list.size() && row_index < 5; row_index++) {
-							%>
-							<td><input type="checkbox" name="func" id="func(<%=row_index %>)" value="<%=func_list.get(row_index) %>" onClick="select_attribute" /> <%=func_list.get(row_index) %></td>
-							<%
-								}
-							%>
-						</tr>
-						<tr>
-							<th>职称：</th>
-							<%
-							for (int row_index = 0; title_lv_list != null && row_index < title_lv_list.size() && row_index < 5; row_index++) {
-							%>
-							<td><input type="checkbox" name="title_lv" id="title_lv(<%=row_index %>)" value="<%=title_lv_list.get(row_index) %><" onClick="select_attribute" /> <%=title_lv_list.get(row_index) %></td>
-							<%
-								}
-							%>
-						</tr>
-						<tr>
 							<th>分会：</th>
 							<%
 								while( sociaties_list.contains("")) {
 									sociaties_list.remove("");
 								}
-								for (int row_index = 0; sociaties_list != null && row_index < sociaties_list.size() && row_index < 5; row_index++) {
+								for (int row_index = 0; sociaties_list != null && row_index < sociaties_list.size() ; row_index++) {
+									if(row_index % 9 == 0){
 							%>
-
+						</tr>
+						<tr>
 							<td><input type="checkbox" name="sociaty" id="sociaty<%=row_index %>)" value="<%=sociaties_list.get(row_index) %><" onClick="select_attribute" /> <%=sociaties_list.get(row_index)%></td>
-
+							<%
+								} else {
+							%>
+							<td><input type="checkbox" name="sociaty" id="sociaty<%=row_index %>)" value="<%=sociaties_list.get(row_index) %><" onClick="select_attribute" /> <%=sociaties_list.get(row_index)%></td>	
+							<%
+								}
+							%>
 							<%
 								}
 							%>
 						</tr>
 						<th>民族：</th>
 						<%
-							for (int row_index = 0; nations_list != null && row_index < nations_list.size() && row_index < 5; row_index++) {
+							for (int row_index = 0; nations_list != null && row_index < nations_list.size(); row_index++) {
 						%>
 
 						<td><input type="checkbox" name="nation" id="nation<%=row_index %>)" value="<%=nations_list.get(row_index) %><" onClick="select_attribute" /> <%=nations_list.get(row_index)%></td>
@@ -266,6 +264,7 @@
 						<th class="info">原单位编号</th>
 						<th class="info">离/退</th>
 						<th class="info">性别</th>
+						<th class="info">年龄</th>
 						<th class="info">民族</th>
 						<th class="info">籍贯</th>
 						<th class="info">政治面貌</th>
@@ -284,6 +283,7 @@
 						<td><%=person_list.get(cow_index).getDept().getDeptName()%></td>
 						<td><%=person_list.get(cow_index).getQuitOfficeType()%></td>
 						<td><%=person_list.get(cow_index).getGender()%></td>
+						<td><%=Age%></td>
 						<td><%=person_list.get(cow_index).getNation()%></td>
 						<td><%=person_list.get(cow_index).getNativePlace()%></td>
 						<td><%=person_list.get(cow_index).getPoliticalStatus()%></td>
@@ -294,8 +294,8 @@
 					%>
 				</table>
 			</div>
-			<div>
-				<div class="pull-left tool-btn">
+			<div class="container-fluid">
+				<div class="pull-left">
 					<input type="checkbox"><strong>&nbsp;全选</strong>
 				</div>
 				<div class="pull-right">

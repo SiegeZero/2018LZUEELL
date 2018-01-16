@@ -125,8 +125,8 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日");
     </div>
     <hr />
     <div>
-        <button type="button" class="btn btn-warning"><a href="#">编辑</button>
-        <button type="button" class="btn btn-primary"><a href="HMMang.html">返回</button>
+        <button type="button" class="btn btn-warning tool-btn"><a href="#">编辑</button>
+        <button type="button" class="btn btn-primary tool-btn"><a href="HMMang.html">返回</button>
     </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
