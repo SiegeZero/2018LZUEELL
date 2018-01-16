@@ -194,20 +194,16 @@
 						</tr>
 						<tr>
 							<th>年龄：</th>
-							<td><input type="checkbox" name="age" id="age1" value="50-" onClick="select_attribute" />
-								50-</td>
-							<td><input type="checkbox" name="age" id="age2" value="50-60" onClick="select_attribute" /> 50
-								- 60</td>
-							<td><input type="checkbox" name="age" id="age3" value="60-70" onClick="select_attribute" /> 60
-								- 70</td>
-							<td><input type="checkbox" name="age" id="age4" value="70-80" onClick="select_attribute" /> 70
-								- 80</td>
-							<td><input type="checkbox" name="age" id="age5" value="80-90" onClick="select_attribute" /> 80
-								- 90</td>
-							<td><input type="checkbox" name="age" id="age6" value="90-100" onClick="select_attribute" /> 90
-								- 100</td>
-							<td><input type="checkbox" name="age" id="age7" value="100+" onClick="select_attribute" />
-								100 +</td>
+							<%
+							String[] ages = new String[]{"0-50","50-60","60-70","70-80","80-90","90-100","100+"};
+							int age_i=0;
+							String checked_str = request.getParameter("age_range");
+							for(String s:ages){
+							%>
+							<td><input type="radio" name="age" id="age<%=age_i++ %>" value="<%=s %>" onClick="select_attribute" <%=checked_str!=null&&checked_str.equals(s)?"checked":"" %> /><%=s %></td>
+							<%
+							}
+							%>
 						</tr>
 						<tr>
 							<th>职级：</th>

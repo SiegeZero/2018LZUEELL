@@ -1,6 +1,8 @@
 package com.gsb.MainPackage.HumanManager;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -59,6 +61,7 @@ public class HMController {
 		String name_condition = request.getParameter("name_condition");
 		String func_condition = request.getParameter("func_condition");
 		String title_lv_condition = request.getParameter("title_lv_condition");
+		String age_range = request.getParameter("age_range");
 		if( name_condition != null && !removeUselessHeaderStr(name_condition).equals("") ) {
 			String str = " ";
 			if( name_condition.contains("\t")) {
@@ -111,6 +114,22 @@ public class HMController {
 			}
 			example.or(c);
 			mv.addObject("title_lv_str",title_lv_condition);
+		}
+		if( age_range != null) {
+			Calendar cal = Calendar.getInstance();
+			if( age_range.contains("+")) {
+				cal.add( Calendar.YEAR, Integer.parseInt(age_range.substring(0, age_range.indexOf("+"))));
+				c.andBirthTimeGreaterThan( cal.getTime());
+			} else {
+				cal.add(Calendar.YEAR, -Integer.parseInt(age_range.substring(0, age_range.indexOf("-"))));
+				Date smaller = cal.getTime();
+				cal.add( Calendar.YEAR, -Integer.parseInt(age_range.substring( age_range.indexOf("-")+1))+Integer.parseInt(age_range.substring(0, age_range.indexOf("-"))));
+				cal.add( Calendar.DATE, 1);
+				Date near_bigger = cal.getTime();
+				c.andBirthTimeBetween( near_bigger, smaller);
+			}
+			example.or(c);
+			mv.addObject("age_range", age_range);
 		}
 		
 		List<SourcePerson> person_list =  db_reader.getBasicInfos(example);

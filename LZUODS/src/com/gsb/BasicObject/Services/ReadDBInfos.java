@@ -148,7 +148,8 @@ public class ReadDBInfos {
 
 	public List<Long> getAgeRangeAmount() {
 		Date current = cal.getTime();
-		cal.add(Calendar.YEAR, -60);
+		cal.add(Calendar.YEAR, -50);
+		cal.add(Calendar.YEAR, -10);
 		Date sixty = cal.getTime();
 		cal.add(Calendar.DATE, 1);
 		Date near_sixty = cal.getTime();
@@ -228,6 +229,20 @@ public class ReadDBInfos {
 		results.add(ninty2ahun);
 		results.add(hun);
 		return results;
+	}
+	
+	public List<SourcePerson> getPersonListAtAge( int smaller_bound, int bigger_bound, Date today) {
+		PersonExample example = new PersonExample();
+		Criteria c = example.createCriteria();
+		cal = Calendar.getInstance();
+		cal.setTime( today);
+		cal.add( Calendar.YEAR, -smaller_bound);
+		Date smaller = cal.getTime();
+		cal.add( Calendar.YEAR, -bigger_bound);
+		cal.add( Calendar.DATE, 1);
+		Date near_bigger = cal.getTime();
+		c.andBirthTimeBetween( near_bigger, smaller);
+		return person_mapper.selectAllForShow(example );
 	}
 
 	public List<Long> getAmountEachSociaty() {

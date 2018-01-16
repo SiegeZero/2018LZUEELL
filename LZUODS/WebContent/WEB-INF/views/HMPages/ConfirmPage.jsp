@@ -26,6 +26,7 @@ for(int index=0;index<conscription_situation_conditions_size;index++){
 String name_str = request.getParameter("name_condition");
 String func_str = request.getParameter("func_condition");
 String title_lv_str = request.getParameter("title_lv_condition");
+String age_range = request.getParameter("age");
 %>
 
 <body>
@@ -90,6 +91,15 @@ String title_lv_str = request.getParameter("title_lv_condition");
 					<%	} 
 					}
 					%>
+				</div>
+				<%
+				}
+
+				if(age_range!=null) {
+				%>
+				<div class="container-fluid">
+					<strong>选择的年龄范围包含：</strong>
+					<input name="age_range" type="text" class="form-control" value="<%=age_range%>" readonly/>
 				</div>
 				<%
 				}
