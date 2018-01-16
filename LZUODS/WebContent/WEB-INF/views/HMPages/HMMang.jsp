@@ -66,7 +66,7 @@
 				<li><a href="#">人员管理&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
 						class="caret"></span></a></li>
 				<ul class="nav">
-					<li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;人员信息</a></li>
+					<li><a href="HMMang"><span class="glyphicon glyphicon-user"></span>&nbsp;人员信息</a></li>
 					<li><a href="#"><span class="glyphicon glyphicon-yen"></span>&nbsp;工资管理</a></li>
 					<li><a href="#"><span class="glyphicon glyphicon-signal"></span>&nbsp;统计分析</a></li>
 					<li><a href="#"><span class="glyphicon glyphicon-tags"></span>&nbsp;其他功能</a></li>
@@ -194,46 +194,40 @@
 						</tr>
 						<tr>
 							<th>年龄：</th>
-							<td><input type="checkbox" onClick="select_attribute" />
+							<td><input type="checkbox" name="age" id="age1" value="50-" onClick="select_attribute" />
 								50-</td>
-							<td><input type="checkbox" onClick="select_attribute" /> 50
+							<td><input type="checkbox" name="age" id="age2" value="50-60" onClick="select_attribute" /> 50
 								- 60</td>
-							<td><input type="checkbox" onClick="select_attribute" /> 60
+							<td><input type="checkbox" name="age" id="age3" value="60-70" onClick="select_attribute" /> 60
 								- 70</td>
-							<td><input type="checkbox" onClick="select_attribute" /> 70
+							<td><input type="checkbox" name="age" id="age4" value="70-80" onClick="select_attribute" /> 70
 								- 80</td>
-							<td><input type="checkbox" onClick="select_attribute" /> 80
+							<td><input type="checkbox" name="age" id="age5" value="80-90" onClick="select_attribute" /> 80
 								- 90</td>
-							<td><input type="checkbox" onClick="select_attribute" /> 90
+							<td><input type="checkbox" name="age" id="age6" value="90-100" onClick="select_attribute" /> 90
 								- 100</td>
-							<td><input type="checkbox" onClick="select_attribute" />
+							<td><input type="checkbox" name="age" id="age7" value="100+" onClick="select_attribute" />
 								100 +</td>
 						</tr>
 						<tr>
 							<th>职级：</th>
-							<td><input type="checkbox" onClick="select_attribute" /> 副科</td>
-							<td><input type="checkbox" onClick="select_attribute" /> 正科</td>
-							<td><input type="checkbox" onClick="select_attribute" /> 科长</td>
-							<td><input type="checkbox" onClick="select_attribute" />
-								副地级</td>
-							<td><input type="checkbox" onClick="select_attribute" /> 地级</td>
-							<td><input type="checkbox" onClick="select_attribute" />
-								副厅级</td>
-							<td><input type="checkbox" onClick="select_attribute" />
-								正厅级</td>
-							<td>更多+</td>
+							<%
+							for (int row_index = 0; func_list != null && row_index < func_list.size() && row_index < 5; row_index++) {
+							%>
+							<td><input type="checkbox" name="func" id="func(<%=row_index %>)" value="<%=func_list.get(row_index) %>" onClick="select_attribute" /> <%=func_list.get(row_index) %></td>
+							<%
+								}
+							%>
 						</tr>
 						<tr>
 							<th>职称：</th>
-							<td><input type="checkbox" onClick="select_attribute" /> 工人</td>
-							<td><input type="checkbox" onClick="select_attribute" /> 技师</td>
-							<td><input type="checkbox" onClick="select_attribute" /> 中级</td>
-							<td><input type="checkbox" onClick="select_attribute" /> 高级</td>
-							<td><input type="checkbox" onClick="select_attribute" /> 副高</td>
-							<td><input type="checkbox" onClick="select_attribute" /> 正高</td>
-							<td><input type="checkbox" onClick="select_attribute" />
-								实验师</td>
-							<td>更多+</td>
+							<%
+							for (int row_index = 0; title_lv_list != null && row_index < title_lv_list.size() && row_index < 5; row_index++) {
+							%>
+							<td><input type="checkbox" name="title_lv" id="title_lv(<%=row_index %>)" value="<%=title_lv_list.get(row_index) %><" onClick="select_attribute" /> <%=title_lv_list.get(row_index) %></td>
+							<%
+								}
+							%>
 						</tr>
 						<tr>
 							<th>分会：</th>
@@ -241,10 +235,10 @@
 								while( sociaties_list.contains("")) {
 									sociaties_list.remove("");
 								}
-								for (int row_index = 0; sociaties_list != null && row_index < sociaties_list.size(); row_index++) {
+								for (int row_index = 0; sociaties_list != null && row_index < sociaties_list.size() && row_index < 5; row_index++) {
 							%>
 
-							<td><%=sociaties_list.get(row_index)%></td>
+							<td><input type="checkbox" name="sociaty" id="sociaty<%=row_index %>)" value="<%=sociaties_list.get(row_index) %><" onClick="select_attribute" /> <%=sociaties_list.get(row_index)%></td>
 
 							<%
 								}
@@ -252,10 +246,10 @@
 						</tr>
 						<th>民族：</th>
 						<%
-							for (int row_index = 0; nations_list != null && row_index < nations_list.size(); row_index++) {
+							for (int row_index = 0; nations_list != null && row_index < nations_list.size() && row_index < 5; row_index++) {
 						%>
 
-						<td><%=nations_list.get(row_index)%></td>
+						<td><input type="checkbox" name="nation" id="nation<%=row_index %>)" value="<%=nations_list.get(row_index) %><" onClick="select_attribute" /> <%=nations_list.get(row_index)%></td>
 
 						<%
 							}
