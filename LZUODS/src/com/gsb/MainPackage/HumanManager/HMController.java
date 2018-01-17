@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.gsb.BasicObject.MBG.PersonExample;
 import com.gsb.BasicObject.MBG.PersonExample.Criteria;
 import com.gsb.BasicObject.MBG.SalaryLib;
+import com.gsb.BasicObject.MBG.Sociaty;
 import com.gsb.BasicObject.MBG.SourcePerson;
 import com.gsb.BasicObject.MBGDAO.DepartmentMapper;
 import com.gsb.BasicObject.Services.ReadDBInfos;
@@ -62,6 +63,9 @@ public class HMController {
 		String func_condition = request.getParameter("func_condition");
 		String title_lv_condition = request.getParameter("title_lv_condition");
 		String age_range = request.getParameter("age_range");
+		String[] nations = request.getParameterValues("nations");
+		String[] sociaties = request.getParameterValues("sociaty");
+		
 		if( name_condition != null && !removeUselessHeaderStr(name_condition).equals("") ) {
 			String str = " ";
 			if( name_condition.contains("\t")) {
@@ -76,7 +80,6 @@ public class HMController {
 			} else if( funcs.size() == 1) {
 				c.andNameLike("%"+funcs.get(0)+"%");
 			}
-			example.or(c);
 			mv.addObject("name_str",name_condition);
 		}
 		
@@ -94,7 +97,6 @@ public class HMController {
 			} else if( funcs.size() == 1) {
 				c.andFuncLike("%"+funcs.get(0)+"%");
 			}
-			example.or(c);
 			mv.addObject("func_str",func_condition);
 		}
 
@@ -112,7 +114,6 @@ public class HMController {
 			} else if( funcs.size() == 1) {
 				c.andTitleLvLike("%"+funcs.get(0)+"%");
 			}
-			example.or(c);
 			mv.addObject("title_lv_str",title_lv_condition);
 		}
 		if( age_range != null && ! age_range.equals("全部")) {
@@ -128,14 +129,33 @@ public class HMController {
 				Date near_bigger = cal.getTime();
 				c.andBirthTimeBetween( near_bigger, smaller);
 			}
-			example.or(c);
 			mv.addObject("age_range", age_range);
 		}
+		
+		if( nations != null && nations.length != 0) {
+			List<String> list = new ArrayList<>();
+			for( String s:nations) {
+				list.add(s);
+			}
+			c.andNationIn( list);
+			mv.addObject("nations_str", list);
+		}
+		
+		if( sociaties != null && sociaties.length != 0) {
+			List<Integer> list = new ArrayList<>();
+			for( String s:sociaties) {
+				list.add(Integer.parseInt(s));
+			}
+			c.andSociatyNoIn(list);
+			mv.addObject("sociaties_str",list);
+		}
+
+		example.or(c);
 		
 		List<SourcePerson> person_list =  db_reader.getBasicInfos(example);
 		List<String> nations_list = db_reader.getAllNations();
 		System.out.println( "show nation size:"+nations_list.size());
-		List<String> sociaties_list = db_reader.getAllSociaties();
+		List<Sociaty> sociaties_list = db_reader.getAllSociaties();
 		System.out.println( "show sociaties size:"+sociaties_list.size());
 		List<String> func_list = db_reader.getAllFunc();
 		List<String> title_lv_list = db_reader.getAllTitleLv();
@@ -194,7 +214,9 @@ public class HMController {
 		new_person.setTitleLv( request.getParameter( "title_lv"));
 		new_person.setEduBg( request.getParameter( "edu_bg"));
 		new_person.setStart_job( request.getParameter("start_time"));
+		new_person.setTelephoneNum( request.getParameter("telephone_num"));
 		new_person.setEnd_job( request.getParameter("end_time"));
+		new_person.setPhysicalSituation( request.getParameter("physical_situation"));
 		new_person.setPoliticalStatus( request.getParameter("political_status"));
 		new_person.setQuitOfficeType( request.getParameter("quit_office_type"));
 		new_person.setConscriptio_situation( request.getParameter( "conscription_situation"));
@@ -212,7 +234,7 @@ public class HMController {
 	@RequestMapping(value="/HMAdd")
 	public ModelAndView add( ModelAndView mv) {
 		List<String> nations_list = db_reader.getAllNations();
-		List<String> sociaties_list = db_reader.getAllSociaties();
+		List<Sociaty> sociaties_list = db_reader.getAllSociaties();
 		List<String> func_list = db_reader.getAllFunc();
 		List<String> title_lv_list = db_reader.getAllTitleLv();
 		List<String> cs_list = db_reader.getAllConscriptionSituation();
@@ -235,7 +257,10 @@ public class HMController {
 	
 	@RequestMapping(value="/ConfirmPage")
 	public ModelAndView confirm( ModelAndView mv,HttpServletRequest request) {
-		
+
+		List<Sociaty> sociaties_list = db_reader.getAllSociaties();
+		mv.addObject("sociaties_amount", sociaties_list.size());
+		mv.addObject("sociaties_list", sociaties_list);
 		return mv;
 	}
 	

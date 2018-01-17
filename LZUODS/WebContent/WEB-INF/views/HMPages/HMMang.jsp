@@ -46,12 +46,12 @@
 </script>
 </head>
 
-<%@page import="java.util.List,com.gsb.BasicObject.MBG.SourcePerson,java.util.Calendar,java.util.Date"%>
+<%@page import="java.util.List,com.gsb.BasicObject.MBG.SourcePerson,com.gsb.BasicObject.MBG.Sociaty,java.util.Calendar,java.util.Date"%>
 <%
 	int Age = 0;
 	List<SourcePerson> person_list = (List<SourcePerson>) request.getAttribute("person_list");
 	List<String> nations_list = (List<String>) request.getAttribute("nations_list");
-	List<String> sociaties_list = (List<String>) request.getAttribute("sociaties_list");
+	List<Sociaty> sociaties_list = (List<Sociaty>) request.getAttribute("sociaties_list");
 	List<String> func_list = (List<String>) request.getAttribute("func_list");
 	List<String> title_lv_list = (List<String>) request.getAttribute("title_lv_list");
 	List<String> conscription_situation_list = (List<String>) request.getAttribute("conscription_situation_list");
@@ -218,32 +218,43 @@
 						<tr>
 							<th>分会：</th>
 							<%
-								while( sociaties_list.contains("")) {
-									sociaties_list.remove("");
-								}
+								List<Integer> sociaties_str = (List<Integer>)request.getAttribute("sociaties_str");
 								for (int row_index = 0; sociaties_list != null && row_index < sociaties_list.size() ; row_index++) {
+									Sociaty s = sociaties_list.get(row_index);
 									if(row_index % 9 == 0){
 							%>
 						</tr>
 						<tr>
-							<td><input type="checkbox" name="sociaty" id="sociaty<%=row_index %>)" value="<%=sociaties_list.get(row_index) %><" onClick="select_attribute" /> <%=sociaties_list.get(row_index)%></td>
-							<%
-								} else {
-							%>
-							<td><input type="checkbox" name="sociaty" id="sociaty<%=row_index %>)" value="<%=sociaties_list.get(row_index) %><" onClick="select_attribute" /> <%=sociaties_list.get(row_index)%></td>	
-							<%
-								}
-							%>
+								<%
+									} 
+								%>
+							<td><input 
+									type="checkbox" name="sociaty" id="sociaty<%=row_index %>)"
+									value="<%=s.getSociatyNo() %>" 
+									onClick="select_attribute"
+									<%=sociaties_str!=null&&sociaties_str.contains(s.getSociatyNo())?"checked":"" %>
+								/>
+								<%=s.getSociatyName().equals("")?"无分会":s.getSociatyName()%></td>	
+							
 							<%
 								}
 							%>
 						</tr>
 						<th>民族：</th>
 						<%
-							for (int row_index = 0; nations_list != null && row_index < nations_list.size(); row_index++) {
+						List<String> nations_str = (List<String>)request.getAttribute("nations_str");
+						for (int row_index = 0; nations_list != null && row_index < nations_list.size(); row_index++) {
 						%>
 
-						<td><input type="checkbox" name="nation" id="nation<%=row_index %>)" value="<%=nations_list.get(row_index) %><" onClick="select_attribute" /> <%=nations_list.get(row_index)%></td>
+						<td><input 
+								type="checkbox" 
+								name="nations" 
+								id="nation<%=row_index %>)" 
+								value="<%=nations_list.get(row_index) %>" 
+								onClick="select_attribute" 
+								<%=nations_str!=null&&nations_str.contains(nations_list.get( row_index))?"checked":"" %>
+							/> 
+							<%=nations_list.get(row_index)%></td>
 
 						<%
 							}

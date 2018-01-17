@@ -11,9 +11,9 @@
 <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <title>新增人员</title>
 </head>
-<%@ page import="java.util.List,com.gsb.BasicObject.MBG.SalaryLib" %>
+<%@ page import="java.util.List,com.gsb.BasicObject.MBG.SalaryLib,com.gsb.BasicObject.MBG.Sociaty" %>
 <%
-List<String> sociaty_list =(List<String>) request.getAttribute("sociaties_list");
+List<Sociaty> sociaty_list =(List<Sociaty>) request.getAttribute("sociaties_list");
 List<SalaryLib> slib_list =(List<SalaryLib>) request.getAttribute("slib_list");
 %>
 <body>
@@ -93,7 +93,7 @@ List<SalaryLib> slib_list =(List<SalaryLib>) request.getAttribute("slib_list");
                     </div>
                     <th>贫困情况：</th>
 	                    <div class="input-group input-group-sm">
-	                        <td><input name="is_help_needed"  type="text" class="form-control" value="是" placeholder="是否贫困" /></td>
+	                        <td><input name="is_help_needed"  type="text" class="form-control" value="否" placeholder="是否贫困" /></td>
 	                    </div>
                     <th>慰问情况：</th>
 	                    <div class="input-group input-group-sm">
@@ -140,11 +140,11 @@ List<SalaryLib> slib_list =(List<SalaryLib>) request.getAttribute("slib_list");
         <div>
             <table class="table">
                 <tr class="info">
-                    <th>健康状况</th>
+                    <th>家庭状况</th>
                 </tr>
                 <tr>
                     <div class="input-group input-group-sm">
-                        <td><input name="living_situation"  type="text" class="form-control" value="" placeholder="健康状况" /></td>
+                        <td><input name="living_situation"  type="text" class="form-control" value="" placeholder="家庭状况" /></td>
                     </div>
                 </tr>
             </table>

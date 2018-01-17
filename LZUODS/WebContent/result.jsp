@@ -9,7 +9,7 @@
 <!--IE浏览器渲染方式-->
 <title>Document</title>
 </head>
-<%@ page import="java.util.List,java.lang.String" %>
+<%@ page import="java.util.List,java.lang.String,java.util.HashMap" %>
 <%
 	List<String>[] stuffs = (List<String>[])request.getAttribute("stuffs");
 	List<?>[] points = (List<?>[])request.getAttribute("points");
@@ -33,7 +33,7 @@
 			%>
 			<tr>
 				<td><a href="judge?group=<%=i %>&id=<%=j %>"><%= stuffs[i].get(j) %></a></td>
-				<td><%= map.get("real_point"); %></td>
+				<td><%= map.get("real_point") %></td>
 				<td>perc1</td>
 				<td>level1</td>
 			</tr>

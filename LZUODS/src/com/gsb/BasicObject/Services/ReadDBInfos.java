@@ -61,8 +61,8 @@ public class ReadDBInfos {
 		return person_mapper.selectAllNations();
 	}
 
-	public List<String> getAllSociaties() {
-		return sociaty_mapper.selectAllSociaties();
+	public List<Sociaty> getAllSociaties() {
+		return sociaty_mapper.selectByExample(null);
 	}
 
 	public List<String> getAllDepts() {
@@ -368,6 +368,25 @@ public class ReadDBInfos {
 	public List<SalaryLib> getAllSLibs() {
 		
 		return slib_mapper.selectByExample(null);
+	}
+	
+	public void testOr() {
+
+		PersonExample example = new PersonExample();
+		Criteria c = example.createCriteria();
+		c.andGenderEqualTo("男");
+		c.andGenderEqualTo("女");
+		example.or(c);
+		long tmp = person_mapper.countByExample(example);
+		System.out.println( "first:"+tmp);
+		c = example.or();
+		c.andGenderEqualTo("女");
+		tmp = person_mapper.countByExample(example);
+		System.out.println( "second:"+tmp);
+		c = example.or();
+		c.andGenderEqualTo("男");
+		tmp = person_mapper.countByExample(example);
+		System.out.println( "third:"+tmp);
 	}
 
 }

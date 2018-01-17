@@ -152,13 +152,14 @@ public class TestMapper{
 	
 	@Test
 	public void testNullPrint() {
-		List<String> list = new ArrayList<>();
-		list.add(null);
-		List<String> list2 = new ArrayList<>();
-		list2.add("11");
-		list2.add(null);
-		list2.removeAll(list);
-		System.out.println( list2.get(0));
+		info_reader.testOr();
+//		List<String> list = new ArrayList<>();
+//		list.add(null);
+//		List<String> list2 = new ArrayList<>();
+//		list2.add("11");
+//		list2.add(null);
+//		list2.removeAll(list);
+//		System.out.println( list2.get(0));
 		return;
 	}
 	

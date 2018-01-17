@@ -11,9 +11,9 @@
 <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <title>新增人员</title>
 </head>
-<%@ page import="java.util.List,com.gsb.BasicObject.MBG.SalaryLib,com.gsb.BasicObject.MBG.SourcePerson,java.text.SimpleDateFormat" %>
+<%@ page import="java.util.List,com.gsb.BasicObject.MBG.Sociaty,com.gsb.BasicObject.MBG.SalaryLib,com.gsb.BasicObject.MBG.SourcePerson,java.text.SimpleDateFormat" %>
 <%
-List<String> sociaty_list =(List<String>) request.getAttribute("sociaties_list");
+List<Sociaty> sociaty_list =(List<Sociaty>) request.getAttribute("sociaties_list");
 List<SalaryLib> slib_list =(List<SalaryLib>) request.getAttribute("slib_list");
 SourcePerson person = (SourcePerson)request.getAttribute("target");
 SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
