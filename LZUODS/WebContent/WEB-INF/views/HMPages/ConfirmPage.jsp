@@ -32,7 +32,7 @@ for(int index=0;index<conscription_situation_conditions_size;index++){
 String name_str = request.getParameter("name_condition");
 String func_str = request.getParameter("func_condition");
 String title_lv_str = request.getParameter("title_lv_condition");
-String age_range = request.getParameter("age");
+String[] age_range = request.getParameterValues("age");
 String[] sociaties = request.getParameterValues("sociaty");
 String[] nations = request.getParameterValues("nations");
 Map<Integer, String> sociaties_map = new HashMap<>();
@@ -110,11 +110,11 @@ for( Sociaty s:sociaties_list) {
 				<%
 				}
 
-				if(age_range!=null) {
+				if(age_range!=null && age_range.length == 2) {
 				%>
 				<div class="container-fluid">
-					<strong>选择的年龄范围包含：</strong> <input name="age_range" type="text"
-						class="form-control" value="<%=age_range%>" readonly /> <input
+					<strong>选择的年龄范围是：</strong> <input name="age_range" type="text"
+						class="form-control" value="<%=age_range[0]+"-"+age_range[1]%>" readonly /> <input
 						name="deadline" type="text" class="form-control"
 						placeholder="输入一个具体的截止日期，日期输入格式为yyyymmdd">
 				</div>

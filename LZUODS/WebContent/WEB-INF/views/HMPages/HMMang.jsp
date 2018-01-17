@@ -43,6 +43,42 @@
 		}
 		flag = conscription_situations;
 	}
+	function show_political_status() {
+		if (political_status.style.display == "none") {
+			flag.style.display = "none";
+			political_status.style.display = "block";
+		}
+		flag = political_status;
+	}
+	function show_physical_situation() {
+		if (physical_situation.style.display == "none") {
+			flag.style.display = "none";
+			physical_situation.style.display = "block";
+		}
+		flag = physical_situation;
+	}
+	function show_is_help_needed() {
+		if (is_help_needed.style.display == "none") {
+			flag.style.display = "none";
+			is_help_needed.style.display = "block";
+		}
+		flag = is_help_needed;
+	}
+	function show_latest_sympathy_year() {
+		if (latest_sympathy_year.style.display == "none") {
+			flag.style.display = "none";
+			latest_sympathy_year.style.display = "block";
+		}
+		flag = latest_sympathy_year;
+	}
+	function show_edu_bg() {
+		if (edu_bg.style.display == "none") {
+			flag.style.display = "none";
+			edu_bg.style.display = "block";
+		}
+		flag = edu_bg;
+	}
+	
 </script>
 </head>
 
@@ -55,6 +91,9 @@
 	List<String> func_list = (List<String>) request.getAttribute("func_list");
 	List<String> title_lv_list = (List<String>) request.getAttribute("title_lv_list");
 	List<String> conscription_situation_list = (List<String>) request.getAttribute("conscription_situation_list");
+	List<String> political_status_list = (List<String>) request.getAttribute("political_status_list");
+	List<String> edu_bg_list = (List<String>) request.getAttribute("edu_bg_list");
+	
 %>
 
 <body style="height: 100%">
@@ -168,14 +207,13 @@
 					<table class="table">
 						<tr>
 							<th>基本：</th>
-							<td><a type="button" onclick="show_quit_office_types()">离休情况</a></td>
-							<td><a type="button" onclick="show_conscription_situations()">兵役情况</a></td>
-							<td>政治面貌</td>
-							<td>在世情况</td>
-							<td>贫困状况</td>
-							<td>慰问情况</td>
-							<td>学历</td>
-							<td>更多条件 ↓</td>
+							<td><a onclick="show_quit_office_types()">离休情况</a></td>
+							<td><a onclick="show_conscription_situations()">兵役情况</a></td>
+							<td><a onclick="show_political_status()">政治面貌</td>
+							<td><a onclick="show_physical_situation()">在世情况</td>
+							<td><a onclick="show_is_help_needed()">贫困状况</td>
+							<td><a onclick="show_latest_sympathy_year()">慰问情况</td>
+							<td><a onclick="show_edu_bg()">学历</td>
 						</tr>
 						<tr>
 							<td colspan="9">
@@ -200,20 +238,75 @@
 									</li>
 									<%} %>
 								</ul>
+								<ul style="display:none" class="nav navbar-nav" id="political_status">
+								<%
+								
+								for(int li_index=0;political_status_list!=null && li_index<political_status_list.size();li_index++){
+									if( political_status_list.get(li_index).equals("")){
+										continue;
+									}
+									%>
+									<li>
+										<input type="checkbox" name="political_status<%=li_index %>" onClick="select_attribute" /><%=political_status_list.get(li_index) %>
+									</li>
+									<%} %>
+								</ul>
+								<ul style="display:none" class="nav navbar-nav" id="physical_situation">
+									<li>
+										<input type="radio" value="在世" name="physical_situation" id="physical_situation0" onClick="select_attribute" />在世
+									</li>
+									<li>
+										<input type="radio" value="离世" name="physical_situation" id="physical_situation1" onClick="select_attribute" />离世
+									</li>
+									<li>
+										<input type="radio" value="全选" name="physical_situation" id="physical_situation2" onClick="select_attribute" />全选
+									</li>
+								</ul>
+								<ul style="display:none" class="nav navbar-nav" id="is_help_needed">
+									<li>
+										<input type="radio" value="是" name="is_help_needed" id="is_help_needed0" onClick="select_attribute" />是
+									</li>
+									<li>
+										<input type="radio" value="否" name="is_help_needed" id="is_help_needed1" onClick="select_attribute" />否
+									</li>
+									<li>
+										<input type="radio" value="全选" name="is_help_needed" id="is_help_needed2" onClick="select_attribute" />全选
+									</li>
+								</ul>
+								<ul style="display:none" class="nav navbar-nav" id="latest_sympathy_year">
+									<li>
+										<input type="radio" value="本年已慰问" name="latest_sympathy_year" id="latest_sympathy_year0" onClick="select_attribute" />本年已慰问
+									</li>
+									<li>
+										<input type="radio" value="本年未慰问" name="latest_sympathy_year" id="latest_sympathy_year1" onClick="select_attribute" />本年未慰问
+									</li>
+									<li>
+										<input type="radio" value="全选" name="latest_sympathy_year" id="latest_sympathy_year2" onClick="select_attribute" />全选
+									</li>
+								</ul>
+								<ul style="display:none" class="nav navbar-nav" id="edu_bg">
+								<%
+								
+								for(int li_index=0;edu_bg_list!=null && li_index<edu_bg_list.size();li_index++){
+									if( edu_bg_list.get(li_index).equals("")){
+										continue;
+									}
+									%>
+									<li>
+										<input type="checkbox" name="edu_bg<%=li_index %>" onClick="select_attribute" /><%=edu_bg_list.get(li_index) %>
+									</li>
+									<%} %>
+								</ul>
 							</td>
 						</tr>
 						<tr>
 							<th>年龄：</th>
-							<%
-							String[] ages = new String[]{"0-50","50-60","60-70","70-80","80-90","90-100","100+","全部"};
-							int age_i=0;
-							String checked_str = request.getParameter("age_range");
-							for(String s:ages){
-							%>
-							<td><input type="radio" name="age" id="age<%=age_i++ %>" value="<%=s %>" onClick="select_attribute" <%=checked_str!=null&&checked_str.equals(s)?"checked":"" %> /><%=s %></td>
-							<%
-							}
-							%>
+			                <div class="input-group input-group-sm">
+			                	<td><input type="text" name="age" class="form-control" value="" placeholder="最小年龄" /></td>
+			                </div>
+			                <div class="input-group input-group-sm">
+			                	<td><input type="text" name="age" class="form-control" value="" placeholder="最大年龄" /></td>
+			                </div>
 						</tr>
 						<tr>
 							<th>分会：</th>

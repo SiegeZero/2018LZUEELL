@@ -266,7 +266,31 @@ public class HMController {
 	
 	@RequestMapping(value="/UpdateConfirmPage", method=RequestMethod.POST)
 	public ModelAndView updateConfirm(  @RequestParam("id") int id,ModelAndView mv,HttpServletRequest request) {
+
+		SourcePerson new_person = new SourcePerson();
+		new_person.setName( request.getParameter("name"));
+		new_person.setGender( request.getParameter("gender"));
+		new_person.setNativePlace( request.getParameter("native_place"));
+		new_person.setNation( request.getParameter( "nation"));
+		new_person.setBirth( request.getParameter("birth_date"));
+		new_person.setSalaryNo( request.getParameter( "salary_no"));
+		new_person.setDept( request.getParameter( "dept"));
+		new_person.setSlib( request.getParameter("slary_lib"));
+		new_person.setFunc( request.getParameter( "func"));
+		new_person.setSociaty( request.getParameter("sociaty"));
+		new_person.setTitleLv( request.getParameter( "title_lv"));
+		new_person.setEduBg( request.getParameter( "edu_bg"));
+		new_person.setStart_job( request.getParameter("start_time"));
+		new_person.setEnd_job( request.getParameter("end_time"));
+		new_person.setPoliticalStatus( request.getParameter("political_status"));
+		new_person.setQuitOfficeType( request.getParameter("quit_office_type"));
+		new_person.setConscriptio_situation( request.getParameter( "conscription_situation"));
+		new_person.setNeed_help(request.getParameter("is_help_needed"));
+		new_person.setLivingSituation( request.getParameter("living_situation"));
+		new_person.setAddress( request.getParameter("address"));
+		
 		mv.addObject("target", db_reader.getBasicInfosBy(id));
+		mv.addObject("new_person", new_person);
 		return mv;
 	}
 	
