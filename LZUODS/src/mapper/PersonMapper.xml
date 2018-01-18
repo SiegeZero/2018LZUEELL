@@ -199,13 +199,16 @@
 		select distinct func
 		from
 		basic_info_table
-		where func != ''
 	</select>
 	<select id="selectAllTitleLv" resultType="string">
 		select distinct title_lv
 		from
 		basic_info_table
-		where title_lv != ''
+	</select>
+	<select id="selectAllPoliticalStatus" resultType="string">
+		select distinct political_status
+		from
+		basic_info_table
 	</select>
 	<select id="selectAllConscriptionSituation" resultType="string">
 		select distinct conscription_situation
@@ -213,7 +216,11 @@
 		basic_info_table
 	</select>
 	
-	
+	<select id="selectAllEduBg" resultType="string">
+		select distinct edu_bg
+		from
+		basic_info_table
+	</select>
 	<select id="selectDeptWithId" resultType="com.gsb.BasicObject.MBG.Department">
 		select * from dept_table where dept_no=#{dept_no}
 	</select>

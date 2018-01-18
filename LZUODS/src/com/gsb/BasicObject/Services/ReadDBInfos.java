@@ -389,4 +389,12 @@ public class ReadDBInfos {
 		System.out.println( "third:"+tmp);
 	}
 
+	public List<String> getAllPoliticalStatus() {
+		return person_mapper.selectAllPoliticalStatus();
+	}
+
+	public List<String> getAllEduBg() {
+		return person_mapper.selectAllEduBg();
+	}
+
 }

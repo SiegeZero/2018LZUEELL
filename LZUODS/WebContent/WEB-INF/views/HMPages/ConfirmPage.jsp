@@ -19,22 +19,16 @@
 <%
 int quit_office_type_size=2,conscription_situation_conditions_size=0;
 
-List<String> quit_office_types = new ArrayList<>();
-for(int index=0;index < quit_office_type_size; index++){
-	String str = (String)request.getParameter("quit_office_type"+index);
-	quit_office_types.add( str);
-}
-List<String> conscription_situation_conditions = new ArrayList<>();
-for(int index=0;index<conscription_situation_conditions_size;index++){
-	String str = (String)request.getParameter("conscription_situation"+index);
-	conscription_situation_conditions.add( str);
-}
+String[] quit_office_types = request.getParameterValues("quit_office_type");
 String name_str = request.getParameter("name_condition");
 String func_str = request.getParameter("func_condition");
 String title_lv_str = request.getParameter("title_lv_condition");
 String[] age_range = request.getParameterValues("age");
 String[] sociaties = request.getParameterValues("sociaty");
 String[] nations = request.getParameterValues("nations");
+String[] cs_str = request.getParameterValues("conscription_situation");
+String[] political_str = request.getParameterValues("political_status");
+String[] edu_bg = request.getParameterValues("edu_bg");
 Map<Integer, String> sociaties_map = new HashMap<>();
 List<Sociaty> sociaties_list = (List<Sociaty>) request.getAttribute("sociaties_list");
 for( Sociaty s:sociaties_list) {
@@ -78,39 +72,20 @@ for( Sociaty s:sociaties_list) {
 				</div>
 				<%
 				}
-				while( quit_office_types.contains(null))
-					quit_office_types.remove(null);
-				if( !quit_office_types.isEmpty()) {
+				if( quit_office_types!=null && quit_office_types.length!=0) {
 				%>
 				<div class="container-fluid">
 					<strong>选择的离退休情况包含：</strong>
-					<%for(int index=0;index< quit_office_types.size();index++){ %>
+					<%for(int index=0;index< quit_office_types.length;index++){ %>
 					<input type="text" class="form-control" name="quit_office_type"
-						value="<%=quit_office_types.get(index)%>" readonly />
+						value="<%=quit_office_types[index]%>" readonly />
 					<%} %>
 				</div>
 				<%
 				}
-				while( conscription_situation_conditions.contains(null))
-					conscription_situation_conditions.remove(null);
-				if( !conscription_situation_conditions.isEmpty()) {
-				%>
-				<div class="container-fluid">
-					<strong>选择的兵役情况包含：</strong>
-					<%for(int index=0;index<conscription_situation_conditions.size();index++){ 
-						String tmp = conscription_situation_conditions.get(index);
-						if(tmp!=null && !tmp.equals("")){
-					%>
-					<input type="text" class="form-control" name="#" value="<%=tmp%>"
-						readonly />
-					<%	} 
-					}
-					%>
-				</div>
-				<%
-				}
 
-				if(age_range!=null && age_range.length == 2) {
+				if(age_range!=null && age_range.length == 2 
+						&& !age_range[0].equals("") && !age_range[1].equals("")) {
 				%>
 				<div class="container-fluid">
 					<strong>选择的年龄范围是：</strong> <input name="age_range" type="text"
@@ -133,6 +108,57 @@ for( Sociaty s:sociaties_list) {
 						readonly />
 					<input type="text" class="form-control" 
 						value="<%=sociaties_map.get( Integer.parseInt(sociaties[i]))%>" 
+						readonly />
+					<%
+					}
+					%>
+				</div>
+				<%
+				}
+				if(edu_bg!=null&&edu_bg.length!=0) {
+				%>
+				<div class="container-fluid">
+					<strong>选择的学历包含：</strong>
+					<%
+					for( int i=0;i<edu_bg.length;i++){
+					%>
+					<input type="text" class="form-control" 
+						name="edu_bg" id="edu_bg<%=i %>"
+						value="<%=edu_bg[i]%>" 
+						readonly />
+					<%
+					}
+					%>
+				</div>
+				<%
+				}
+				if(cs_str!=null&&cs_str.length!=0) {
+				%>
+				<div class="container-fluid">
+					<strong>选择的兵役情况包含：</strong>
+					<%
+					for( int i=0;i<cs_str.length;i++){
+					%>
+					<input type="text" class="form-control" 
+						name="conscription_situation" id="conscription_situation<%=i %>"
+						value="<%=cs_str[i].equals("无数据")?"":cs_str[i]%>"
+						readonly />
+					<%
+					}
+					%>
+				</div>
+				<%
+				}
+				if(political_str!=null&&political_str.length!=0) {
+				%>
+				<div class="container-fluid">
+					<strong>选择的政治面貌包含：</strong>
+					<%
+					for( int i=0;i<political_str.length;i++){
+					%>
+					<input type="text" class="form-control"
+						name="political_status" id="political_status<%=i %>"
+						value="<%=political_str[i].equals("无数据")?"":political_str[i]%>"
 						readonly />
 					<%
 					}

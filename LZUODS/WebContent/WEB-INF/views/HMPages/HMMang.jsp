@@ -82,7 +82,11 @@
 </script>
 </head>
 
-<%@page import="java.util.List,com.gsb.BasicObject.MBG.SourcePerson,com.gsb.BasicObject.MBG.Sociaty,java.util.Calendar,java.util.Date"%>
+<%@page import="java.util.List
+	,com.gsb.BasicObject.MBG.SourcePerson
+	,com.gsb.BasicObject.MBG.Sociaty
+	,java.util.Calendar
+	,java.util.Date"%>
 <%
 	int Age = 0;
 	List<SourcePerson> person_list = (List<SourcePerson>) request.getAttribute("person_list");
@@ -176,19 +180,16 @@
 							<table class="table table-bordered">
 								<tr>
 									<%
+										List<String> title_lv_str = (List<String>)request.getAttribute("title_lv_str");
 										for (int row_index = 0; title_lv_list != null && row_index < title_lv_list.size(); row_index++) {
 											if (row_index % 6 == 0) {
 									%>
 								</tr>
 								<tr>
-									<td style="width: 10%"><%=title_lv_list.get(row_index)%></td>
 									<%
-										} else {
+										} 
 									%>
 									<td style="width: 10%"><%=title_lv_list.get(row_index)%></td>
-									<%
-										}
-									%>
 									<%
 										}
 									%>
@@ -207,7 +208,7 @@
 					<table class="table">
 						<tr>
 							<th>基本：</th>
-							<td><a onclick="show_quit_office_types()">离休情况</a></td>
+							<td><a onclick="show_quit_office_types()">离退情况</a></td>
 							<td><a onclick="show_conscription_situations()">兵役情况</a></td>
 							<td><a onclick="show_political_status()">政治面貌</td>
 							<td><a onclick="show_physical_situation()">在世情况</td>
@@ -218,36 +219,49 @@
 						<tr>
 							<td colspan="9">
 								<ul style="display:block" class="nav navbar-nav" id="quit_office_types">
+								<%
+									List<String> quit_office_type_str = (List<String>)request.getAttribute("quit_office_type_str");
+								%>
 									<li>
-										<input type="checkbox" value="离休" name="quit_office_type0" onClick="select_attribute" />离休
+										<input type="checkbox" value="离休"
+											name="quit_office_type" id="quit_office_type0" onClick="select_attribute" 
+											<%= quit_office_type_str!=null&&quit_office_type_str.contains("离休")?"checked":"" %>
+											/>离休
 									</li>
 									<li>
-										<input type="checkbox" value="退休" name="quit_office_type1" onClick="select_attribute" />退休
+										<input type="checkbox" value="退休"
+											name="quit_office_type" id="quit_office_type1" onClick="select_attribute" 
+												<%= quit_office_type_str!=null&&quit_office_type_str.contains("退休")?"checked":"" %>
+											/>退休
 									</li>
 								</ul>
 								<ul style="display:none" class="nav navbar-nav" id="conscription_situations">
 								<%
-								
+								List<String> cs_str = (List<String>) request.getAttribute("cs_str");
 								for(int li_index=0;conscription_situation_list!=null && li_index<conscription_situation_list.size();li_index++){
-									if( conscription_situation_list.get(li_index).equals("")){
-										continue;
-									}
 									%>
 									<li>
-										<input type="checkbox" name="conscription_situation<%=li_index %>" onClick="select_attribute" /><%=conscription_situation_list.get(li_index) %>
+										<input type="checkbox" 
+											id="conscription_situation<%=li_index %>" name="conscription_situation"
+											onClick="select_attribute"
+											value="<%=conscription_situation_list.get(li_index).equals("")?"无数据":conscription_situation_list.get(li_index) %>" 
+											<%=cs_str!=null&&cs_str.contains( conscription_situation_list.get(li_index))?"checked":"" %>
+											/><%=conscription_situation_list.get(li_index).equals("")?"无数据":conscription_situation_list.get(li_index) %>
 									</li>
 									<%} %>
 								</ul>
 								<ul style="display:none" class="nav navbar-nav" id="political_status">
 								<%
-								
+								List<String> political_status_str = (List<String>) request.getAttribute("political_status_str");
 								for(int li_index=0;political_status_list!=null && li_index<political_status_list.size();li_index++){
-									if( political_status_list.get(li_index).equals("")){
-										continue;
-									}
 									%>
 									<li>
-										<input type="checkbox" name="political_status<%=li_index %>" onClick="select_attribute" /><%=political_status_list.get(li_index) %>
+										<input type="checkbox"
+											id="political_status<%=li_index %>" name="political_status"
+											onClick="select_attribute"
+											value="<%=political_status_list.get(li_index).equals("")?"无数据":political_status_list.get(li_index) %>"
+											<%=political_status_str!=null&&political_status_str.contains( political_status_list.get(li_index))?"checked":"" %>
+											/><%=political_status_list.get(li_index).equals("")?"无数据":political_status_list.get(li_index) %>
 									</li>
 									<%} %>
 								</ul>
@@ -286,14 +300,16 @@
 								</ul>
 								<ul style="display:none" class="nav navbar-nav" id="edu_bg">
 								<%
-								
+								List<String> edu_bg_str = (List<String>) request.getAttribute("edu_bg_str");
 								for(int li_index=0;edu_bg_list!=null && li_index<edu_bg_list.size();li_index++){
-									if( edu_bg_list.get(li_index).equals("")){
-										continue;
-									}
 									%>
 									<li>
-										<input type="checkbox" name="edu_bg<%=li_index %>" onClick="select_attribute" /><%=edu_bg_list.get(li_index) %>
+										<input type="checkbox"
+											name="edu_bg" id="edu_bg<%=li_index %>"
+											value="<%=edu_bg_list.get(li_index).equals("")?"无数据":edu_bg_list.get(li_index) %>"
+											onClick="select_attribute" 
+											<%=edu_bg_str!=null&&edu_bg_str.contains( edu_bg_list.get(li_index))?"checked":"" %>
+											/><%=edu_bg_list.get(li_index).equals("")?"无数据":edu_bg_list.get(li_index) %>
 									</li>
 									<%} %>
 								</ul>

@@ -55,4 +55,8 @@ public interface PersonMapper {
     int updateByPrimaryKeyWithBLOBs(PersonWithBLOBs record);
 
     int updateByPrimaryKey(Person record);
+
+	List<String> selectAllPoliticalStatus();
+
+	List<String> selectAllEduBg();
 }

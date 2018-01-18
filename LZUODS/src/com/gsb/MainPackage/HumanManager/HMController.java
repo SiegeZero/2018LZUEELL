@@ -65,7 +65,10 @@ public class HMController {
 		String age_range = request.getParameter("age_range");
 		String[] nations = request.getParameterValues("nations");
 		String[] sociaties = request.getParameterValues("sociaty");
-		
+		String[] quit_office_types = request.getParameterValues("quit_office_type");
+		String[] edu_bg = request.getParameterValues("edu_bg");
+		String[] political_status = request.getParameterValues("political_status");
+		String[] conscription_situation = request.getParameterValues("conscription_situation");
 		if( name_condition != null && !removeUselessHeaderStr(name_condition).equals("") ) {
 			String str = " ";
 			if( name_condition.contains("\t")) {
@@ -154,7 +157,40 @@ public class HMController {
 			c.andSociatyNoIn(list);
 			mv.addObject("sociaties_str",list);
 		}
-
+		if( quit_office_types != null && quit_office_types.length != 0) {
+			List<String> list = new ArrayList<>();
+			for( String s:quit_office_types) {
+				list.add(s);
+			}
+			c.andQuitOfficeTypeIn(list);
+			mv.addObject("quit_office_type_str",list);
+		}
+		if( edu_bg != null && edu_bg.length != 0) {
+			List<String> list = new ArrayList<>();
+			for( String s:edu_bg) {
+				list.add(s);
+			}
+			c.andEduBgIn(list);
+			mv.addObject("edu_bg_str",list);
+		}
+		if( conscription_situation != null && conscription_situation.length != 0) {
+			List<String> list = new ArrayList<>();
+			for( String s:conscription_situation) {
+				list.add(s);
+			}
+			c.andConscriptionSituationIn(list);
+			mv.addObject("cs_str", list);
+		}
+		
+		if( political_status != null && political_status.length != 0) {
+			List<String> list = new ArrayList<>();
+			for( String s:political_status) {
+				list.add(s);
+			}
+			c.andPoliticalStatusIn(list);
+			mv.addObject("political_status_str",list);
+		}
+		
 		example.or(c);
 		
 		List<SourcePerson> person_list =  db_reader.getBasicInfos(example);
@@ -165,6 +201,8 @@ public class HMController {
 		List<String> func_list = db_reader.getAllFunc();
 		List<String> title_lv_list = db_reader.getAllTitleLv();
 		List<String> cs_list = db_reader.getAllConscriptionSituation();
+		List<String> political_status_list = db_reader.getAllPoliticalStatus();
+		List<String> edu_bg_list = db_reader.getAllEduBg();
 		mv.addObject("person_amount", person_list.size());
 		mv.addObject("person_list", person_list);
 		mv.addObject("nations_amount", nations_list.size());
@@ -177,6 +215,8 @@ public class HMController {
 		mv.addObject("title_lv_list", title_lv_list);
 		mv.addObject("conscription_situation_amount", cs_list.size());
 		mv.addObject("conscription_situation_list", cs_list);
+		mv.addObject("political_status_list",political_status_list);
+		mv.addObject("edu_bg_list",edu_bg_list);
 		
 		return mv;
 	}
