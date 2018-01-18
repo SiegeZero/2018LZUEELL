@@ -118,16 +118,21 @@ public class HMController {
 		}
 		if( age_range != null && ! age_range.equals("全部")) {
 			Calendar cal = Calendar.getInstance();
-			if( age_range.contains("+")) {
-				cal.add( Calendar.YEAR, Integer.parseInt(age_range.substring(0, age_range.indexOf("+"))));
-				c.andBirthTimeGreaterThan( cal.getTime());
-			} else {
-				cal.add(Calendar.YEAR, -Integer.parseInt(age_range.substring(0, age_range.indexOf("-"))));
+			String smaller_bound =  age_range.substring(0, age_range.indexOf("-"));
+			String bigger_bound = age_range.substring( age_range.indexOf("-")+1);
+			if( !smaller_bound.equals("")&& bigger_bound.equals("")) {
+				cal.add( Calendar.YEAR, -Integer.parseInt( smaller_bound));
+				c.andBirthTimeGreaterThanOrEqualTo( cal.getTime());
+			} else if( !smaller_bound.equals("")&& !bigger_bound.equals("")){
+				cal.add(Calendar.YEAR, -Integer.parseInt(smaller_bound));
 				Date smaller = cal.getTime();
-				cal.add( Calendar.YEAR, -Integer.parseInt(age_range.substring( age_range.indexOf("-")+1))+Integer.parseInt(age_range.substring(0, age_range.indexOf("-"))));
+				cal.add( Calendar.YEAR, -Integer.parseInt(bigger_bound)+Integer.parseInt(smaller_bound));
 				cal.add( Calendar.DATE, 1);
 				Date near_bigger = cal.getTime();
 				c.andBirthTimeBetween( near_bigger, smaller);
+			} else if( smaller_bound.equals("")&& !bigger_bound.equals("")) {
+				cal.add( Calendar.YEAR, -Integer.parseInt( bigger_bound));
+				c.andBirthTimeLessThan( cal.getTime());
 			}
 			mv.addObject("age_range", age_range);
 		}
@@ -223,7 +228,6 @@ public class HMController {
 		new_person.setNeed_help(request.getParameter("is_help_needed"));
 		new_person.setLivingSituation( request.getParameter("living_situation"));
 		new_person.setAddress( request.getParameter("address"));
-		sao.init();
 		int temp = sao.addAPerson( new_person);
 		if( temp != -1) {
 			id = temp;
@@ -288,7 +292,8 @@ public class HMController {
 		new_person.setNeed_help(request.getParameter("is_help_needed"));
 		new_person.setLivingSituation( request.getParameter("living_situation"));
 		new_person.setAddress( request.getParameter("address"));
-		
+		new_person.setTelephoneNum( request.getParameter("telephone_num"));
+		new_person.setPhysicalSituation( request.getParameter("physical_situation"));
 		mv.addObject("target", db_reader.getBasicInfosBy(id));
 		mv.addObject("new_person", new_person);
 		return mv;
@@ -299,12 +304,14 @@ public class HMController {
 		int id = 2139;
 		// TODO 数据库插入数据，生成id
 		SourcePerson new_person = new SourcePerson();
+		new_person.setSysNo( Integer.parseInt(request.getParameter("sys_no")));
 		new_person.setName( request.getParameter("name"));
 		new_person.setGender( request.getParameter("gender"));
 		new_person.setNativePlace( request.getParameter("native_place"));
 		new_person.setNation( request.getParameter( "nation"));
 		new_person.setBirth( request.getParameter("birth_date"));
 		new_person.setSalaryNo( request.getParameter( "salary_no"));
+		System.out.println( "request receive:"+request.getParameter( "title_lv"));
 		new_person.setDept( request.getParameter( "dept"));
 		new_person.setSlib( request.getParameter("slary_lib"));
 		new_person.setFunc( request.getParameter( "func"));
@@ -319,7 +326,10 @@ public class HMController {
 		new_person.setNeed_help(request.getParameter("is_help_needed"));
 		new_person.setLivingSituation( request.getParameter("living_situation"));
 		new_person.setAddress( request.getParameter("address"));
-		return "redirect:/HMM/HMDtal?id="+id;
+		new_person.setTelephoneNum( request.getParameter("telephone_num"));
+		new_person.setPhysicalSituation( request.getParameter("physical_situation"));
+		sao.updatePersonInfo( new_person);
+		return "redirect:/HMM/HMDtal?id="+new_person.getSysNo();
 	}
 	
 }

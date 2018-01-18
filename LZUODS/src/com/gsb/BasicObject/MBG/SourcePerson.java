@@ -37,7 +37,6 @@ public class SourcePerson extends PersonWithBLOBs {
 	}
 
 	public PersonWithBLOBs format(Map<String, Integer> depts_map, Map<String, Integer> sociaties_map, Map<String, Integer> slib_map){
-		
 		int deptNo = depts_map.get( this.dept.getDeptName());
 		this.setDeptNo( deptNo);
 		this.dept.setDeptNo(deptNo);

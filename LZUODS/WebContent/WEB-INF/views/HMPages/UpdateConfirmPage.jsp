@@ -26,6 +26,7 @@ SourcePerson new_person = (SourcePerson)request.getAttribute("new_person");
 <body>
 	<div class="container-fluid">
 		<form action="update_basic_info" method="post">
+			<input type="hidden" name="sys_no" value="<%=person.getSysNo() %>" />
 			<table class="table">
 				<tr>
 					<th class="info">所有条目</th>
@@ -50,6 +51,12 @@ SourcePerson new_person = (SourcePerson)request.getAttribute("new_person");
 				</tr>
 				
 				<%
+				} else{
+					
+				%>
+				
+				<input type="hidden" name="name" value="<%=person.getName() %>" />	
+				<%
 				}
 				if( !person.getGender().equals( new_person.getGender())) {
 				%>
@@ -66,6 +73,11 @@ SourcePerson new_person = (SourcePerson)request.getAttribute("new_person");
 	                </div>
 				</tr>
 				
+				<%
+				} else{
+				%>
+				
+				<input type="hidden" name="gender" value="<%=person.getGender() %>" />	
 				<%
 				}
 				if( !person.getNativePlace().equals( new_person.getNativePlace())) {
@@ -84,6 +96,11 @@ SourcePerson new_person = (SourcePerson)request.getAttribute("new_person");
 				</tr>
 				
 				<%
+				} else{
+					
+				%>
+				<input type="hidden" name="native_place" value="<%=person.getNativePlace() %>" />	
+				<%
 				}
 				if( !person.getNation().equals( new_person.getNation())) {
 				%>
@@ -101,8 +118,13 @@ SourcePerson new_person = (SourcePerson)request.getAttribute("new_person");
 				</tr>
 				
 				<%
+				} else{
+				%>
+				<input type="hidden" name="nation" value="<%=person.getNation() %>" />	
+				<%
 				}
-				if( !person.getBirthTime().equals( new_person.getBirthTime())) {
+				if( person.getBirthTime() == null && new_person.getBirth() != null
+						||!sdf.format(person.getBirthTime()).equals( new_person.getBirth())) {
 				%>
 				<tr>
 	                <div class="input-group input-group-sm">
@@ -113,13 +135,18 @@ SourcePerson new_person = (SourcePerson)request.getAttribute("new_person");
 	                </div>
 					<td style="10%">→</td>
 	                <div class="input-group input-group-sm">
-	                	<td style="40%"><input name="birth_date" type="text" class="form-control" value="<%=new_person.getBirthTime() %>" /></td>
+	                	<td style="40%"><input name="birth_date" type="text" class="form-control" value="<%=new_person.getBirth() %>" /></td>
 	                </div>
 				</tr>
 				
 				<%
+				} else{
+				%>
+				<input type="hidden" name="birth_date" value="<%=sdf.format(person.getBirthTime()) %>" />	
+				<%
 				}
-				if( !person.getSalaryNo().equals( new_person.getSalaryNo())) {
+				if( person.getSalaryNo() == null && new_person.getSalaryNo() != null
+						||!person.getSalaryNo().equals( new_person.getSalaryNo())) {
 				%>
 				<tr>
 	                <div class="input-group input-group-sm">
@@ -135,8 +162,13 @@ SourcePerson new_person = (SourcePerson)request.getAttribute("new_person");
 				</tr>
 				
 				<%
+				} else{
+				%>
+				<input type="hidden" name="salary_no" value="<%=person.getSalaryNo() %>" />		
+				<%
 				}
-				if( !person.getSlib().getSalaryVersion().equals( new_person.getSlib().getSalaryVersion())) {
+				if( person.getSlib().getSalaryVersion() == null &&  new_person.getSlib().getSalaryVersion() != null
+						||!person.getSlib().getSalaryVersion().equals( new_person.getSlib().getSalaryVersion())) {
 				%>
 				<tr>
 	                <div class="input-group input-group-sm">
@@ -151,6 +183,10 @@ SourcePerson new_person = (SourcePerson)request.getAttribute("new_person");
 	                </div>
 				</tr>
 				
+				<%
+				} else{
+				%>
+				<input type="hidden" name="slary_lib" value="<%=person.getSlib().getSalaryVersion() %>" />		
 				<%
 				}
 				if( !person.getSociaty().getSociatyName().equals( new_person.getSociaty().getSociatyName())) {
@@ -169,8 +205,13 @@ SourcePerson new_person = (SourcePerson)request.getAttribute("new_person");
 				</tr>
 				
 				<%
+				} else{
+				%>
+				<input type="hidden" name="sociaty" value="<%=person.getSociaty().getSociatyName() %>" />	
+				<%
 				}
-				if( !person.getFunc().equals( new_person.getFunc())) {
+				if( person.getFunc() == null && new_person.getFunc() != null 
+						||!person.getFunc().equals( new_person.getFunc())) {
 				%>
 				<tr>
 	                <div class="input-group input-group-sm">
@@ -186,8 +227,13 @@ SourcePerson new_person = (SourcePerson)request.getAttribute("new_person");
 				</tr>
 				
 				<%
+				} else{
+				%>
+				<input type="hidden" name="func" value="<%=person.getFunc() %>" />	
+				<%
 				}
-				if( !person.getTitleLv().equals( new_person.getTitleLv())) {
+				if( person.getTitleLv() == null && new_person.getTitleLv() != null 
+						||!person.getTitleLv().equals( new_person.getTitleLv())) {
 				%>
 				<tr>
 	                <div class="input-group input-group-sm">
@@ -203,8 +249,13 @@ SourcePerson new_person = (SourcePerson)request.getAttribute("new_person");
 				</tr>
 				
 				<%
+				} else{
+				%>
+				<input type="hidden" name="title_lv" value="<%=person.getTitleLv() %>" />	
+				<%
 				}
-				if( !person.getEduBg().equals( new_person.getEduBg())) {
+				if(  person.getEduBg() == null && new_person.getEduBg() != null 
+						||!person.getEduBg().equals( new_person.getEduBg())) {
 				%>
 				<tr>
 	                <div class="input-group input-group-sm">
@@ -219,6 +270,10 @@ SourcePerson new_person = (SourcePerson)request.getAttribute("new_person");
 	                </div>
 				</tr>
 				
+				<%
+				} else{
+				%>
+				<input type="hidden" name="edu_bg" value="<%=person.getEduBg() %>" />	
 				<%
 				}
 				if( !person.getPoliticalStatus().equals( new_person.getPoliticalStatus())) {
@@ -237,8 +292,13 @@ SourcePerson new_person = (SourcePerson)request.getAttribute("new_person");
 				</tr>
 				
 				<%
+				} else{
+				%>
+				<input type="hidden" name="political_status" value="<%=person.getPoliticalStatus() %>" />	
+				<%
 				}
-				if( !person.getQuitOfficeType().equals( new_person.getQuitOfficeType())) {
+				if(  person.getQuitOfficeType() == null && new_person.getQuitOfficeType() != null 
+						||!person.getQuitOfficeType().equals( new_person.getQuitOfficeType())) {
 				%>
 				<tr>
 	                <div class="input-group input-group-sm">
@@ -254,8 +314,12 @@ SourcePerson new_person = (SourcePerson)request.getAttribute("new_person");
 				</tr>
 				
 				<%
+				} else{
+				%>
+				<input type="hidden" name="quit_office_type" value="<%=person.getQuitOfficeType() %>" />	
+				<%
 				}
-				if( !person.getConscriptionSituation().equals( new_person.getConscriptionSituation())) {
+				if( !person.getConscriptionSituation().equals( new_person.getConscriptio_situation())) {
 				%>
 				<tr>
 	                <div class="input-group input-group-sm">
@@ -266,13 +330,17 @@ SourcePerson new_person = (SourcePerson)request.getAttribute("new_person");
 	                </div>
 					<td style="10%">→</td>
 	                <div class="input-group input-group-sm">
-	                	<td style="40%"><input name="conscription_situation" type="text" class="form-control" value="<%=new_person.getConscriptionSituation() %>" /></td>
+	                	<td style="40%"><input name="conscription_situation" type="text" class="form-control" value="<%=new_person.getConscriptio_situation() %>" /></td>
 	                </div>
 				</tr>
 				
 				<%
+				} else{
+				%>
+				<input type="hidden" name="conscription_situation" value="<%=person.getConscriptionSituation() %>" />	
+				<%
 				}
-				if( !person.getIsHelpNeeded().equals( new_person.getIsHelpNeeded())) {
+				if( !person.getIsHelpNeeded().equals( Boolean.parseBoolean(new_person.getNeed_help()))) {
 				%>
 				<tr>
 	                <div class="input-group input-group-sm">
@@ -283,10 +351,14 @@ SourcePerson new_person = (SourcePerson)request.getAttribute("new_person");
 	                </div>
 					<td style="10%">→</td>
 	                <div class="input-group input-group-sm">
-	                	<td style="40%"><input name="is_help_needed" type="text" class="form-control" value="<%=new_person.getIsHelpNeeded() %>" /></td>
+	                	<td style="40%"><input name="is_help_needed" type="text" class="form-control" value="<%=new_person.getNeed_help() %>" /></td>
 	                </div>
 				</tr>
 				
+				<%
+				} else{
+				%>
+				<input type="hidden" name="is_help_needed" value="<%=person.getIsHelpNeeded() %>" />	
 				<%
 				}
 				if( person.getLatestSympathyYear()!=null && !person.getLatestSympathyYear().equals( new_person.getLatestSympathyYear())) {
@@ -305,6 +377,10 @@ SourcePerson new_person = (SourcePerson)request.getAttribute("new_person");
 				</tr>
 				
 				<%
+				} else{
+				%>
+				<input type="hidden" name="lastest_sympathy_year" value="<%=person.getLatestSympathyYear() %>" />	
+				<%
 				}
 				if( !person.getTelephoneNum().equals( new_person.getTelephoneNum())) {
 				%>
@@ -321,6 +397,10 @@ SourcePerson new_person = (SourcePerson)request.getAttribute("new_person");
 	                </div>
 				</tr>
 				
+				<%
+				} else{
+				%>
+				<input type="hidden" name="telephone_num" value="<%=person.getTelephoneNum() %>" />	
 				<%
 				}
 				if( !person.getPhysicalSituation().equals( new_person.getPhysicalSituation())) {
@@ -339,6 +419,10 @@ SourcePerson new_person = (SourcePerson)request.getAttribute("new_person");
 				</tr>
 				
 				<%
+				} else{
+				%>
+				<input type="hidden" name="physical_situation" value="<%=person.getPhysicalSituation() %>" />	
+				<%
 				}
 				if( person.getPensionModelNo()!=null && !person.getPensionModelNo().equals( new_person.getPensionModelNo())) {
 				%>
@@ -347,7 +431,7 @@ SourcePerson new_person = (SourcePerson)request.getAttribute("new_person");
 	                	<td style="10%"><input type="text" class="form-control" value="养老模式:" readonly/></td>
 	                </div>
 	                <div class="input-group input-group-sm">
-	                	<td style="40%"><input type="text" class="form-control" value="<%=person.getName() %>" readonly/></td>
+	                	<td style="40%"><input type="text" class="form-control" value="<%=person.getPensionModelNo() %>" readonly/></td>
 	                </div>
 					<td style="10%">→</td>
 	                <div class="input-group input-group-sm">
@@ -356,8 +440,13 @@ SourcePerson new_person = (SourcePerson)request.getAttribute("new_person");
 				</tr>
 				
 				<%
+				} else{
+				%>
+				<input type="hidden" name="pension_model_no" value="<%=person.getPensionModelNo() %>" />	
+				<%
 				}
-				if( person.getStart_job()!=null && !person.getStart_job().equals( new_person.getStart_job())) {
+				if( person.getJobStartTime()==null&&new_person.getStart_job()!=null
+						||!sdf.format(person.getJobStartTime()).equals( new_person.getStart_job())) {
 				%>
 				<tr>
 	                <div class="input-group input-group-sm">
@@ -373,8 +462,13 @@ SourcePerson new_person = (SourcePerson)request.getAttribute("new_person");
 				</tr>
 				
 				<%
+				} else{
+				%>
+				<input type="hidden" name="start_time" value="<%=sdf.format(person.getJobStartTime()) %>" />	
+				<%
 				}
-				if( person.getEnd_job()!=null && !person.getEnd_job().equals( new_person.getEnd_job())) {
+				if( person.getJobEndTime() == null && new_person.getEnd_job()!= null
+						|| !sdf.format(person.getJobEndTime()).equals( new_person.getEnd_job())) {
 				%>
 				<tr>
 	                <div class="input-group input-group-sm">
@@ -389,6 +483,10 @@ SourcePerson new_person = (SourcePerson)request.getAttribute("new_person");
 	                </div>
 				</tr>
 				
+				<%
+				} else{
+				%>
+				<input type="hidden" name="end_time" value="<%=sdf.format(person.getJobEndTime()) %>" />	
 				<%
 				}
 				if( !person.getDept().getDeptName().equals( new_person.getDept().getDeptName())) {
@@ -407,6 +505,10 @@ SourcePerson new_person = (SourcePerson)request.getAttribute("new_person");
 				</tr>
 				
 				<%
+				} else{
+				%>
+				<input type="hidden" name="dept" value="<%=person.getDept().getDeptName() %>" />	
+				<%
 				}
 				if( !person.getLivingSituation().equals( new_person.getLivingSituation())) {
 				%>
@@ -424,6 +526,10 @@ SourcePerson new_person = (SourcePerson)request.getAttribute("new_person");
 				</tr>
 				
 				<%
+				} else{
+				%>
+				<input type="hidden" name="living_situation" value="<%=person.getLivingSituation() %>" />	
+				<%
 				}
 				if( !person.getAddress().equals( new_person.getAddress())) {
 				%>
@@ -439,8 +545,11 @@ SourcePerson new_person = (SourcePerson)request.getAttribute("new_person");
 	                	<td style="40%"><input name="address" type="text" class="form-control" value="<%=new_person.getAddress() %>" /></td>
 	                </div>
 				</tr>
+				<%} else{
+				%>
+				<input type="hidden" name="address" value="<%=person.getAddress() %>" />	
 				<%
-					}
+				}
 				%>
 			</table>
 		    <div>

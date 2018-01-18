@@ -33,7 +33,7 @@ public class SingleAddOperate {
 	@Autowired
 	SalaryLibMapper slib_mapper;
 	
-	public void init() {
+	private void init() {
 		List<Department> depts = dept_mapper.selectByExample(null);
 		depts_map = new HashMap<>();
 		for( Department d:depts) {
@@ -54,7 +54,7 @@ public class SingleAddOperate {
 	}
 
 	public int addAPerson( SourcePerson person) {
-		
+		init();
 		person_mapper.insertSelective( person.format(depts_map, sociaties_map, slib_map));
 		
 		PersonExample personExample = new PersonExample();
@@ -84,4 +84,13 @@ public class SingleAddOperate {
 	
 	@Autowired
 	DepartmentMapper dept_mapper;
+
+	public void updatePersonInfo(SourcePerson new_person) {
+		init();
+		PersonExample example = new PersonExample();
+		Criteria c = example.createCriteria();
+		c.andSysNoEqualTo( new_person.getSysNo());
+		example.or(c);
+		person_mapper.updateByExampleWithBLOBs(new_person.format(depts_map, sociaties_map, slib_map), example);
+	}
 }
