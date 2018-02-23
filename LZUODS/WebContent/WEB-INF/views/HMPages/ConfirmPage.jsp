@@ -28,6 +28,7 @@ String[] sociaties = request.getParameterValues("sociaty");
 String[] nations = request.getParameterValues("nations");
 String[] cs_str = request.getParameterValues("conscription_situation");
 String[] political_str = request.getParameterValues("political_status");
+String physical_str = request.getParameter("physical_situation");
 String[] edu_bg = request.getParameterValues("edu_bg");
 Map<Integer, String> sociaties_map = new HashMap<>();
 List<Sociaty> sociaties_list = (List<Sociaty>) request.getAttribute("sociaties_list");
@@ -112,6 +113,17 @@ for( Sociaty s:sociaties_list) {
 					<%
 					}
 					%>
+				</div>
+				<%
+				}
+				if(physical_str!=null && !physical_str.equals("")) {
+				%>
+				<div class="container-fluid">
+					<strong>选择的在世情况包含：</strong>
+					<input name="physical_situation" type="text"
+						class="form-control"
+						value="<%=physical_str %>"
+						readonly />
 				</div>
 				<%
 				}

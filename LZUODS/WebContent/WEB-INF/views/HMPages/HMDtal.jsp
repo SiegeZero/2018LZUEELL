@@ -96,7 +96,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
                     </div>
                     <th>贫困情况：</th>
 	                    <div class="input-group input-group-sm">
-	                        <td><input name="is_help_needed"  type="text" class="form-control" value="<%=person.getIsHelpNeeded() %>" placeholder="是否贫困" /></td>
+	                        <td><input name="is_help_needed"  type="text" class="form-control" value="<%=person.getIsHelpNeeded()?"是":"否" %>" placeholder="是否贫困" /></td>
 	                    </div>
                     <th>慰问情况：</th>
 	                    <div class="input-group input-group-sm">

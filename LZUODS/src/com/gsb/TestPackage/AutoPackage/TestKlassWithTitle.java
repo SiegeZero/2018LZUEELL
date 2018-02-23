@@ -19,7 +19,7 @@ public class TestKlassWithTitle {
 	
 	@RequestMapping( value="/TestNameOnlyPage")
 	public Model showInfos( Model m) {
-		List<SourcePerson> list =  db_reader.getBasicInfos(null);
+		List<SourcePerson> list =  db_reader.getBasicInfos(null, -1);
 		System.out.println( list.size());
 		m.addAttribute("size", list.size());
 		m.addAttribute("person_list", list);

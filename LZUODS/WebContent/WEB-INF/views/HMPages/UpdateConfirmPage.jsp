@@ -340,14 +340,15 @@ SourcePerson new_person = (SourcePerson)request.getAttribute("new_person");
 				<input type="hidden" name="conscription_situation" value="<%=person.getConscriptionSituation() %>" />	
 				<%
 				}
-				if( !person.getIsHelpNeeded().equals( Boolean.parseBoolean(new_person.getNeed_help()))) {
+				String tmp = person.getIsHelpNeeded()?"是":"否";
+				if( !tmp.equals( new_person.getNeed_help())) {
 				%>
 				<tr>
 	                <div class="input-group input-group-sm">
 	                	<td style="10%"><input type="text" class="form-control" value="是否贫困:" readonly/></td>
 	                </div>
 	                <div class="input-group input-group-sm">
-	                	<td style="40%"><input type="text" class="form-control" value="<%=person.getIsHelpNeeded() %>" readonly/></td>
+	                	<td style="40%"><input type="text" class="form-control" value="<%=tmp %>" readonly/></td>
 	                </div>
 					<td style="10%">→</td>
 	                <div class="input-group input-group-sm">

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -49,6 +50,15 @@ public class HMController {
 	
 	@RequestMapping(value="/HMHome")
 	public ModelAndView home(ModelAndView mv) {
+		List<Map<String, Long>> partyMembersAmount = db_reader.getPartyMembersAmount(-1);
+		long lessthan100 = db_reader.getAllAmountAtRangeToday( 0, 100);
+		int i=0;
+		String[] attrs = new String[] {"党员总人数", "女性党员人数", "男性党员人数"};
+		for( Map<String,Long> tmp:partyMembersAmount) {
+			mv.addObject("party"+i, tmp.get(attrs[i++]));
+		}
+		System.out.println( lessthan100);
+		mv.addObject("lessthan100", lessthan100);
 		return mv;
 	}
 	
@@ -60,7 +70,6 @@ public class HMController {
 		PersonExample example=new PersonExample();
 		Criteria c = example.createCriteria();
 		String name_condition = request.getParameter("name_condition");
-		String func_condition = request.getParameter("func_condition");
 		String title_lv_condition = request.getParameter("title_lv_condition");
 		String age_range = request.getParameter("age_range");
 		String[] nations = request.getParameterValues("nations");
@@ -68,6 +77,15 @@ public class HMController {
 		String[] quit_office_types = request.getParameterValues("quit_office_type");
 		String[] edu_bg = request.getParameterValues("edu_bg");
 		String[] political_status = request.getParameterValues("political_status");
+		
+		String physical_situation = request.getParameter("physical_situation");
+		if( physical_situation!= null && !physical_situation.equals("全部")) {
+			if( physical_situation.equals( "离世")) {
+				c.andPhysicalSituationLike( "%死亡%");
+			} else if( physical_situation.equals( "在世")){
+				c.andPhysicalSituationNotLike( "%死亡%");
+			}
+		}
 		String[] conscription_situation = request.getParameterValues("conscription_situation");
 		if( name_condition != null && !removeUselessHeaderStr(name_condition).equals("") ) {
 			String str = " ";
@@ -85,8 +103,9 @@ public class HMController {
 			}
 			mv.addObject("name_str",name_condition);
 		}
-		
-		if( func_condition != null&& !removeUselessHeaderStr(func_condition).equals("") ) {
+
+		String func_condition = request.getParameter("func_condition");
+		if( func_condition != null && !removeUselessHeaderStr(func_condition).equals("") ) {
 			String str = " ";
 			if( func_condition.contains("\t")) {
 				func_condition = func_condition.replaceAll("\t", " ");
@@ -190,10 +209,9 @@ public class HMController {
 			c.andPoliticalStatusIn(list);
 			mv.addObject("political_status_str",list);
 		}
-		
 		example.or(c);
 		
-		List<SourcePerson> person_list =  db_reader.getBasicInfos(example);
+		List<SourcePerson> person_list =  db_reader.getBasicInfos(example, -1);
 		List<String> nations_list = db_reader.getAllNations();
 		System.out.println( "show nation size:"+nations_list.size());
 		List<Sociaty> sociaties_list = db_reader.getAllSociaties();
@@ -241,10 +259,10 @@ public class HMController {
 	@Autowired
 	SingleAddOperate sao;
 	
+	String base_url = "redirect:/HMM/";
 	@RequestMapping(value="/save_basic_info")
 	public String sava_basic_info( HttpServletRequest request) {
-		int id = 2139;
-		// TODO 数据库插入数据，生成id
+		int id = -1;
 		SourcePerson new_person = new SourcePerson();
 		new_person.setName( request.getParameter("name"));
 		new_person.setGender( request.getParameter("gender"));
@@ -268,11 +286,12 @@ public class HMController {
 		new_person.setNeed_help(request.getParameter("is_help_needed"));
 		new_person.setLivingSituation( request.getParameter("living_situation"));
 		new_person.setAddress( request.getParameter("address"));
-		int temp = sao.addAPerson( new_person);
-		if( temp != -1) {
-			id = temp;
+		id = sao.addAPerson( new_person);
+		String redirect_url = base_url + "Error";
+		if( id != -1) {
+			redirect_url = base_url + "HMDtal?id=" + id;
 		}
-		return "redirect:/HMM/HMDtal?id="+id;
+		return redirect_url;
 	}
 	
 	@RequestMapping(value="/HMAdd")
@@ -351,7 +370,6 @@ public class HMController {
 		new_person.setNation( request.getParameter( "nation"));
 		new_person.setBirth( request.getParameter("birth_date"));
 		new_person.setSalaryNo( request.getParameter( "salary_no"));
-		System.out.println( "request receive:"+request.getParameter( "title_lv"));
 		new_person.setDept( request.getParameter( "dept"));
 		new_person.setSlib( request.getParameter("slary_lib"));
 		new_person.setFunc( request.getParameter( "func"));

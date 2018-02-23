@@ -13,5 +13,28 @@
     <div class="container-fluid">
         <p class="alert alert-info"><strong>主页</strong></p>
     </div>
+    <div class="container-fluid">
+        <p class="alert alert-info"><strong>
+			少于100岁的退休人员人数：<%= request.getAttribute("lessthan100") %>
+		</strong></p>
+    </div>
+    <div class="container-fluid">
+        <p class="alert alert-info"><strong>
+       		 党员总人数：<%= request.getAttribute("party0") %>
+        </strong></p>
+    </div>
+    <div class="container-fluid">
+        <p class="alert alert-info"><strong>
+       		 女性党员总人数：<%= request.getAttribute("party1") %>
+        </strong></p>
+    </div>
+    <div class="container-fluid">
+        <p class="alert alert-info"><strong>
+       		 男性党员总人数：<%= request.getAttribute("party2") %>
+        </strong></p>
+    </div>
+    <div>
+    	
+    </div>
 </body>
 </html>

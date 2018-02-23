@@ -22,8 +22,8 @@ public class StoreNewInfos {
 	@Autowired
 	PersonMapper person_mapper;
 	
-	public boolean storeBasicInfo( SourcePerson record) {
-		person_mapper.insertSelective( record);
-		return true;
-	}
+//	public boolean storeBasicInfo( SourcePerson record) {
+//		person_mapper.insertSelective( record);
+//		return true;
+//	}
 }

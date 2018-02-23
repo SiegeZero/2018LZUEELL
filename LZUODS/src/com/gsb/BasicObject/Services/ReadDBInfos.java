@@ -6,7 +6,9 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -73,41 +75,73 @@ public class ReadDBInfos {
 		return person_mapper.selectAllConscriptionSituation();
 	}
 
-	public List<SourcePerson> getBasicInfos(PersonExample example) {
+	public List<SourcePerson> getBasicInfos(PersonExample example, int isAlive) {
+		if( -1 != isAlive) {
+			if( 1 == isAlive) {
+				for( Criteria c:example.getOredCriteria()) {
+					c.andPhysicalSituationNotLike( "%死亡%");
+				}
+			} else if( 0 == isAlive) {
+				for( Criteria c:example.getOredCriteria()) {
+					c.andPhysicalSituationLike( "%死亡%");
+				}
+			}
+		}
 		return person_mapper.selectAllForShow(example);
+	}
+	
+	public List<SourcePerson> getAliveBasicInfos(PersonExample example) {
+		return getBasicInfos(example, 1);
 	}
 	
 	public SourcePerson getBasicInfosBy( Integer sysNo) {
 		return person_mapper.selectByPrimaryKey(sysNo);
 	}
 
+	
+	
 	@Autowired
 	SociatyMapper sociaty_mapper;
-
-	public List<Long> getAllAmount() {
-
-		long total_person = person_mapper.countByExample(null);
+	
+	public List<Map<String, Long>> getAllAmount( int sociatyNo) {
 
 		PersonExample example = new PersonExample();
-		Criteria c = example.createCriteria();
+		Criteria c = example.or();
+		if( sociatyNo != -1) {
+			c.andSociatyNoEqualTo( sociatyNo);
+			example.or(c);
+		}
+		
+		long total_person = person_mapper.countByExample( example);
 		c.andGenderEqualTo("女");
+		example.clear();
 		example.or(c);
 		long total_female = person_mapper.countByExample(example);
 
-		example = new PersonExample();
-		c = example.createCriteria();
-		c.andGenderEqualTo("男");
-		example.or(c);
-		long total_male = person_mapper.countByExample(example);
-
-		List<Long> results = new ArrayList<Long>();
-		results.add(total_person);
-		results.add(total_female);
-		results.add(total_male);
+//		example = new PersonExample();
+//		c = example.createCriteria();
+//		if( sociatyNo != -1) {
+//			c.andSociatyNoEqualTo( sociatyNo);
+//		}
+//		c.andGenderEqualTo("男");
+//		example.or(c);
+//		long total_male = person_mapper.countByExample(example);
+		long total_male = total_person -  total_female;
+		List<Map<String, Long>> results = new ArrayList<>();
+		Map<String, Long> tmp = new HashMap<>();
+		tmp.put("总人数", total_person);
+		results.add( tmp);
+		tmp = new HashMap<>();
+		tmp.put("女性人数", total_female);
+		results.add( tmp);
+		tmp = new HashMap<>();
+		tmp.put("男性人数", total_male);
+		results.add( tmp);
 		if (debugging) {
 
 			System.out.println("总人数是否等于男性人数+女性人数：" + ((total_person == total_male + total_female) ? "是" : "否"));
-			System.out.println("总人数：" + total_person + "\n女性人数：" + total_female + "，占总人数百分比为："
+			System.out.println("总人数：" + total_person
+					+ "\n女性人数：" + total_female + "，占总人数百分比为："
 					+ df.format(total_female * 100.0 / total_person) + "\n男性人数：" + total_male + "，占总人数百分比为："
 					+ df.format(total_male * 100.0 / total_person));
 
@@ -115,12 +149,18 @@ public class ReadDBInfos {
 		return results;
 	}
 
-	public List<Long> getPartyMembersAmount() {
-		long total_amount = person_mapper.countByExample(null);
+	public List<Map<String, Long>> getPartyMembersAmount( int sociatyNo) {
 		PersonExample example = new PersonExample();
-		Criteria c = example.createCriteria();
+
+		Criteria c = example.or();
+		if( sociatyNo != -1) {
+			c.andSociatyNoEqualTo( sociatyNo);
+			example.or(c);
+		}
+		long total_person = person_mapper.countByExample( example);
 		c.andPoliticalStatusLike("%党%员%");
 		c.andPoliticalStatusNotLike("%非%党%");
+		example.clear();
 		example.or(c);
 		long patier_amount = person_mapper.countByExample(example);
 		// System.out.println( "Like党员总人数："+patier_amount);
@@ -135,119 +175,91 @@ public class ReadDBInfos {
 		// c.andPoliticalStatusEqualTo("党员");
 		// example.or(c);
 		// patier_amount = person_mapper.countByExample(example);
-		System.out.println("党员总人数：" + patier_amount + "，占总人数百分比为：" + df.format(patier_amount * 100.0 / total_amount));
 		c.andGenderEqualTo("男");
+		example.clear();
 		example.or(c);
 		long male_patier = person_mapper.countByExample(example);
 		long female_patier = patier_amount - male_patier;
-		System.out.println("男性党员人数：" + male_patier + "，占党员人数百分比为：" + df.format(male_patier * 100.0 / patier_amount));
-		System.out
-				.println("女性党员人数：" + female_patier + "，占党员人数百分比为：" + df.format(female_patier * 100.0 / patier_amount));
-		return null;
-	}
-
-	public List<Long> getAgeRangeAmount() {
-		Date current = cal.getTime();
-		cal.add(Calendar.YEAR, -50);
-		cal.add(Calendar.YEAR, -10);
-		Date sixty = cal.getTime();
-		cal.add(Calendar.DATE, 1);
-		Date near_sixty = cal.getTime();
-		cal.add(Calendar.DATE, -1);
-		cal.add(Calendar.YEAR, -10);
-		Date seventy = cal.getTime();
-		cal.add(Calendar.DATE, 1);
-		Date near_seventy = cal.getTime();
-		cal.add(Calendar.DATE, -1);
-		cal.add(Calendar.YEAR, -10);
-		Date eighty = cal.getTime();
-		cal.add(Calendar.DATE, 1);
-		Date near_eighty = cal.getTime();
-		cal.add(Calendar.DATE, -1);
-		cal.add(Calendar.YEAR, -10);
-		Date ninty = cal.getTime();
-		cal.add(Calendar.DATE, 1);
-		Date near_ninty = cal.getTime();
-		cal.add(Calendar.DATE, -1);
-		cal.add(Calendar.YEAR, -10);
-		Date hundred = cal.getTime();
-		cal.add(Calendar.DATE, 1);
-		Date near_hundred = cal.getTime();
-
-		PersonExample example = new PersonExample();
-		Criteria c = example.createCriteria();
-		c.andBirthTimeBetween(near_sixty, current);
-		example.or(c);
-		long fifty2sixty = person_mapper.countByExample(example);
-		System.out.println("不到六十岁人数：" + fifty2sixty);
-		example = new PersonExample();
-		c = example.createCriteria();
-		c.andBirthTimeBetween(near_seventy, sixty);
-		example.or(c);
-		long sixty2seventy = person_mapper.countByExample(example);
-		System.out.println("六十到七十岁人数：" + sixty2seventy);
-
-		example = new PersonExample();
-		c = example.createCriteria();
-		c.andBirthTimeBetween(near_eighty, seventy);
-		example.or(c);
-		long seventy2eighty = person_mapper.countByExample(example);
-		System.out.println("七十到八十岁人数：" + seventy2eighty);
-
-		example = new PersonExample();
-		c = example.createCriteria();
-		c.andBirthTimeBetween(near_ninty, eighty);
-		example.or(c);
-		long eighty2ninty = person_mapper.countByExample(example);
-		System.out.println("八十到九十岁人数：" + eighty2ninty);
-
-		example = new PersonExample();
-		c = example.createCriteria();
-		c.andBirthTimeBetween(near_hundred, ninty);
-		example.or(c);
-		long ninty2ahun = person_mapper.countByExample(example);
-		System.out.println("九十到一百岁人数：" + ninty2ahun);
-
-		example = new PersonExample();
-		c = example.createCriteria();
-		c.andBirthTimeLessThanOrEqualTo(hundred);
-		example.or(c);
-		List<SourcePerson> pgreaterthan100 = person_mapper.selectByExample(example);
-		for (Person p : pgreaterthan100) {
-			System.out.println(sdf.format(p.getBirthTime()));
+		
+		List<Map<String, Long>> results = new ArrayList<>();
+		Map<String, Long> tmp = new HashMap<>();
+		tmp.put("党员总人数", patier_amount);
+		results.add( tmp);
+		tmp = new HashMap<>();
+		tmp.put("女性党员人数", female_patier);
+		results.add( tmp);
+		tmp = new HashMap<>();
+		tmp.put("男性党员人数", male_patier);
+		results.add( tmp);
+		if( debugging) {
+			System.out.println("党员总人数：" + patier_amount + "，占总人数百分比为：" + df.format(patier_amount * 100.0 / total_person));
+			System.out.println("男性党员人数：" + male_patier + "，占党员人数百分比为：" + df.format(male_patier * 100.0 / patier_amount));
+			System.out.println("女性党员人数：" + female_patier + "，占党员人数百分比为：" + df.format(female_patier * 100.0 / patier_amount));
 		}
-		long hun = person_mapper.countByExample(example);
-		System.out.println("一百岁以上人数：" + hun);
-		System.out.println(
-				"已登记出生日期总人数：" + (fifty2sixty + sixty2seventy + seventy2eighty + eighty2ninty + ninty2ahun + hun));
-
-		List<Long> results = new ArrayList<>();
-		results.add(fifty2sixty);
-		results.add(sixty2seventy);
-		results.add(seventy2eighty);
-		results.add(eighty2ninty);
-		results.add(ninty2ahun);
-		results.add(hun);
 		return results;
 	}
+
+	private PersonExample getAgeExample( int sociatyNo, int left_bound, int right_bound, Calendar reference) {
+		PersonExample example = new PersonExample();
+		Criteria c = example.or();
+		if( sociatyNo != -1) {
+			c.andSociatyNoEqualTo( sociatyNo);
+		}
+		int during = right_bound - left_bound;
+		if( reference == null) {
+			reference = Calendar.getInstance();
+		}
+		reference.add( Calendar.YEAR, -left_bound);
+		Date right_param = reference.getTime();
+		
+		reference.add( Calendar.YEAR, -during);
+		reference.add(Calendar.DATE, 1);
+		Date left_param = reference.getTime();
+		c.andPhysicalSituationNotLike("%死亡%");
+		c.andBirthTimeBetween( left_param, right_param);
+		return example;
+	}
 	
-	public List<SourcePerson> getPersonListAtAge( int smaller_bound, int bigger_bound, Date today) {
+	public long getAmountAtRange(int sociatyNo, int left_bound, int right_bound, Calendar reference) {
+		long amount = person_mapper.countByExample(getAgeExample( sociatyNo, left_bound, right_bound, reference));
+		System.out.println( );
+		return amount;
+	}
+/**
+ * 	public void getAgeRangeAmountTest() {
+		System.out.println("0-60: " + getAmountAtRange(-1,0,60,null));
+		System.out.println("60-70: " + getAmountAtRange(-1,60,70,null));
+		System.out.println("70-80: " + getAmountAtRange(-1,70,80,null));
+		System.out.println("80-90: " +  getAmountAtRange(-1,80,90,null));
+		System.out.println("90-100: " +  getAmountAtRange(-1,90,100,null));
+		System.out.println( "100-120: " + getAmountAtRange(-1,100,120,null));
+		System.out.println( "70-90: " + getAmountAtRange(-1,70,90,null));
+		System.out.println( "0-120: " + getAmountAtRange(2,0,120,null));
+		System.out.println("end of Testing >>>>>>>>>>>>>>>>>>>>>");
+	}
+	
+	public void testOr() {
+
 		PersonExample example = new PersonExample();
 		Criteria c = example.createCriteria();
-		cal = Calendar.getInstance();
-		cal.setTime( today);
-		cal.add( Calendar.YEAR, -smaller_bound);
-		Date smaller = cal.getTime();
-		cal.add( Calendar.YEAR, -bigger_bound);
-		cal.add( Calendar.DATE, 1);
-		Date near_bigger = cal.getTime();
-		c.andBirthTimeBetween( near_bigger, smaller);
-		return person_mapper.selectAllForShow(example );
+		c.andGenderEqualTo("男");
+		c.andGenderEqualTo("女");
+		example.or(c);
+		long tmp = person_mapper.countByExample(example);
+		System.out.println( "first:"+tmp);
+		c = example.or();
+		c.andGenderEqualTo("女");
+		tmp = person_mapper.countByExample(example);
+		System.out.println( "second:"+tmp);
+		c = example.or();
+		c.andGenderEqualTo("男");
+		tmp = person_mapper.countByExample(example);
+		System.out.println( "third:"+tmp);
 	}
-
+	
 	public List<Long> getAmountEachSociaty() {
 		long total_person = person_mapper.countByExample(null);
-		List results = new ArrayList<Long>();
+		List values = new ArrayList<Long>();
 		List<Sociaty> selectByExample = sociaty_mapper.selectByExample(null);
 		PersonExample example = null;
 		Criteria c = null;
@@ -261,21 +273,47 @@ public class ReadDBInfos {
 			example.or(c);
 			long male_amount = person_mapper.countByExample(example);
 			long female_amount = amount - male_amount;
-			results.add(amount);
-			System.out.println(
-					s.getSociatyName() + "共有：" + amount + "人，占总人数百分比为：" + df.format(amount * 100.0 / total_person));
-			System.out.println("--分会男性人数：" + male_amount + "，占分会总人数百分比为：" + df.format(male_amount * 100.0 / amount));
-			System.out
-					.println("--分会女性人数：" + female_amount + "，占分会总人数百分比为：" + df.format(female_amount * 100.0 / amount));
-		}
+			values.add(amount);
+			values.add(male_amount);
+			values.add(female_amount);
+			if( debugging) {
+				System.out.println(
+						s.getSociatyName() + "共有：" + amount + "人，占总人数百分比为：" + df.format(amount * 100.0 / total_person));
+				System.out.println("--分会男性人数：" + male_amount + "，占分会总人数百分比为：" + df.format(male_amount * 100.0 / amount));
+				System.out
+						.println("--分会女性人数：" + female_amount + "，占分会总人数百分比为：" + df.format(female_amount * 100.0 / amount));
+			}
 
-		return results;
+		}
+		
+		return values;
+	}
+ */
+	
+	public long getAllAmountAtRange(int left_bound, int right_bound, Calendar reference ) {
+		return getAmountAtRange( -1, left_bound, right_bound, reference);
+	}
+	public long getAllAmountAtRangeToday(int left_bound, int right_bound ) {
+		return getAllAmountAtRange( left_bound, right_bound, null);
+	}
+	
+	public long getSociatyAmountAtRangeToday(int sociatyNo, int left_bound, int right_bound ) {
+		return getAmountAtRange( sociatyNo, left_bound, right_bound, null);
+	}
+	
+	public List<SourcePerson> getAllPersonListAtAge( int left_bound, int right_bound, Calendar reference) {
+		return this.getBasicInfos( getAgeExample( -1, left_bound, right_bound, reference), 1);
+	}
+	public List<SourcePerson> getAllPersonListAtAgeToday( int left_bound, int right_bound) {
+		return this.getBasicInfos( getAgeExample( -1, left_bound, right_bound, null), 1);
 	}
 
-	public List<Long> getLastYearAmount(int year) throws ParseException {
+	
+
+	public List<Long> getQuitDepartmentAmountAt(int year) throws ParseException {
 
 		PersonExample example = new PersonExample();
-		Criteria c = example.createCriteria();
+		Criteria c = example.or();
 		cal = Calendar.getInstance();
 		cal.set(Calendar.YEAR, year);
 		cal.setTime(sdf.parse(String.valueOf(year) + "0101"));
@@ -284,29 +322,51 @@ public class ReadDBInfos {
 		Date older = cal.getTime();
 		c.andQuitOfficeTypeLike("%退%");
 		c.andJobEndTimeBetween(newer, older);
-		example.or(c);
 		long total_amount = person_mapper.countByExample(example);
+		example.clear();
+		
 		c.andGenderEqualTo("男");
 		example.or(c);
 		long male_amount = person_mapper.countByExample(example);
+		example.clear();
+		
 		long female_amount = total_amount - male_amount;
-		System.out.println(year+"年退休总人数："+total_amount);
-		System.out.println(year+"年退休男性人数："+male_amount);
-		System.out.println(year+"年退休女性人数："+female_amount);
+		
+		List<Map<String, Long>> results = new ArrayList<>();
+		Map<String, Long> tmp = new HashMap<>();
+		tmp.put("退休总人数", total_amount);
+		results.add( tmp);
+		tmp = new HashMap<>();
+		tmp.put("退休男性人数", male_amount);
+		results.add( tmp);
+		tmp = new HashMap<>();
+		tmp.put("退休女性人数", female_amount);
+		results.add( tmp);
+		
+		if( debugging) {
+			System.out.println( year + "年退休总人数：" + total_amount);
+			System.out.println( year + "年退休男性人数：" + male_amount);
+			System.out.println( year + "年退休女性人数：" + female_amount);
+		}
+		
+		
 		return null;
 	}
 
-	public List<Long> getAverageAge(boolean exact) throws ParseException {
+	public Map<List<String>, List<String>> getAverageAge( int sociatyNo,int year, boolean exact) throws ParseException {
 		Calendar birth = Calendar.getInstance();
 		cal = Calendar.getInstance();
 		if (!exact) {
-			cal.setTime(sdf.parse("20180100"));
+			cal.setTime(sdf.parse("" + year + "0100"));
 		}
 		PersonExample example = new PersonExample();
-		Criteria c = example.createCriteria();
+		Criteria c = example.or();
 		c.andGenderEqualTo("男");
-		example.or(c);
+		if( sociatyNo != -1) {
+			c.andSociatyNoEqualTo( sociatyNo);
+		}
 		List<SourcePerson> male = person_mapper.selectByExample(example);
+		example.clear();
 		long male_age = 0;
 		for (Person p : male) {
 			Date birthday = p.getBirthTime();
@@ -318,10 +378,11 @@ public class ReadDBInfos {
 			}
 			male_age += age;
 		}
-		example = new PersonExample();
-		c = example.createCriteria();
+		c = example.or();
 		c.andGenderEqualTo("女");
-		example.or(c);
+		if( sociatyNo != -1) {
+			c.andSociatyNoEqualTo( sociatyNo);
+		}
 		List<SourcePerson> female = person_mapper.selectByExample(example);
 		long female_age = 0;
 		for (Person p : female) {
@@ -334,13 +395,25 @@ public class ReadDBInfos {
 			}
 			female_age += age;
 		}
-		// System.out.println( "男性年龄和：" + male_age);
-		// System.out.println( "女性年龄和：" + female_age);
-		// System.out.println("总年龄和："+(male_age + female_age));
-		System.out.println("男性平均年龄：" + df.format(male_age * 1.0 / male.size()));
-		System.out.println("女性平均年龄：" + df.format(female_age * 1.0 / female.size()));
-		System.out.println("平均年龄：" + df.format((female_age + male_age) * 1.0 / (male.size() + female.size())));
-		return null;
+		if( debugging) {
+			 System.out.println( "男性年龄和：" + male_age);
+			 System.out.println( "女性年龄和：" + female_age);
+			 System.out.println("总年龄和："+(male_age + female_age));
+			System.out.println("男性平均年龄：" + df.format(male_age * 1.0 / male.size()));
+			System.out.println("女性平均年龄：" + df.format(female_age * 1.0 / female.size()));
+			System.out.println("平均年龄：" + df.format((female_age + male_age) * 1.0 / (male.size() + female.size())));
+		}
+		Map<List<String>, List<String>> results = new HashMap<>();
+		List<String> attrs = new ArrayList<>();
+		List<String> values = new ArrayList<>();
+		attrs.add("平均年龄");
+		values.add(df.format((female_age + male_age) * 1.0 / (male.size() + female.size())));
+		attrs.add("男性平均年龄");
+		values.add(df.format(male_age * 1.0 / male.size()));
+		attrs.add("女性平均年龄");
+		values.add(df.format(female_age * 1.0 / female.size()));
+		results.put( attrs, values);
+		return results;
 	}
 
 	public List<Long> getRecentBirthday(List<String> names) throws ParseException {
@@ -370,24 +443,7 @@ public class ReadDBInfos {
 		return slib_mapper.selectByExample(null);
 	}
 	
-	public void testOr() {
-
-		PersonExample example = new PersonExample();
-		Criteria c = example.createCriteria();
-		c.andGenderEqualTo("男");
-		c.andGenderEqualTo("女");
-		example.or(c);
-		long tmp = person_mapper.countByExample(example);
-		System.out.println( "first:"+tmp);
-		c = example.or();
-		c.andGenderEqualTo("女");
-		tmp = person_mapper.countByExample(example);
-		System.out.println( "second:"+tmp);
-		c = example.or();
-		c.andGenderEqualTo("男");
-		tmp = person_mapper.countByExample(example);
-		System.out.println( "third:"+tmp);
-	}
+	
 
 	public List<String> getAllPoliticalStatus() {
 		return person_mapper.selectAllPoliticalStatus();

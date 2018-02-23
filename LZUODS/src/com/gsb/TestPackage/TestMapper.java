@@ -97,21 +97,27 @@ public class TestMapper{
 	
 	@Test
 	public void  printContent() throws ParseException {
-		info_reader.getAllAmount();
-		info_reader.getAmountEachSociaty();
-		info_reader.getPartyMembersAmount();
-		info_reader.getAgeRangeAmount();
-		info_reader.getLastYearAmount(2017);
-		System.out.println("精确到今天:");
-		info_reader.getAverageAge( true);
-		System.out.println("精确到17年最后一天:");
-		info_reader.getAverageAge( false);
+//		info_reader.getAllAmount( 2);
+//		info_reader.getAgeRangeAmountTest();
+//		info_reader.getAmountEachSociaty();
+		long a = info_reader.getAllAmountAtRangeToday(0, 100);
+		System.out.println( a);
+//		info_reader.getPartyMembersAmount( 2);
+//		info_reader.getLastYearAmount(2016);
+//		info_reader.getLastYearAmount(2017);
+//		info_reader.getLastYearAmount(2018);
+//		System.out.println("精确到今天:");
+//		info_reader.getAverageAge( -1, true);
+//		System.out.println("精确到16年最后一天:");
+//		info_reader.getAverageAge( 2016, false);
+//		System.out.println("精确到17年最后一天:");
+//		info_reader.getAverageAge( 2017, false);
 //		info_reader.getRecentBirthday( null);
 	}
 	
 	@Autowired
 	StoreNewInfos sni;
-	
+											
 	@Test
 	public void printWithString() {
 
@@ -152,7 +158,7 @@ public class TestMapper{
 	
 	@Test
 	public void testNullPrint() {
-		info_reader.testOr();
+//		info_reader.testOr();
 //		List<String> list = new ArrayList<>();
 //		list.add(null);
 //		List<String> list2 = new ArrayList<>();
