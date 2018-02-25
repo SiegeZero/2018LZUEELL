@@ -15,12 +15,12 @@ import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.gsb.BasicObject.MBG.Department;
-import com.gsb.BasicObject.MBG.Sociaty;
-import com.gsb.BasicObject.MBG.SourcePerson;
 import com.gsb.BasicObject.MBGDAO.DepartmentMapper;
 import com.gsb.BasicObject.MBGDAO.PersonMapper;
 import com.gsb.BasicObject.MBGDAO.SociatyMapper;
+import com.gsb.BasicObject.MBGPOJO.Department;
+import com.gsb.BasicObject.MBGPOJO.Sociaty;
+import com.gsb.BasicObject.MBGPOJO.SourcePerson;
 import com.gsb.BasicObject.Services.ReadDBInfos;
 import com.gsb.BasicObject.Services.StoreFileInfos;
 import com.gsb.BasicObject.Services.StoreNewInfos;
@@ -100,8 +100,7 @@ public class TestMapper{
 //		info_reader.getAllAmount( 2);
 //		info_reader.getAgeRangeAmountTest();
 //		info_reader.getAmountEachSociaty();
-		long a = info_reader.getAllAmountAtRangeToday(0, 100);
-		System.out.println( a);
+//		long a = info_reader.getAllAmountAtRangeToday(0, 100);
 //		info_reader.getPartyMembersAmount( 2);
 //		info_reader.getLastYearAmount(2016);
 //		info_reader.getLastYearAmount(2017);

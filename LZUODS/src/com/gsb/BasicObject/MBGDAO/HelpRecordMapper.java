@@ -1,9 +1,10 @@
 package com.gsb.BasicObject.MBGDAO;
 
-import com.gsb.BasicObject.MBG.HelpRecord;
-import com.gsb.BasicObject.MBG.HelpRecordExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import com.gsb.BasicObject.MBGPOJO.HelpRecord;
+import com.gsb.BasicObject.MBGPOJO.HelpRecordExample;
 
 public interface HelpRecordMapper {
     long countByExample(HelpRecordExample example);

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gsb.BasicObject.MBGDAO.JobExpMapper">
-  <resultMap id="BaseResultMap" type="com.gsb.BasicObject.MBG.JobExp">
+  <resultMap id="BaseResultMap" type="com.gsb.BasicObject.MBGPOJO.JobExp">
     <result column="sys_no" jdbcType="INTEGER" property="sysNo" />
     <result column="job_start_time" jdbcType="DATE" property="jobStartTime" />
     <result column="job_end_time" jdbcType="DATE" property="jobEndTime" />

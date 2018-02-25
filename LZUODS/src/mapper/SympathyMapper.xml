@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gsb.BasicObject.MBGDAO.SympathyMapper">
-  <resultMap id="BaseResultMap" type="com.gsb.BasicObject.MBG.Sympathy">
+  <resultMap id="BaseResultMap" type="com.gsb.BasicObject.MBGPOJO.Sympathy">
     <result column="sys_no" jdbcType="INTEGER" property="sysNo" />
     <result column="acitivity_no" jdbcType="INTEGER" property="acitivityNo" />
     <result column="sympathy_time" jdbcType="DATE" property="sympathyTime" />

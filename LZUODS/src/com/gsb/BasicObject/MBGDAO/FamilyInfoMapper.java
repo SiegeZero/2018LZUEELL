@@ -1,9 +1,10 @@
 package com.gsb.BasicObject.MBGDAO;
 
-import com.gsb.BasicObject.MBG.FamilyInfo;
-import com.gsb.BasicObject.MBG.FamilyInfoExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import com.gsb.BasicObject.MBGPOJO.FamilyInfo;
+import com.gsb.BasicObject.MBGPOJO.FamilyInfoExample;
 
 public interface FamilyInfoMapper {
     long countByExample(FamilyInfoExample example);

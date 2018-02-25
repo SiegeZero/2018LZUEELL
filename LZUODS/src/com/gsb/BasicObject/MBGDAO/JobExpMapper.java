@@ -1,9 +1,10 @@
 package com.gsb.BasicObject.MBGDAO;
 
-import com.gsb.BasicObject.MBG.JobExp;
-import com.gsb.BasicObject.MBG.JobExpExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import com.gsb.BasicObject.MBGPOJO.JobExp;
+import com.gsb.BasicObject.MBGPOJO.JobExpExample;
 
 public interface JobExpMapper {
     long countByExample(JobExpExample example);

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gsb.BasicObject.MBGDAO.HelpRecordMapper">
-  <resultMap id="BaseResultMap" type="com.gsb.BasicObject.MBG.HelpRecord">
+  <resultMap id="BaseResultMap" type="com.gsb.BasicObject.MBGPOJO.HelpRecord">
     <result column="sys_no" jdbcType="INTEGER" property="sysNo" />
     <result column="help_time" jdbcType="DATE" property="helpTime" />
   </resultMap>

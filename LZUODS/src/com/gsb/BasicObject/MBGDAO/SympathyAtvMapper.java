@@ -1,9 +1,10 @@
 package com.gsb.BasicObject.MBGDAO;
 
-import com.gsb.BasicObject.MBG.SympathyAtv;
-import com.gsb.BasicObject.MBG.SympathyAtvExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import com.gsb.BasicObject.MBGPOJO.SympathyAtv;
+import com.gsb.BasicObject.MBGPOJO.SympathyAtvExample;
 
 public interface SympathyAtvMapper {
     long countByExample(SympathyAtvExample example);

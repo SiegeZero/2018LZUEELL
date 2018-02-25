@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gsb.BasicObject.MBGDAO.PersonMapper">
-	<resultMap id="BaseResultMap" type="com.gsb.BasicObject.MBG.Person">
+	<resultMap id="BaseResultMap" type="com.gsb.BasicObject.MBGPOJO.Person">
 		<id column="sys_no" jdbcType="INTEGER" property="sysNo" />
 		<result column="name" jdbcType="VARCHAR" property="name" />
 		<result column="gender" jdbcType="CHAR" property="gender" />
@@ -30,23 +30,23 @@
 		<result column="is_help_needed" jdbcType="BIT" property="isHelpNeeded" />
 	</resultMap>
 	<resultMap extends="BaseResultMap" id="ResultMapWithBLOBs"
-		type="com.gsb.BasicObject.MBG.PersonWithBLOBs">
+		type="com.gsb.BasicObject.MBGPOJO.PersonWithBLOBs">
 		<result column="address" jdbcType="LONGVARCHAR" property="address" />
 		<result column="living_situation" jdbcType="LONGVARCHAR"
 			property="livingSituation" />
 	</resultMap>
 
 	<resultMap extends="BaseResultMap" id="ResultMapForShow"
-		type="com.gsb.BasicObject.MBG.SourcePerson">
+		type="com.gsb.BasicObject.MBGPOJO.SourcePerson">
 		<result column="address" jdbcType="LONGVARCHAR" property="address" />
 		<result column="living_situation" jdbcType="LONGVARCHAR"
 			property="livingSituation" />
 		<association property="dept" column="dept_no"
-			javaType="com.gsb.BasicObject.MBG.Department" select="selectDeptWithId" />
+			javaType="com.gsb.BasicObject.MBGPOJO.Department" select="selectDeptWithId" />
 		<association property="sociaty" column="sociaty_no"
-			javaType="com.gsb.BasicObject.MBG.Sociaty" select="selectSociatyWithId" />
+			javaType="com.gsb.BasicObject.MBGPOJO.Sociaty" select="selectSociatyWithId" />
 		<association property="slib" column="salary_lib_no"
-			javaType="com.gsb.BasicObject.MBG.SalaryLib" select="selectSLibWithId" />
+			javaType="com.gsb.BasicObject.MBGPOJO.SalaryLib" select="selectSLibWithId" />
 	</resultMap>
 	
 	<sql id="Example_Where_Clause">
@@ -130,7 +130,7 @@
 	<sql id="Blob_Column_List">
 		address, living_situation
 	</sql>
-	<select id="selectByExampleWithBLOBs" parameterType="com.gsb.BasicObject.MBG.PersonExample"
+	<select id="selectByExampleWithBLOBs" parameterType="com.gsb.BasicObject.MBGPOJO.PersonExample"
 		resultMap="ResultMapWithBLOBs">
 		select
 		<if test="distinct">
@@ -147,7 +147,7 @@
 			order by ${orderByClause}
 		</if>
 	</select>
-	<select id="selectByExample" parameterType="com.gsb.BasicObject.MBG.PersonExample"
+	<select id="selectByExample" parameterType="com.gsb.BasicObject.MBGPOJO.PersonExample"
 		resultMap="BaseResultMap">
 		select
 		<if test="distinct">
@@ -171,7 +171,7 @@
 		from basic_info_table
 		where sys_no = #{sysNo,jdbcType=INTEGER}
 	</select>
-	<select id="selectAllForShow" parameterType="com.gsb.BasicObject.MBG.PersonExample" 
+	<select id="selectAllForShow" parameterType="com.gsb.BasicObject.MBGPOJO.PersonExample" 
 		resultMap="ResultMapForShow">
 		select
 		<if test="distinct">
@@ -221,15 +221,15 @@
 		from
 		basic_info_table
 	</select>
-	<select id="selectDeptWithId" resultType="com.gsb.BasicObject.MBG.Department">
+	<select id="selectDeptWithId" resultType="com.gsb.BasicObject.MBGPOJO.Department">
 		select * from dept_table where dept_no=#{dept_no}
 	</select>
 	
-	<select id="selectSociatyWithId" resultType="com.gsb.BasicObject.MBG.Sociaty">
+	<select id="selectSociatyWithId" resultType="com.gsb.BasicObject.MBGPOJO.Sociaty">
 		select * from sociaty_table where sociaty_no=#{sociaty_no}
 	</select>
 	
-	<select id="selectSLibWithId" resultType="com.gsb.BasicObject.MBG.SalaryLib">
+	<select id="selectSLibWithId" resultType="com.gsb.BasicObject.MBGPOJO.SalaryLib">
 		select * from salary_lib_table where salary_lib_no=#{salary_lib_no}
 	</select>
 	
@@ -238,13 +238,13 @@
 		basic_info_table
 		where sys_no = #{sysNo,jdbcType=INTEGER}
 	</delete>
-	<delete id="deleteByExample" parameterType="com.gsb.BasicObject.MBG.PersonExample">
+	<delete id="deleteByExample" parameterType="com.gsb.BasicObject.MBGPOJO.PersonExample">
 		delete from basic_info_table
 		<if test="_parameter != null">
 			<include refid="Example_Where_Clause" />
 		</if>
 	</delete>
-	<insert id="insert" parameterType="com.gsb.BasicObject.MBG.PersonWithBLOBs">
+	<insert id="insert" parameterType="com.gsb.BasicObject.MBGPOJO.PersonWithBLOBs">
 		insert into basic_info_table
 		(sys_no, name, gender,
 		native_place, nation, salary_no,
@@ -280,7 +280,7 @@
 		#{isHelpNeeded,jdbcType=BIT}, #{address,jdbcType=LONGVARCHAR},
 		#{livingSituation,jdbcType=LONGVARCHAR})
 	</insert>
-	<insert id="insertSelective" parameterType="com.gsb.BasicObject.MBG.PersonWithBLOBs">
+	<insert id="insertSelective" parameterType="com.gsb.BasicObject.MBGPOJO.PersonWithBLOBs">
 		insert into basic_info_table
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="sysNo != null">
@@ -437,7 +437,7 @@
 			</if>
 		</trim>
 	</insert>
-	<select id="countByExample" parameterType="com.gsb.BasicObject.MBG.PersonExample"
+	<select id="countByExample" parameterType="com.gsb.BasicObject.MBGPOJO.PersonExample"
 		resultType="java.lang.Long">
 		select count(*) from basic_info_table
 		<if test="_parameter != null">
@@ -638,7 +638,7 @@
 			<include refid="Update_By_Example_Where_Clause" />
 		</if>
 	</update>
-	<update id="updateByPrimaryKeySelective" parameterType="com.gsb.BasicObject.MBG.PersonWithBLOBs">
+	<update id="updateByPrimaryKeySelective" parameterType="com.gsb.BasicObject.MBGPOJO.PersonWithBLOBs">
 		update basic_info_table
 		<set>
 			<if test="name != null">
@@ -720,7 +720,7 @@
 		</set>
 		where sys_no = #{sysNo,jdbcType=INTEGER}
 	</update>
-	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.gsb.BasicObject.MBG.PersonWithBLOBs">
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.gsb.BasicObject.MBGPOJO.PersonWithBLOBs">
 		update
 		basic_info_table
 		set name = #{name,jdbcType=VARCHAR},
@@ -767,7 +767,7 @@
 		where sys_no =
 		#{sysNo,jdbcType=INTEGER}
 	</update>
-	<update id="updateByPrimaryKey" parameterType="com.gsb.BasicObject.MBG.Person">
+	<update id="updateByPrimaryKey" parameterType="com.gsb.BasicObject.MBGPOJO.Person">
 		update
 		basic_info_table
 		set name = #{name,jdbcType=VARCHAR},

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gsb.BasicObject.MBGDAO.RewardRecordMapper">
-  <resultMap id="BaseResultMap" type="com.gsb.BasicObject.MBG.RewardRecord">
+  <resultMap id="BaseResultMap" type="com.gsb.BasicObject.MBGPOJO.RewardRecord">
     <result column="atv_no" jdbcType="INTEGER" property="atvNo" />
     <result column="owner" jdbcType="VARCHAR" property="owner" />
   </resultMap>

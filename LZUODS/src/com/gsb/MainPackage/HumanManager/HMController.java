@@ -15,12 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import com.gsb.BasicObject.MBG.PersonExample;
-import com.gsb.BasicObject.MBG.PersonExample.Criteria;
-import com.gsb.BasicObject.MBG.SalaryLib;
-import com.gsb.BasicObject.MBG.Sociaty;
-import com.gsb.BasicObject.MBG.SourcePerson;
+
 import com.gsb.BasicObject.MBGDAO.DepartmentMapper;
+import com.gsb.BasicObject.MBGPOJO.PersonExample;
+import com.gsb.BasicObject.MBGPOJO.SalaryLib;
+import com.gsb.BasicObject.MBGPOJO.Sociaty;
+import com.gsb.BasicObject.MBGPOJO.SourcePerson;
+import com.gsb.BasicObject.MBGPOJO.PersonExample.Criteria;
 import com.gsb.BasicObject.Services.ReadDBInfos;
 import com.gsb.BasicObject.Services.SingleAddOperate;
 
@@ -53,9 +54,17 @@ public class HMController {
 		List<Map<String, Long>> partyMembersAmount = db_reader.getPartyMembersAmount(-1);
 		long lessthan100 = db_reader.getAllAmountAtRangeToday( 0, 100);
 		int i=0;
-		String[] attrs = new String[] {"党员总人数", "女性党员人数", "男性党员人数"};
+		String[] party_attrs = new String[] {"党员总人数", "女性党员人数", "男性党员人数"};
+		mv.addObject("party_attrs", party_attrs);
 		for( Map<String,Long> tmp:partyMembersAmount) {
-			mv.addObject("party"+i, tmp.get(attrs[i++]));
+			mv.addObject(party_attrs[i], tmp.get(party_attrs[i++]));
+		}
+		i=0;
+		List<Map<String, Long>> allAmount = db_reader.getAllAmount( -1);
+		String[] allamount_attrs = new String[] {"总人数", "女性人数", "男性人数"};
+		mv.addObject("allamount_attrs", allamount_attrs);
+		for( Map<String,Long> tmp:allAmount) {
+			mv.addObject(allamount_attrs[i], tmp.get(allamount_attrs[i++]));
 		}
 		System.out.println( lessthan100);
 		mv.addObject("lessthan100", lessthan100);

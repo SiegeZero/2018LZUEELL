@@ -1,15 +1,15 @@
 package com.gsb.BasicObject.MBGDAO;
 
-import com.gsb.BasicObject.MBG.Department;
-import com.gsb.BasicObject.MBG.Person;
-import com.gsb.BasicObject.MBG.PersonExample;
-import com.gsb.BasicObject.MBG.PersonWithBLOBs;
-import com.gsb.BasicObject.MBG.SalaryLib;
-import com.gsb.BasicObject.MBG.Sociaty;
-import com.gsb.BasicObject.MBG.SourcePerson;
-
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import com.gsb.BasicObject.MBGPOJO.Department;
+import com.gsb.BasicObject.MBGPOJO.Person;
+import com.gsb.BasicObject.MBGPOJO.PersonExample;
+import com.gsb.BasicObject.MBGPOJO.PersonWithBLOBs;
+import com.gsb.BasicObject.MBGPOJO.SalaryLib;
+import com.gsb.BasicObject.MBGPOJO.Sociaty;
+import com.gsb.BasicObject.MBGPOJO.SourcePerson;
 
 public interface PersonMapper {
     long countByExample(PersonExample example);
