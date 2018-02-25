@@ -13,7 +13,7 @@
 <%@ page
 	import="java.util.List,
 		java.util.ArrayList,
-		com.gsb.BasicObject.MBG.Sociaty,
+		com.gsb.BasicObject.MBGPOJO.Sociaty,
 		java.util.Map,
 		java.util.HashMap"%>
 <%

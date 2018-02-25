@@ -68,7 +68,7 @@
   <sql id="Base_Column_List">
     sys_no, member_relate, member_name, phone_number
   </sql>
-  <select id="selectByExample" parameterType="com.gsb.BasicObject.MBG.FamilyInfoExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.gsb.BasicObject.MBGPOJO.FamilyInfoExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -82,19 +82,19 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteByExample" parameterType="com.gsb.BasicObject.MBG.FamilyInfoExample">
+  <delete id="deleteByExample" parameterType="com.gsb.BasicObject.MBGPOJO.FamilyInfoExample">
     delete from family_info_table
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.gsb.BasicObject.MBG.FamilyInfo">
+  <insert id="insert" parameterType="com.gsb.BasicObject.MBGPOJO.FamilyInfo">
     insert into family_info_table (sys_no, member_relate, member_name, 
       phone_number)
     values (#{sysNo,jdbcType=INTEGER}, #{memberRelate,jdbcType=VARCHAR}, #{memberName,jdbcType=VARCHAR}, 
       #{phoneNumber,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.gsb.BasicObject.MBG.FamilyInfo">
+  <insert id="insertSelective" parameterType="com.gsb.BasicObject.MBGPOJO.FamilyInfo">
     insert into family_info_table
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="sysNo != null">
@@ -125,7 +125,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.gsb.BasicObject.MBG.FamilyInfoExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.gsb.BasicObject.MBGPOJO.FamilyInfoExample" resultType="java.lang.Long">
     select count(*) from family_info_table
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />

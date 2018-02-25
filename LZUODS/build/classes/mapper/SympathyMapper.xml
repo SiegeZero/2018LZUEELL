@@ -67,7 +67,7 @@
   <sql id="Base_Column_List">
     sys_no, acitivity_no, sympathy_time
   </sql>
-  <select id="selectByExample" parameterType="com.gsb.BasicObject.MBG.SympathyExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.gsb.BasicObject.MBGPOJO.SympathyExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -81,19 +81,19 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteByExample" parameterType="com.gsb.BasicObject.MBG.SympathyExample">
+  <delete id="deleteByExample" parameterType="com.gsb.BasicObject.MBGPOJO.SympathyExample">
     delete from sympathy_table
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.gsb.BasicObject.MBG.Sympathy">
+  <insert id="insert" parameterType="com.gsb.BasicObject.MBGPOJO.Sympathy">
     insert into sympathy_table (sys_no, acitivity_no, sympathy_time
       )
     values (#{sysNo,jdbcType=INTEGER}, #{acitivityNo,jdbcType=INTEGER}, #{sympathyTime,jdbcType=DATE}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.gsb.BasicObject.MBG.Sympathy">
+  <insert id="insertSelective" parameterType="com.gsb.BasicObject.MBGPOJO.Sympathy">
     insert into sympathy_table
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="sysNo != null">
@@ -118,7 +118,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.gsb.BasicObject.MBG.SympathyExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.gsb.BasicObject.MBGPOJO.SympathyExample" resultType="java.lang.Long">
     select count(*) from sympathy_table
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />

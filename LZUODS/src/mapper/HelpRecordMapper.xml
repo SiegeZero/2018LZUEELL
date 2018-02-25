@@ -5,7 +5,7 @@
     <result column="sys_no" jdbcType="INTEGER" property="sysNo" />
     <result column="help_time" jdbcType="DATE" property="helpTime" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.gsb.BasicObject.MBG.HelpRecord">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.gsb.BasicObject.MBGPOJO.HelpRecord">
     <result column="help_content" jdbcType="LONGVARCHAR" property="helpContent" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -72,7 +72,7 @@
   <sql id="Blob_Column_List">
     help_content
   </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.gsb.BasicObject.MBG.HelpRecordExample" resultMap="ResultMapWithBLOBs">
+  <select id="selectByExampleWithBLOBs" parameterType="com.gsb.BasicObject.MBGPOJO.HelpRecordExample" resultMap="ResultMapWithBLOBs">
     select
     <if test="distinct">
       distinct
@@ -88,7 +88,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" parameterType="com.gsb.BasicObject.MBG.HelpRecordExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.gsb.BasicObject.MBGPOJO.HelpRecordExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -102,19 +102,19 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteByExample" parameterType="com.gsb.BasicObject.MBG.HelpRecordExample">
+  <delete id="deleteByExample" parameterType="com.gsb.BasicObject.MBGPOJO.HelpRecordExample">
     delete from helping_table
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.gsb.BasicObject.MBG.HelpRecord">
+  <insert id="insert" parameterType="com.gsb.BasicObject.MBGPOJO.HelpRecord">
     insert into helping_table (sys_no, help_time, help_content
       )
     values (#{sysNo,jdbcType=INTEGER}, #{helpTime,jdbcType=DATE}, #{helpContent,jdbcType=LONGVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.gsb.BasicObject.MBG.HelpRecord">
+  <insert id="insertSelective" parameterType="com.gsb.BasicObject.MBGPOJO.HelpRecord">
     insert into helping_table
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="sysNo != null">
@@ -139,7 +139,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.gsb.BasicObject.MBG.HelpRecordExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.gsb.BasicObject.MBGPOJO.HelpRecordExample" resultType="java.lang.Long">
     select count(*) from helping_table
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />

@@ -7,7 +7,7 @@
     <result column="leader_name" jdbcType="VARCHAR" property="leaderName" />
     <result column="leader_phone" jdbcType="VARCHAR" property="leaderPhone" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.gsb.BasicObject.MBG.PartyBranch">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.gsb.BasicObject.MBGPOJO.PartyBranch">
     <result column="party_branch_remark" jdbcType="LONGVARCHAR" property="partyBranchRemark" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -74,7 +74,7 @@
   <sql id="Blob_Column_List">
     party_branch_remark
   </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.gsb.BasicObject.MBG.PartyBranchExample" resultMap="ResultMapWithBLOBs">
+  <select id="selectByExampleWithBLOBs" parameterType="com.gsb.BasicObject.MBGPOJO.PartyBranchExample" resultMap="ResultMapWithBLOBs">
     select
     <if test="distinct">
       distinct
@@ -90,7 +90,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" parameterType="com.gsb.BasicObject.MBG.PartyBranchExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.gsb.BasicObject.MBGPOJO.PartyBranchExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -116,19 +116,19 @@
     delete from party_branch_info_table
     where party_branch_no = #{partyBranchNo,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.gsb.BasicObject.MBG.PartyBranchExample">
+  <delete id="deleteByExample" parameterType="com.gsb.BasicObject.MBGPOJO.PartyBranchExample">
     delete from party_branch_info_table
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.gsb.BasicObject.MBG.PartyBranch">
+  <insert id="insert" parameterType="com.gsb.BasicObject.MBGPOJO.PartyBranch">
     insert into party_branch_info_table (party_branch_no, party_branch_name, leader_name, 
       leader_phone, party_branch_remark)
     values (#{partyBranchNo,jdbcType=INTEGER}, #{partyBranchName,jdbcType=VARCHAR}, #{leaderName,jdbcType=VARCHAR}, 
       #{leaderPhone,jdbcType=VARCHAR}, #{partyBranchRemark,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.gsb.BasicObject.MBG.PartyBranch">
+  <insert id="insertSelective" parameterType="com.gsb.BasicObject.MBGPOJO.PartyBranch">
     insert into party_branch_info_table
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="partyBranchNo != null">
@@ -165,7 +165,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.gsb.BasicObject.MBG.PartyBranchExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.gsb.BasicObject.MBGPOJO.PartyBranchExample" resultType="java.lang.Long">
     select count(*) from party_branch_info_table
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -215,7 +215,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.gsb.BasicObject.MBG.PartyBranch">
+  <update id="updateByPrimaryKeySelective" parameterType="com.gsb.BasicObject.MBGPOJO.PartyBranch">
     update party_branch_info_table
     <set>
       <if test="partyBranchName != null">
@@ -233,7 +233,7 @@
     </set>
     where party_branch_no = #{partyBranchNo,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.gsb.BasicObject.MBG.PartyBranch">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.gsb.BasicObject.MBGPOJO.PartyBranch">
     update party_branch_info_table
     set party_branch_name = #{partyBranchName,jdbcType=VARCHAR},
       leader_name = #{leaderName,jdbcType=VARCHAR},
@@ -241,7 +241,7 @@
       party_branch_remark = #{partyBranchRemark,jdbcType=LONGVARCHAR}
     where party_branch_no = #{partyBranchNo,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.gsb.BasicObject.MBG.PartyBranch">
+  <update id="updateByPrimaryKey" parameterType="com.gsb.BasicObject.MBGPOJO.PartyBranch">
     update party_branch_info_table
     set party_branch_name = #{partyBranchName,jdbcType=VARCHAR},
       leader_name = #{leaderName,jdbcType=VARCHAR},

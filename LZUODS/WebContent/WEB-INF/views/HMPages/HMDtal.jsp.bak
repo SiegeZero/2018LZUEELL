@@ -12,7 +12,7 @@
     <title>详细信息</title>
 </head>
 
-<%@page import="com.gsb.BasicObject.MBG.SourcePerson,java.text.SimpleDateFormat" %>
+<%@page import="com.gsb.BasicObject.MBGPOJO.SourcePerson,java.text.SimpleDateFormat" %>
 
 <%
 SourcePerson person = (SourcePerson)request.getAttribute("target");

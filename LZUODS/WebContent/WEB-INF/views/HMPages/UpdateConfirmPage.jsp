@@ -14,7 +14,11 @@
 <link rel="stylesheet" href="css/style.css">
 </head>
 
-<%@ page import="java.util.List,com.gsb.BasicObject.MBG.SalaryLib,com.gsb.BasicObject.MBG.SourcePerson,java.text.SimpleDateFormat" %>
+<%@ page import="
+	java.util.List,
+	com.gsb.BasicObject.MBGPOJO.SalaryLib,
+	com.gsb.BasicObject.MBGPOJO.SourcePerson,
+	java.text.SimpleDateFormat" %>
 <%
 List<String> sociaty_list =(List<String>) request.getAttribute("sociaties_list");
 List<SalaryLib> slib_list =(List<SalaryLib>) request.getAttribute("slib_list");
