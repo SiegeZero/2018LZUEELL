@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
-<%@ page import="com.gsb.BasicObject.MBG.AtvInfo" %>
+<%@ page import="com.gsb.BasicObject.MBGPOJO.AtvInfo" %>
 <body>
 <% AtvInfo atv_info = (AtvInfo) request.getAttribute("atv_info"); %>
 活动地点：<%= atv_info!=null?atv_info.getAtvTopic():"没有数据" %>

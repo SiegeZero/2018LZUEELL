@@ -1,14 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html style="height: 100%">
-<head style="height: 100%">
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<!--IE浏览器渲染方式-->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--移动设备响应-->
-<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+<! doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<!--编码格式UTF-8-->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<!--IE浏览器渲染方式-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--移动设备响应-->
+	<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="style.css">
 <title>人员管理</title>
 <script>
 	window.onload = function(){
@@ -103,334 +107,341 @@
 <body style="height: 100%">
 
 	<jsp:include page="NavigationBar.jsp"></jsp:include>
-	<div class="row" style="height: 100%;">
-		<div class="navbar navbar-inverse navbar-collapse"
-			style="height: 100%; float: left; width: 15%">
-			<ul class="nav">
-				<li><a href="#">人员管理&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
-						class="caret"></span></a></li>
-				<ul class="nav">
-					<li><a href="HMMang"><span class="glyphicon glyphicon-user"></span>&nbsp;人员信息</a></li>
-					<li><a href="#"><span class="glyphicon glyphicon-yen"></span>&nbsp;工资管理</a></li>
-					<li><a href="#"><span class="glyphicon glyphicon-signal"></span>&nbsp;统计分析</a></li>
-					<li><a href="#"><span class="glyphicon glyphicon-tags"></span>&nbsp;其他功能</a></li>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-3 col-md-2 navbar-inverse sidebar" style="height: 100%">
+				<ul class="nav nav-sidebar">
+					<li><a href="#">人员管理&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
+							class="caret"></span></a></li>
+					<ul class="nav">
+						<li><a href="HMMang"><span class="glyphicon glyphicon-user"></span>&nbsp;人员信息</a></li>
+						<li><a href="#"><span class="glyphicon glyphicon-yen"></span>&nbsp;工资管理</a></li>
+						<li><a href="#"><span class="glyphicon glyphicon-signal"></span>&nbsp;统计分析</a></li>
+						<li><a href="#"><span class="glyphicon glyphicon-tags"></span>&nbsp;其他功能</a></li>
+					</ul>
 				</ul>
-			</ul>
-		</div>
-		<div style="float: left; width: 85%">
-			<form action="ConfirmPage" method="post" class="navbar-form">
-				<div class="container-fluid">
-					<div width="100%">
+			</div>
+			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+				<form action="ConfirmPage" method="post" class="navbar-form">
 						<div>
-							<center>
-								<input type="text" name="name_condition"
-									value="<%=request.getAttribute("name_str") != null ? request.getAttribute("name_str") : ""%>"
-									placeholder="输入姓名查询，多个姓名用空格分隔开" class="form-control" />
-							</center>
-						</div>
-					<br>
-					<div width="100%">
-						<div>
-							<center>
-								<button class="btn btn-info" type="button" onclick="show_func()" title="点击这里查看可选的职级&#xd再次点击关闭该参考页面">
-									<span>职级列表</span>
-								</button>
-								<input type="text" name="func_condition"
-									value="<%=request.getAttribute("func_str") != null ? request.getAttribute("func_str") : ""%>"
-									placeholder="输入职级查询" class="form-control" />
-							</center>
-						</div>
-						<div style="display: none" id="func">
-							<table class="table table-bordered">
+							<table class="table">
 								<tr>
+									<th>基本：</th>
+									<td><a onclick="show_quit_office_types()">离退情况</a></td>
+									<td><a onclick="show_conscription_situations()">兵役情况</a></td>
+									<td><a onclick="show_political_status()">政治面貌</td>
+									<td><a onclick="show_physical_situation()">在世情况</td>
+									<td><a onclick="show_is_help_needed()">贫困状况</td>
+									<td><a onclick="show_latest_sympathy_year()">慰问情况</td>
+									<td><a onclick="show_edu_bg()">学历</td>
+								</tr>
+								<tr>
+									<td colspan="9">
+										<ul style="display:block" class="nav navbar-nav" id="quit_office_types">
+										<%
+											List<String> quit_office_type_str = (List<String>)request.getAttribute("quit_office_type_str");
+										%>
+											<li>
+												<input type="checkbox" value="离休"
+													name="quit_office_type" id="quit_office_type0" onClick="select_attribute" 
+													<%= quit_office_type_str!=null&&quit_office_type_str.contains("离休")?"checked":"" %>
+													/>离休
+											</li>
+											<li>
+												<input type="checkbox" value="退休"
+													name="quit_office_type" id="quit_office_type1" onClick="select_attribute" 
+														<%= quit_office_type_str!=null&&quit_office_type_str.contains("退休")?"checked":"" %>
+													/>退休
+											</li>
+										</ul>
+										<ul style="display:none" class="nav navbar-nav" id="conscription_situations">
+										<%
+										List<String> cs_str = (List<String>) request.getAttribute("cs_str");
+										for(int li_index=0;conscription_situation_list!=null && li_index<conscription_situation_list.size();li_index++){
+											%>
+											<li>
+												<input type="checkbox" 
+													id="conscription_situation<%=li_index %>" name="conscription_situation"
+													onClick="select_attribute"
+													value="<%=conscription_situation_list.get(li_index).equals("")?"无数据":conscription_situation_list.get(li_index) %>" 
+													<%=cs_str!=null&&cs_str.contains( conscription_situation_list.get(li_index))?"checked":"" %>
+													/><%=conscription_situation_list.get(li_index).equals("")?"无数据":conscription_situation_list.get(li_index) %>
+											</li>
+											<%} %>
+										</ul>
+										<ul style="display:none" class="nav navbar-nav" id="political_status">
+										<%
+										List<String> political_status_str = (List<String>) request.getAttribute("political_status_str");
+										for(int li_index=0;political_status_list!=null && li_index<political_status_list.size();li_index++){
+											%>
+											<li>
+												<input type="checkbox"
+													id="political_status<%=li_index %>" name="political_status"
+													onClick="select_attribute"
+													value="<%=political_status_list.get(li_index).equals("")?"无数据":political_status_list.get(li_index) %>"
+													<%=political_status_str!=null&&political_status_str.contains( political_status_list.get(li_index))?"checked":"" %>
+													/><%=political_status_list.get(li_index).equals("")?"无数据":political_status_list.get(li_index) %>
+											</li>
+											<%} %>
+										</ul>
+										<ul style="display:none" class="nav navbar-nav" id="physical_situation">
+											<li>
+												<input type="radio" value="在世" name="physical_situation" id="physical_situation0" onClick="select_attribute" />在世
+											</li>
+											<li>
+												<input type="radio" value="离世" name="physical_situation" id="physical_situation1" onClick="select_attribute" />离世
+											</li>
+											<li>
+												<input type="radio" value="全选" name="physical_situation" id="physical_situation2" onClick="select_attribute" />全选
+											</li>
+										</ul>
+										<ul style="display:none" class="nav navbar-nav" id="is_help_needed">
+											<li>
+												<input type="radio" value="是" name="is_help_needed" id="is_help_needed0" onClick="select_attribute" />是
+											</li>
+											<li>
+												<input type="radio" value="否" name="is_help_needed" id="is_help_needed1" onClick="select_attribute" />否
+											</li>
+											<li>
+												<input type="radio" value="全选" name="is_help_needed" id="is_help_needed2" onClick="select_attribute" />全选
+											</li>
+										</ul>
+										<ul style="display:none" class="nav navbar-nav" id="latest_sympathy_year">
+											<li>
+												<input type="radio" value="本年已慰问" name="latest_sympathy_year" id="latest_sympathy_year0" onClick="select_attribute" />本年已慰问
+											</li>
+											<li>
+												<input type="radio" value="本年未慰问" name="latest_sympathy_year" id="latest_sympathy_year1" onClick="select_attribute" />本年未慰问
+											</li>
+											<li>
+												<input type="radio" value="全选" name="latest_sympathy_year" id="latest_sympathy_year2" onClick="select_attribute" />全选
+											</li>
+										</ul>
+										<ul style="display:none" class="nav navbar-nav" id="edu_bg">
+										<%
+										List<String> edu_bg_str = (List<String>) request.getAttribute("edu_bg_str");
+										for(int li_index=0;edu_bg_list!=null && li_index<edu_bg_list.size();li_index++){
+											%>
+											<li>
+												<input type="checkbox"
+													name="edu_bg" id="edu_bg<%=li_index %>"
+													value="<%=edu_bg_list.get(li_index).equals("")?"无数据":edu_bg_list.get(li_index) %>"
+													onClick="select_attribute" 
+													<%=edu_bg_str!=null&&edu_bg_str.contains( edu_bg_list.get(li_index))?"checked":"" %>
+													/><%=edu_bg_list.get(li_index).equals("")?"无数据":edu_bg_list.get(li_index) %>
+											</li>
+											<%} %>
+										</ul>
+									</td>
+								</tr>
+								<tr>
+									<th>年龄：</th>
+					                <div>
+					                	<td colspan="2"><input type="number" name="age" value="" placeholder="最小年龄" /></td>
+					                </div>
+					                <div>
+					                	<td colspan="2"><input type="number" name="age" value="" placeholder="最大年龄" /></td>
+					                </div>
+								</tr>
+								<tr>
+									<th>分会：</th>
 									<%
-										for (int row_index = 0; func_list != null && row_index < func_list.size(); row_index++) {
-											if (row_index % 6 == 0) {
+										List<Integer> sociaties_str = (List<Integer>)request.getAttribute("sociaties_str");
+										for (int row_index = 0; sociaties_list != null && row_index < sociaties_list.size() ; row_index++) {
+											Sociaty s = sociaties_list.get(row_index);
+											if(row_index % 9 == 0){
 									%>
 								</tr>
 								<tr>
-									<td style="width: 10%"><%=func_list.get(row_index)%></td>
-									<%
-										} else {
-									%>
-									<td style="width: 10%"><%=func_list.get(row_index)%></td>
+										<%
+											} 
+										%>
+									<td><input 
+											type="checkbox" name="sociaty" id="sociaty<%=row_index %>)"
+											value="<%=s.getSociatyNo() %>" 
+											onClick="select_attribute"
+											<%=sociaties_str!=null&&sociaties_str.contains(s.getSociatyNo())?"checked":"" %>
+										/>
+										<%=s.getSociatyName().equals("")?"无分会":s.getSociatyName()%></td>	
+									
 									<%
 										}
 									%>
-									<%
-										}
-									%>
+								</tr>
+								<th>民族：</th>
+								<%
+								List<String> nations_str = (List<String>)request.getAttribute("nations_str");
+								for (int row_index = 0; nations_list != null && row_index < nations_list.size(); row_index++) {
+								%>
+		
+								<td><input 
+										type="checkbox" 
+										name="nations" 
+										id="nation<%=row_index %>)" 
+										value="<%=nations_list.get(row_index) %>" 
+										onClick="select_attribute" 
+										<%=nations_str!=null&&nations_str.contains(nations_list.get( row_index))?"checked":"" %>
+									/> 
+									<%=nations_list.get(row_index)%></td>
+		
+								<%
+									}
+								%>
 								</tr>
 							</table>
+							<div>
+								<div style="width:80%;float:left">
+									<div stye="width:100%">
+										<center>
+											<button class="btn btn-info" type="button" title="输入姓名查询">
+												<span>基础查询</span>
+											</button>
+											<input type="text" name="name_condition"
+												value="<%=request.getAttribute("name_str") != null ? request.getAttribute("name_str") : ""%>"
+												placeholder="输入姓名查询，多个姓名用空格分隔开" class="form-control" />
+										</center>
+									</div>
+									<br />
+									<div stye="width:100%">
+										<div>
+											<center>
+												<button class="btn btn-info" type="button" onclick="show_func()" title="点击这里查看可选的职级&#xd再次点击关闭该参考页面">
+													<span>职级列表</span>
+												</button>
+												<input type="text" name="func_condition"
+													value="<%=request.getAttribute("func_str") != null ? request.getAttribute("func_str") : ""%>"
+													placeholder="输入职级查询" class="form-control" />
+											</center>
+										</div>
+										<div style="display: none" id="func">
+											<table class="table table-bordered">
+												<tr>
+													<%
+														for (int row_index = 0; func_list != null && row_index < func_list.size(); row_index++) {
+															if (row_index % 6 == 0) {
+													%>
+												</tr>
+												<tr>
+													<td style="width: 10%"><%=func_list.get(row_index)%></td>
+													<%
+														} else {
+													%>
+													<td style="width: 10%"><%=func_list.get(row_index)%></td>
+													<%
+														}
+													%>
+													<%
+														}
+													%>
+												</tr>
+											</table>
+										</div>
+									</div>
+									<br />
+									<div stye="width:100%">
+										<div>
+											<center>
+												<button class="btn btn-info" type="button" onclick="show_title_lv()" title="点击这里查看可选的职务&#xd再次点击关闭该参考页面">
+													<span>职务列表</span>
+												</button>
+												<input type="text" name="title_lv_condition"
+													value="<%=request.getAttribute("title_lv_str") != null ? request.getAttribute("title_lv_str") : ""%>"
+													placeholder="输入职级查询" class="form-control" />
+											</center>
+										</div>
+										<div style="display: none" id="title_lv">
+											<table class="table table-bordered">
+												<tr>
+													<%
+														List<String> title_lv_str = (List<String>)request.getAttribute("title_lv_str");
+														for (int row_index = 0; title_lv_list != null && row_index < title_lv_list.size(); row_index++) {
+															if (row_index % 6 == 0) {
+													%>
+												</tr>
+												<tr>
+													<%
+														} 
+													%>
+													<td style="width: 10%"><%=title_lv_list.get(row_index)%></td>
+													<%
+														}
+													%>
+												</tr>
+											</table>
+										</div>
+									</div>
+									<br />
+								</div>
+								<div>
+									<div>
+										<button type="submit" style="padding:5px" title="点击查询">
+											<span class="glyphicon glyphicon-search"></span>
+										</button>
+									</div>
+								</div>
+							</div>
 						</div>
-					</div>
-					<br>
-					<div stye="width:100%">
-						<div>
-							<center>
-								<button class="btn btn-info" type="button" onclick="show_title_lv()" title="点击这里查看可选的职务&#xd再次点击关闭该参考页面">
-									<span>职务列表</span>
-								</button>
-								<input type="text" name="title_lv_condition"
-									value="<%=request.getAttribute("title_lv_str") != null ? request.getAttribute("title_lv_str") : ""%>"
-									placeholder="输入职级查询" class="form-control" />
-							</center>
-						</div>
-						<div style="display: none" id="title_lv">
-							<table class="table table-bordered">
-								<tr>
-									<%
-										List<String> title_lv_str = (List<String>)request.getAttribute("title_lv_str");
-										for (int row_index = 0; title_lv_list != null && row_index < title_lv_list.size(); row_index++) {
-											if (row_index % 6 == 0) {
-									%>
-								</tr>
-								<tr>
-									<%
-										} 
-									%>
-									<td style="width: 10%"><%=title_lv_list.get(row_index)%></td>
-									<%
-										}
-									%>
-								</tr>
-							</table>
-						</div>
-					</div>
-					<div stye="width:100%">
-						<div>
-							<center>
-								<button type="submit" style="padding:5px" title="点击查询">
-									<span class="glyphicon glyphicon-search"></span>
-								</button>
-						</div>
-					</div>
-					<table class="table">
+					</form>
+				<div class="table">
+					<table class="table table-striped table-bordered table-hover"
+						id="personitem">
 						<tr>
-							<th>基本：</th>
-							<td><a onclick="show_quit_office_types()">离退情况</a></td>
-							<td><a onclick="show_conscription_situations()">兵役情况</a></td>
-							<td><a onclick="show_political_status()">政治面貌</td>
-							<td><a onclick="show_physical_situation()">在世情况</td>
-							<td><a onclick="show_is_help_needed()">贫困状况</td>
-							<td><a onclick="show_latest_sympathy_year()">慰问情况</td>
-							<td><a onclick="show_edu_bg()">学历</td>
+							<th class="info" style="width: 5%">序号</th>
+							<th class="info" style="width: 7%">姓名</th>
+							<th class="info" style="width: 7%">职称</th>
+							<th class="info" style="width: 6%">职务</th>
+							<th class="info" style="width: 8%">所在分会</th>
+							<th class="info" style="width: 11%">原单位</th>
+							<th class="info" style="width: 5%">离/退</th>
+							<th class="info" style="width: 5%">性别</th>
+							<th class="info" style="width: 5%">年龄</th>
+							<th class="info" style="width: 7%">民族</th>
+							<th class="info" style="width: 10%">籍贯</th>
+							<th class="info" style="width: 8%">政治面貌</th>
+							<th class="info" style="width: 16%">联系方式</th>
 						</tr>
-						<tr>
-							<td colspan="9">
-								<ul style="display:block" class="nav navbar-nav" id="quit_office_types">
-								<%
-									List<String> quit_office_type_str = (List<String>)request.getAttribute("quit_office_type_str");
-								%>
-									<li>
-										<input type="checkbox" value="离休"
-											name="quit_office_type" id="quit_office_type0" onClick="select_attribute" 
-											<%= quit_office_type_str!=null&&quit_office_type_str.contains("离休")?"checked":"" %>
-											/>离休
-									</li>
-									<li>
-										<input type="checkbox" value="退休"
-											name="quit_office_type" id="quit_office_type1" onClick="select_attribute" 
-												<%= quit_office_type_str!=null&&quit_office_type_str.contains("退休")?"checked":"" %>
-											/>退休
-									</li>
-								</ul>
-								<ul style="display:none" class="nav navbar-nav" id="conscription_situations">
-								<%
-								List<String> cs_str = (List<String>) request.getAttribute("cs_str");
-								for(int li_index=0;conscription_situation_list!=null && li_index<conscription_situation_list.size();li_index++){
-									%>
-									<li>
-										<input type="checkbox" 
-											id="conscription_situation<%=li_index %>" name="conscription_situation"
-											onClick="select_attribute"
-											value="<%=conscription_situation_list.get(li_index).equals("")?"无数据":conscription_situation_list.get(li_index) %>" 
-											<%=cs_str!=null&&cs_str.contains( conscription_situation_list.get(li_index))?"checked":"" %>
-											/><%=conscription_situation_list.get(li_index).equals("")?"无数据":conscription_situation_list.get(li_index) %>
-									</li>
-									<%} %>
-								</ul>
-								<ul style="display:none" class="nav navbar-nav" id="political_status">
-								<%
-								List<String> political_status_str = (List<String>) request.getAttribute("political_status_str");
-								for(int li_index=0;political_status_list!=null && li_index<political_status_list.size();li_index++){
-									%>
-									<li>
-										<input type="checkbox"
-											id="political_status<%=li_index %>" name="political_status"
-											onClick="select_attribute"
-											value="<%=political_status_list.get(li_index).equals("")?"无数据":political_status_list.get(li_index) %>"
-											<%=political_status_str!=null&&political_status_str.contains( political_status_list.get(li_index))?"checked":"" %>
-											/><%=political_status_list.get(li_index).equals("")?"无数据":political_status_list.get(li_index) %>
-									</li>
-									<%} %>
-								</ul>
-								<ul style="display:none" class="nav navbar-nav" id="physical_situation">
-									<li>
-										<input type="radio" value="在世" name="physical_situation" id="physical_situation0" onClick="select_attribute" />在世
-									</li>
-									<li>
-										<input type="radio" value="离世" name="physical_situation" id="physical_situation1" onClick="select_attribute" />离世
-									</li>
-									<li>
-										<input type="radio" value="全选" name="physical_situation" id="physical_situation2" onClick="select_attribute" />全选
-									</li>
-								</ul>
-								<ul style="display:none" class="nav navbar-nav" id="is_help_needed">
-									<li>
-										<input type="radio" value="是" name="is_help_needed" id="is_help_needed0" onClick="select_attribute" />是
-									</li>
-									<li>
-										<input type="radio" value="否" name="is_help_needed" id="is_help_needed1" onClick="select_attribute" />否
-									</li>
-									<li>
-										<input type="radio" value="全选" name="is_help_needed" id="is_help_needed2" onClick="select_attribute" />全选
-									</li>
-								</ul>
-								<ul style="display:none" class="nav navbar-nav" id="latest_sympathy_year">
-									<li>
-										<input type="radio" value="本年已慰问" name="latest_sympathy_year" id="latest_sympathy_year0" onClick="select_attribute" />本年已慰问
-									</li>
-									<li>
-										<input type="radio" value="本年未慰问" name="latest_sympathy_year" id="latest_sympathy_year1" onClick="select_attribute" />本年未慰问
-									</li>
-									<li>
-										<input type="radio" value="全选" name="latest_sympathy_year" id="latest_sympathy_year2" onClick="select_attribute" />全选
-									</li>
-								</ul>
-								<ul style="display:none" class="nav navbar-nav" id="edu_bg">
-								<%
-								List<String> edu_bg_str = (List<String>) request.getAttribute("edu_bg_str");
-								for(int li_index=0;edu_bg_list!=null && li_index<edu_bg_list.size();li_index++){
-									%>
-									<li>
-										<input type="checkbox"
-											name="edu_bg" id="edu_bg<%=li_index %>"
-											value="<%=edu_bg_list.get(li_index).equals("")?"无数据":edu_bg_list.get(li_index) %>"
-											onClick="select_attribute" 
-											<%=edu_bg_str!=null&&edu_bg_str.contains( edu_bg_list.get(li_index))?"checked":"" %>
-											/><%=edu_bg_list.get(li_index).equals("")?"无数据":edu_bg_list.get(li_index) %>
-									</li>
-									<%} %>
-								</ul>
-							</td>
-						</tr>
-						<tr>
-							<th>年龄：</th>
-			                <div class="input-group input-group-sm">
-			                	<td><input type="text" name="age" class="form-control" value="" placeholder="最小年龄" /></td>
-			                </div>
-			                <div class="input-group input-group-sm">
-			                	<td><input type="text" name="age" class="form-control" value="" placeholder="最大年龄" /></td>
-			                </div>
-						</tr>
-						<tr>
-							<th>分会：</th>
-							<%
-								List<Integer> sociaties_str = (List<Integer>)request.getAttribute("sociaties_str");
-								for (int row_index = 0; sociaties_list != null && row_index < sociaties_list.size() ; row_index++) {
-									Sociaty s = sociaties_list.get(row_index);
-									if(row_index % 9 == 0){
-							%>
-						</tr>
-						<tr>
-								<%
-									} 
-								%>
-							<td><input 
-									type="checkbox" name="sociaty" id="sociaty<%=row_index %>)"
-									value="<%=s.getSociatyNo() %>" 
-									onClick="select_attribute"
-									<%=sociaties_str!=null&&sociaties_str.contains(s.getSociatyNo())?"checked":"" %>
-								/>
-								<%=s.getSociatyName().equals("")?"无分会":s.getSociatyName()%></td>	
-							
-							<%
-								}
-							%>
-						</tr>
-						<th>民族：</th>
 						<%
-						List<String> nations_str = (List<String>)request.getAttribute("nations_str");
-						for (int row_index = 0; nations_list != null && row_index < nations_list.size(); row_index++) {
+							Calendar cal = Calendar.getInstance();
+							int thisYear = cal.get( Calendar.YEAR);
+							Calendar b = Calendar.getInstance();
+							for (int cow_index = 0; cow_index < person_list.size(); cow_index++) {
+								Date birth = person_list.get(cow_index).getBirthTime();
+								b.setTime( birth);
+								cal.set( Calendar.YEAR, b.get(Calendar.YEAR));
+								Age = (thisYear - b.get(Calendar.YEAR)) - (birth.before(cal.getTime())?0:1);
 						%>
-
-						<td><input 
-								type="checkbox" 
-								name="nations" 
-								id="nation<%=row_index %>)" 
-								value="<%=nations_list.get(row_index) %>" 
-								onClick="select_attribute" 
-								<%=nations_str!=null&&nations_str.contains(nations_list.get( row_index))?"checked":"" %>
-							/> 
-							<%=nations_list.get(row_index)%></td>
-
+						<tr>
+							<td><input type="checkbox" value="<%=person_list.get(cow_index).getSysNo()%>" /></td>
+							<td><a href="HMDtal?id=<%=person_list.get(cow_index).getSysNo()%>">
+							<%=person_list.get(cow_index).getName()%></a></td>
+							<td><%=person_list.get(cow_index).getTitleLv()%></td>
+							<td><%=person_list.get(cow_index).getFunc()%></td>
+							<td><%=person_list.get(cow_index).getSociaty().getSociatyName()%></td>
+							<td><%=person_list.get(cow_index).getDept().getDeptName()%></td>
+							<td><%=person_list.get(cow_index).getQuitOfficeType()%></td>
+							<td><%=person_list.get(cow_index).getGender()%></td>
+							<td><%=Age%></td>
+							<td><%=person_list.get(cow_index).getNation()%></td>
+							<td><%=person_list.get(cow_index).getNativePlace()%></td>
+							<td><%=person_list.get(cow_index).getPoliticalStatus()%></td>
+							<td><%=person_list.get(cow_index).getTelephoneNum()%></td>
+						</tr>
 						<%
 							}
 						%>
-						</tr>
 					</table>
 				</div>
-			</form>
-			<div class="table-resopnsive">
-				<table class="table table-striped table-bordered table-hover"
-					id="personitem">
-					<tr>
-						<th class="info">序号</th>
-						<th class="info">姓名</th>
-						<th class="info">职称</th>
-						<th class="info">职务</th>
-						<th class="info">所在分会</th>
-						<th class="info">原单位编号</th>
-						<th class="info">离/退</th>
-						<th class="info">性别</th>
-						<th class="info">年龄</th>
-						<th class="info">民族</th>
-						<th class="info">籍贯</th>
-						<th class="info">政治面貌</th>
-						<th class="info">联系方式</th>
-					</tr>
-					<%
-						Calendar cal = Calendar.getInstance();
-						int thisYear = cal.get( Calendar.YEAR);
-						Calendar b = Calendar.getInstance();
-						for (int cow_index = 0; cow_index < person_list.size() && cow_index < 5; cow_index++) {
-							Date birth = person_list.get(cow_index).getBirthTime();
-							b.setTime( birth);
-							cal.set( Calendar.YEAR, b.get(Calendar.YEAR));
-							Age = (thisYear - b.get(Calendar.YEAR)) - (birth.before(cal.getTime())?0:1);
-					%>
-					<tr>
-						<td><input type="checkbox" value="<%=person_list.get(cow_index).getSysNo()%>" /></td>
-						<td><a href="HMDtal?id=<%=person_list.get(cow_index).getSysNo()%>">
-						<%=person_list.get(cow_index).getName()%></a></td>
-						<td><%=person_list.get(cow_index).getTitleLv()%></td>
-						<td><%=person_list.get(cow_index).getFunc()%></td>
-						<td><%=person_list.get(cow_index).getSociaty().getSociatyName()%></td>
-						<td><%=person_list.get(cow_index).getDept().getDeptName()%></td>
-						<td><%=person_list.get(cow_index).getQuitOfficeType()%></td>
-						<td><%=person_list.get(cow_index).getGender()%></td>
-						<td><%=Age%></td>
-						<td><%=person_list.get(cow_index).getNation()%></td>
-						<td><%=person_list.get(cow_index).getNativePlace()%></td>
-						<td><%=person_list.get(cow_index).getPoliticalStatus()%></td>
-						<td><%=person_list.get(cow_index).getTelephoneNum()%></td>
-					</tr>
-					<%
-						}
-					%>
-				</table>
-			</div>
-			<div class="container-fluid">
-				<div class="pull-left">
-					<input type="checkbox"><strong>&nbsp;全选</strong>
-				</div>
-				<div class="pull-right">
-					<a href="HMAdd"><button type="button" class="btn btn-info">新增人员</button></a>
-					<button type="button" class="btn btn-warning">导出PDF</button>
-					<button type="button" class="btn btn-warning"
-						onclick="printtable(personitem)">导出Excel</button>
-					<button type="button" class="btn btn-info">下载模板</button>
+				<div class="container-fluid">
+					<div class="pull-left">
+						<input type="checkbox"><strong>&nbsp;全选</strong>
+					</div>
+					<div class="pull-right">
+						<a href="HMAdd"><button type="button" class="btn btn-info">新增人员</button></a>
+						<button type="button" class="btn btn-warning">导出PDF</button>
+						<button type="button" class="btn btn-warning"
+							onclick="printtable(personitem)">导出Excel</button>
+						<button type="button" class="btn btn-info">下载模板</button>
+					</div>
 				</div>
 			</div>
 		</div>
