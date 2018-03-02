@@ -7,8 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.gsb.BasicObject.MBG.Person;
-import com.gsb.BasicObject.MBG.SourcePerson;
+import com.gsb.BasicObject.MBGPOJO.Person;
+import com.gsb.BasicObject.MBGPOJO.SourcePerson;
 import com.gsb.BasicObject.Services.ReadDBInfos;
 
 @Controller

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gsb.BasicObject.MBGDAO.RewardRecordMapper">
-  <resultMap id="BaseResultMap" type="com.gsb.BasicObject.MBG.RewardRecord">
+  <resultMap id="BaseResultMap" type="com.gsb.BasicObject.MBGPOJO.RewardRecord">
     <result column="atv_no" jdbcType="INTEGER" property="atvNo" />
     <result column="owner" jdbcType="VARCHAR" property="owner" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.gsb.BasicObject.MBG.RewardRecord">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.gsb.BasicObject.MBGPOJO.RewardRecord">
     <result column="reward" jdbcType="LONGVARCHAR" property="reward" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -72,7 +72,7 @@
   <sql id="Blob_Column_List">
     reward
   </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.gsb.BasicObject.MBG.RewardRecordExample" resultMap="ResultMapWithBLOBs">
+  <select id="selectByExampleWithBLOBs" parameterType="com.gsb.BasicObject.MBGPOJO.RewardRecordExample" resultMap="ResultMapWithBLOBs">
     select
     <if test="distinct">
       distinct
@@ -88,7 +88,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" parameterType="com.gsb.BasicObject.MBG.RewardRecordExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.gsb.BasicObject.MBGPOJO.RewardRecordExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -102,19 +102,19 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteByExample" parameterType="com.gsb.BasicObject.MBG.RewardRecordExample">
+  <delete id="deleteByExample" parameterType="com.gsb.BasicObject.MBGPOJO.RewardRecordExample">
     delete from reward_records_table
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.gsb.BasicObject.MBG.RewardRecord">
+  <insert id="insert" parameterType="com.gsb.BasicObject.MBGPOJO.RewardRecord">
     insert into reward_records_table (atv_no, owner, reward
       )
     values (#{atvNo,jdbcType=INTEGER}, #{owner,jdbcType=VARCHAR}, #{reward,jdbcType=LONGVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.gsb.BasicObject.MBG.RewardRecord">
+  <insert id="insertSelective" parameterType="com.gsb.BasicObject.MBGPOJO.RewardRecord">
     insert into reward_records_table
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="atvNo != null">
@@ -139,7 +139,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.gsb.BasicObject.MBG.RewardRecordExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.gsb.BasicObject.MBGPOJO.RewardRecordExample" resultType="java.lang.Long">
     select count(*) from reward_records_table
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />

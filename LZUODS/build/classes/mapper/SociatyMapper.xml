@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gsb.BasicObject.MBGDAO.SociatyMapper">
-	<resultMap id="BaseResultMap" type="com.gsb.BasicObject.MBG.Sociaty">
+	<resultMap id="BaseResultMap" type="com.gsb.BasicObject.MBGPOJO.Sociaty">
 		<id column="sociaty_no" jdbcType="INTEGER" property="sociatyNo" />
 		<result column="sociaty_name" jdbcType="VARCHAR" property="sociatyName" />
 		<result column="sociaty_leader" jdbcType="VARCHAR" property="sociatyLeader" />
 	</resultMap>
 	<resultMap extends="BaseResultMap" id="ResultMapWithBLOBs"
-		type="com.gsb.BasicObject.MBG.Sociaty">
+		type="com.gsb.BasicObject.MBGPOJO.Sociaty">
 		<result column="sociaty_remark" jdbcType="LONGVARCHAR"
 			property="sociatyRemark" />
 	</resultMap>
@@ -80,7 +80,7 @@
 	<sql id="Blob_Column_List">
 		sociaty_remark
 	</sql>
-	<select id="selectByExampleWithBLOBs" parameterType="com.gsb.BasicObject.MBG.SociatyExample"
+	<select id="selectByExampleWithBLOBs" parameterType="com.gsb.BasicObject.MBGPOJO.SociatyExample"
 		resultMap="ResultMapWithBLOBs">
 		select
 		<if test="distinct">
@@ -97,7 +97,7 @@
 			order by ${orderByClause}
 		</if>
 	</select>
-	<select id="selectByExample" parameterType="com.gsb.BasicObject.MBG.SociatyExample"
+	<select id="selectByExample" parameterType="com.gsb.BasicObject.MBGPOJO.SociatyExample"
 		resultMap="BaseResultMap">
 		select
 		<if test="distinct">
@@ -132,20 +132,20 @@
 		delete from sociaty_table
 		where sociaty_no = #{sociatyNo,jdbcType=INTEGER}
 	</delete>
-	<delete id="deleteByExample" parameterType="com.gsb.BasicObject.MBG.SociatyExample">
+	<delete id="deleteByExample" parameterType="com.gsb.BasicObject.MBGPOJO.SociatyExample">
 		delete from sociaty_table
 		<if test="_parameter != null">
 			<include refid="Example_Where_Clause" />
 		</if>
 	</delete>
-	<insert id="insert" parameterType="com.gsb.BasicObject.MBG.Sociaty">
+	<insert id="insert" parameterType="com.gsb.BasicObject.MBGPOJO.Sociaty">
 		insert into sociaty_table (sociaty_no, sociaty_name, sociaty_leader,
 		sociaty_remark)
 		values (#{sociatyNo,jdbcType=INTEGER}, #{sociatyName,jdbcType=VARCHAR},
 		#{sociatyLeader,jdbcType=VARCHAR},
 		#{sociatyRemark,jdbcType=LONGVARCHAR})
 	</insert>
-	<insert id="insertSelective" parameterType="com.gsb.BasicObject.MBG.Sociaty">
+	<insert id="insertSelective" parameterType="com.gsb.BasicObject.MBGPOJO.Sociaty">
 		insert into sociaty_table
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="sociatyNo != null">
@@ -176,7 +176,7 @@
 			</if>
 		</trim>
 	</insert>
-	<select id="countByExample" parameterType="com.gsb.BasicObject.MBG.SociatyExample"
+	<select id="countByExample" parameterType="com.gsb.BasicObject.MBGPOJO.SociatyExample"
 		resultType="java.lang.Long">
 		select count(*) from sociaty_table
 		<if test="_parameter != null">
@@ -222,7 +222,7 @@
 			<include refid="Update_By_Example_Where_Clause" />
 		</if>
 	</update>
-	<update id="updateByPrimaryKeySelective" parameterType="com.gsb.BasicObject.MBG.Sociaty">
+	<update id="updateByPrimaryKeySelective" parameterType="com.gsb.BasicObject.MBGPOJO.Sociaty">
 		update sociaty_table
 		<set>
 			<if test="sociatyName != null">
@@ -237,14 +237,14 @@
 		</set>
 		where sociaty_no = #{sociatyNo,jdbcType=INTEGER}
 	</update>
-	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.gsb.BasicObject.MBG.Sociaty">
+	<update id="updateByPrimaryKeyWithBLOBs" parameterType="com.gsb.BasicObject.MBGPOJO.Sociaty">
 		update sociaty_table
 		set sociaty_name = #{sociatyName,jdbcType=VARCHAR},
 		sociaty_leader = #{sociatyLeader,jdbcType=VARCHAR},
 		sociaty_remark = #{sociatyRemark,jdbcType=LONGVARCHAR}
 		where sociaty_no = #{sociatyNo,jdbcType=INTEGER}
 	</update>
-	<update id="updateByPrimaryKey" parameterType="com.gsb.BasicObject.MBG.Sociaty">
+	<update id="updateByPrimaryKey" parameterType="com.gsb.BasicObject.MBGPOJO.Sociaty">
 		update sociaty_table
 		set sociaty_name = #{sociatyName,jdbcType=VARCHAR},
 		sociaty_leader = #{sociatyLeader,jdbcType=VARCHAR}

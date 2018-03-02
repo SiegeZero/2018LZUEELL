@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gsb.BasicObject.MBGDAO.AtvInfoMapper">
-  <resultMap id="BaseResultMap" type="com.gsb.BasicObject.MBG.AtvInfo">
+  <resultMap id="BaseResultMap" type="com.gsb.BasicObject.MBGPOJO.AtvInfo">
     <id column="atv_no" jdbcType="INTEGER" property="atvNo" />
     <result column="atv_topic" jdbcType="VARCHAR" property="atvTopic" />
     <result column="atv_start_date" jdbcType="DATE" property="atvStartDate" />
@@ -71,7 +71,7 @@
   <sql id="Base_Column_List">
     atv_no, atv_topic, atv_start_date, atv_end_date, atv_place, lead_sociaty_no, has_reward
   </sql>
-  <select id="selectByExample" parameterType="com.gsb.BasicObject.MBG.AtvInfoExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.gsb.BasicObject.MBGPOJO.AtvInfoExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -95,13 +95,13 @@
     delete from activity_info_table
     where atv_no = #{atvNo,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.gsb.BasicObject.MBG.AtvInfoExample">
+  <delete id="deleteByExample" parameterType="com.gsb.BasicObject.MBGPOJO.AtvInfoExample">
     delete from activity_info_table
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.gsb.BasicObject.MBG.AtvInfo">
+  <insert id="insert" parameterType="com.gsb.BasicObject.MBGPOJO.AtvInfo">
     insert into activity_info_table (atv_no, atv_topic, atv_start_date, 
       atv_end_date, atv_place, lead_sociaty_no, 
       has_reward)
@@ -109,7 +109,7 @@
       #{atvEndDate,jdbcType=DATE}, #{atvPlace,jdbcType=VARCHAR}, #{leadSociatyNo,jdbcType=INTEGER}, 
       #{hasReward,jdbcType=BIT})
   </insert>
-  <insert id="insertSelective" parameterType="com.gsb.BasicObject.MBG.AtvInfo">
+  <insert id="insertSelective" parameterType="com.gsb.BasicObject.MBGPOJO.AtvInfo">
     insert into activity_info_table
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="atvNo != null">
@@ -158,7 +158,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.gsb.BasicObject.MBG.AtvInfoExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.gsb.BasicObject.MBGPOJO.AtvInfoExample" resultType="java.lang.Long">
     select count(*) from activity_info_table
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -206,7 +206,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.gsb.BasicObject.MBG.AtvInfo">
+  <update id="updateByPrimaryKeySelective" parameterType="com.gsb.BasicObject.MBGPOJO.AtvInfo">
     update activity_info_table
     <set>
       <if test="atvTopic != null">
@@ -230,7 +230,7 @@
     </set>
     where atv_no = #{atvNo,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.gsb.BasicObject.MBG.AtvInfo">
+  <update id="updateByPrimaryKey" parameterType="com.gsb.BasicObject.MBGPOJO.AtvInfo">
     update activity_info_table
     set atv_topic = #{atvTopic,jdbcType=VARCHAR},
       atv_start_date = #{atvStartDate,jdbcType=DATE},

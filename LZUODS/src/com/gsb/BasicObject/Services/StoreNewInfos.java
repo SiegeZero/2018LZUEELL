@@ -4,10 +4,10 @@ package com.gsb.BasicObject.Services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.gsb.BasicObject.MBG.AtvInfo;
-import com.gsb.BasicObject.MBG.SourcePerson;
 import com.gsb.BasicObject.MBGDAO.AtvInfoMapper;
 import com.gsb.BasicObject.MBGDAO.PersonMapper;
+import com.gsb.BasicObject.MBGPOJO.AtvInfo;
+import com.gsb.BasicObject.MBGPOJO.SourcePerson;
 
 @Service
 public class StoreNewInfos {

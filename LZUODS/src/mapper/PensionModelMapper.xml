@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gsb.BasicObject.MBGDAO.PensionModelMapper">
-  <resultMap id="BaseResultMap" type="com.gsb.BasicObject.MBG.PensionModel">
+  <resultMap id="BaseResultMap" type="com.gsb.BasicObject.MBGPOJO.PensionModel">
     <id column="pension_model_no" jdbcType="INTEGER" property="pensionModelNo" />
     <result column="pension_model" jdbcType="VARCHAR" property="pensionModel" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.gsb.BasicObject.MBG.PensionModel">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.gsb.BasicObject.MBGPOJO.PensionModel">
     <result column="pension_remark" jdbcType="LONGVARCHAR" property="pensionRemark" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -72,7 +72,7 @@
   <sql id="Blob_Column_List">
     pension_remark
   </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.gsb.BasicObject.MBG.PensionModelExample" resultMap="ResultMapWithBLOBs">
+  <select id="selectByExampleWithBLOBs" parameterType="com.gsb.BasicObject.MBGPOJO.PensionModelExample" resultMap="ResultMapWithBLOBs">
     select
     <if test="distinct">
       distinct
@@ -88,7 +88,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" parameterType="com.gsb.BasicObject.MBG.PensionModelExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.gsb.BasicObject.MBGPOJO.PensionModelExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -114,19 +114,19 @@
     delete from pension_model_table
     where pension_model_no = #{pensionModelNo,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.gsb.BasicObject.MBG.PensionModelExample">
+  <delete id="deleteByExample" parameterType="com.gsb.BasicObject.MBGPOJO.PensionModelExample">
     delete from pension_model_table
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.gsb.BasicObject.MBG.PensionModel">
+  <insert id="insert" parameterType="com.gsb.BasicObject.MBGPOJO.PensionModel">
     insert into pension_model_table (pension_model_no, pension_model, pension_remark
       )
     values (#{pensionModelNo,jdbcType=INTEGER}, #{pensionModel,jdbcType=VARCHAR}, #{pensionRemark,jdbcType=LONGVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.gsb.BasicObject.MBG.PensionModel">
+  <insert id="insertSelective" parameterType="com.gsb.BasicObject.MBGPOJO.PensionModel">
     insert into pension_model_table
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="pensionModelNo != null">
@@ -151,7 +151,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.gsb.BasicObject.MBG.PensionModelExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.gsb.BasicObject.MBGPOJO.PensionModelExample" resultType="java.lang.Long">
     select count(*) from pension_model_table
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -191,7 +191,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.gsb.BasicObject.MBG.PensionModel">
+  <update id="updateByPrimaryKeySelective" parameterType="com.gsb.BasicObject.MBGPOJO.PensionModel">
     update pension_model_table
     <set>
       <if test="pensionModel != null">
@@ -203,13 +203,13 @@
     </set>
     where pension_model_no = #{pensionModelNo,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.gsb.BasicObject.MBG.PensionModel">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.gsb.BasicObject.MBGPOJO.PensionModel">
     update pension_model_table
     set pension_model = #{pensionModel,jdbcType=VARCHAR},
       pension_remark = #{pensionRemark,jdbcType=LONGVARCHAR}
     where pension_model_no = #{pensionModelNo,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.gsb.BasicObject.MBG.PensionModel">
+  <update id="updateByPrimaryKey" parameterType="com.gsb.BasicObject.MBGPOJO.PensionModel">
     update pension_model_table
     set pension_model = #{pensionModel,jdbcType=VARCHAR}
     where pension_model_no = #{pensionModelNo,jdbcType=INTEGER}

@@ -7,17 +7,17 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.gsb.BasicObject.MBG.Department;
-import com.gsb.BasicObject.MBG.PersonExample;
-import com.gsb.BasicObject.MBG.PersonWithBLOBs;
-import com.gsb.BasicObject.MBG.SalaryLib;
-import com.gsb.BasicObject.MBG.Sociaty;
-import com.gsb.BasicObject.MBG.SourcePerson;
-import com.gsb.BasicObject.MBG.PersonExample.Criteria;
 import com.gsb.BasicObject.MBGDAO.DepartmentMapper;
 import com.gsb.BasicObject.MBGDAO.PersonMapper;
 import com.gsb.BasicObject.MBGDAO.SalaryLibMapper;
 import com.gsb.BasicObject.MBGDAO.SociatyMapper;
+import com.gsb.BasicObject.MBGPOJO.Department;
+import com.gsb.BasicObject.MBGPOJO.PersonExample;
+import com.gsb.BasicObject.MBGPOJO.PersonWithBLOBs;
+import com.gsb.BasicObject.MBGPOJO.SalaryLib;
+import com.gsb.BasicObject.MBGPOJO.Sociaty;
+import com.gsb.BasicObject.MBGPOJO.SourcePerson;
+import com.gsb.BasicObject.MBGPOJO.PersonExample.Criteria;
 
 @Service
 public class SingleAddOperate {

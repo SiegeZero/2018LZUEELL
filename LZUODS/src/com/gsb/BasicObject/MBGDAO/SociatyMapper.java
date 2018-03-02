@@ -1,9 +1,10 @@
 package com.gsb.BasicObject.MBGDAO;
 
-import com.gsb.BasicObject.MBG.Sociaty;
-import com.gsb.BasicObject.MBG.SociatyExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import com.gsb.BasicObject.MBGPOJO.Sociaty;
+import com.gsb.BasicObject.MBGPOJO.SociatyExample;
 
 public interface SociatyMapper {
     long countByExample(SociatyExample example);

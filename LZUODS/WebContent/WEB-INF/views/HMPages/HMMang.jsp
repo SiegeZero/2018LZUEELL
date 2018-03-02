@@ -83,8 +83,8 @@
 </head>
 
 <%@page import="java.util.List
-	,com.gsb.BasicObject.MBG.SourcePerson
-	,com.gsb.BasicObject.MBG.Sociaty
+	,com.gsb.BasicObject.MBGPOJO.SourcePerson
+	,com.gsb.BasicObject.MBGPOJO.Sociaty
 	,java.util.Calendar
 	,java.util.Date"%>
 <%

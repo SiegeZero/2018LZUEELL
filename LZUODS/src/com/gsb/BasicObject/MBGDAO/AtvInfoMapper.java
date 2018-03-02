@@ -1,9 +1,10 @@
 package com.gsb.BasicObject.MBGDAO;
 
-import com.gsb.BasicObject.MBG.AtvInfo;
-import com.gsb.BasicObject.MBG.AtvInfoExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import com.gsb.BasicObject.MBGPOJO.AtvInfo;
+import com.gsb.BasicObject.MBGPOJO.AtvInfoExample;
 
 public interface AtvInfoMapper {
     long countByExample(AtvInfoExample example);

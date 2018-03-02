@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gsb.BasicObject.MBGDAO.SalaryLibMapper">
-  <resultMap id="BaseResultMap" type="com.gsb.BasicObject.MBG.SalaryLib">
+  <resultMap id="BaseResultMap" type="com.gsb.BasicObject.MBGPOJO.SalaryLib">
     <id column="salary_lib_no" jdbcType="INTEGER" property="salaryLibNo" />
     <result column="salary_version" jdbcType="CHAR" property="salaryVersion" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.gsb.BasicObject.MBG.SalaryLib">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.gsb.BasicObject.MBGPOJO.SalaryLib">
     <result column="salary_lib_remark" jdbcType="LONGVARCHAR" property="salaryLibRemark" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -72,7 +72,7 @@
   <sql id="Blob_Column_List">
     salary_lib_remark
   </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.gsb.BasicObject.MBG.SalaryLibExample" resultMap="ResultMapWithBLOBs">
+  <select id="selectByExampleWithBLOBs" parameterType="com.gsb.BasicObject.MBGPOJO.SalaryLibExample" resultMap="ResultMapWithBLOBs">
     select
     <if test="distinct">
       distinct
@@ -88,7 +88,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" parameterType="com.gsb.BasicObject.MBG.SalaryLibExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.gsb.BasicObject.MBGPOJO.SalaryLibExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -115,19 +115,19 @@
     delete from salary_lib_table
     where salary_lib_no = #{salaryLibNo,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.gsb.BasicObject.MBG.SalaryLibExample">
+  <delete id="deleteByExample" parameterType="com.gsb.BasicObject.MBGPOJO.SalaryLibExample">
     delete from salary_lib_table
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.gsb.BasicObject.MBG.SalaryLib">
+  <insert id="insert" parameterType="com.gsb.BasicObject.MBGPOJO.SalaryLib">
     insert into salary_lib_table (salary_lib_no, salary_version, salary_lib_remark
       )
     values (#{salaryLibNo,jdbcType=INTEGER}, #{salaryVersion,jdbcType=CHAR}, #{salaryLibRemark,jdbcType=LONGVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.gsb.BasicObject.MBG.SalaryLib">
+  <insert id="insertSelective" parameterType="com.gsb.BasicObject.MBGPOJO.SalaryLib">
     insert into salary_lib_table
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="salaryLibNo != null">
@@ -152,7 +152,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.gsb.BasicObject.MBG.SalaryLibExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.gsb.BasicObject.MBGPOJO.SalaryLibExample" resultType="java.lang.Long">
     select count(*) from salary_lib_table
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -192,7 +192,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.gsb.BasicObject.MBG.SalaryLib">
+  <update id="updateByPrimaryKeySelective" parameterType="com.gsb.BasicObject.MBGPOJO.SalaryLib">
     update salary_lib_table
     <set>
       <if test="salaryVersion != null">
@@ -204,13 +204,13 @@
     </set>
     where salary_lib_no = #{salaryLibNo,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.gsb.BasicObject.MBG.SalaryLib">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.gsb.BasicObject.MBGPOJO.SalaryLib">
     update salary_lib_table
     set salary_version = #{salaryVersion,jdbcType=CHAR},
       salary_lib_remark = #{salaryLibRemark,jdbcType=LONGVARCHAR}
     where salary_lib_no = #{salaryLibNo,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.gsb.BasicObject.MBG.SalaryLib">
+  <update id="updateByPrimaryKey" parameterType="com.gsb.BasicObject.MBGPOJO.SalaryLib">
     update salary_lib_table
     set salary_version = #{salaryVersion,jdbcType=CHAR}
     where salary_lib_no = #{salaryLibNo,jdbcType=INTEGER}

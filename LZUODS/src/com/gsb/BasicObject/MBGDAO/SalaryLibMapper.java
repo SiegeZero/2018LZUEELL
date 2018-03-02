@@ -1,9 +1,10 @@
 package com.gsb.BasicObject.MBGDAO;
 
-import com.gsb.BasicObject.MBG.SalaryLib;
-import com.gsb.BasicObject.MBG.SalaryLibExample;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
+
+import com.gsb.BasicObject.MBGPOJO.SalaryLib;
+import com.gsb.BasicObject.MBGPOJO.SalaryLibExample;
 
 public interface SalaryLibMapper {
     long countByExample(SalaryLibExample example);

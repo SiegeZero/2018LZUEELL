@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gsb.BasicObject.MBGDAO.SympathyAtvMapper">
-  <resultMap id="BaseResultMap" type="com.gsb.BasicObject.MBG.SympathyAtv">
+  <resultMap id="BaseResultMap" type="com.gsb.BasicObject.MBGPOJO.SympathyAtv">
     <id column="activity_no" jdbcType="INTEGER" property="activityNo" />
     <result column="sympathy_time" jdbcType="DATE" property="sympathyTime" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.gsb.BasicObject.MBG.SympathyAtv">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.gsb.BasicObject.MBGPOJO.SympathyAtv">
     <result column="activity_remark" jdbcType="LONGVARCHAR" property="activityRemark" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -72,7 +72,7 @@
   <sql id="Blob_Column_List">
     activity_remark
   </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.gsb.BasicObject.MBG.SympathyAtvExample" resultMap="ResultMapWithBLOBs">
+  <select id="selectByExampleWithBLOBs" parameterType="com.gsb.BasicObject.MBGPOJO.SympathyAtvExample" resultMap="ResultMapWithBLOBs">
     select
     <if test="distinct">
       distinct
@@ -88,7 +88,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" parameterType="com.gsb.BasicObject.MBG.SympathyAtvExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.gsb.BasicObject.MBGPOJO.SympathyAtvExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -114,19 +114,19 @@
     delete from sympathy_activities_table
     where activity_no = #{activityNo,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="com.gsb.BasicObject.MBG.SympathyAtvExample">
+  <delete id="deleteByExample" parameterType="com.gsb.BasicObject.MBGPOJO.SympathyAtvExample">
     delete from sympathy_activities_table
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.gsb.BasicObject.MBG.SympathyAtv">
+  <insert id="insert" parameterType="com.gsb.BasicObject.MBGPOJO.SympathyAtv">
     insert into sympathy_activities_table (activity_no, sympathy_time, activity_remark
       )
     values (#{activityNo,jdbcType=INTEGER}, #{sympathyTime,jdbcType=DATE}, #{activityRemark,jdbcType=LONGVARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.gsb.BasicObject.MBG.SympathyAtv">
+  <insert id="insertSelective" parameterType="com.gsb.BasicObject.MBGPOJO.SympathyAtv">
     insert into sympathy_activities_table
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="activityNo != null">
@@ -151,7 +151,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.gsb.BasicObject.MBG.SympathyAtvExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.gsb.BasicObject.MBGPOJO.SympathyAtvExample" resultType="java.lang.Long">
     select count(*) from sympathy_activities_table
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
@@ -191,7 +191,7 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.gsb.BasicObject.MBG.SympathyAtv">
+  <update id="updateByPrimaryKeySelective" parameterType="com.gsb.BasicObject.MBGPOJO.SympathyAtv">
     update sympathy_activities_table
     <set>
       <if test="sympathyTime != null">
@@ -203,13 +203,13 @@
     </set>
     where activity_no = #{activityNo,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.gsb.BasicObject.MBG.SympathyAtv">
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.gsb.BasicObject.MBGPOJO.SympathyAtv">
     update sympathy_activities_table
     set sympathy_time = #{sympathyTime,jdbcType=DATE},
       activity_remark = #{activityRemark,jdbcType=LONGVARCHAR}
     where activity_no = #{activityNo,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.gsb.BasicObject.MBG.SympathyAtv">
+  <update id="updateByPrimaryKey" parameterType="com.gsb.BasicObject.MBGPOJO.SympathyAtv">
     update sympathy_activities_table
     set sympathy_time = #{sympathyTime,jdbcType=DATE}
     where activity_no = #{activityNo,jdbcType=INTEGER}

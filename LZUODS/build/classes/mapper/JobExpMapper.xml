@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.gsb.BasicObject.MBGDAO.JobExpMapper">
-  <resultMap id="BaseResultMap" type="com.gsb.BasicObject.MBG.JobExp">
+  <resultMap id="BaseResultMap" type="com.gsb.BasicObject.MBGPOJO.JobExp">
     <result column="sys_no" jdbcType="INTEGER" property="sysNo" />
     <result column="job_start_time" jdbcType="DATE" property="jobStartTime" />
     <result column="job_end_time" jdbcType="DATE" property="jobEndTime" />
     <result column="job_exp_dept" jdbcType="VARCHAR" property="jobExpDept" />
   </resultMap>
-  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.gsb.BasicObject.MBG.JobExp">
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.gsb.BasicObject.MBGPOJO.JobExp">
     <result column="job_exp_remark" jdbcType="LONGVARCHAR" property="jobExpRemark" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -74,7 +74,7 @@
   <sql id="Blob_Column_List">
     job_exp_remark
   </sql>
-  <select id="selectByExampleWithBLOBs" parameterType="com.gsb.BasicObject.MBG.JobExpExample" resultMap="ResultMapWithBLOBs">
+  <select id="selectByExampleWithBLOBs" parameterType="com.gsb.BasicObject.MBGPOJO.JobExpExample" resultMap="ResultMapWithBLOBs">
     select
     <if test="distinct">
       distinct
@@ -90,7 +90,7 @@
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByExample" parameterType="com.gsb.BasicObject.MBG.JobExpExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.gsb.BasicObject.MBGPOJO.JobExpExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -104,19 +104,19 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteByExample" parameterType="com.gsb.BasicObject.MBG.JobExpExample">
+  <delete id="deleteByExample" parameterType="com.gsb.BasicObject.MBGPOJO.JobExpExample">
     delete from job_exp_table
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.gsb.BasicObject.MBG.JobExp">
+  <insert id="insert" parameterType="com.gsb.BasicObject.MBGPOJO.JobExp">
     insert into job_exp_table (sys_no, job_start_time, job_end_time, 
       job_exp_dept, job_exp_remark)
     values (#{sysNo,jdbcType=INTEGER}, #{jobStartTime,jdbcType=DATE}, #{jobEndTime,jdbcType=DATE}, 
       #{jobExpDept,jdbcType=VARCHAR}, #{jobExpRemark,jdbcType=LONGVARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.gsb.BasicObject.MBG.JobExp">
+  <insert id="insertSelective" parameterType="com.gsb.BasicObject.MBGPOJO.JobExp">
     insert into job_exp_table
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="sysNo != null">
@@ -153,7 +153,7 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.gsb.BasicObject.MBG.JobExpExample" resultType="java.lang.Long">
+  <select id="countByExample" parameterType="com.gsb.BasicObject.MBGPOJO.JobExpExample" resultType="java.lang.Long">
     select count(*) from job_exp_table
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />

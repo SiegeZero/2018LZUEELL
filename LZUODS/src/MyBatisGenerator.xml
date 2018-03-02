@@ -19,7 +19,7 @@
 			<property name="forceBigDecimals" value="false" />
 		</javaTypeResolver>
 
-		<javaModelGenerator targetPackage="com.gsb.BasicObject.MBG"
+		<javaModelGenerator targetPackage="com.gsb.BasicObject.MBGPOJO"
 			targetProject=".\src">
 			<property name="enableSubPackages" value="true" />
 			<property name="trimStrings" value="true" />
