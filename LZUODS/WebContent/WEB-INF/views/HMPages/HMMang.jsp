@@ -4,15 +4,6 @@
 <html>
 
 <head>
-	<meta charset="utf-8">
-	<!--编码格式UTF-8-->
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<!--IE浏览器渲染方式-->
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<!--移动设备响应-->
-	<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link rel="stylesheet" href="style.css">
 <title>人员管理</title>
 <script>
 	window.onload = function(){
@@ -116,7 +107,7 @@
 					<ul class="nav">
 						<li><a href="HMMang"><span class="glyphicon glyphicon-user"></span>&nbsp;人员信息</a></li>
 						<li><a href="#"><span class="glyphicon glyphicon-yen"></span>&nbsp;工资管理</a></li>
-						<li><a href="#"><span class="glyphicon glyphicon-signal"></span>&nbsp;统计分析</a></li>
+						<li><a href="HMAnls"><span class="glyphicon glyphicon-signal"></span>&nbsp;统计分析</a></li>
 						<li><a href="#"><span class="glyphicon glyphicon-tags"></span>&nbsp;其他功能</a></li>
 					</ul>
 				</ul>
@@ -374,7 +365,7 @@
 								</div>
 								<div>
 									<div>
-										<button type="submit" style="padding:5px" title="点击查询">
+										<button type="submit" title="点击查询">
 											<span class="glyphicon glyphicon-search"></span>
 										</button>
 									</div>
@@ -432,9 +423,9 @@
 					</table>
 				</div>
 				<div class="container-fluid">
-					<div class="pull-left">
+					<!-- <div class="pull-left">
 						<input type="checkbox"><strong>&nbsp;全选</strong>
-					</div>
+					</div> -->
 					<div class="pull-right">
 						<a href="HMAdd"><button type="button" class="btn btn-info">新增人员</button></a>
 						<button type="button" class="btn btn-warning">导出PDF</button>
