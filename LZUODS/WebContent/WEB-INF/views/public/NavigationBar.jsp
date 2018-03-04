@@ -12,7 +12,7 @@
 	<!--移动设备响应-->
 	<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="../css/style.css">
 <title>导航栏</title>
 </head>
 
@@ -31,9 +31,9 @@
 		</div>
 		<div class="collapse navbar-collapse" id="navbar-menu">
 			<ul class="nav navbar-nav">
-				<li><a href="../HMM/HMHome">首页</a></li>
-				<li><a href="../HMM/HMMang">人员管理</a></li>
-				<li><a href="SocietyMang">分会管理</a></li>
+				<li><a href="HMHome">首页</a></li>
+				<li><a href="HMMang">人员管理</a></li>
+				<li><a href="../SYM/SocietyMang">分会管理</a></li>
 				<li><a href="PTMang">党建管理</a></li>
 				<li><a href="EVMang">活动管理</a></li>
 			</ul>
@@ -49,7 +49,7 @@
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	<script src="js/functions.js"></script>
+	<script src="../js/functions.js"></script>
 
 </body>
 

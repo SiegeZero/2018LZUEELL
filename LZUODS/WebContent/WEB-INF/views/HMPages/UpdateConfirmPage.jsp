@@ -12,7 +12,7 @@
 	<!--移动设备响应-->
 	<!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="../css/style.css">
 <title>更改确认</title>
 </head>
 
@@ -22,7 +22,7 @@
 	com.gsb.BasicObject.MBGPOJO.SourcePerson,
 	java.text.SimpleDateFormat" %>
 <%
-List<String> sociaty_list =(List<String>) request.getAttribute("sociaties_list");
+List<String> society_list =(List<String>) request.getAttribute("sociaties_list");
 List<SalaryLib> slib_list =(List<SalaryLib>) request.getAttribute("slib_list");
 SourcePerson person = (SourcePerson)request.getAttribute("target");
 SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
@@ -195,25 +195,25 @@ SourcePerson new_person = (SourcePerson)request.getAttribute("new_person");
 				<input type="hidden" name="slary_lib" value="<%=person.getSlib().getSalaryVersion() %>" />		
 				<%
 				}
-				if( !person.getSociaty().getSociatyName().equals( new_person.getSociaty().getSociatyName())) {
+				if( !person.getSociety().getSocietyName().equals( new_person.getSociety().getSocietyName())) {
 				%>
 				<tr>
 	                <div class="input-group input-group-sm">
 	                	<td><input type="text" class="form-control" value="所在分会:" readonly/></td>
 	                </div>
 	                <div class="input-group input-group-sm">
-	                	<td><input type="text" class="form-control" value="<%=person.getSociaty().getSociatyName() %>" readonly/></td>
+	                	<td><input type="text" class="form-control" value="<%=person.getSociety().getSocietyName() %>" readonly/></td>
 	                </div>
 					<td align="center"><span class="glyphicon glyphicon-arrow-right" style="line-height:34px; vertical-align:middle"></span></td>
 	                <div class="input-group input-group-sm">
-	                	<td><input name="sociaty" type="text" class="form-control" value="<%=new_person.getSociaty().getSociatyName() %>" /></td>
+	                	<td><input name="society" type="text" class="form-control" value="<%=new_person.getSociety().getSocietyName() %>" /></td>
 	                </div>
 				</tr>
 				
 				<%
 				} else{
 				%>
-				<input type="hidden" name="sociaty" value="<%=person.getSociaty().getSociatyName() %>" />	
+				<input type="hidden" name="society" value="<%=person.getSociety().getSocietyName() %>" />	
 				<%
 				}
 				if( person.getFunc() == null && new_person.getFunc() != null 

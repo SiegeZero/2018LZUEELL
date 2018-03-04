@@ -13,12 +13,12 @@
 </head>
 <%@ page import="java.util.List,com.gsb.BasicObject.MBGPOJO.SalaryLib" %>
 <%
-List<String> sociaty_list =(List<String>) request.getAttribute("sociaties_list");
+List<String> society_list =(List<String>) request.getAttribute("sociaties_list");
 List<SalaryLib> slib_list =(List<SalaryLib>) request.getAttribute("slib_list");
 %>
 <body>
 
-	<jsp:include page="NavigationBar.jsp"></jsp:include>
+	<jsp:include page="../public/NavigationBar.jsp"></jsp:include>
 	
     <div class="container-fluid">
         <p class="alert alert-info"><strong>新增人员</strong></p>
@@ -83,9 +83,9 @@ List<SalaryLib> slib_list =(List<SalaryLib>) request.getAttribute("slib_list");
                         <select>
                             <%
                             
-                            for(int i=0;i<sociaty_list.size();i++){
+                            for(int i=0;i<society_list.size();i++){
                             %>
-                                <option value="分会"><%=sociaty_list.get(i) %></option>
+                                <option value="分会"><%=society_list.get(i) %></option>
                             <%
                             }
                             %>

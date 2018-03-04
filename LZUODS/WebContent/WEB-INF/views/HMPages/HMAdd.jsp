@@ -6,14 +6,14 @@
 <head>
     <title>新增人员</title>
 </head>
-<%@ page import="java.util.List,com.gsb.BasicObject.MBGPOJO.SalaryLib,com.gsb.BasicObject.MBGPOJO.Sociaty" %>
+<%@ page import="java.util.List,com.gsb.BasicObject.MBGPOJO.SalaryLib,com.gsb.BasicObject.MBGPOJO.Society" %>
 <%
-List<Sociaty> sociaty_list =(List<Sociaty>) request.getAttribute("sociaties_list");
+List<Society> society_list =(List<Society>) request.getAttribute("sociaties_list");
 List<SalaryLib> slib_list =(List<SalaryLib>) request.getAttribute("slib_list");
 %>
 <body>
 
-	<jsp:include page="NavigationBar.jsp"></jsp:include>
+	<jsp:include page="../public/NavigationBar.jsp"></jsp:include>
 	
     <div class="container-fluid">
         <p class="alert alert-info"><strong>新增人员</strong></p>
@@ -55,7 +55,7 @@ List<SalaryLib> slib_list =(List<SalaryLib>) request.getAttribute("slib_list");
                     </div>
                     <th>所在分会:</th>
                     <div class="input-group input-group-sm">
-                        <td><input name="sociaty" type="text" class="form-control" value="机关一分会" placeholder="所在分会" /></td>
+                        <td><input name="society" type="text" class="form-control" value="机关一分会" placeholder="所在分会" /></td>
                     </div>
                 </tr>
                 <tr>

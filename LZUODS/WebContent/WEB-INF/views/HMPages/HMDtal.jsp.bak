@@ -22,7 +22,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日");
 
 <body>
 
-	<jsp:include page="NavigationBar.jsp"></jsp:include>
+	<jsp:include page="../public/NavigationBar.jsp"></jsp:include>
 
     <div class="container-fluid">
         <p class="alert alert-info"><strong>详细信息</strong></p>
@@ -49,7 +49,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日");
                     <th>工资库:</th>
                     <td><%=person.getSlib().getSalaryVersion() %></td>
                     <th>所在分会:</th>
-                    <td><%=person.getSociaty().getSociatyName() %></td>
+                    <td><%=person.getSociety().getSocietyName() %></td>
                 </tr>
                 <tr>
                     <th>职级:</th>

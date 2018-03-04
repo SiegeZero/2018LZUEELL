@@ -17,7 +17,7 @@ if( party_attrs != null)
 	details.add( party_attrs);
 %>
 <body>
-	<jsp:include page="NavigationBar.jsp"></jsp:include>
+	<jsp:include page="../public/NavigationBar.jsp"></jsp:include>
 
     <div class="container-fluid">
         <p class="alert alert-info"><strong>主页</strong></p>
