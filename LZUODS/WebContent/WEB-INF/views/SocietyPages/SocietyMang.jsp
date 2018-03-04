@@ -11,15 +11,15 @@
 
 <%@page import="java.util.List
 	,com.gsb.BasicObject.MBGPOJO.SourcePerson
-	,com.gsb.BasicObject.MBGPOJO.Sociaty"%>
+	,com.gsb.BasicObject.MBGPOJO.Society"%>
 <%
-	List<Sociaty> sociaties_list = (List<Sociaty>) request.getAttribute("sociaties_list");
+	List<Society> sociaties_list = (List<Society>) request.getAttribute("sociaties_list");
 	
 %>
 
 <body>
 
-	<jsp:include page="NavigationBar.jsp"></jsp:include>
+	<jsp:include page="../public/NavigationBar.jsp"></jsp:include>
 	<div class="panel panel-default">
 		<div class="panel-heading">分会列表</div>
 		<div class="panel-body">
@@ -38,11 +38,11 @@
         <tbody>
           <%
           for(int row_index = 0; sociaties_list != null && row_index < sociaties_list.size(); row_index++){
-        	  Sociaty s = sociaties_list.get(row_index);
+        	  Society s = sociaties_list.get(row_index);
           %>
           <tr>
             <th><%=row_index %></th>
-            <td><%=s.getSociatyName() %></td>
+            <td><%=s.getSocietyName() %></td>
           </tr>
            <%
             }

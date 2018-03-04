@@ -79,14 +79,14 @@
 
 <%@page import="java.util.List
 	,com.gsb.BasicObject.MBGPOJO.SourcePerson
-	,com.gsb.BasicObject.MBGPOJO.Sociaty
+	,com.gsb.BasicObject.MBGPOJO.Society
 	,java.util.Calendar
 	,java.util.Date"%>
 <%
 	int Age = 0;
 	List<SourcePerson> person_list = (List<SourcePerson>) request.getAttribute("person_list");
 	List<String> nations_list = (List<String>) request.getAttribute("nations_list");
-	List<Sociaty> sociaties_list = (List<Sociaty>) request.getAttribute("sociaties_list");
+	List<Society> sociaties_list = (List<Society>) request.getAttribute("sociaties_list");
 	List<String> func_list = (List<String>) request.getAttribute("func_list");
 	List<String> title_lv_list = (List<String>) request.getAttribute("title_lv_list");
 	List<String> conscription_situation_list = (List<String>) request.getAttribute("conscription_situation_list");
@@ -97,7 +97,7 @@
 
 <body style="height: 100%">
 
-	<jsp:include page="NavigationBar.jsp"></jsp:include>
+	<jsp:include page="../public/NavigationBar.jsp"></jsp:include>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-3 col-md-2 navbar-inverse sidebar" style="height: 100%">
@@ -239,7 +239,7 @@
 									<%
 										List<Integer> sociaties_str = (List<Integer>)request.getAttribute("sociaties_str");
 										for (int row_index = 0; sociaties_list != null && row_index < sociaties_list.size() ; row_index++) {
-											Sociaty s = sociaties_list.get(row_index);
+											Society s = sociaties_list.get(row_index);
 											if(row_index % 9 == 0){
 									%>
 								</tr>
@@ -248,12 +248,12 @@
 											} 
 										%>
 									<td><input 
-											type="checkbox" name="sociaty" id="sociaty<%=row_index %>)"
-											value="<%=s.getSociatyNo() %>" 
+											type="checkbox" name="society" id="society<%=row_index %>)"
+											value="<%=s.getSocietyNo() %>" 
 											onClick="select_attribute"
-											<%=sociaties_str!=null&&sociaties_str.contains(s.getSociatyNo())?"checked":"" %>
+											<%=sociaties_str!=null&&sociaties_str.contains(s.getSocietyNo())?"checked":"" %>
 										/>
-										<%=s.getSociatyName().equals("")?"无分会":s.getSociatyName()%></td>	
+										<%=s.getSocietyName().equals("")?"无分会":s.getSocietyName()%></td>	
 									
 									<%
 										}
@@ -407,7 +407,7 @@
 							<%=person_list.get(cow_index).getName()%></a></td>
 							<td><%=person_list.get(cow_index).getTitleLv()%></td>
 							<td><%=person_list.get(cow_index).getFunc()%></td>
-							<td><%=person_list.get(cow_index).getSociaty().getSociatyName()%></td>
+							<td><%=person_list.get(cow_index).getSociety().getSocietyName()%></td>
 							<td><%=person_list.get(cow_index).getDept().getDeptName()%></td>
 							<td><%=person_list.get(cow_index).getQuitOfficeType()%></td>
 							<td><%=person_list.get(cow_index).getGender()%></td>
@@ -421,6 +421,19 @@
 							}
 						%>
 					</table>
+				</div>
+				<div class="container-fluid">
+					<center>
+						<ul class="pagination pagination-lg">
+							<li><a href="#">&laquo;</a></li>
+							<li><a href="#">1</a></li>
+							<li><a href="#">2</a></li>
+							<li><a href="#">3</a></li>
+							<li><a href="#">4</a></li>
+							<li><a href="#">5</a></li>
+							<li><a href="#">&raquo;</a></li>
+						</ul>
+					</center>
 				</div>
 				<div class="container-fluid">
 					<!-- <div class="pull-left">
