@@ -438,7 +438,6 @@
 						<button type="button" class="btn btn-warning"
 							onclick="printtable(personitem)">导出Excel</button>
 						<button type="button" class="btn btn-info">下载模板</button>
-						<button type="button" class="btn btn-info">下载模板</button>
 					</div>
 				</div>
 			</div>
