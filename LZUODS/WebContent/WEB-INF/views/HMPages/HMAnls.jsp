@@ -4,7 +4,7 @@
 <html>
 
 <head>
-<title>首页</title>
+<title>统计分析</title>
 </head>
 <%@page import ="java.io.File,java.util.List,java.util.ArrayList" %>
 <%
@@ -20,11 +20,11 @@ if( party_attrs != null)
 	<jsp:include page="NavigationBar.jsp"></jsp:include>
 
     <div class="container-fluid">
-        <p class="alert alert-info"><strong>主页</strong></p>
+        <p class="alert alert-info"><strong>基本数据</strong></p>
     </div>
     <div class="container-fluid">
         <p class="alert alert-info"><strong>
-			少于100岁的退休人员人数：<%= request.getAttribute("lessthan100") %>
+			小于100岁的退休人员人数：<%= request.getAttribute("lessthan100") %>
 		</strong></p>
     </div>
     <%
@@ -44,5 +44,13 @@ if( party_attrs != null)
     <%
     }
     %>
+    
+    <div style="width:50%;margin: 0px auto;">
+    	<canvas id="chart-pie" width="450" height="450"></canvas>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.min.js"></script>
+    <script src="js/chart-pie.js"></script>
+    
 </body>
 </html>
