@@ -1,10 +1,9 @@
 package com.gsb.BasicObject.MBGDAO;
 
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
-
 import com.gsb.BasicObject.MBGPOJO.PensionModel;
 import com.gsb.BasicObject.MBGPOJO.PensionModelExample;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface PensionModelMapper {
     long countByExample(PensionModelExample example);

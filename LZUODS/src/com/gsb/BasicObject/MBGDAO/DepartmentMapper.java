@@ -1,11 +1,9 @@
 package com.gsb.BasicObject.MBGDAO;
 
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
-
 import com.gsb.BasicObject.MBGPOJO.Department;
 import com.gsb.BasicObject.MBGPOJO.DepartmentExample;
-import com.gsb.BasicObject.MBGPOJO.SourcePerson;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface DepartmentMapper {
     long countByExample(DepartmentExample example);
@@ -22,8 +20,6 @@ public interface DepartmentMapper {
 
     List<Department> selectByExample(DepartmentExample example);
 
-    List<String> selectAllDepts(); 
-    
     Department selectByPrimaryKey(Integer deptNo);
 
     int updateByExampleSelective(@Param("record") Department record, @Param("example") DepartmentExample example);

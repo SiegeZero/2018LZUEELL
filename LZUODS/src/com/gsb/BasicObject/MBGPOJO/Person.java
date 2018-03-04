@@ -33,7 +33,7 @@ public class Person {
 
     private Date birthTime;
 
-    private Integer sociatyNo;
+    private Integer societyNo;
 
     private String eduBg;
 
@@ -169,12 +169,12 @@ public class Person {
         this.birthTime = birthTime;
     }
 
-    public Integer getSociatyNo() {
-        return sociatyNo;
+    public Integer getSocietyNo() {
+        return societyNo;
     }
 
-    public void setSociatyNo(Integer sociatyNo) {
-        this.sociatyNo = sociatyNo;
+    public void setSocietyNo(Integer societyNo) {
+        this.societyNo = societyNo;
     }
 
     public String getEduBg() {

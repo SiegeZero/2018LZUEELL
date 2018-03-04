@@ -1112,63 +1112,63 @@ public class PersonExample {
             return (Criteria) this;
         }
 
-        public Criteria andSociatyNoIsNull() {
-            addCriterion("sociaty_no is null");
+        public Criteria andSocietyNoIsNull() {
+            addCriterion("society_no is null");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyNoIsNotNull() {
-            addCriterion("sociaty_no is not null");
+        public Criteria andSocietyNoIsNotNull() {
+            addCriterion("society_no is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyNoEqualTo(Integer value) {
-            addCriterion("sociaty_no =", value, "sociatyNo");
+        public Criteria andSocietyNoEqualTo(Integer value) {
+            addCriterion("society_no =", value, "societyNo");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyNoNotEqualTo(Integer value) {
-            addCriterion("sociaty_no <>", value, "sociatyNo");
+        public Criteria andSocietyNoNotEqualTo(Integer value) {
+            addCriterion("society_no <>", value, "societyNo");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyNoGreaterThan(Integer value) {
-            addCriterion("sociaty_no >", value, "sociatyNo");
+        public Criteria andSocietyNoGreaterThan(Integer value) {
+            addCriterion("society_no >", value, "societyNo");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyNoGreaterThanOrEqualTo(Integer value) {
-            addCriterion("sociaty_no >=", value, "sociatyNo");
+        public Criteria andSocietyNoGreaterThanOrEqualTo(Integer value) {
+            addCriterion("society_no >=", value, "societyNo");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyNoLessThan(Integer value) {
-            addCriterion("sociaty_no <", value, "sociatyNo");
+        public Criteria andSocietyNoLessThan(Integer value) {
+            addCriterion("society_no <", value, "societyNo");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyNoLessThanOrEqualTo(Integer value) {
-            addCriterion("sociaty_no <=", value, "sociatyNo");
+        public Criteria andSocietyNoLessThanOrEqualTo(Integer value) {
+            addCriterion("society_no <=", value, "societyNo");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyNoIn(List<Integer> values) {
-            addCriterion("sociaty_no in", values, "sociatyNo");
+        public Criteria andSocietyNoIn(List<Integer> values) {
+            addCriterion("society_no in", values, "societyNo");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyNoNotIn(List<Integer> values) {
-            addCriterion("sociaty_no not in", values, "sociatyNo");
+        public Criteria andSocietyNoNotIn(List<Integer> values) {
+            addCriterion("society_no not in", values, "societyNo");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyNoBetween(Integer value1, Integer value2) {
-            addCriterion("sociaty_no between", value1, value2, "sociatyNo");
+        public Criteria andSocietyNoBetween(Integer value1, Integer value2) {
+            addCriterion("society_no between", value1, value2, "societyNo");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyNoNotBetween(Integer value1, Integer value2) {
-            addCriterion("sociaty_no not between", value1, value2, "sociatyNo");
+        public Criteria andSocietyNoNotBetween(Integer value1, Integer value2) {
+            addCriterion("society_no not between", value1, value2, "societyNo");
             return (Criteria) this;
         }
 

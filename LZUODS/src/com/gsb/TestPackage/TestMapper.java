@@ -17,9 +17,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.gsb.BasicObject.MBGDAO.DepartmentMapper;
 import com.gsb.BasicObject.MBGDAO.PersonMapper;
-import com.gsb.BasicObject.MBGDAO.SociatyMapper;
+import com.gsb.BasicObject.MBGDAO.SocietyMapper;
 import com.gsb.BasicObject.MBGPOJO.Department;
-import com.gsb.BasicObject.MBGPOJO.Sociaty;
+import com.gsb.BasicObject.MBGPOJO.Society;
 import com.gsb.BasicObject.MBGPOJO.SourcePerson;
 import com.gsb.BasicObject.Services.ReadDBInfos;
 import com.gsb.BasicObject.Services.StoreFileInfos;
@@ -49,18 +49,18 @@ public class TestMapper{
 	}
 	
 	@Autowired
-	SociatyMapper sociaty_mapper;
+	SocietyMapper society_mapper;
 	
-	public void  insertSociaty() {
+	public void  insertSociety() {
 		try {
 			Set sets = OpenWorkSheet.countLibsAmount( "现所在分会", new File("src/data-new.xls"));
 			Iterator<String> it = sets.iterator();
 			while( it.hasNext()) {
 				String content = it.next();
 				if( !content.equals("")) {
-					Sociaty s = new Sociaty();
-					s.setSociatyName( content);
-					sociaty_mapper.insert( s);
+					Society s = new Society();
+					s.setSocietyName( content);
+					society_mapper.insert( s);
 				}
 					
 			}
@@ -99,7 +99,7 @@ public class TestMapper{
 	public void  printContent() throws ParseException {
 //		info_reader.getAllAmount( 2);
 //		info_reader.getAgeRangeAmountTest();
-//		info_reader.getAmountEachSociaty();
+//		info_reader.getAmountEachSociety();
 //		long a = info_reader.getAllAmountAtRangeToday(0, 100);
 //		info_reader.getPartyMembersAmount( 2);
 //		info_reader.getLastYearAmount(2016);

@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.gsb.BasicObject.MBGDAO.NotificationMapper">
+  <resultMap id="BaseResultMap" type="com.gsb.BasicObject.MBGPOJO.Notification">
+    <id column="notification_no" jdbcType="INTEGER" property="notificationNo" />
+    <result column="publisher_no" jdbcType="INTEGER" property="publisherNo" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="publish_time" jdbcType="DATE" property="publishTime" />
+    <result column="society_no" jdbcType="INTEGER" property="societyNo" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.gsb.BasicObject.MBGPOJO.Notification">
+    <result column="notification_content" jdbcType="LONGVARBINARY" property="notificationContent" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    notification_no, publisher_no, title, publish_time, society_no
+  </sql>
+  <sql id="Blob_Column_List">
+    notification_content
+  </sql>
+  <select id="selectByExampleWithBLOBs" parameterType="com.gsb.BasicObject.MBGPOJO.NotificationExample" resultMap="ResultMapWithBLOBs">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from notification_table
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" parameterType="com.gsb.BasicObject.MBGPOJO.NotificationExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from notification_table
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from notification_table
+    where notification_no = #{notificationNo,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from notification_table
+    where notification_no = #{notificationNo,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.gsb.BasicObject.MBGPOJO.NotificationExample">
+    delete from notification_table
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.gsb.BasicObject.MBGPOJO.Notification">
+    insert into notification_table (notification_no, publisher_no, title, 
+      publish_time, society_no, notification_content
+      )
+    values (#{notificationNo,jdbcType=INTEGER}, #{publisherNo,jdbcType=INTEGER}, #{title,jdbcType=VARCHAR}, 
+      #{publishTime,jdbcType=DATE}, #{societyNo,jdbcType=INTEGER}, #{notificationContent,jdbcType=LONGVARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.gsb.BasicObject.MBGPOJO.Notification">
+    insert into notification_table
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="notificationNo != null">
+        notification_no,
+      </if>
+      <if test="publisherNo != null">
+        publisher_no,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="publishTime != null">
+        publish_time,
+      </if>
+      <if test="societyNo != null">
+        society_no,
+      </if>
+      <if test="notificationContent != null">
+        notification_content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="notificationNo != null">
+        #{notificationNo,jdbcType=INTEGER},
+      </if>
+      <if test="publisherNo != null">
+        #{publisherNo,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="publishTime != null">
+        #{publishTime,jdbcType=DATE},
+      </if>
+      <if test="societyNo != null">
+        #{societyNo,jdbcType=INTEGER},
+      </if>
+      <if test="notificationContent != null">
+        #{notificationContent,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.gsb.BasicObject.MBGPOJO.NotificationExample" resultType="java.lang.Long">
+    select count(*) from notification_table
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update notification_table
+    <set>
+      <if test="record.notificationNo != null">
+        notification_no = #{record.notificationNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.publisherNo != null">
+        publisher_no = #{record.publisherNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.publishTime != null">
+        publish_time = #{record.publishTime,jdbcType=DATE},
+      </if>
+      <if test="record.societyNo != null">
+        society_no = #{record.societyNo,jdbcType=INTEGER},
+      </if>
+      <if test="record.notificationContent != null">
+        notification_content = #{record.notificationContent,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map">
+    update notification_table
+    set notification_no = #{record.notificationNo,jdbcType=INTEGER},
+      publisher_no = #{record.publisherNo,jdbcType=INTEGER},
+      title = #{record.title,jdbcType=VARCHAR},
+      publish_time = #{record.publishTime,jdbcType=DATE},
+      society_no = #{record.societyNo,jdbcType=INTEGER},
+      notification_content = #{record.notificationContent,jdbcType=LONGVARBINARY}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update notification_table
+    set notification_no = #{record.notificationNo,jdbcType=INTEGER},
+      publisher_no = #{record.publisherNo,jdbcType=INTEGER},
+      title = #{record.title,jdbcType=VARCHAR},
+      publish_time = #{record.publishTime,jdbcType=DATE},
+      society_no = #{record.societyNo,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.gsb.BasicObject.MBGPOJO.Notification">
+    update notification_table
+    <set>
+      <if test="publisherNo != null">
+        publisher_no = #{publisherNo,jdbcType=INTEGER},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="publishTime != null">
+        publish_time = #{publishTime,jdbcType=DATE},
+      </if>
+      <if test="societyNo != null">
+        society_no = #{societyNo,jdbcType=INTEGER},
+      </if>
+      <if test="notificationContent != null">
+        notification_content = #{notificationContent,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where notification_no = #{notificationNo,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.gsb.BasicObject.MBGPOJO.Notification">
+    update notification_table
+    set publisher_no = #{publisherNo,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      publish_time = #{publishTime,jdbcType=DATE},
+      society_no = #{societyNo,jdbcType=INTEGER},
+      notification_content = #{notificationContent,jdbcType=LONGVARBINARY}
+    where notification_no = #{notificationNo,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.gsb.BasicObject.MBGPOJO.Notification">
+    update notification_table
+    set publisher_no = #{publisherNo,jdbcType=INTEGER},
+      title = #{title,jdbcType=VARCHAR},
+      publish_time = #{publishTime,jdbcType=DATE},
+      society_no = #{societyNo,jdbcType=INTEGER}
+    where notification_no = #{notificationNo,jdbcType=INTEGER}
+  </update>
+</mapper>

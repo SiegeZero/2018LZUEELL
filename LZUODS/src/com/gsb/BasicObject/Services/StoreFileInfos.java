@@ -18,13 +18,13 @@ import org.springframework.stereotype.Service;
 import com.gsb.BasicObject.MBGDAO.DepartmentMapper;
 import com.gsb.BasicObject.MBGDAO.PersonMapper;
 import com.gsb.BasicObject.MBGDAO.SalaryLibMapper;
-import com.gsb.BasicObject.MBGDAO.SociatyMapper;
+import com.gsb.BasicObject.MBGDAO.SocietyMapper;
 import com.gsb.BasicObject.MBGPOJO.Department;
 import com.gsb.BasicObject.MBGPOJO.Person;
 import com.gsb.BasicObject.MBGPOJO.PersonExample;
 import com.gsb.BasicObject.MBGPOJO.PersonWithBLOBs;
 import com.gsb.BasicObject.MBGPOJO.SalaryLib;
-import com.gsb.BasicObject.MBGPOJO.Sociaty;
+import com.gsb.BasicObject.MBGPOJO.Society;
 import com.gsb.BasicObject.MBGPOJO.SourcePerson;
 import com.gsb.BasicObject.MBGPOJO.PersonExample.Criteria;
 
@@ -124,7 +124,7 @@ public class StoreFileInfos {
 	}
 
 	@Autowired
-	SociatyMapper sociaty_mapper;
+	SocietyMapper society_mapper;
 
 	public boolean storeSociatieWith(String targetHeader) {
 		if (first_data_row_index == 0) {
@@ -137,15 +137,15 @@ public class StoreFileInfos {
 		}
 		Iterator<String> it = sociaties.iterator();
 		while (it.hasNext()) {
-			Sociaty sociaty = new Sociaty();
-			sociaty.setSociatyName(it.next());
-			sociaty_mapper.insert(sociaty);
+			Society society = new Society();
+			society.setSocietyName(it.next());
+			society_mapper.insert(society);
 		}
 
-		List<Sociaty> selectByExample = sociaty_mapper.selectByExample(null);
+		List<Society> selectByExample = society_mapper.selectByExample(null);
 		sociaties_map = new HashMap<String, Integer>();
 		for (int index = 0; index < selectByExample.size(); index++) {
-			sociaties_map.put(selectByExample.get(index).getSociatyName(), selectByExample.get(index).getSociatyNo());
+			sociaties_map.put(selectByExample.get(index).getSocietyName(), selectByExample.get(index).getSocietyNo());
 		}
 		return true;
 	}
@@ -185,7 +185,7 @@ public class StoreFileInfos {
 	 * 【18家庭住址、19电话号码、20手机号码、21家庭成员和生活状况】 【22身体情况、23军属、24是否贫困】
 	 */
 	public boolean storeBasicInfoWith(String[] targetHeaders) throws ParseException {
-		sociaty_mapper.deleteByExample(null);
+		society_mapper.deleteByExample(null);
 		dept_mapper.deleteByExample(null);
 		slib_mapper.deleteByExample(null);
 		if (!this.storeSociatieWith(headers.get(3)) || !this.storeDeptsWith(headers.get(4))
@@ -197,7 +197,7 @@ public class StoreFileInfos {
 			SourcePerson person = new SourcePerson();
 			person.setSalaryNo(sheet.getCell(headers.indexOf(targetHeaders[1]), row_index).getContents());
 			person.setName(sheet.getCell(headers.indexOf(targetHeaders[2]), row_index).getContents());
-			person.setSociaty(sheet.getCell(headers.indexOf(targetHeaders[3]), row_index).getContents());
+			person.setSociety(sheet.getCell(headers.indexOf(targetHeaders[3]), row_index).getContents());
 			person.setDept(sheet.getCell(headers.indexOf(targetHeaders[4]), row_index).getContents());
 			person.setSlib(sheet.getCell(headers.indexOf(targetHeaders[5]), row_index).getContents());
 			person.setQuitOfficeType(sheet.getCell(headers.indexOf(targetHeaders[6]), row_index).getContents());
@@ -226,8 +226,8 @@ public class StoreFileInfos {
 				criteria.andNameEqualTo(person.getName());
 			if (person.getDeptNo() != null)
 				criteria.andDeptNoEqualTo(person.getDeptNo());
-			if (person.getSociatyNo() != null)
-				criteria.andSociatyNoEqualTo(person.getSociatyNo());
+			if (person.getSocietyNo() != null)
+				criteria.andSocietyNoEqualTo(person.getSocietyNo());
 			if (person.getSalaryNo() != null)
 				criteria.andSalaryNoEqualTo(person.getSalaryNo());
 			if (person.getBirthTime() != null)

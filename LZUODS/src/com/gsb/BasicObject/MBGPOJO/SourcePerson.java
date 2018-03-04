@@ -2,17 +2,13 @@ package com.gsb.BasicObject.MBGPOJO;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.List;
 import java.util.Map;
+import com.gsb.BasicObject.MBGPOJO.*;
 
-import com.gsb.BasicObject.MBGDAO.DepartmentMapper;
-import com.gsb.BasicObject.MBGDAO.SalaryLibMapper;
-import com.gsb.BasicObject.MBGDAO.SociatyMapper;
-import com.gsb.BasicObject.MBGPOJO.DepartmentExample.Criteria;
 
 public class SourcePerson extends PersonWithBLOBs {
 	private Department dept;
-	private Sociaty sociaty;
+	private Society society;
 	private SalaryLib slib;
 	private String gender;
 	private String birth;
@@ -31,7 +27,7 @@ public class SourcePerson extends PersonWithBLOBs {
 	public SourcePerson() {
 		super();
 		dept = new Department();
-		sociaty = new Sociaty();
+		society = new Society();
 		slib = new SalaryLib();
 		sdf = new SimpleDateFormat("yyyyMMdd");
 	}
@@ -40,9 +36,9 @@ public class SourcePerson extends PersonWithBLOBs {
 		int deptNo = depts_map.get( this.dept.getDeptName());
 		this.setDeptNo( deptNo);
 		this.dept.setDeptNo(deptNo);
-		int sociatyNo = sociaties_map.get( this.sociaty.getSociatyName());
-		this.setSociatyNo( sociatyNo);
-		this.sociaty.setSociatyNo( sociatyNo);
+		int societyNo = sociaties_map.get( this.society.getSocietyName());
+		this.setSocietyNo( societyNo);
+		this.society.setSocietyNo( societyNo);
 		if( this.slib.getSalaryVersion() != null) {
 			int slibNo = slib_map.get( this.slib.getSalaryVersion());
 			this.setSalaryLibNo( slibNo);
@@ -101,16 +97,16 @@ public class SourcePerson extends PersonWithBLOBs {
 		this.dept.setDeptName(dept_name);;
 	}
 
-	public Sociaty getSociaty() {
-		return sociaty;
+	public Society getSociety() {
+		return society;
 	}
 
-	public void setSociaty(Sociaty sociaty) {
-		this.sociaty = sociaty;
+	public void setSociety(Society society) {
+		this.society = society;
 	}
 	
-	public void setSociaty(String sociaty_name) {
-		this.sociaty.setSociatyName(sociaty_name);;
+	public void setSociety(String society_name) {
+		this.society.setSocietyName(society_name);;
 	}
 
 	public SalaryLib getSlib() {

@@ -7,7 +7,7 @@
     <result column="atv_start_date" jdbcType="DATE" property="atvStartDate" />
     <result column="atv_end_date" jdbcType="DATE" property="atvEndDate" />
     <result column="atv_place" jdbcType="VARCHAR" property="atvPlace" />
-    <result column="lead_sociaty_no" jdbcType="INTEGER" property="leadSociatyNo" />
+    <result column="lead_society_no" jdbcType="INTEGER" property="leadSocietyNo" />
     <result column="has_reward" jdbcType="BIT" property="hasReward" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -69,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    atv_no, atv_topic, atv_start_date, atv_end_date, atv_place, lead_sociaty_no, has_reward
+    atv_no, atv_topic, atv_start_date, atv_end_date, atv_place, lead_society_no, has_reward
   </sql>
   <select id="selectByExample" parameterType="com.gsb.BasicObject.MBGPOJO.AtvInfoExample" resultMap="BaseResultMap">
     select
@@ -103,10 +103,10 @@
   </delete>
   <insert id="insert" parameterType="com.gsb.BasicObject.MBGPOJO.AtvInfo">
     insert into activity_info_table (atv_no, atv_topic, atv_start_date, 
-      atv_end_date, atv_place, lead_sociaty_no, 
+      atv_end_date, atv_place, lead_society_no, 
       has_reward)
     values (#{atvNo,jdbcType=INTEGER}, #{atvTopic,jdbcType=VARCHAR}, #{atvStartDate,jdbcType=DATE}, 
-      #{atvEndDate,jdbcType=DATE}, #{atvPlace,jdbcType=VARCHAR}, #{leadSociatyNo,jdbcType=INTEGER}, 
+      #{atvEndDate,jdbcType=DATE}, #{atvPlace,jdbcType=VARCHAR}, #{leadSocietyNo,jdbcType=INTEGER}, 
       #{hasReward,jdbcType=BIT})
   </insert>
   <insert id="insertSelective" parameterType="com.gsb.BasicObject.MBGPOJO.AtvInfo">
@@ -127,8 +127,8 @@
       <if test="atvPlace != null">
         atv_place,
       </if>
-      <if test="leadSociatyNo != null">
-        lead_sociaty_no,
+      <if test="leadSocietyNo != null">
+        lead_society_no,
       </if>
       <if test="hasReward != null">
         has_reward,
@@ -150,8 +150,8 @@
       <if test="atvPlace != null">
         #{atvPlace,jdbcType=VARCHAR},
       </if>
-      <if test="leadSociatyNo != null">
-        #{leadSociatyNo,jdbcType=INTEGER},
+      <if test="leadSocietyNo != null">
+        #{leadSocietyNo,jdbcType=INTEGER},
       </if>
       <if test="hasReward != null">
         #{hasReward,jdbcType=BIT},
@@ -182,8 +182,8 @@
       <if test="record.atvPlace != null">
         atv_place = #{record.atvPlace,jdbcType=VARCHAR},
       </if>
-      <if test="record.leadSociatyNo != null">
-        lead_sociaty_no = #{record.leadSociatyNo,jdbcType=INTEGER},
+      <if test="record.leadSocietyNo != null">
+        lead_society_no = #{record.leadSocietyNo,jdbcType=INTEGER},
       </if>
       <if test="record.hasReward != null">
         has_reward = #{record.hasReward,jdbcType=BIT},
@@ -200,7 +200,7 @@
       atv_start_date = #{record.atvStartDate,jdbcType=DATE},
       atv_end_date = #{record.atvEndDate,jdbcType=DATE},
       atv_place = #{record.atvPlace,jdbcType=VARCHAR},
-      lead_sociaty_no = #{record.leadSociatyNo,jdbcType=INTEGER},
+      lead_society_no = #{record.leadSocietyNo,jdbcType=INTEGER},
       has_reward = #{record.hasReward,jdbcType=BIT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -221,8 +221,8 @@
       <if test="atvPlace != null">
         atv_place = #{atvPlace,jdbcType=VARCHAR},
       </if>
-      <if test="leadSociatyNo != null">
-        lead_sociaty_no = #{leadSociatyNo,jdbcType=INTEGER},
+      <if test="leadSocietyNo != null">
+        lead_society_no = #{leadSocietyNo,jdbcType=INTEGER},
       </if>
       <if test="hasReward != null">
         has_reward = #{hasReward,jdbcType=BIT},
@@ -236,7 +236,7 @@
       atv_start_date = #{atvStartDate,jdbcType=DATE},
       atv_end_date = #{atvEndDate,jdbcType=DATE},
       atv_place = #{atvPlace,jdbcType=VARCHAR},
-      lead_sociaty_no = #{leadSociatyNo,jdbcType=INTEGER},
+      lead_society_no = #{leadSocietyNo,jdbcType=INTEGER},
       has_reward = #{hasReward,jdbcType=BIT}
     where atv_no = #{atvNo,jdbcType=INTEGER}
   </update>

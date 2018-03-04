@@ -19,7 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.gsb.BasicObject.MBGDAO.DepartmentMapper;
 import com.gsb.BasicObject.MBGPOJO.PersonExample;
 import com.gsb.BasicObject.MBGPOJO.SalaryLib;
-import com.gsb.BasicObject.MBGPOJO.Sociaty;
+import com.gsb.BasicObject.MBGPOJO.Society;
 import com.gsb.BasicObject.MBGPOJO.SourcePerson;
 import com.gsb.BasicObject.MBGPOJO.PersonExample.Criteria;
 import com.gsb.BasicObject.Services.ReadDBInfos;
@@ -182,7 +182,7 @@ public class HMController {
 			for( String s:sociaties) {
 				list.add(Integer.parseInt(s));
 			}
-			c.andSociatyNoIn(list);
+			c.andSocietyNoIn(list);
 			mv.addObject("sociaties_str",list);
 		}
 		if( quit_office_types != null && quit_office_types.length != 0) {
@@ -223,7 +223,7 @@ public class HMController {
 		List<SourcePerson> person_list =  db_reader.getBasicInfos(example, -1);
 		List<String> nations_list = db_reader.getAllNations();
 		System.out.println( "show nation size:"+nations_list.size());
-		List<Sociaty> sociaties_list = db_reader.getAllSociaties();
+		List<Society> sociaties_list = db_reader.getAllSocieties();
 		System.out.println( "show sociaties size:"+sociaties_list.size());
 		List<String> func_list = db_reader.getAllFunc();
 		List<String> title_lv_list = db_reader.getAllTitleLv();
@@ -282,7 +282,7 @@ public class HMController {
 		new_person.setDept( request.getParameter( "dept"));
 		new_person.setSlib( request.getParameter("slary_lib"));
 		new_person.setFunc( request.getParameter( "func"));
-		new_person.setSociaty( request.getParameter("sociaty"));
+		new_person.setSociety( request.getParameter("sociaty"));
 		new_person.setTitleLv( request.getParameter( "title_lv"));
 		new_person.setEduBg( request.getParameter( "edu_bg"));
 		new_person.setStart_job( request.getParameter("start_time"));
@@ -306,7 +306,7 @@ public class HMController {
 	@RequestMapping(value="/HMAdd")
 	public ModelAndView add( ModelAndView mv) {
 		List<String> nations_list = db_reader.getAllNations();
-		List<Sociaty> sociaties_list = db_reader.getAllSociaties();
+		List<Society> sociaties_list = db_reader.getAllSocieties();
 		List<String> func_list = db_reader.getAllFunc();
 		List<String> title_lv_list = db_reader.getAllTitleLv();
 		List<String> cs_list = db_reader.getAllConscriptionSituation();
@@ -330,7 +330,7 @@ public class HMController {
 	@RequestMapping(value="/ConfirmPage")
 	public ModelAndView confirm( ModelAndView mv,HttpServletRequest request) {
 
-		List<Sociaty> sociaties_list = db_reader.getAllSociaties();
+		List<Society> sociaties_list = db_reader.getAllSocieties();
 		mv.addObject("sociaties_amount", sociaties_list.size());
 		mv.addObject("sociaties_list", sociaties_list);
 		return mv;
@@ -349,7 +349,7 @@ public class HMController {
 		new_person.setDept( request.getParameter( "dept"));
 		new_person.setSlib( request.getParameter("slary_lib"));
 		new_person.setFunc( request.getParameter( "func"));
-		new_person.setSociaty( request.getParameter("sociaty"));
+		new_person.setSociety( request.getParameter("sociaty"));
 		new_person.setTitleLv( request.getParameter( "title_lv"));
 		new_person.setEduBg( request.getParameter( "edu_bg"));
 		new_person.setStart_job( request.getParameter("start_time"));
@@ -382,7 +382,7 @@ public class HMController {
 		new_person.setDept( request.getParameter( "dept"));
 		new_person.setSlib( request.getParameter("slary_lib"));
 		new_person.setFunc( request.getParameter( "func"));
-		new_person.setSociaty( request.getParameter("sociaty"));
+		new_person.setSociety( request.getParameter("sociaty"));
 		new_person.setTitleLv( request.getParameter( "title_lv"));
 		new_person.setEduBg( request.getParameter( "edu_bg"));
 		new_person.setStart_job( request.getParameter("start_time"));

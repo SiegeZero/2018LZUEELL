@@ -13,7 +13,7 @@ public class AtvInfo {
 
     private String atvPlace;
 
-    private Integer leadSociatyNo;
+    private Integer leadSocietyNo;
 
     private Boolean hasReward;
 
@@ -57,12 +57,12 @@ public class AtvInfo {
         this.atvPlace = atvPlace == null ? null : atvPlace.trim();
     }
 
-    public Integer getLeadSociatyNo() {
-        return leadSociatyNo;
+    public Integer getLeadSocietyNo() {
+        return leadSocietyNo;
     }
 
-    public void setLeadSociatyNo(Integer leadSociatyNo) {
-        this.leadSociatyNo = leadSociatyNo;
+    public void setLeadSocietyNo(Integer leadSocietyNo) {
+        this.leadSocietyNo = leadSocietyNo;
     }
 
     public Boolean getHasReward() {

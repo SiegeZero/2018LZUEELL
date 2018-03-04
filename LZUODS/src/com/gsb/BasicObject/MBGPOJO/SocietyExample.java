@@ -3,14 +3,14 @@ package com.gsb.BasicObject.MBGPOJO;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SociatyExample {
+public class SocietyExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public SociatyExample() {
+    public SocietyExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -104,203 +104,203 @@ public class SociatyExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andSociatyNoIsNull() {
-            addCriterion("sociaty_no is null");
+        public Criteria andSocietyNoIsNull() {
+            addCriterion("society_no is null");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyNoIsNotNull() {
-            addCriterion("sociaty_no is not null");
+        public Criteria andSocietyNoIsNotNull() {
+            addCriterion("society_no is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyNoEqualTo(Integer value) {
-            addCriterion("sociaty_no =", value, "sociatyNo");
+        public Criteria andSocietyNoEqualTo(Integer value) {
+            addCriterion("society_no =", value, "societyNo");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyNoNotEqualTo(Integer value) {
-            addCriterion("sociaty_no <>", value, "sociatyNo");
+        public Criteria andSocietyNoNotEqualTo(Integer value) {
+            addCriterion("society_no <>", value, "societyNo");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyNoGreaterThan(Integer value) {
-            addCriterion("sociaty_no >", value, "sociatyNo");
+        public Criteria andSocietyNoGreaterThan(Integer value) {
+            addCriterion("society_no >", value, "societyNo");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyNoGreaterThanOrEqualTo(Integer value) {
-            addCriterion("sociaty_no >=", value, "sociatyNo");
+        public Criteria andSocietyNoGreaterThanOrEqualTo(Integer value) {
+            addCriterion("society_no >=", value, "societyNo");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyNoLessThan(Integer value) {
-            addCriterion("sociaty_no <", value, "sociatyNo");
+        public Criteria andSocietyNoLessThan(Integer value) {
+            addCriterion("society_no <", value, "societyNo");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyNoLessThanOrEqualTo(Integer value) {
-            addCriterion("sociaty_no <=", value, "sociatyNo");
+        public Criteria andSocietyNoLessThanOrEqualTo(Integer value) {
+            addCriterion("society_no <=", value, "societyNo");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyNoIn(List<Integer> values) {
-            addCriterion("sociaty_no in", values, "sociatyNo");
+        public Criteria andSocietyNoIn(List<Integer> values) {
+            addCriterion("society_no in", values, "societyNo");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyNoNotIn(List<Integer> values) {
-            addCriterion("sociaty_no not in", values, "sociatyNo");
+        public Criteria andSocietyNoNotIn(List<Integer> values) {
+            addCriterion("society_no not in", values, "societyNo");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyNoBetween(Integer value1, Integer value2) {
-            addCriterion("sociaty_no between", value1, value2, "sociatyNo");
+        public Criteria andSocietyNoBetween(Integer value1, Integer value2) {
+            addCriterion("society_no between", value1, value2, "societyNo");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyNoNotBetween(Integer value1, Integer value2) {
-            addCriterion("sociaty_no not between", value1, value2, "sociatyNo");
+        public Criteria andSocietyNoNotBetween(Integer value1, Integer value2) {
+            addCriterion("society_no not between", value1, value2, "societyNo");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyNameIsNull() {
-            addCriterion("sociaty_name is null");
+        public Criteria andSocietyNameIsNull() {
+            addCriterion("society_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyNameIsNotNull() {
-            addCriterion("sociaty_name is not null");
+        public Criteria andSocietyNameIsNotNull() {
+            addCriterion("society_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyNameEqualTo(String value) {
-            addCriterion("sociaty_name =", value, "sociatyName");
+        public Criteria andSocietyNameEqualTo(String value) {
+            addCriterion("society_name =", value, "societyName");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyNameNotEqualTo(String value) {
-            addCriterion("sociaty_name <>", value, "sociatyName");
+        public Criteria andSocietyNameNotEqualTo(String value) {
+            addCriterion("society_name <>", value, "societyName");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyNameGreaterThan(String value) {
-            addCriterion("sociaty_name >", value, "sociatyName");
+        public Criteria andSocietyNameGreaterThan(String value) {
+            addCriterion("society_name >", value, "societyName");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyNameGreaterThanOrEqualTo(String value) {
-            addCriterion("sociaty_name >=", value, "sociatyName");
+        public Criteria andSocietyNameGreaterThanOrEqualTo(String value) {
+            addCriterion("society_name >=", value, "societyName");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyNameLessThan(String value) {
-            addCriterion("sociaty_name <", value, "sociatyName");
+        public Criteria andSocietyNameLessThan(String value) {
+            addCriterion("society_name <", value, "societyName");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyNameLessThanOrEqualTo(String value) {
-            addCriterion("sociaty_name <=", value, "sociatyName");
+        public Criteria andSocietyNameLessThanOrEqualTo(String value) {
+            addCriterion("society_name <=", value, "societyName");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyNameLike(String value) {
-            addCriterion("sociaty_name like", value, "sociatyName");
+        public Criteria andSocietyNameLike(String value) {
+            addCriterion("society_name like", value, "societyName");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyNameNotLike(String value) {
-            addCriterion("sociaty_name not like", value, "sociatyName");
+        public Criteria andSocietyNameNotLike(String value) {
+            addCriterion("society_name not like", value, "societyName");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyNameIn(List<String> values) {
-            addCriterion("sociaty_name in", values, "sociatyName");
+        public Criteria andSocietyNameIn(List<String> values) {
+            addCriterion("society_name in", values, "societyName");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyNameNotIn(List<String> values) {
-            addCriterion("sociaty_name not in", values, "sociatyName");
+        public Criteria andSocietyNameNotIn(List<String> values) {
+            addCriterion("society_name not in", values, "societyName");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyNameBetween(String value1, String value2) {
-            addCriterion("sociaty_name between", value1, value2, "sociatyName");
+        public Criteria andSocietyNameBetween(String value1, String value2) {
+            addCriterion("society_name between", value1, value2, "societyName");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyNameNotBetween(String value1, String value2) {
-            addCriterion("sociaty_name not between", value1, value2, "sociatyName");
+        public Criteria andSocietyNameNotBetween(String value1, String value2) {
+            addCriterion("society_name not between", value1, value2, "societyName");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyLeaderIsNull() {
-            addCriterion("sociaty_leader is null");
+        public Criteria andSocietyLeaderIsNull() {
+            addCriterion("society_leader is null");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyLeaderIsNotNull() {
-            addCriterion("sociaty_leader is not null");
+        public Criteria andSocietyLeaderIsNotNull() {
+            addCriterion("society_leader is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyLeaderEqualTo(String value) {
-            addCriterion("sociaty_leader =", value, "sociatyLeader");
+        public Criteria andSocietyLeaderEqualTo(String value) {
+            addCriterion("society_leader =", value, "societyLeader");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyLeaderNotEqualTo(String value) {
-            addCriterion("sociaty_leader <>", value, "sociatyLeader");
+        public Criteria andSocietyLeaderNotEqualTo(String value) {
+            addCriterion("society_leader <>", value, "societyLeader");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyLeaderGreaterThan(String value) {
-            addCriterion("sociaty_leader >", value, "sociatyLeader");
+        public Criteria andSocietyLeaderGreaterThan(String value) {
+            addCriterion("society_leader >", value, "societyLeader");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyLeaderGreaterThanOrEqualTo(String value) {
-            addCriterion("sociaty_leader >=", value, "sociatyLeader");
+        public Criteria andSocietyLeaderGreaterThanOrEqualTo(String value) {
+            addCriterion("society_leader >=", value, "societyLeader");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyLeaderLessThan(String value) {
-            addCriterion("sociaty_leader <", value, "sociatyLeader");
+        public Criteria andSocietyLeaderLessThan(String value) {
+            addCriterion("society_leader <", value, "societyLeader");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyLeaderLessThanOrEqualTo(String value) {
-            addCriterion("sociaty_leader <=", value, "sociatyLeader");
+        public Criteria andSocietyLeaderLessThanOrEqualTo(String value) {
+            addCriterion("society_leader <=", value, "societyLeader");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyLeaderLike(String value) {
-            addCriterion("sociaty_leader like", value, "sociatyLeader");
+        public Criteria andSocietyLeaderLike(String value) {
+            addCriterion("society_leader like", value, "societyLeader");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyLeaderNotLike(String value) {
-            addCriterion("sociaty_leader not like", value, "sociatyLeader");
+        public Criteria andSocietyLeaderNotLike(String value) {
+            addCriterion("society_leader not like", value, "societyLeader");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyLeaderIn(List<String> values) {
-            addCriterion("sociaty_leader in", values, "sociatyLeader");
+        public Criteria andSocietyLeaderIn(List<String> values) {
+            addCriterion("society_leader in", values, "societyLeader");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyLeaderNotIn(List<String> values) {
-            addCriterion("sociaty_leader not in", values, "sociatyLeader");
+        public Criteria andSocietyLeaderNotIn(List<String> values) {
+            addCriterion("society_leader not in", values, "societyLeader");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyLeaderBetween(String value1, String value2) {
-            addCriterion("sociaty_leader between", value1, value2, "sociatyLeader");
+        public Criteria andSocietyLeaderBetween(String value1, String value2) {
+            addCriterion("society_leader between", value1, value2, "societyLeader");
             return (Criteria) this;
         }
 
-        public Criteria andSociatyLeaderNotBetween(String value1, String value2) {
-            addCriterion("sociaty_leader not between", value1, value2, "sociatyLeader");
+        public Criteria andSocietyLeaderNotBetween(String value1, String value2) {
+            addCriterion("society_leader not between", value1, value2, "societyLeader");
             return (Criteria) this;
         }
     }

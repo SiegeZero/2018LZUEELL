@@ -1,17 +1,18 @@
 package com.gsb.BasicObject.MBGDAO;
 
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
-
 import com.gsb.BasicObject.MBGPOJO.Department;
 import com.gsb.BasicObject.MBGPOJO.Person;
 import com.gsb.BasicObject.MBGPOJO.PersonExample;
 import com.gsb.BasicObject.MBGPOJO.PersonWithBLOBs;
 import com.gsb.BasicObject.MBGPOJO.SalaryLib;
-import com.gsb.BasicObject.MBGPOJO.Sociaty;
+import com.gsb.BasicObject.MBGPOJO.Society;
 import com.gsb.BasicObject.MBGPOJO.SourcePerson;
 
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
+
 public interface PersonMapper {
+    
     long countByExample(PersonExample example);
 
     int deleteByExample(PersonExample example);
@@ -40,7 +41,7 @@ public interface PersonMapper {
 	
 	Department selectDeptWithId(Integer dept_no);
 	
-	Sociaty selectSociatyWithId( Integer sociaty_no);
+	Society selectSociatyWithId( Integer society_no);
 	
 	SalaryLib selectSLibWithId( Integer salary_lib_no);
 
