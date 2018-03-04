@@ -49,7 +49,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日");
                     <th>工资库:</th>
                     <td><%=person.getSlib().getSalaryVersion() %></td>
                     <th>所在分会:</th>
-                    <td><%=person.getSociaty().getSociatyName() %></td>
+                    <td><%=person.getSociety().getSocietyName() %></td>
                 </tr>
                 <tr>
                     <th>职级:</th>

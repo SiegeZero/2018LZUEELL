@@ -11,9 +11,9 @@
 <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
     <title>新增人员</title>
 </head>
-<%@ page import="java.util.List,com.gsb.BasicObject.MBGPOJO.SalaryLib,com.gsb.BasicObject.MBGPOJO.Sociaty" %>
+<%@ page import="java.util.List,com.gsb.BasicObject.MBGPOJO.SalaryLib,com.gsb.BasicObject.MBGPOJO.Society" %>
 <%
-List<Sociaty> sociaty_list =(List<Sociaty>) request.getAttribute("sociaties_list");
+List<Society> society_list =(List<Society>) request.getAttribute("sociaties_list");
 List<SalaryLib> slib_list =(List<SalaryLib>) request.getAttribute("slib_list");
 %>
 <body>
@@ -60,7 +60,7 @@ List<SalaryLib> slib_list =(List<SalaryLib>) request.getAttribute("slib_list");
                     </div>
                     <th>所在分会:</th>
                     <div class="input-group input-group-sm">
-                        <td><input name="sociaty" type="text" class="form-control" value="机关一分会" placeholder="所在分会" /></td>
+                        <td><input name="society" type="text" class="form-control" value="机关一分会" placeholder="所在分会" /></td>
                     </div>
                 </tr>
                 <tr>

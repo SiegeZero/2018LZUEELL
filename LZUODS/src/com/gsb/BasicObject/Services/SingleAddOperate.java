@@ -10,12 +10,12 @@ import org.springframework.stereotype.Service;
 import com.gsb.BasicObject.MBGDAO.DepartmentMapper;
 import com.gsb.BasicObject.MBGDAO.PersonMapper;
 import com.gsb.BasicObject.MBGDAO.SalaryLibMapper;
-import com.gsb.BasicObject.MBGDAO.SociatyMapper;
+import com.gsb.BasicObject.MBGDAO.SocietyMapper;
 import com.gsb.BasicObject.MBGPOJO.Department;
 import com.gsb.BasicObject.MBGPOJO.PersonExample;
 import com.gsb.BasicObject.MBGPOJO.PersonWithBLOBs;
 import com.gsb.BasicObject.MBGPOJO.SalaryLib;
-import com.gsb.BasicObject.MBGPOJO.Sociaty;
+import com.gsb.BasicObject.MBGPOJO.Society;
 import com.gsb.BasicObject.MBGPOJO.SourcePerson;
 import com.gsb.BasicObject.MBGPOJO.PersonExample.Criteria;
 
@@ -29,7 +29,7 @@ public class SingleAddOperate {
 	@Autowired
 	SalaryLibMapper slib_mapper;
 	@Autowired
-	SociatyMapper sociaty_mapper;
+	SocietyMapper society_mapper;
 	@Autowired
 	DepartmentMapper dept_mapper;
 	
@@ -43,10 +43,10 @@ public class SingleAddOperate {
 		}
 		
 		if( sociaties_map == null || sociaties_map.isEmpty()) {
-			List<Sociaty> sociaties = sociaty_mapper.selectByExample(null);
+			List<Society> sociaties = society_mapper.selectByExample(null);
 			sociaties_map = new HashMap<>();
-			for( Sociaty d:sociaties) {
-				sociaties_map.put(d.getSociatyName(), d.getSociatyNo());
+			for( Society d:sociaties) {
+				sociaties_map.put(d.getSocietyName(), d.getSocietyNo());
 			}
 		}
 

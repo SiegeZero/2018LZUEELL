@@ -1,10 +1,9 @@
 package com.gsb.BasicObject.MBGDAO;
 
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
-
 import com.gsb.BasicObject.MBGPOJO.PartyBranch;
 import com.gsb.BasicObject.MBGPOJO.PartyBranchExample;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface PartyBranchMapper {
     long countByExample(PartyBranchExample example);

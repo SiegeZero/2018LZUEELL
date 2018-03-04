@@ -13,7 +13,7 @@
 <%@ page
 	import="java.util.List,
 		java.util.ArrayList,
-		com.gsb.BasicObject.MBGPOJO.Sociaty,
+		com.gsb.BasicObject.MBGPOJO.Society,
 		java.util.Map,
 		java.util.HashMap"%>
 <%
@@ -24,16 +24,16 @@ String name_str = request.getParameter("name_condition");
 String func_str = request.getParameter("func_condition");
 String title_lv_str = request.getParameter("title_lv_condition");
 String[] age_range = request.getParameterValues("age");
-String[] sociaties = request.getParameterValues("sociaty");
+String[] sociaties = request.getParameterValues("society");
 String[] nations = request.getParameterValues("nations");
 String[] cs_str = request.getParameterValues("conscription_situation");
 String[] political_str = request.getParameterValues("political_status");
 String physical_str = request.getParameter("physical_situation");
 String[] edu_bg = request.getParameterValues("edu_bg");
 Map<Integer, String> sociaties_map = new HashMap<>();
-List<Sociaty> sociaties_list = (List<Sociaty>) request.getAttribute("sociaties_list");
-for( Sociaty s:sociaties_list) {
-	sociaties_map.put( s.getSociatyNo(),s.getSociatyName());
+List<Society> sociaties_list = (List<Society>) request.getAttribute("sociaties_list");
+for( Society s:sociaties_list) {
+	sociaties_map.put( s.getSocietyNo(),s.getSocietyName());
 }
 %>
 
@@ -103,7 +103,7 @@ for( Sociaty s:sociaties_list) {
 					<%
 					for( int i=0;i<sociaties.length;i++){
 					%>
-					<input name="sociaty" id="sociaty<%=i %>" type="hidden"
+					<input name="society" id="society<%=i %>" type="hidden"
 						class="form-control"
 						value="<%=sociaties[i] %>"
 						readonly />

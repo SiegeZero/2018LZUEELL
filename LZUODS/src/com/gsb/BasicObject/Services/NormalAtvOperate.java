@@ -14,6 +14,6 @@ public interface NormalAtvOperate {
 	
 	List<AtvInfo> getAllNormalAtv();
 	List<AtvInfo> getAllNormalAtvBetween( Calendar start_date, Calendar end_date);
-	List<AtvInfo> getAllNormalAtvBySociaty( int sociatyNo);
+	List<AtvInfo> getAllNormalAtvBySociety( int societyNo);
 	
 }

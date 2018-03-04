@@ -16,11 +16,12 @@ import org.springframework.stereotype.Service;
 import com.gsb.BasicObject.MBGDAO.DepartmentMapper;
 import com.gsb.BasicObject.MBGDAO.PersonMapper;
 import com.gsb.BasicObject.MBGDAO.SalaryLibMapper;
-import com.gsb.BasicObject.MBGDAO.SociatyMapper;
+import com.gsb.BasicObject.MBGDAO.SocietyMapper;
+import com.gsb.BasicObject.MBGPOJO.Department;
 import com.gsb.BasicObject.MBGPOJO.Person;
 import com.gsb.BasicObject.MBGPOJO.PersonExample;
 import com.gsb.BasicObject.MBGPOJO.SalaryLib;
-import com.gsb.BasicObject.MBGPOJO.Sociaty;
+import com.gsb.BasicObject.MBGPOJO.Society;
 import com.gsb.BasicObject.MBGPOJO.SourcePerson;
 import com.gsb.BasicObject.MBGPOJO.PersonExample.Criteria;
 import com.sun.glass.ui.Timer;
@@ -63,12 +64,12 @@ public class ReadDBInfos {
 		return person_mapper.selectAllNations();
 	}
 
-	public List<Sociaty> getAllSociaties() {
-		return sociaty_mapper.selectByExample(null);
+	public List<Society> getAllSocieties() {
+		return society_mapper.selectByExample(null);
 	}
 
-	public List<String> getAllDepts() {
-		return dept_mapper.selectAllDepts();
+	public List<Department> getAllDepts() {
+		return dept_mapper.selectByExample(null);
 	}
 
 	public List<String> getAllConscriptionSituation() {
@@ -101,14 +102,14 @@ public class ReadDBInfos {
 	
 	
 	@Autowired
-	SociatyMapper sociaty_mapper;
+	SocietyMapper society_mapper;
 	
-	public List<Map<String, Long>> getAllAmount( int sociatyNo) {
+	public List<Map<String, Long>> getAllAmount( int societyNo) {
 
 		PersonExample example = new PersonExample();
 		Criteria c = example.or();
-		if( sociatyNo != -1) {
-			c.andSociatyNoEqualTo( sociatyNo);
+		if( societyNo != -1) {
+			c.andSocietyNoEqualTo( societyNo);
 			example.or(c);
 		}
 		
@@ -120,8 +121,8 @@ public class ReadDBInfos {
 
 //		example = new PersonExample();
 //		c = example.createCriteria();
-//		if( sociatyNo != -1) {
-//			c.andSociatyNoEqualTo( sociatyNo);
+//		if( societyNo != -1) {
+//			c.andSocietyNoEqualTo( societyNo);
 //		}
 //		c.andGenderEqualTo("男");
 //		example.or(c);
@@ -149,12 +150,12 @@ public class ReadDBInfos {
 		return results;
 	}
 
-	public List<Map<String, Long>> getPartyMembersAmount( int sociatyNo) {
+	public List<Map<String, Long>> getPartyMembersAmount( int societyNo) {
 		PersonExample example = new PersonExample();
 
 		Criteria c = example.or();
-		if( sociatyNo != -1) {
-			c.andSociatyNoEqualTo( sociatyNo);
+		if( societyNo != -1) {
+			c.andSocietyNoEqualTo( societyNo);
 			example.or(c);
 		}
 		long total_person = person_mapper.countByExample( example);
@@ -199,11 +200,11 @@ public class ReadDBInfos {
 		return results;
 	}
 
-	private PersonExample getAgeExample( int sociatyNo, int left_bound, int right_bound, Calendar reference) {
+	private PersonExample getAgeExample( int societyNo, int left_bound, int right_bound, Calendar reference) {
 		PersonExample example = new PersonExample();
 		Criteria c = example.or();
-		if( sociatyNo != -1) {
-			c.andSociatyNoEqualTo( sociatyNo);
+		if( societyNo != -1) {
+			c.andSocietyNoEqualTo( societyNo);
 		}
 		int during = right_bound - left_bound;
 		if( reference == null) {
@@ -220,8 +221,8 @@ public class ReadDBInfos {
 		return example;
 	}
 	
-	public long getAmountAtRange(int sociatyNo, int left_bound, int right_bound, Calendar reference) {
-		long amount = person_mapper.countByExample(getAgeExample( sociatyNo, left_bound, right_bound, reference));
+	public long getAmountAtRange(int societyNo, int left_bound, int right_bound, Calendar reference) {
+		long amount = person_mapper.countByExample(getAgeExample( societyNo, left_bound, right_bound, reference));
 		System.out.println( );
 		return amount;
 	}
@@ -257,16 +258,16 @@ public class ReadDBInfos {
 		System.out.println( "third:"+tmp);
 	}
 	
-	public List<Long> getAmountEachSociaty() {
+	public List<Long> getAmountEachSociety() {
 		long total_person = person_mapper.countByExample(null);
 		List values = new ArrayList<Long>();
-		List<Sociaty> selectByExample = sociaty_mapper.selectByExample(null);
+		List<Society> selectByExample = society_mapper.selectByExample(null);
 		PersonExample example = null;
 		Criteria c = null;
-		for (Sociaty s : selectByExample) {
+		for (Society s : selectByExample) {
 			example = new PersonExample();
 			c = example.createCriteria();
-			c.andSociatyNoEqualTo(s.getSociatyNo());
+			c.andSocietyNoEqualTo(s.getSocietyNo());
 			example.or(c);
 			long amount = person_mapper.countByExample(example);
 			c.andGenderEqualTo("男");
@@ -278,7 +279,7 @@ public class ReadDBInfos {
 			values.add(female_amount);
 			if( debugging) {
 				System.out.println(
-						s.getSociatyName() + "共有：" + amount + "人，占总人数百分比为：" + df.format(amount * 100.0 / total_person));
+						s.getSocietyName() + "共有：" + amount + "人，占总人数百分比为：" + df.format(amount * 100.0 / total_person));
 				System.out.println("--分会男性人数：" + male_amount + "，占分会总人数百分比为：" + df.format(male_amount * 100.0 / amount));
 				System.out
 						.println("--分会女性人数：" + female_amount + "，占分会总人数百分比为：" + df.format(female_amount * 100.0 / amount));
@@ -297,8 +298,8 @@ public class ReadDBInfos {
 		return getAllAmountAtRange( left_bound, right_bound, null);
 	}
 	
-	public long getSociatyAmountAtRangeToday(int sociatyNo, int left_bound, int right_bound ) {
-		return getAmountAtRange( sociatyNo, left_bound, right_bound, null);
+	public long getSocietyAmountAtRangeToday(int societyNo, int left_bound, int right_bound ) {
+		return getAmountAtRange( societyNo, left_bound, right_bound, null);
 	}
 	
 	public List<SourcePerson> getAllPersonListAtAge( int left_bound, int right_bound, Calendar reference) {
@@ -353,7 +354,7 @@ public class ReadDBInfos {
 		return null;
 	}
 
-	public Map<List<String>, List<String>> getAverageAge( int sociatyNo,int year, boolean exact) throws ParseException {
+	public Map<List<String>, List<String>> getAverageAge( int societyNo,int year, boolean exact) throws ParseException {
 		Calendar birth = Calendar.getInstance();
 		cal = Calendar.getInstance();
 		if (!exact) {
@@ -362,8 +363,8 @@ public class ReadDBInfos {
 		PersonExample example = new PersonExample();
 		Criteria c = example.or();
 		c.andGenderEqualTo("男");
-		if( sociatyNo != -1) {
-			c.andSociatyNoEqualTo( sociatyNo);
+		if( societyNo != -1) {
+			c.andSocietyNoEqualTo( societyNo);
 		}
 		List<SourcePerson> male = person_mapper.selectByExample(example);
 		example.clear();
@@ -380,8 +381,8 @@ public class ReadDBInfos {
 		}
 		c = example.or();
 		c.andGenderEqualTo("女");
-		if( sociatyNo != -1) {
-			c.andSociatyNoEqualTo( sociatyNo);
+		if( societyNo != -1) {
+			c.andSocietyNoEqualTo( societyNo);
 		}
 		List<SourcePerson> female = person_mapper.selectByExample(example);
 		long female_age = 0;

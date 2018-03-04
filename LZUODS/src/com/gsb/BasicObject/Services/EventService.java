@@ -9,7 +9,7 @@ import com.gsb.BasicObject.MBGDAO.AtvInfoMapper;
 import com.gsb.BasicObject.MBGDAO.SympathyAtvMapper;
 import com.gsb.BasicObject.MBGPOJO.AtvInfo;
 import com.gsb.BasicObject.MBGPOJO.AtvInfoExample;
-import com.gsb.BasicObject.MBGPOJO.SociatyExample;
+import com.gsb.BasicObject.MBGPOJO.SocietyExample;
 import com.gsb.BasicObject.MBGPOJO.SympathyAtv;
 import com.gsb.BasicObject.MBGPOJOBuilder.AtvInfoExampleBuilder;
 
@@ -55,12 +55,12 @@ public class EventService implements NormalAtvOperate, SympathyAtvOperate{
 	@Override
 	public boolean delNormalAtv(AtvInfo targetAtv) {
 		AtvInfoExampleBuilder builder = new AtvInfoExampleBuilder();
-		AtvInfoExample example = builder.equalToWithoutNo( targetAtv).build();
+		AtvInfoExample example = builder.equalToNo( targetAtv.getAtvNo()).build();
 		boolean isDelSuccess = false;
-		long target_amount = atvinfo_mapper.countByExample(example);
+		long target_amount = atvinfo_mapper.countByExample( example);
 		if( 1 == target_amount) {
 			atvinfo_mapper.deleteByPrimaryKey( targetAtv.getAtvNo());
-			target_amount = atvinfo_mapper.countByExample(example );
+			target_amount = atvinfo_mapper.countByExample( example);
 			if( 0 == target_amount) {
 				isDelSuccess = true;
 			}
@@ -71,7 +71,7 @@ public class EventService implements NormalAtvOperate, SympathyAtvOperate{
 	@Override
 	public boolean changeNormalAtv(AtvInfo changedAtv) {
 		AtvInfoExampleBuilder builder = new AtvInfoExampleBuilder();
-		AtvInfoExample example = builder.equalToWithoutNo( changedAtv).build();
+		AtvInfoExample example = builder.equalToNo( changedAtv.getAtvNo()).build();
 		
 		boolean isChangeSuccess = false;
 		long target_amount = atvinfo_mapper.countByExample(example);
@@ -99,9 +99,9 @@ public class EventService implements NormalAtvOperate, SympathyAtvOperate{
 	}
 
 	@Override
-	public List<AtvInfo> getAllNormalAtvBySociaty( int sociatyNo) {
+	public List<AtvInfo> getAllNormalAtvBySociety( int societyNo) {
 		AtvInfoExampleBuilder builder = new AtvInfoExampleBuilder();
-		AtvInfoExample example = builder.holdBySociaty( sociatyNo).build();
+		AtvInfoExample example = builder.holdBySociety( societyNo).build();
 		List<AtvInfo> list = atvinfo_mapper.selectByExample(example);
 		return list;
 	}

@@ -34,34 +34,43 @@
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 
-		<table tableName="dept_table" domainObjectName="Department">
-		</table>
-		<table tableName="salary_lib_table" domainObjectName="SalaryLib">
-		</table>
-		<table tableName="job_exp_table" domainObjectName="JobExp">
-		</table>
-		<table tableName="sociaty_table" domainObjectName="Sociaty">
-		</table>
-		<table tableName="edu_bg_table" domainObjectName="EduBG">
-		</table>
-		<table tableName="pension_model_table" domainObjectName="PensionModel">
-		</table>
-		<table tableName="party_branch_info_table" domainObjectName="PartyBranch">
-		</table>
-		<table tableName="sympathy_activities_table" domainObjectName="SympathyAtv">
+		
+		<table tableName="activity_info_table" domainObjectName="AtvInfo">
 		</table>
 		<table tableName="basic_info_table" domainObjectName="Person">
 		</table>
-		<table tableName="sympathy_table" domainObjectName="Sympathy">
-		</table>
-		<table tableName="helping_table" domainObjectName="HelpRecord">
+		<table tableName="dept_table" domainObjectName="Department">
 		</table>
 		<table tableName="family_info_table" domainObjectName="FamilyInfo">
 		</table>
-		<table tableName="activity_info_table" domainObjectName="AtvInfo">
+		<table tableName="helping_table" domainObjectName="HelpRecord">
+		</table>
+		<table tableName="job_exp_table" domainObjectName="JobExp">
+		</table>
+		<table tableName="meetingroom_table" domainObjectName="MeetingRoom">
+		</table>
+		<table tableName="notification_table" domainObjectName="Notification">
+		</table>
+		<table tableName="party_branch_info_table" domainObjectName="PartyBranch">
+		</table>
+		<table tableName="pension_model_table" domainObjectName="PensionModel">
 		</table>
 		<table tableName="reward_records_table" domainObjectName="RewardRecord">
 		</table>
+		<table tableName="salary_lib_table" domainObjectName="SalaryLib">
+		</table>
+		<table tableName="society_table" domainObjectName="Society">
+		</table>
+		<table tableName="staff_info_table" domainObjectName="Staff">
+		</table>
+		<table tableName="sympathy_activities_table" domainObjectName="SympathyAtv">
+		</table>
+		<table tableName="sympathy_table" domainObjectName="Sympathy">
+		</table>
+		<table tableName="workplan_table" domainObjectName="WorkPlan">
+		</table>
+		
+
 		
 	</context>
 </generatorConfiguration>

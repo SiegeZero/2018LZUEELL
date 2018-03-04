@@ -1,10 +1,9 @@
 package com.gsb.BasicObject.MBGDAO;
 
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
-
 import com.gsb.BasicObject.MBGPOJO.RewardRecord;
 import com.gsb.BasicObject.MBGPOJO.RewardRecordExample;
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 public interface RewardRecordMapper {
     long countByExample(RewardRecordExample example);

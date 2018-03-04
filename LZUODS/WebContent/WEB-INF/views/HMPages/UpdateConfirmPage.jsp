@@ -20,7 +20,7 @@
 	com.gsb.BasicObject.MBGPOJO.SourcePerson,
 	java.text.SimpleDateFormat" %>
 <%
-List<String> sociaty_list =(List<String>) request.getAttribute("sociaties_list");
+List<String> society_list =(List<String>) request.getAttribute("sociaties_list");
 List<SalaryLib> slib_list =(List<SalaryLib>) request.getAttribute("slib_list");
 SourcePerson person = (SourcePerson)request.getAttribute("target");
 SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
@@ -193,25 +193,25 @@ SourcePerson new_person = (SourcePerson)request.getAttribute("new_person");
 				<input type="hidden" name="slary_lib" value="<%=person.getSlib().getSalaryVersion() %>" />		
 				<%
 				}
-				if( !person.getSociaty().getSociatyName().equals( new_person.getSociaty().getSociatyName())) {
+				if( !person.getSociety().getSocietyName().equals( new_person.getSociety().getSocietyName())) {
 				%>
 				<tr>
 	                <div class="input-group input-group-sm">
 	                	<td style="10%"><input type="text" class="form-control" value="所在分会:" readonly/></td>
 	                </div>
 	                <div class="input-group input-group-sm">
-	                	<td style="40%"><input type="text" class="form-control" value="<%=person.getSociaty().getSociatyName() %>" readonly/></td>
+	                	<td style="40%"><input type="text" class="form-control" value="<%=person.getSociety().getSocietyName() %>" readonly/></td>
 	                </div>
 					<td style="10%">→</td>
 	                <div class="input-group input-group-sm">
-	                	<td style="40%"><input name="sociaty" type="text" class="form-control" value="<%=new_person.getSociaty().getSociatyName() %>" /></td>
+	                	<td style="40%"><input name="society" type="text" class="form-control" value="<%=new_person.getSociety().getSocietyName() %>" /></td>
 	                </div>
 				</tr>
 				
 				<%
 				} else{
 				%>
-				<input type="hidden" name="sociaty" value="<%=person.getSociaty().getSociatyName() %>" />	
+				<input type="hidden" name="society" value="<%=person.getSociety().getSocietyName() %>" />	
 				<%
 				}
 				if( person.getFunc() == null && new_person.getFunc() != null 

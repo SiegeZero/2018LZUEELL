@@ -452,63 +452,63 @@ public class AtvInfoExample {
             return (Criteria) this;
         }
 
-        public Criteria andLeadSociatyNoIsNull() {
-            addCriterion("lead_sociaty_no is null");
+        public Criteria andLeadSocietyNoIsNull() {
+            addCriterion("lead_society_no is null");
             return (Criteria) this;
         }
 
-        public Criteria andLeadSociatyNoIsNotNull() {
-            addCriterion("lead_sociaty_no is not null");
+        public Criteria andLeadSocietyNoIsNotNull() {
+            addCriterion("lead_society_no is not null");
             return (Criteria) this;
         }
 
-        public Criteria andLeadSociatyNoEqualTo(Integer value) {
-            addCriterion("lead_sociaty_no =", value, "leadSociatyNo");
+        public Criteria andLeadSocietyNoEqualTo(Integer value) {
+            addCriterion("lead_society_no =", value, "leadSocietyNo");
             return (Criteria) this;
         }
 
-        public Criteria andLeadSociatyNoNotEqualTo(Integer value) {
-            addCriterion("lead_sociaty_no <>", value, "leadSociatyNo");
+        public Criteria andLeadSocietyNoNotEqualTo(Integer value) {
+            addCriterion("lead_society_no <>", value, "leadSocietyNo");
             return (Criteria) this;
         }
 
-        public Criteria andLeadSociatyNoGreaterThan(Integer value) {
-            addCriterion("lead_sociaty_no >", value, "leadSociatyNo");
+        public Criteria andLeadSocietyNoGreaterThan(Integer value) {
+            addCriterion("lead_society_no >", value, "leadSocietyNo");
             return (Criteria) this;
         }
 
-        public Criteria andLeadSociatyNoGreaterThanOrEqualTo(Integer value) {
-            addCriterion("lead_sociaty_no >=", value, "leadSociatyNo");
+        public Criteria andLeadSocietyNoGreaterThanOrEqualTo(Integer value) {
+            addCriterion("lead_society_no >=", value, "leadSocietyNo");
             return (Criteria) this;
         }
 
-        public Criteria andLeadSociatyNoLessThan(Integer value) {
-            addCriterion("lead_sociaty_no <", value, "leadSociatyNo");
+        public Criteria andLeadSocietyNoLessThan(Integer value) {
+            addCriterion("lead_society_no <", value, "leadSocietyNo");
             return (Criteria) this;
         }
 
-        public Criteria andLeadSociatyNoLessThanOrEqualTo(Integer value) {
-            addCriterion("lead_sociaty_no <=", value, "leadSociatyNo");
+        public Criteria andLeadSocietyNoLessThanOrEqualTo(Integer value) {
+            addCriterion("lead_society_no <=", value, "leadSocietyNo");
             return (Criteria) this;
         }
 
-        public Criteria andLeadSociatyNoIn(List<Integer> values) {
-            addCriterion("lead_sociaty_no in", values, "leadSociatyNo");
+        public Criteria andLeadSocietyNoIn(List<Integer> values) {
+            addCriterion("lead_society_no in", values, "leadSocietyNo");
             return (Criteria) this;
         }
 
-        public Criteria andLeadSociatyNoNotIn(List<Integer> values) {
-            addCriterion("lead_sociaty_no not in", values, "leadSociatyNo");
+        public Criteria andLeadSocietyNoNotIn(List<Integer> values) {
+            addCriterion("lead_society_no not in", values, "leadSocietyNo");
             return (Criteria) this;
         }
 
-        public Criteria andLeadSociatyNoBetween(Integer value1, Integer value2) {
-            addCriterion("lead_sociaty_no between", value1, value2, "leadSociatyNo");
+        public Criteria andLeadSocietyNoBetween(Integer value1, Integer value2) {
+            addCriterion("lead_society_no between", value1, value2, "leadSocietyNo");
             return (Criteria) this;
         }
 
-        public Criteria andLeadSociatyNoNotBetween(Integer value1, Integer value2) {
-            addCriterion("lead_sociaty_no not between", value1, value2, "leadSociatyNo");
+        public Criteria andLeadSocietyNoNotBetween(Integer value1, Integer value2) {
+            addCriterion("lead_society_no not between", value1, value2, "leadSocietyNo");
             return (Criteria) this;
         }
 

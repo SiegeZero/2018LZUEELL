@@ -13,13 +13,13 @@
 </head>
 <%@ page import="
 	java.util.List,
-	com.gsb.BasicObject.MBGPOJO.Sociaty,
+	com.gsb.BasicObject.MBGPOJO.Society,
 	com.gsb.BasicObject.MBGPOJO.SalaryLib,
 	com.gsb.BasicObject.MBGPOJO.SourcePerson,
 	java.text.SimpleDateFormat
 	" %>
 <%
-List<Sociaty> sociaty_list =(List<Sociaty>) request.getAttribute("sociaties_list");
+List<Society> society_list =(List<Society>) request.getAttribute("sociaties_list");
 List<SalaryLib> slib_list =(List<SalaryLib>) request.getAttribute("slib_list");
 SourcePerson person = (SourcePerson)request.getAttribute("target");
 SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
@@ -69,7 +69,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
                     </div>
                     <th>所在分会:</th>
                     <div class="input-group input-group-sm">
-                        <td><input name="sociaty" type="text" class="form-control" value="<%=person.getSociaty().getSociatyName() %>" placeholder="所在分会" /></td>
+                        <td><input name="society" type="text" class="form-control" value="<%=person.getSociety().getSocietyName() %>" placeholder="所在分会" /></td>
                     </div>
                 </tr>
                 <tr>
