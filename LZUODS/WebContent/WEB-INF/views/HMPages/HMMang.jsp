@@ -424,15 +424,8 @@
 				</div>
 				<div class="container-fluid">
 					<center>
-						<ul class="pagination pagination-lg">
-							<li><a href="#">&laquo;</a></li>
-							<li><a href="#">1</a></li>
-							<li><a href="#">2</a></li>
-							<li><a href="#">3</a></li>
-							<li><a href="#">4</a></li>
-							<li><a href="#">5</a></li>
-							<li><a href="#">&raquo;</a></li>
-						</ul>
+						<div id="pagination">
+    					</div>
 					</center>
 				</div>
 				<div class="container-fluid">
@@ -450,6 +443,27 @@
 			</div>
 		</div>
 	</div>
+	
+	
+	<script src="../js/HMMang.js"></script>
+	<script>
+	var rows = document.getElementById("personitem").rows.length;
+    $.jqPaginator('#pagination', {
+        totalPages: rows/20,
+        visiblePages: 10,
+        currentPage: 1,
+        wrapper:'<ul class="pagination"></ul>',
+        first: '<li class="first"><a href="javascript:void(0);">First</a></li>',
+        prev: '<li class="prev"><a href="javascript:void(0);">Previous</a></li>',
+        next: '<li class="next"><a href="javascript:void(0);">Next</a></li>',
+        last: '<li class="last"><a href="javascript:void(0);">Last</a></li>',
+        page: '<li class="page"><a href="javascript:void(0);">{{page}}</a></li>',
+        onPageChange: function (num) {
+            $('#p').text(num);
+        }
+    });
+</script>
+	
 </body>
 
 </html>
