@@ -399,4 +399,26 @@ public class HMController {
 		return "redirect:/HMM/HMDtal?id="+new_person.getSysNo();
 	}
 	
+	@RequestMapping(value="/HMAnls")
+	public ModelAndView anls(ModelAndView mv) {
+		List<Map<String, Long>> partyMembersAmount = db_reader.getPartyMembersAmount(-1);
+		long lessthan100 = db_reader.getAllAmountAtRangeToday( 0, 100);
+		int i=0;
+		String[] party_attrs = new String[] {"党员总人数", "女性党员人数", "男性党员人数"};
+		mv.addObject("party_attrs", party_attrs);
+		for( Map<String,Long> tmp:partyMembersAmount) {
+			mv.addObject(party_attrs[i], tmp.get(party_attrs[i++]));
+		}
+		i=0;
+		List<Map<String, Long>> allAmount = db_reader.getAllAmount( -1);
+		String[] allamount_attrs = new String[] {"总人数", "女性人数", "男性人数"};
+		mv.addObject("allamount_attrs", allamount_attrs);
+		for( Map<String,Long> tmp:allAmount) {
+			mv.addObject(allamount_attrs[i], tmp.get(allamount_attrs[i++]));
+		}
+		System.out.println( lessthan100);
+		mv.addObject("lessthan100", lessthan100);
+		return mv;
+	}
+	
 }

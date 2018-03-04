@@ -12,13 +12,13 @@
 	<bean name="/test/TestA" class="com.gsb.TestPackage.TestKlass"></bean>
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix">
-			<value>/WEB-INF/views/HMPages/</value>
+			<value>/WEB-INF/views/SocietyPages/</value>
 		</property>
 		<property name="suffix">
 			<value>.jsp</value>
 		</property>
 	</bean>
-	<context:component-scan base-package="com.gsb.MainPackage.HumanManager" />  
+	<context:component-scan base-package="com.gsb.MainPackage.SocietyManager" />  
 	<mvc:annotation-driven />
 	<mvc:default-servlet-handler/>
 </beans>

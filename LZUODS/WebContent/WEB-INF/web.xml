@@ -65,6 +65,19 @@
 		<url-pattern>/HMM/*</url-pattern>
 	</servlet-mapping>
 	<servlet>
+		<servlet-name>SocietyManageModule</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:config/SocietyManageModule-config.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SocietyManageModule</servlet-name>
+		<url-pattern>/SYM/*</url-pattern>
+	</servlet-mapping>
+	<servlet>
 		<servlet-name>name_only</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
 		<init-param>
