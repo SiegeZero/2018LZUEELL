@@ -4,6 +4,10 @@
 <html>
 
 <head>
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.css">
+
 <title>人员管理</title>
 <script>
 	window.onload = function(){
@@ -100,7 +104,7 @@
 	<jsp:include page="../public/NavigationBar.jsp"></jsp:include>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-sm-3 col-md-2 navbar-inverse sidebar" style="height: 100%">
+			<div class="col-md-2 navbar-inverse sidebar" style="height: 100%">
 				<ul class="nav nav-sidebar">
 					<li><a href="#">人员管理&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span
 							class="caret"></span></a></li>
@@ -112,7 +116,7 @@
 					</ul>
 				</ul>
 			</div>
-			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+			<div class="col-md-10 main" style="margin-left: 180px;">
 				<form action="ConfirmPage" method="post" class="navbar-form">
 						<div>
 							<table class="table">
@@ -421,48 +425,27 @@
 							}
 						%>
 					</table>
-				</div>
-				<div class="container-fluid">
-					<center>
-						<div id="pagination">
-    					</div>
-					</center>
-				</div>
-				<div class="container-fluid">
-					<!-- <div class="pull-left">
-						<input type="checkbox"><strong>&nbsp;全选</strong>
-					</div> -->
-					<div class="pull-right">
-						<a href="HMAdd"><button type="button" class="btn btn-info">新增人员</button></a>
-						<button type="button" class="btn btn-warning">导出PDF</button>
-						<button type="button" class="btn btn-warning"
-							onclick="printtable(personitem)">导出Excel</button>
-						<button type="button" class="btn btn-info">下载模板</button>
+					</div>
+					<div class="container-fluid">
+						<div class="pull-right">
+							<a href="HMAdd"><button type="button" class="btn btn-info">新增人员</button></a>
+							<button type="button" class="btn btn-warning">导出PDF</button>
+							<button type="button" class="btn btn-warning"
+								onclick="printtable(personitem)">导出Excel</button>
+							<button type="button" class="btn btn-info">下载模板</button>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
 	
 	
-	<script src="../js/HMMang.js"></script>
-	<script>
-	var rows = document.getElementById("personitem").rows.length;
-    $.jqPaginator('#pagination', {
-        totalPages: rows/20,
-        visiblePages: 10,
-        currentPage: 1,
-        wrapper:'<ul class="pagination"></ul>',
-        first: '<li class="first"><a href="javascript:void(0);">First</a></li>',
-        prev: '<li class="prev"><a href="javascript:void(0);">Previous</a></li>',
-        next: '<li class="next"><a href="javascript:void(0);">Next</a></li>',
-        last: '<li class="last"><a href="javascript:void(0);">Last</a></li>',
-        page: '<li class="page"><a href="javascript:void(0);">{{page}}</a></li>',
-        onPageChange: function (num) {
-            $('#p').text(num);
-        }
-    });
-</script>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.min.js"></script>
+	
+	<!-- Latest compiled and minified Locales -->
+	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
+		
 	
 </body>
 
