@@ -1,12 +1,12 @@
 package bak;
 
+import com.gsb.BasicObject.Beans.SourcePerson;
 import com.gsb.BasicObject.MBGPOJO.Department;
 import com.gsb.BasicObject.MBGPOJO.Person;
 import com.gsb.BasicObject.MBGPOJO.PersonExample;
 import com.gsb.BasicObject.MBGPOJO.PersonWithBLOBs;
 import com.gsb.BasicObject.MBGPOJO.SalaryLib;
 import com.gsb.BasicObject.MBGPOJO.Society;
-import com.gsb.BasicObject.MBGPOJO.SourcePerson;
 
 import java.util.List;
 import org.apache.ibatis.annotations.Param;

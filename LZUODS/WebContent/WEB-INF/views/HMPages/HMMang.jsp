@@ -78,7 +78,7 @@
 </head>
 
 <%@page import="java.util.List
-	,com.gsb.BasicObject.MBGPOJO.SourcePerson
+	,com.gsb.BasicObject.Beans.SourcePerson
 	,com.gsb.BasicObject.MBGPOJO.Society
 	,java.util.Calendar
 	,java.util.Date"%>

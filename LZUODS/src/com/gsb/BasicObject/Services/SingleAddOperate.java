@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.gsb.BasicObject.Beans.SourcePerson;
 import com.gsb.BasicObject.MBGDAO.DepartmentMapper;
 import com.gsb.BasicObject.MBGDAO.PersonMapper;
 import com.gsb.BasicObject.MBGDAO.SalaryLibMapper;
@@ -16,7 +17,6 @@ import com.gsb.BasicObject.MBGPOJO.PersonExample;
 import com.gsb.BasicObject.MBGPOJO.PersonWithBLOBs;
 import com.gsb.BasicObject.MBGPOJO.SalaryLib;
 import com.gsb.BasicObject.MBGPOJO.Society;
-import com.gsb.BasicObject.MBGPOJO.SourcePerson;
 import com.gsb.BasicObject.MBGPOJO.PersonExample.Criteria;
 
 @Service

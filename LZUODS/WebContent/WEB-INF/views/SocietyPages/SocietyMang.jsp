@@ -10,7 +10,7 @@
 
 
 <%@page import="java.util.List
-	,com.gsb.BasicObject.MBGPOJO.SourcePerson
+	,com.gsb.BasicObject.Beans.SourcePerson
 	,com.gsb.BasicObject.MBGPOJO.Society"%>
 <%
 	List<Society> sociaties_list = (List<Society>) request.getAttribute("sociaties_list");
