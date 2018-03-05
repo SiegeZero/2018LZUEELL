@@ -16,11 +16,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.gsb.BasicObject.Beans.SourcePerson;
 import com.gsb.BasicObject.MBGDAO.DepartmentMapper;
 import com.gsb.BasicObject.MBGPOJO.PersonExample;
 import com.gsb.BasicObject.MBGPOJO.SalaryLib;
 import com.gsb.BasicObject.MBGPOJO.Society;
-import com.gsb.BasicObject.MBGPOJO.SourcePerson;
 import com.gsb.BasicObject.MBGPOJO.PersonExample.Criteria;
 import com.gsb.BasicObject.Services.ReadDBInfos;
 import com.gsb.BasicObject.Services.SingleAddOperate;
@@ -196,7 +196,11 @@ public class HMController {
 		if( edu_bg != null && edu_bg.length != 0) {
 			List<String> list = new ArrayList<>();
 			for( String s:edu_bg) {
-				list.add(s);
+				if( !s.equals("无数据")) {
+					list.add(s);
+				} else {
+					list.add("");
+				}
 			}
 			c.andEduBgIn(list);
 			mv.addObject("edu_bg_str",list);

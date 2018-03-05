@@ -1,12 +1,21 @@
-package com.gsb.BasicObject.MBGPOJO;
+package com.gsb.BasicObject.Beans;
 
+import java.io.Serializable;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Map;
-import com.gsb.BasicObject.MBGPOJO.*;
+
+import com.gsb.BasicObject.MBGPOJO.Department;
+import com.gsb.BasicObject.MBGPOJO.PersonWithBLOBs;
+import com.gsb.BasicObject.MBGPOJO.SalaryLib;
+import com.gsb.BasicObject.MBGPOJO.Society;
+import com.gsb.Utils.TypeTransfer;
 
 
-public class SourcePerson extends PersonWithBLOBs {
+public class SourcePerson extends PersonWithBLOBs implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Department dept;
 	private Society society;
 	private SalaryLib slib;
@@ -19,7 +28,6 @@ public class SourcePerson extends PersonWithBLOBs {
 	private String lastest_sympathy_year;
 	
 
-	private SimpleDateFormat sdf;
 	
 	
 	
@@ -29,7 +37,6 @@ public class SourcePerson extends PersonWithBLOBs {
 		dept = new Department();
 		society = new Society();
 		slib = new SalaryLib();
-		sdf = new SimpleDateFormat("yyyyMMdd");
 	}
 
 	public PersonWithBLOBs format(Map<String, Integer> depts_map, Map<String, Integer> sociaties_map, Map<String, Integer> slib_map){
@@ -64,19 +71,19 @@ public class SourcePerson extends PersonWithBLOBs {
 		}
 		
 		try {
-			this.setBirthTime(birth.equals("")?null:sdf.parse(birth));
+			this.setBirthTime(birth.equals("")?null:TypeTransfer.Str2Date(birth));
 		} catch (ParseException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
 		try {
-			this.setJobStartTime( start_job.equals("")?null:sdf.parse(start_job));
+			this.setJobStartTime( start_job.equals("")?null:TypeTransfer.Str2Date(start_job));
 		} catch (ParseException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
 		try {
-			this.setJobEndTime( end_job.equals("")?null:sdf.parse(end_job));
+			this.setJobEndTime( end_job.equals("")?null:TypeTransfer.Str2Date(end_job));
 		} catch (ParseException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();

@@ -70,7 +70,5 @@
 		<table tableName="workplan_table" domainObjectName="WorkPlan">
 		</table>
 		
-
-		
 	</context>
 </generatorConfiguration>

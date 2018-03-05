@@ -31,7 +31,7 @@
     <result column="living_situation" jdbcType="LONGVARCHAR" property="livingSituation" />
   </resultMap>
   <resultMap extends="BaseResultMap" id="ResultMapForShow"
-		type="com.gsb.BasicObject.MBGPOJO.SourcePerson">
+		type="com.gsb.BasicObject.Beans.SourcePerson">
 		<result column="address" jdbcType="LONGVARCHAR" property="address" />
 		<result column="living_situation" jdbcType="LONGVARCHAR"
 			property="livingSituation" />
