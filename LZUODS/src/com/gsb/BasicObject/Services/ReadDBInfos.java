@@ -2,7 +2,6 @@ package com.gsb.BasicObject.Services;
 
 import java.text.DecimalFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -13,6 +12,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.gsb.BasicObject.Beans.SourcePerson;
 import com.gsb.BasicObject.MBGDAO.DepartmentMapper;
 import com.gsb.BasicObject.MBGDAO.PersonMapper;
 import com.gsb.BasicObject.MBGDAO.SalaryLibMapper;
@@ -22,14 +22,13 @@ import com.gsb.BasicObject.MBGPOJO.Person;
 import com.gsb.BasicObject.MBGPOJO.PersonExample;
 import com.gsb.BasicObject.MBGPOJO.SalaryLib;
 import com.gsb.BasicObject.MBGPOJO.Society;
-import com.gsb.BasicObject.MBGPOJO.SourcePerson;
+import com.gsb.Utils.TypeTransfer;
 import com.gsb.BasicObject.MBGPOJO.PersonExample.Criteria;
 import com.sun.glass.ui.Timer;
 
 @Service
 public class ReadDBInfos {
 
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 	DecimalFormat df = new DecimalFormat(",###.##");
 
 	boolean debugging = true;
@@ -96,7 +95,7 @@ public class ReadDBInfos {
 	}
 	
 	public SourcePerson getBasicInfosBy( Integer sysNo) {
-		return person_mapper.selectByPrimaryKey(sysNo);
+		return (SourcePerson) person_mapper.selectByPrimaryKey(sysNo);
 	}
 
 	
@@ -317,9 +316,9 @@ public class ReadDBInfos {
 		Criteria c = example.or();
 		cal = Calendar.getInstance();
 		cal.set(Calendar.YEAR, year);
-		cal.setTime(sdf.parse(String.valueOf(year) + "0101"));
+		cal.setTime( TypeTransfer.Str2Date(String.valueOf(year) + "0101"));
 		Date newer = cal.getTime();
-		cal.setTime(sdf.parse(String.valueOf(year) + "1231"));
+		cal.setTime( TypeTransfer.Str2Date(String.valueOf(year) + "1231"));
 		Date older = cal.getTime();
 		c.andQuitOfficeTypeLike("%退%");
 		c.andJobEndTimeBetween(newer, older);
@@ -358,7 +357,7 @@ public class ReadDBInfos {
 		Calendar birth = Calendar.getInstance();
 		cal = Calendar.getInstance();
 		if (!exact) {
-			cal.setTime(sdf.parse("" + year + "0100"));
+			cal.setTime(TypeTransfer.Str2Date("" + year + "0100"));
 		}
 		PersonExample example = new PersonExample();
 		Criteria c = example.or();

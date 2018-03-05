@@ -40,6 +40,27 @@
 		<filter-name>CharacterEncodingFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	<filter>
+	  <filter-name>FilterIP</filter-name>
+	  <filter-class>com.gsb.Filters.IpFilter</filter-class>
+	  <!-- 配置初始化参数 -->
+	  <init-param>
+	  <!-- 配置允许通过的IP -->
+	  <param-name>FilteredIP</param-name>
+	  <param-value>58.206.17</param-value>
+	  </init-param>
+	  <init-param>
+	  <!-- 配置不过滤的jsp页面 -->
+	  <param-name>noFilteredJsp</param-name>
+	  <param-value>error.jsp</param-value>
+	  </init-param>
+	</filter>
+	<filter-mapping>
+	  <filter-name>FilterIP</filter-name>
+	  <url-pattern>/*</url-pattern>
+	</filter-mapping>
+	
+	
 	
 	
 	<servlet>
@@ -76,6 +97,19 @@
 	<servlet-mapping>
 		<servlet-name>SocietyManageModule</servlet-name>
 		<url-pattern>/SYM/*</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>WorkManageModule</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:config/WorkManageModule-config.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>WorkManageModule</servlet-name>
+		<url-pattern>/WKM/*</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>name_only</servlet-name>
