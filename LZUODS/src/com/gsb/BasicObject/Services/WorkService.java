@@ -155,4 +155,27 @@ public class WorkService implements WorkPlanOperate, NotifyOperate, FinalJudge, 
 		return notify_mapper.selectByExampleWithBLOBs( builder.build());
 	}
 	
+	public List<WorkPlan> showAllWorkplans() {
+		return showWorkplans( -1, null, null, -1);
+	}
+
+	public List<WorkPlan> showWorkplans( int staff_no, Date happen_date, String title_like, int status) {
+		WorkPlanExampleBuilder builder = new WorkPlanExampleBuilder();
+		if( -1 == staff_no) {
+			if( happen_date != null) {
+				builder.workplanHappenAt(happen_date);
+			}
+			if( title_like != null) {
+				builder.titleLike( title_like);
+			}
+			if( -1 != status) {
+				builder.statusIs(status);
+			}
+		} else {
+			builder.holdByStaff(staff_no);
+		}
+		WorkPlanExample example = builder.build();
+		return workplan_mapper.selectByExampleWithBLOBs(example);
+	}
+	
 }

@@ -9,16 +9,15 @@
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
-	<bean name="AuthAccount" class="com.gsb.BasicObject.Services.AuthAccount"></bean>
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix">
-			<value>/WEB-INF/views/HMPages/</value>
+			<value>/WEB-INF/views/LGPages/</value>
 		</property>
 		<property name="suffix">
 			<value>.jsp</value>
 		</property>
 	</bean>
-	<context:component-scan base-package="com.gsb.MainPackage.HumanManager" />  
+	<context:component-scan base-package="com.gsb.MainPackage.LoginManager" />  
 	<mvc:annotation-driven />
 	<mvc:default-servlet-handler/>
 </beans>

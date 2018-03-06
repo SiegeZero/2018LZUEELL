@@ -8,6 +8,8 @@
     <result column="telephone_num" jdbcType="VARCHAR" property="telephoneNum" />
     <result column="sys_level" jdbcType="CHAR" property="sysLevel" />
     <result column="final_goal" jdbcType="REAL" property="finalGoal" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+    <result column="account" jdbcType="VARCHAR" property="account" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -68,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    sys_no, name, gender, telephone_num, sys_level, final_goal
+    sys_no, name, gender, telephone_num, sys_level, final_goal, password, account
   </sql>
   <select id="selectByExample" parameterType="com.gsb.BasicObject.MBGPOJO.StaffExample" resultMap="BaseResultMap">
     select
@@ -102,11 +104,11 @@
   </delete>
   <insert id="insert" parameterType="com.gsb.BasicObject.MBGPOJO.Staff">
     insert into staff_info_table (sys_no, name, gender, 
-      telephone_num, sys_level, final_goal
-      )
+      telephone_num, sys_level, final_goal, 
+      password, account)
     values (#{sysNo,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{gender,jdbcType=CHAR}, 
-      #{telephoneNum,jdbcType=VARCHAR}, #{sysLevel,jdbcType=CHAR}, #{finalGoal,jdbcType=REAL}
-      )
+      #{telephoneNum,jdbcType=VARCHAR}, #{sysLevel,jdbcType=CHAR}, #{finalGoal,jdbcType=REAL}, 
+      #{password,jdbcType=VARCHAR}, #{account,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.gsb.BasicObject.MBGPOJO.Staff">
     insert into staff_info_table
@@ -129,6 +131,12 @@
       <if test="finalGoal != null">
         final_goal,
       </if>
+      <if test="password != null">
+        password,
+      </if>
+      <if test="account != null">
+        account,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="sysNo != null">
@@ -148,6 +156,12 @@
       </if>
       <if test="finalGoal != null">
         #{finalGoal,jdbcType=REAL},
+      </if>
+      <if test="password != null">
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null">
+        #{account,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -178,6 +192,12 @@
       <if test="record.finalGoal != null">
         final_goal = #{record.finalGoal,jdbcType=REAL},
       </if>
+      <if test="record.password != null">
+        password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.account != null">
+        account = #{record.account,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -190,7 +210,9 @@
       gender = #{record.gender,jdbcType=CHAR},
       telephone_num = #{record.telephoneNum,jdbcType=VARCHAR},
       sys_level = #{record.sysLevel,jdbcType=CHAR},
-      final_goal = #{record.finalGoal,jdbcType=REAL}
+      final_goal = #{record.finalGoal,jdbcType=REAL},
+      password = #{record.password,jdbcType=VARCHAR},
+      account = #{record.account,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -213,6 +235,12 @@
       <if test="finalGoal != null">
         final_goal = #{finalGoal,jdbcType=REAL},
       </if>
+      <if test="password != null">
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="account != null">
+        account = #{account,jdbcType=VARCHAR},
+      </if>
     </set>
     where sys_no = #{sysNo,jdbcType=INTEGER}
   </update>
@@ -222,7 +250,9 @@
       gender = #{gender,jdbcType=CHAR},
       telephone_num = #{telephoneNum,jdbcType=VARCHAR},
       sys_level = #{sysLevel,jdbcType=CHAR},
-      final_goal = #{finalGoal,jdbcType=REAL}
+      final_goal = #{finalGoal,jdbcType=REAL},
+      password = #{password,jdbcType=VARCHAR},
+      account = #{account,jdbcType=VARCHAR}
     where sys_no = #{sysNo,jdbcType=INTEGER}
   </update>
 </mapper>
