@@ -40,7 +40,7 @@ public class StoreFileInfos {
 
 	List<Person> person_list = null;
 	public List<String> headers = null;
-	Map<String, Integer> sociaties_map, depts_map, slib_map;
+	Map<String, Integer> societies_map, depts_map, slib_map;
 
 	boolean foundHeader = false;
 	int rowAmount;
@@ -125,16 +125,16 @@ public class StoreFileInfos {
 	@Autowired
 	SocietyMapper society_mapper;
 
-	public boolean storeSociatieWith(String targetHeader) {
+	public boolean storeSocietieWith(String targetHeader) {
 		if (first_data_row_index == 0) {
 			return false;
 		}
-		Set<String> sociaties = new HashSet<>();
+		Set<String> societies = new HashSet<>();
 		for (int row_index = first_data_row_index; row_index < rowAmount; row_index++) {
 			String tmp = sheet.getCell(headers.indexOf(targetHeader), row_index).getContents();
-			sociaties.add(tmp);
+			societies.add(tmp);
 		}
-		Iterator<String> it = sociaties.iterator();
+		Iterator<String> it = societies.iterator();
 		while (it.hasNext()) {
 			Society society = new Society();
 			society.setSocietyName(it.next());
@@ -142,9 +142,9 @@ public class StoreFileInfos {
 		}
 
 		List<Society> selectByExample = society_mapper.selectByExample(null);
-		sociaties_map = new HashMap<String, Integer>();
+		societies_map = new HashMap<String, Integer>();
 		for (int index = 0; index < selectByExample.size(); index++) {
-			sociaties_map.put(selectByExample.get(index).getSocietyName(), selectByExample.get(index).getSocietyNo());
+			societies_map.put(selectByExample.get(index).getSocietyName(), selectByExample.get(index).getSocietyNo());
 		}
 		return true;
 	}
@@ -187,7 +187,7 @@ public class StoreFileInfos {
 		society_mapper.deleteByExample(null);
 		dept_mapper.deleteByExample(null);
 		slib_mapper.deleteByExample(null);
-		if (!this.storeSociatieWith(headers.get(3)) || !this.storeDeptsWith(headers.get(4))
+		if (!this.storeSocietieWith(headers.get(3)) || !this.storeDeptsWith(headers.get(4))
 				|| !this.storeSLibWith(headers.get(5))) {
 			return false;
 		}
@@ -218,7 +218,7 @@ public class StoreFileInfos {
 			person.setPhysicalSituation(sheet.getCell(headers.indexOf(targetHeaders[22]), row_index).getContents());
 			person.setConscriptio_situation(sheet.getCell(headers.indexOf(targetHeaders[23]), row_index).getContents());
 			person.setNeed_help(sheet.getCell(headers.indexOf(targetHeaders[24]), row_index).getContents());
-			person_mapper.insert(person.format(depts_map, sociaties_map, slib_map));
+			person_mapper.insert(person.format(depts_map, societies_map, slib_map));
 			PersonExample personExample = new PersonExample();
 			Criteria criteria = personExample.createCriteria();
 			if (person.getName() != null)

@@ -22,7 +22,7 @@ import com.gsb.BasicObject.MBGPOJO.PersonExample.Criteria;
 @Service
 public class SingleAddOperate {
 	
-	static Map<String,Integer> depts_map,sociaties_map,slib_map;
+	static Map<String,Integer> depts_map,societies_map,slib_map;
 	
 	@Autowired
 	PersonMapper person_mapper;
@@ -42,11 +42,11 @@ public class SingleAddOperate {
 			}
 		}
 		
-		if( sociaties_map == null || sociaties_map.isEmpty()) {
-			List<Society> sociaties = society_mapper.selectByExample(null);
-			sociaties_map = new HashMap<>();
-			for( Society d:sociaties) {
-				sociaties_map.put(d.getSocietyName(), d.getSocietyNo());
+		if( societies_map == null || societies_map.isEmpty()) {
+			List<Society> societies = society_mapper.selectByExample(null);
+			societies_map = new HashMap<>();
+			for( Society d:societies) {
+				societies_map.put(d.getSocietyName(), d.getSocietyNo());
 			}
 		}
 
@@ -76,7 +76,7 @@ public class SingleAddOperate {
 		personExample.or( c);
 		long amount = person_mapper.countByExample( personExample);
 		if( amount <= 0) {
-			person_mapper.insertSelective( person.format(depts_map, sociaties_map, slib_map));
+			person_mapper.insertSelective( person.format(depts_map, societies_map, slib_map));
 		}
 		List<SourcePerson> selectByExample = person_mapper.selectAllForShow( personExample);
 		int target_id = -1;
@@ -94,13 +94,13 @@ public class SingleAddOperate {
 		Criteria c = example.createCriteria();
 		c.andSysNoEqualTo( new_person.getSysNo());
 		example.or(c);
-		person_mapper.updateByExampleWithBLOBs(new_person.format(depts_map, sociaties_map, slib_map), example);
+		person_mapper.updateByExampleWithBLOBs(new_person.format(depts_map, societies_map, slib_map), example);
 	}
 	public int name2NoForDepts(String name) {
 		return depts_map.get( name);
 	}
-	public int name2NoForSociaties(String name) {
-		return sociaties_map.get( name);
+	public int name2NoForSocieties(String name) {
+		return societies_map.get( name);
 	}
 	public int name2NoForSlibs(String name) {
 		return slib_map.get( name);
