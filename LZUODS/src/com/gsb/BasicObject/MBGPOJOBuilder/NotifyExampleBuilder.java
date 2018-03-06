@@ -23,9 +23,9 @@ public class NotifyExampleBuilder {
 		return this;
 	}
 	
-	public NotifyExampleBuilder holdBySociety( int society_no) {
+	public NotifyExampleBuilder holdBySociety( int sociaty_no) {
 		for( Criteria c: cs) {
-			c.andSocietyNoEqualTo( society_no);
+			c.andSocietyNoEqualTo( sociaty_no);
 		}
 		return this;
 	}
