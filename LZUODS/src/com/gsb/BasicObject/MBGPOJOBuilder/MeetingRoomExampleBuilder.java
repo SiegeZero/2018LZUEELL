@@ -32,9 +32,9 @@ public class MeetingRoomExampleBuilder {
 		}
 		return this;
 	}
-	public MeetingRoomExampleBuilder holdBySociaty( int sociaty_no) {
+	public MeetingRoomExampleBuilder holdBySociety( int society_no) {
 		for( Criteria c: cs) {
-			c.andSocietyNoEqualTo( sociaty_no);
+			c.andSocietyNoEqualTo( society_no);
 		}
 		return this;
 	}
