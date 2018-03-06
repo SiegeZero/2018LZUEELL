@@ -39,10 +39,15 @@ public class WorkPlanExampleBuilder {
 		}
 		return this;
 	}
-	
-	public WorkPlanExampleBuilder titleEqualTo( String title) {
+	public WorkPlanExampleBuilder titleLike(String title_like) {
 		for( Criteria c: cs) {
-			c.andTitleEqualTo( title);
+			c.andTitleLike( "%" + title_like + "%");
+		}
+		return this;
+	}
+	public WorkPlanExampleBuilder titleEqualTo(String title) {
+		for( Criteria c: cs) {
+			c.andTitleEqualTo(title);
 		}
 		return this;
 	}

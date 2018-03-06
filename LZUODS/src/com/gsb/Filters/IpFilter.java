@@ -16,20 +16,18 @@ public class IpFilter implements Filter{
 	boolean debugging = true;
 	@Override
 	public void destroy() {
-		// TODO Auto-generated method stub
-		
 	}
 
 	@Override
-	public void doFilter(ServletRequest servletrequest, ServletResponse servletresponse, FilterChain filterchain)
+	public void doFilter(ServletRequest servlet_request, ServletResponse servlet_response, FilterChain filterchain)
 			throws IOException, ServletException {
-		HttpServletRequest request = (HttpServletRequest) servletrequest;
-        HttpServletResponse response = (HttpServletResponse) servletresponse;
+		HttpServletRequest request = (HttpServletRequest) servlet_request;
+        HttpServletResponse response = (HttpServletResponse) servlet_response;
         String addr = request.getRemoteAddr();
         System.out.println( "addr:" + addr);
         String noFilterJsp = config.getInitParameter("noFilteredJsp");
         if (request.getRequestURI().indexOf( noFilterJsp) != -1 || isSecurityIp(addr)) {
-            filterchain.doFilter(servletrequest, servletresponse);
+            filterchain.doFilter(servlet_request, servlet_response);
         } else {
             response.setContentType("text/html; charset=UTF-8");
             response.getWriter().print("<script>alert('客户端未授权，请联系管理员！');</script>");
@@ -50,7 +48,6 @@ public class IpFilter implements Filter{
 	private FilterConfig config;
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {
-		// TODO Auto-generated method stub
 		config = arg0;
 	}
 

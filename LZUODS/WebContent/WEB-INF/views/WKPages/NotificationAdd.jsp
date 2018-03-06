@@ -7,7 +7,7 @@
 <title>通知添加</title>
 </head>
 <body>
-	<form action="add_notify">
+	<form action="add_notify" method="post">
 		请输入通知标题:<input name="title" type="text" />
 		<input name="society_no" type="hidden" value="1" >
 		<input name="publisher_no" type="hidden" value="0" >
