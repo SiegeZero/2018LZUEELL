@@ -31,7 +31,7 @@
 	java.text.SimpleDateFormat
 	" %>
 <%
-List<Society> society_list =(List<Society>) request.getAttribute("sociaties_list");
+List<Society> society_list =(List<Society>) request.getAttribute("societies_list");
 List<SalaryLib> slib_list =(List<SalaryLib>) request.getAttribute("slib_list");
 SourcePerson person = (SourcePerson)request.getAttribute("target");
 SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");

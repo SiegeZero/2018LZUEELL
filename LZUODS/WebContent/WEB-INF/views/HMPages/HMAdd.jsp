@@ -8,7 +8,7 @@
 </head>
 <%@ page import="java.util.List,com.gsb.BasicObject.MBGPOJO.SalaryLib,com.gsb.BasicObject.MBGPOJO.Society" %>
 <%
-List<Society> society_list =(List<Society>) request.getAttribute("sociaties_list");
+List<Society> society_list =(List<Society>) request.getAttribute("societies_list");
 List<SalaryLib> slib_list =(List<SalaryLib>) request.getAttribute("slib_list");
 %>
 <body>

@@ -13,7 +13,7 @@
 </head>
 <%@ page import="java.util.List,com.gsb.BasicObject.MBGPOJO.SalaryLib" %>
 <%
-List<String> society_list =(List<String>) request.getAttribute("sociaties_list");
+List<String> society_list =(List<String>) request.getAttribute("societies_list");
 List<SalaryLib> slib_list =(List<SalaryLib>) request.getAttribute("slib_list");
 %>
 <body>

@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
+<%@page import="com.gsb.BasicObject.MBGPOJO.Staff" %>
+<%
+
+Staff login_staff = (Staff)request.getSession().getAttribute("login_staff");
+
+%>
 
 
 <nav class="navbar navbar-default top-navbar" role="navigation">
@@ -19,6 +25,7 @@
 	</div>
 
 	<ul class="nav navbar-top-links navbar-right">
+		<li><a><%= login_staff.getName()  %></a></li>
 		<li><a class="waves-effect waves-dark" href="#!"><i class="fa fa-bell fa-fw"></i> <strong>首页</strong></a></li>
 		<li><a class="waves-effect waves-dark" href="#!"><i class="fa fa-user fa-fw"></i> <strong>人员管理</strong></a></li>
 		<li><a class="waves-effect waves-dark" href="../SYM/SocietyMang"><i class="fa fa-envelope fa-fw"></i> <strong>分会管理</strong></a></li>

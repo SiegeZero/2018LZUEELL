@@ -32,7 +32,7 @@
 	int Age = 0;
 	List<SourcePerson> person_list = (List<SourcePerson>) request.getAttribute("person_list");
 	List<String> nations_list = (List<String>) request.getAttribute("nations_list");
-	List<Society> sociaties_list = (List<Society>) request.getAttribute("sociaties_list");
+	List<Society> societies_list = (List<Society>) request.getAttribute("societies_list");
 	List<String> func_list = (List<String>) request.getAttribute("func_list");
 	List<String> title_lv_list = (List<String>) request.getAttribute("title_lv_list");
 	List<String> conscription_situation_list = (List<String>) request.getAttribute("conscription_situation_list");

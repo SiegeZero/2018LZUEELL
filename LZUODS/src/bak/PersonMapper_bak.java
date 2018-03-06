@@ -41,7 +41,7 @@ public interface PersonMapper_bak {
 	
 	Department selectDeptWithId(Integer dept_no);
 	
-	Society selectSociatyWithId( Integer society_no);
+	Society selectSocietyWithId( Integer society_no);
 	
 	SalaryLib selectSLibWithId( Integer salary_lib_no);
 

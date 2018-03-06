@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>通知中心</title>
-<%@page import="java.util.List,com.gsb.BasicObject.MBGPOJO.Notification,com.gsb.Utils.Byte2Str" %>
+<%@page import="java.util.List,com.gsb.BasicObject.MBGPOJO.Notification" %>
 <%
 	List<Notification> notify_list = (List<Notification>)request.getAttribute("notify_list");
 %>

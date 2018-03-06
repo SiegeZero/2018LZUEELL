@@ -24,16 +24,16 @@ String name_str = request.getParameter("name_condition");
 String func_str = request.getParameter("func_condition");
 String title_lv_str = request.getParameter("title_lv_condition");
 String[] age_range = request.getParameterValues("age");
-String[] sociaties = request.getParameterValues("society");
+String[] societies = request.getParameterValues("society");
 String[] nations = request.getParameterValues("nations");
 String[] cs_str = request.getParameterValues("conscription_situation");
 String[] political_str = request.getParameterValues("political_status");
 String physical_str = request.getParameter("physical_situation");
 String[] edu_bg = request.getParameterValues("edu_bg");
-Map<Integer, String> sociaties_map = new HashMap<>();
-List<Society> sociaties_list = (List<Society>) request.getAttribute("sociaties_list");
-for( Society s:sociaties_list) {
-	sociaties_map.put( s.getSocietyNo(),s.getSocietyName());
+Map<Integer, String> societies_map = new HashMap<>();
+List<Society> societies_list = (List<Society>) request.getAttribute("societies_list");
+for( Society s:societies_list) {
+	societies_map.put( s.getSocietyNo(),s.getSocietyName());
 }
 %>
 
@@ -96,19 +96,19 @@ for( Society s:sociaties_list) {
 				</div>
 				<%
 				}
-				if(sociaties!=null&&sociaties.length!=0) {
+				if(societies!=null&&societies.length!=0) {
 				%>
 				<div class="container-fluid">
 					<strong>选择的分会包含：</strong>
 					<%
-					for( int i=0;i<sociaties.length;i++){
+					for( int i=0;i<societies.length;i++){
 					%>
 					<input name="society" id="society<%=i %>" type="hidden"
 						class="form-control"
-						value="<%=sociaties[i] %>"
+						value="<%=societies[i] %>"
 						readonly />
 					<input type="text" class="form-control" 
-						value="<%=sociaties_map.get( Integer.parseInt(sociaties[i]))%>" 
+						value="<%=societies_map.get( Integer.parseInt(societies[i]))%>" 
 						readonly />
 					<%
 					}

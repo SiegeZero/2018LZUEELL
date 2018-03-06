@@ -82,7 +82,7 @@ public class HMController {
 		String title_lv_condition = request.getParameter("title_lv_condition");
 		String age_range = request.getParameter("age_range");
 		String[] nations = request.getParameterValues("nations");
-		String[] sociaties = request.getParameterValues("society");
+		String[] societies = request.getParameterValues("society");
 		String[] quit_office_types = request.getParameterValues("quit_office_type");
 		String[] edu_bg = request.getParameterValues("edu_bg");
 		String[] political_status = request.getParameterValues("political_status");
@@ -177,13 +177,13 @@ public class HMController {
 			mv.addObject("nations_str", list);
 		}
 		
-		if( sociaties != null && sociaties.length != 0) {
+		if( societies != null && societies.length != 0) {
 			List<Integer> list = new ArrayList<>();
-			for( String s:sociaties) {
+			for( String s:societies) {
 				list.add(Integer.parseInt(s));
 			}
 			c.andSocietyNoIn(list);
-			mv.addObject("sociaties_str",list);
+			mv.addObject("societies_str",list);
 		}
 		if( quit_office_types != null && quit_office_types.length != 0) {
 			List<String> list = new ArrayList<>();
@@ -227,8 +227,8 @@ public class HMController {
 		List<SourcePerson> person_list =  db_reader.getBasicInfos(example, -1);
 		List<String> nations_list = db_reader.getAllNations();
 		System.out.println( "show nation size:"+nations_list.size());
-		List<Society> sociaties_list = db_reader.getAllSocieties();
-		System.out.println( "show sociaties size:"+sociaties_list.size());
+		List<Society> societies_list = db_reader.getAllSocieties();
+		System.out.println( "show societies size:"+societies_list.size());
 		List<String> func_list = db_reader.getAllFunc();
 		List<String> title_lv_list = db_reader.getAllTitleLv();
 		List<String> cs_list = db_reader.getAllConscriptionSituation();
@@ -238,8 +238,8 @@ public class HMController {
 		mv.addObject("person_list", person_list);
 		mv.addObject("nations_amount", nations_list.size());
 		mv.addObject("nations_list", nations_list);
-		mv.addObject("sociaties_amount", sociaties_list.size());
-		mv.addObject("sociaties_list", sociaties_list);
+		mv.addObject("societies_amount", societies_list.size());
+		mv.addObject("societies_list", societies_list);
 		mv.addObject("func_amount", func_list.size());
 		mv.addObject("func_list", func_list);
 		mv.addObject("title_lv_amount", title_lv_list.size());
@@ -310,7 +310,7 @@ public class HMController {
 	@RequestMapping(value="/HMAdd")
 	public ModelAndView add( ModelAndView mv) {
 		List<String> nations_list = db_reader.getAllNations();
-		List<Society> sociaties_list = db_reader.getAllSocieties();
+		List<Society> societies_list = db_reader.getAllSocieties();
 		List<String> func_list = db_reader.getAllFunc();
 		List<String> title_lv_list = db_reader.getAllTitleLv();
 		List<String> cs_list = db_reader.getAllConscriptionSituation();
@@ -320,8 +320,8 @@ public class HMController {
 		mv.addObject("slib_list", slib_list);
 		mv.addObject("nations_amount", nations_list.size());
 		mv.addObject("nations_list", nations_list);
-		mv.addObject("sociaties_amount", sociaties_list.size());
-		mv.addObject("sociaties_list", sociaties_list);
+		mv.addObject("societies_amount", societies_list.size());
+		mv.addObject("societies_list", societies_list);
 		mv.addObject("func_amount", func_list.size());
 		mv.addObject("func_list", func_list);
 		mv.addObject("title_lv_amount", title_lv_list.size());
@@ -334,9 +334,9 @@ public class HMController {
 	@RequestMapping(value="/ConfirmPage")
 	public ModelAndView confirm( ModelAndView mv,HttpServletRequest request) {
 
-		List<Society> sociaties_list = db_reader.getAllSocieties();
-		mv.addObject("sociaties_amount", sociaties_list.size());
-		mv.addObject("sociaties_list", sociaties_list);
+		List<Society> societies_list = db_reader.getAllSocieties();
+		mv.addObject("societies_amount", societies_list.size());
+		mv.addObject("societies_list", societies_list);
 		return mv;
 	}
 	

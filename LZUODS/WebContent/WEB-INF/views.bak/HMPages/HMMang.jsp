@@ -90,7 +90,7 @@
 	int Age = 0;
 	List<SourcePerson> person_list = (List<SourcePerson>) request.getAttribute("person_list");
 	List<String> nations_list = (List<String>) request.getAttribute("nations_list");
-	List<Society> sociaties_list = (List<Society>) request.getAttribute("sociaties_list");
+	List<Society> societies_list = (List<Society>) request.getAttribute("societies_list");
 	List<String> func_list = (List<String>) request.getAttribute("func_list");
 	List<String> title_lv_list = (List<String>) request.getAttribute("title_lv_list");
 	List<String> conscription_situation_list = (List<String>) request.getAttribute("conscription_situation_list");
@@ -241,9 +241,9 @@
 								<tr>
 									<th>分会：</th>
 									<%
-										List<Integer> sociaties_str = (List<Integer>)request.getAttribute("sociaties_str");
-										for (int row_index = 0; sociaties_list != null && row_index < sociaties_list.size() ; row_index++) {
-											Society s = sociaties_list.get(row_index);
+										List<Integer> societies_str = (List<Integer>)request.getAttribute("societies_str");
+										for (int row_index = 0; societies_list != null && row_index < societies_list.size() ; row_index++) {
+											Society s = societies_list.get(row_index);
 											if(row_index % 9 == 0){
 									%>
 								</tr>
@@ -255,7 +255,7 @@
 											type="checkbox" name="society" id="society<%=row_index %>)"
 											value="<%=s.getSocietyNo() %>" 
 											onClick="select_attribute"
-											<%=sociaties_str!=null&&sociaties_str.contains(s.getSocietyNo())?"checked":"" %>
+											<%=societies_str!=null&&societies_str.contains(s.getSocietyNo())?"checked":"" %>
 										/>
 										<%=s.getSocietyName().equals("")?"无分会":s.getSocietyName()%></td>	
 									

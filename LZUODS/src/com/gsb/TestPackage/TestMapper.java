@@ -134,7 +134,7 @@ public class TestMapper{
 	public void testNationPrinting() {
 		List<String> strings;
 //		strings = info_reader.getAllNations();
-//		strings = info_reader.getAllSociaties();
+//		strings = info_reader.getAllSocieties();
 //		strings = info_reader.getAllDepts();
 //		strings = info_reader.getAllFunc();
 		strings = info_reader.getAllTitleLv();

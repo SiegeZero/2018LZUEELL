@@ -30,7 +30,7 @@
 	com.gsb.BasicObject.Beans.SourcePerson,
 	java.text.SimpleDateFormat" %>
 <%
-List<String> society_list =(List<String>) request.getAttribute("sociaties_list");
+List<String> society_list =(List<String>) request.getAttribute("societies_list");
 List<SalaryLib> slib_list =(List<SalaryLib>) request.getAttribute("slib_list");
 SourcePerson person = (SourcePerson)request.getAttribute("target");
 SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");

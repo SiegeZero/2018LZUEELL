@@ -32,11 +32,11 @@ public class SourcePerson extends PersonWithBLOBs {
 		sdf = new SimpleDateFormat("yyyyMMdd");
 	}
 
-	public PersonWithBLOBs format(Map<String, Integer> depts_map, Map<String, Integer> sociaties_map, Map<String, Integer> slib_map){
+	public PersonWithBLOBs format(Map<String, Integer> depts_map, Map<String, Integer> societies_map, Map<String, Integer> slib_map){
 		int deptNo = depts_map.get( this.dept.getDeptName());
 		this.setDeptNo( deptNo);
 		this.dept.setDeptNo(deptNo);
-		int societyNo = sociaties_map.get( this.society.getSocietyName());
+		int societyNo = societies_map.get( this.society.getSocietyName());
 		this.setSocietyNo( societyNo);
 		this.society.setSocietyNo( societyNo);
 		if( this.slib.getSalaryVersion() != null) {
