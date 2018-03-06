@@ -82,7 +82,7 @@ public class HMController {
 		String title_lv_condition = request.getParameter("title_lv_condition");
 		String age_range = request.getParameter("age_range");
 		String[] nations = request.getParameterValues("nations");
-		String[] sociaties = request.getParameterValues("sociaty");
+		String[] sociaties = request.getParameterValues("society");
 		String[] quit_office_types = request.getParameterValues("quit_office_type");
 		String[] edu_bg = request.getParameterValues("edu_bg");
 		String[] political_status = request.getParameterValues("political_status");
@@ -282,7 +282,7 @@ public class HMController {
 		new_person.setDept( request.getParameter( "dept"));
 		new_person.setSlib( request.getParameter("slary_lib"));
 		new_person.setFunc( request.getParameter( "func"));
-		new_person.setSociety( request.getParameter("sociaty"));
+		new_person.setSociety( request.getParameter("society"));
 		new_person.setTitleLv( request.getParameter( "title_lv"));
 		new_person.setEduBg( request.getParameter( "edu_bg"));
 		new_person.setStart_job( request.getParameter("start_time"));
@@ -349,7 +349,7 @@ public class HMController {
 		new_person.setDept( request.getParameter( "dept"));
 		new_person.setSlib( request.getParameter("slary_lib"));
 		new_person.setFunc( request.getParameter( "func"));
-		new_person.setSociety( request.getParameter("sociaty"));
+		new_person.setSociety( request.getParameter("society"));
 		new_person.setTitleLv( request.getParameter( "title_lv"));
 		new_person.setEduBg( request.getParameter( "edu_bg"));
 		new_person.setStart_job( request.getParameter("start_time"));
@@ -382,7 +382,7 @@ public class HMController {
 		new_person.setDept( request.getParameter( "dept"));
 		new_person.setSlib( request.getParameter("slary_lib"));
 		new_person.setFunc( request.getParameter( "func"));
-		new_person.setSociety( request.getParameter("sociaty"));
+		new_person.setSociety( request.getParameter("society"));
 		new_person.setTitleLv( request.getParameter( "title_lv"));
 		new_person.setEduBg( request.getParameter( "edu_bg"));
 		new_person.setStart_job( request.getParameter("start_time"));
