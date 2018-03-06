@@ -80,7 +80,7 @@
 										</thead>
 										<tbody>
 											<%
-											Calendar cal = Calendar.getInstance();
+											Calendar cal = Calendar.getInstance(); 
 											int thisYear = cal.get( Calendar.YEAR);
 											Calendar b = Calendar.getInstance();
 											for (int cow_index = 0; cow_index < person_list.size(); cow_index++) {
