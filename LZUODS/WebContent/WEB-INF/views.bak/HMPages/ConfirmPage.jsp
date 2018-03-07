@@ -19,6 +19,7 @@
 <%
 int quit_office_type_size=2,conscription_situation_conditions_size=0;
 
+String[] gender = request.getParameterValues("gender");
 String[] quit_office_types = request.getParameterValues("quit_office_type");
 String name_str = request.getParameter("name_condition");
 String func_str = request.getParameter("func_condition");
@@ -70,6 +71,17 @@ for( Society s:societies_list) {
 				<div class="container-fluid">
 					<strong>选择的职级包含：</strong> <input type="text" class="form-control"
 						name="title_lv_condition" value="<%=title_lv_str %>" readonly />
+				</div>
+				<%
+				}
+				if( quit_office_types!=null && quit_office_types.length!=0) {
+				%>
+				<div class="container-fluid">
+					<strong>选择的性别包含：</strong>
+					<%for(int index=0;index< quit_office_types.length;index++){ %>
+					<input type="text" class="form-control" name="gender"
+						value="<%=gender[index]%>" readonly />
+					<%} %>
 				</div>
 				<%
 				}

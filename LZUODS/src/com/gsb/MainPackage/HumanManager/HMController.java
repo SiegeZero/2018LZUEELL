@@ -49,7 +49,7 @@ public class HMController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/HMHome")
+	@RequestMapping(value="/Home")
 	public ModelAndView home(ModelAndView mv) {
 		List<Map<String, Long>> partyMembersAmount = db_reader.getPartyMembersAmount(-1);
 		long lessthan100 = db_reader.getAllAmountAtRangeToday( 0, 100);
@@ -307,7 +307,7 @@ public class HMController {
 		return redirect_url;
 	}
 	
-	@RequestMapping(value="/HMAdd")
+	@RequestMapping(value="/HMEdit")
 	public ModelAndView add( ModelAndView mv) {
 		List<String> nations_list = db_reader.getAllNations();
 		List<Society> societies_list = db_reader.getAllSocieties();

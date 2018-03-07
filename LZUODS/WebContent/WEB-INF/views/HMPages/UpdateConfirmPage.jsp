@@ -580,11 +580,11 @@ SourcePerson new_person = (SourcePerson)request.getAttribute("new_person");
 									</table>
 								    <div>
 									    <center>
-									        <a href="HMDtal?id=<%=person.getSysNo()%>"><button type="button" class="btn waves-effect waves-light" style="margin-right:20px">返回
+									        <a href="../HMM/HMDtal?id=<%=person.getSysNo()%>"><button type="button" class="btn waves-effect waves-light" style="margin-right:20px">返回
 									        	<span class="glyphicon glyphicon-remove"></span>
 									        </button></a>
-									    	<button type="submit" class="btn waves-effect waves-light" name="action">保存
-									    		<span class="glyphicon glyphicon-floppy-save"></span>
+									    	<button type="submit" class="btn waves-effect waves-light" name="action">确认
+									    		<span class="fa fa-check fa-fw"></span>
 										  	</button>
 									    </center>
 								    </div>

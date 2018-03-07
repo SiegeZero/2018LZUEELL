@@ -11,7 +11,7 @@ import com.gsb.BasicObject.MBGPOJO.Society;
 import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
-public interface PersonMapper_bak { 
+public interface PersonMapper_bak {
     
     long countByExample(PersonExample example);
 

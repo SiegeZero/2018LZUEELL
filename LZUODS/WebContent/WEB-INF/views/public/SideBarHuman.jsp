@@ -7,55 +7,43 @@
 		<ul class="nav" id="main-menu">
 
 			<li>
-				<a href="index.html" class="waves-effect waves-dark"><i class="fa fa-dashboard"></i> Dashboard</a>
+				<a href="../HMM/HMMang" class="waves-effect waves-dark"><i class="fa fa-user"></i> 人员信息</a>
 			</li>
 			<li>
-				<a href="ui-elements.html" class="waves-effect waves-dark"><i class="fa fa-desktop"></i> UI Elements</a>
+				<a href="#" class="waves-effect waves-dark"><i class="fa fa-rmb"></i> 工资管理</a>
 			</li>
 			<li>
-				<a href="chart.html" class="waves-effect waves-dark"><i class="fa fa-bar-chart-o"></i> Charts</a>
+				<a href="../HMM/HMAnls" class="waves-effect waves-dark"><i class="fa fa-bar-chart-o"></i> 统计分析</a>
 			</li>
 			<li>
-				<a href="tab-panel.html" class="waves-effect waves-dark"><i class="fa fa-qrcode"></i> Tabs & Panels</a>
-			</li>
-
-			<li>
-				<a href="table.html" class="active-menu waves-effect waves-dark"><i class="fa fa-table"></i> Responsive Tables</a>
+				<a href="#" class="waves-effect waves-dark"><i class="fa fa-qrcode"></i> 其他功能</a>
 			</li>
 			<li>
-				<a href="form.html" class="waves-effect waves-dark"><i class="fa fa-edit"></i> Forms </a>
-			</li>
-
-
-			<li>
-				<a href="#" class="waves-effect waves-dark"><i class="fa fa-sitemap"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
+				<a href="#" class="waves-effect waves-dark"><i class="fa fa-plus"></i> 展开下拉Demo<span class="fa arrow"></span></a>
 				<ul class="nav nav-second-level">
 					<li>
-						<a href="#">Second Level Link</a>
+						<a href="#">二级菜单</a>
 					</li>
 					<li>
-						<a href="#">Second Level Link</a>
+						<a href="#">二级菜单</a>
 					</li>
 					<li>
-						<a href="#">Second Level Link<span class="fa arrow"></span></a>
+						<a href="#">二级菜单<span class="fa arrow"></span></a>
 						<ul class="nav nav-third-level">
 							<li>
-								<a href="#">Third Level Link</a>
+								<a href="#">三级菜单</a>
 							</li>
 							<li>
-								<a href="#">Third Level Link</a>
+								<a href="#">三级菜单</a>
 							</li>
 							<li>
-								<a href="#">Third Level Link</a>
+								<a href="#">三级菜单</a>
 							</li>
 
 						</ul>
 
 					</li>
 				</ul>
-			</li>
-			<li>
-				<a href="empty.html" class="waves-effect waves-dark"><i class="fa fa-fw fa-file"></i> Empty Page</a>
 			</li>
 		</ul>
 

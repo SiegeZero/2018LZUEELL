@@ -27,7 +27,7 @@
 <%@ page import="
 	java.util.List,
 	com.gsb.BasicObject.MBGPOJO.SalaryLib,
-	com.gsb.BasicObject.MBGPOJO.SourcePerson,
+	com.gsb.BasicObject.Beans.SourcePerson,
 	java.text.SimpleDateFormat" %>
 <%
 List<String> society_list =(List<String>) request.getAttribute("societies_list");

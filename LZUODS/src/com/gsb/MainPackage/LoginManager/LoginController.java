@@ -38,7 +38,7 @@ public class LoginController {
 		login_staff.setAccount( request.getParameter("account"));
 		login_staff.setPassword( Eypt.md5( request.getParameter("passwd")));
 		session.setAttribute("login_staff", login_staff);
-		return "redirect:/HMM/HMHome";
+		return "redirect:/HMM/Home";
 	}
 	
 	public String leave( HttpSession session) {
