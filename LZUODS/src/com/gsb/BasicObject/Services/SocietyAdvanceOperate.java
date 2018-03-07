@@ -7,6 +7,6 @@ import com.gsb.BasicObject.MBGPOJO.SocietyExample;
 
 public interface SocietyAdvanceOperate {
 	SocietyExample getNewSocietyExample();
-	List<String> getAllSocietiesName( SocietyExample example);
+	List<String> getAllSocietiesName();
 	Society getInfoByExample( SocietyExample example);
 }

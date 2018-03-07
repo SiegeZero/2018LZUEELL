@@ -31,11 +31,11 @@
 		</div>
 		<div class="collapse navbar-collapse" id="navbar-menu">
 			<ul class="nav navbar-nav">
-				<li><a href="HMHome">首页</a></li>
-				<li><a href="HMMang">人员管理</a></li>
+				<li><a href="../HMM/Home">首页</a></li>
+				<li><a href="../HMM/HMMang">人员管理</a></li>
 				<li><a href="../SYM/SocietyMang">分会管理</a></li>
-				<li><a href="PTMang">党建管理</a></li>
-				<li><a href="EVMang">活动管理</a></li>
+				<li><a href="../HMM/PTMang">党建管理</a></li>
+				<li><a href="../HMM/EVMang">活动管理</a></li>
 			</ul>
 			<!-- <div class="profile navbar-right">
 				<p class="navbar-text">

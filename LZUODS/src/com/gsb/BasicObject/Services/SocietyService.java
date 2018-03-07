@@ -78,8 +78,8 @@ public class SocietyService implements SocietyBasicOperate, SocietyAdvanceOperat
 	}
 
 	@Override
-	public List<String> getAllSocietiesName( SocietyExample example) {
-		List<Society> list = society_mapper.selectByExample( example);
+	public List<String> getAllSocietiesName() {
+		List<Society> list = society_mapper.selectByExample( getNewSocietyExample());
 		List<String> nameList = new ArrayList<>();
 		for( Society s:list) {
 			nameList.add(s.getSocietyName());

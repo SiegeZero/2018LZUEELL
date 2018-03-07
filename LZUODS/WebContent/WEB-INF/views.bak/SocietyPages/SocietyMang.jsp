@@ -10,10 +10,10 @@
 
 
 <%@page import="java.util.List
-	,com.gsb.BasicObject.MBGPOJO.SourcePerson
+	,com.gsb.BasicObject.Beans.SourcePerson
 	,com.gsb.BasicObject.MBGPOJO.Society"%>
 <%
-	List<Society> societies_list = (List<Society>) request.getAttribute("societies_list");
+	List<String> societies_list = (List<String>) request.getAttribute("societies_list");
 	
 %>
 
@@ -23,10 +23,9 @@
 	<div class="panel panel-default">
 		<div class="panel-heading">分会列表</div>
 		<div class="panel-body">
-			<p>DWadfekflIekmf</p>
 		</div>
 
-		<table class="table">
+		<table class="table table-striped">
         <thead>
           <tr>
             <th style="width:10%">#</th>
@@ -38,11 +37,11 @@
         <tbody>
           <%
           for(int row_index = 0; societies_list != null && row_index < societies_list.size(); row_index++){
-        	  Society s = societies_list.get(row_index);
+        	  String s = societies_list.get(row_index);
           %>
           <tr>
             <td><%=row_index %></td>
-            <td><%=s.getSocietyName() %></td>
+            <td><%=s %></td>
             <td></td>
             <td></td>
           </tr>

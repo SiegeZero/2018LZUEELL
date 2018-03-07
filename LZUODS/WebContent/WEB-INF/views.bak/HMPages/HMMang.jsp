@@ -28,6 +28,14 @@
 			title_lv.style.display = "none";
 		}
 	}
+	function show_gender() {
+		if (gender.style.display == "none") {
+			gender.style.display = "block";
+		} else if (func.style.display == "block") {
+			gender.style.display = "none";
+		}
+		flag = gender;
+	}
 	function show_quit_office_types() {
 		if (quit_office_types.style.display == "none") {
 			flag.style.display = "none";
@@ -82,7 +90,7 @@
 </head>
 
 <%@page import="java.util.List
-	,com.gsb.BasicObject.MBGPOJO.SourcePerson
+	,com.gsb.BasicObject.Beans.SourcePerson
 	,com.gsb.BasicObject.MBGPOJO.Society
 	,java.util.Calendar
 	,java.util.Date"%>
@@ -132,6 +140,18 @@
 								</tr>
 								<tr>
 									<td colspan="9">
+										
+										<ul style="display:none" class="nav navbar-nav" id="gender">
+											<li>
+												<input type="radio" value="男" name="gender" id="gender0" onClick="select_attribute" />男
+											</li>
+											<li>
+												<input type="radio" value="女" name="gender" id="gender1" onClick="select_attribute" />女
+											</li>
+											<li>
+												<input type="radio" value="全选" name="gender" id="gender2" onClick="select_attribute" />全选
+											</li>
+										</ul>
 										<ul style="display:block" class="nav navbar-nav" id="quit_office_types">
 										<%
 											List<String> quit_office_type_str = (List<String>)request.getAttribute("quit_office_type_str");
@@ -428,7 +448,7 @@
 					</div>
 					<div class="container-fluid">
 						<div class="pull-right">
-							<a href="HMAdd"><button type="button" class="btn btn-info">新增人员</button></a>
+							<a href="HMEdit"><button type="button" class="btn btn-info">新增人员</button></a>
 							<button type="button" class="btn btn-warning">导出PDF</button>
 							<button type="button" class="btn btn-warning"
 								onclick="printtable(personitem)">导出Excel</button>
@@ -445,6 +465,8 @@
 	
 	<!-- Latest compiled and minified Locales -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/locale/bootstrap-table-zh-CN.min.js"></script>
+	
+	<script src="../js/HMMang.js"></script>
 		
 	
 </body>

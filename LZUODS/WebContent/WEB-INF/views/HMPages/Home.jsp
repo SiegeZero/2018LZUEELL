@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>活动管理</title>
+    <title>首页</title>
 	
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="../assets/materialize/css/materialize.min.css" media="screen,projection" />
@@ -24,6 +24,17 @@
     <link rel="stylesheet" href="../assets/js/Lightweight-Chart/cssCharts.css"> 
 </head>
 
+<%@page import ="java.io.File,java.util.List,java.util.ArrayList" %>
+<%
+String[] allamount_attrs = (String[])request.getAttribute("allamount_attrs");
+String[] party_attrs = (String[])request.getAttribute("party_attrs");
+List<String[]> details = new ArrayList<>();
+if( allamount_attrs != null)
+	details.add( allamount_attrs);
+if( party_attrs != null)
+	details.add( party_attrs);
+%>
+
 <body>
 	<div id="wapper">
 		<jsp:include page="../public/NavigationBar.jsp"></jsp:include>
@@ -35,6 +46,30 @@
 						<div class="card">
 							<div class="card-action"><h2><strong>详细信息</strong></h2></div>
 							<div class="card-content">
+							    <div class="container-fluid">
+							        <p class="alert alert-info">
+							        	<strong>少于100岁的退休人员人数：<%= request.getAttribute("lessthan100") %></strong>
+									</p>
+							    </div>
+							    <%
+							    for( String[] tmp:details) {
+							    %>
+							    <div class="container-fluid">
+							        <p class="alert alert-info">
+							        	<strong>
+							    <%
+							    	for( String t:tmp) {
+							    %>
+							       	<%=t %>：<%= request.getAttribute(t) %>人
+							    <%
+							    	}
+							    %>
+							    		</strong>
+							    	</p>
+							    </div>
+							    <%
+							    	}
+							    %>
 							</div>
 						</div>
 						<!--  end  Context Classes  -->
