@@ -52,17 +52,20 @@ public class LoginFilter implements Filter {
             filterchain.doFilter(servlet_request, servlet_response);
             return;
         }
+        String tips = "未登录，跳转到登录页面！";
         if( o != null && o instanceof Staff) {
         	db_staff = auth.access( (Staff)o);
         	if(db_staff != null) {
         		session.setAttribute("login_staff", db_staff);
         		filterchain.doFilter(servlet_request, servlet_response);
         		return;
+        	}else {
+        		tips = "用户名或密码错误，请重新登录！";
         	}
         }
         response.setContentType("text/html; charset=UTF-8");
-        response.getWriter().print("<script>alert('请重新登录！');</script>");
-        response.sendRedirect("/LZUODS/LGM/Login");
+		response.getWriter().print("<script>alert('"+tips+"');window.location='/LZUODS/LGM/Login'</script>");
+        //response.sendRedirect("/LZUODS/LGM/Login");
 	}
 
 	private FilterConfig config;

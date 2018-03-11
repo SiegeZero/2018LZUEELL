@@ -87,6 +87,14 @@ public class HMController {
 		String[] edu_bg = request.getParameterValues("edu_bg");
 		String[] political_status = request.getParameterValues("political_status");
 		
+		String gender = request.getParameter("gender");
+		
+		if( gender!= null && !gender.equals("全部")) {
+			if( gender.equals( "男") || gender.equals( "女")) {
+				c.andGenderEqualTo(gender);
+			} 
+		}
+		
 		String physical_situation = request.getParameter("physical_situation");
 		if( physical_situation!= null && !physical_situation.equals("全部")) {
 			if( physical_situation.equals( "离世")) {

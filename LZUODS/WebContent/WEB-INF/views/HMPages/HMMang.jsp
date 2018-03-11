@@ -27,8 +27,10 @@
 	,com.gsb.BasicObject.Beans.SourcePerson
 	,com.gsb.BasicObject.MBGPOJO.Society
 	,java.util.Calendar
-	,java.util.Date"%>
+	,java.util.Date
+	,com.gsb.Utils.TypeTransfer"%>
 <%
+	int amount_per_line = 6;
 	int Age = 0;
 	List<SourcePerson> person_list = (List<SourcePerson>) request.getAttribute("person_list");
 	List<String> nations_list = (List<String>) request.getAttribute("nations_list");
@@ -81,7 +83,7 @@
 														<td colspan="9">
 															
 															<ul style="display:block" class="nav navbar-nav" id="gender">
-																<li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+																<li>
 																	<input type="radio" value="男" name="gender" id="gender0" onClick="select_attribute" />
 																	<label for="gender0">男</label>
 																</li>
@@ -142,7 +144,9 @@
 																		/>
 																		<label for="political_status<%=li_index %>"><%=political_status_list.get(li_index).equals("")?"无数据":political_status_list.get(li_index) %></label>
 																</li>
-																<%} %>
+																<%
+																} 
+																%>
 															</ul>
 															<ul style="display:none" class="nav navbar-nav" id="physical_situation">
 																<li>
@@ -187,10 +191,13 @@
 																</li>
 															</ul>
 															<ul style="display:none" class="nav navbar-nav" id="edu_bg">
+															<p>
 															<%
 															List<String> edu_bg_str = (List<String>) request.getAttribute("edu_bg_str");
 															for(int li_index=0;edu_bg_list!=null && li_index<edu_bg_list.size();li_index++){
-																%>
+																if(li_index == amount_per_line){ %>
+																			</p><p>
+																		<%} %>
 																<li>
 																	<input type="checkbox" class="filled-in"
 																		name="edu_bg" id="edu_bg<%=li_index %>"
@@ -201,6 +208,7 @@
 																		<label for="edu_bg<%=li_index %>"><%=edu_bg_list.get(li_index).equals("")?"无数据":edu_bg_list.get(li_index) %></label>
 																</li>
 																<%} %>
+																</p>
 															</ul>
 														</td>
 													</tr>
@@ -266,6 +274,11 @@
 													%>
 													</tr>
 												</table>
+												<div>
+													<button type="submit" title="点击查询">
+														<span class="glyphicon glyphicon-search"></span>
+													</button>
+												</div>
 											</div>
 									    </li>
 									 </ul>
@@ -275,17 +288,15 @@
 											<tr>
 												<th class="info" style="width: 5%">序号</th>
 												<th class="info" style="width: 7%">姓名</th>
-												<th class="info" style="width: 7%">职称</th>
-												<th class="info" style="width: 6%">职务</th>
-												<th class="info" style="width: 8%">所在分会</th>
-												<th class="info" style="width: 11%">原单位</th>
-												<th class="info" style="width: 5%">离/退</th>
 												<th class="info" style="width: 5%">性别</th>
 												<th class="info" style="width: 5%">年龄</th>
-												<th class="info" style="width: 7%">民族</th>
-												<th class="info" style="width: 10%">籍贯</th>
+												<th class="info" style="width: 9%">出生日期</th>
+												<th class="info" style="width: 8%">所在分会</th>
+												<th class="info" style="width: 10%">职称</th>
+												<th class="info" style="width: 8%">职务</th>
 												<th class="info" style="width: 8%">政治面貌</th>
-												<th class="info" style="width: 16%">联系方式</th>
+												<th class="info" style="width: 15%">联系方式</th>
+												<th class="info" style="width: 20%">家庭住址</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -307,31 +318,22 @@
 													</a>
 												</td>
 												<td>
-													<%=person_list.get(cow_index).getTitleLv()%>
-												</td>
-												<td>
-													<%=person_list.get(cow_index).getFunc()%>
-												</td>
-												<td>
-													<%=person_list.get(cow_index).getSociety().getSocietyName()%>
-												</td>
-												<td>
-													<%=person_list.get(cow_index).getDept().getDeptName()%>
-												</td>
-												<td>
-													<%=person_list.get(cow_index).getQuitOfficeType()%>
-												</td>
-												<td>
 													<%=person_list.get(cow_index).getGender()%>
 												</td>
 												<td>
 													<%=Age%>
 												</td>
 												<td>
-													<%=person_list.get(cow_index).getNation()%>
+													<%=TypeTransfer.Date2Str(birth)%>
 												</td>
 												<td>
-													<%=person_list.get(cow_index).getNativePlace()%>
+													<%=person_list.get(cow_index).getSociety().getSocietyName()%>
+												</td>
+												<td>
+													<%=person_list.get(cow_index).getTitleLv()%>
+												</td>
+												<td>
+													<%=person_list.get(cow_index).getFunc()%>
 												</td>
 												<td>
 													<%=person_list.get(cow_index).getPoliticalStatus()%>
@@ -339,14 +341,18 @@
 												<td>
 													<%=person_list.get(cow_index).getTelephoneNum()%>
 												</td>
+												<td>
+													<%=person_list.get(cow_index).getAddress()%>
+												</td>
 											</tr>
 											<%
 												}
 											%>
 										</tbody>
 									</table>
+									<a class="btn-floating btn-small waves-effect waves-light red" href="../HMM/HMEdit"><i class="material-icons">add</i></a>
 								</div>
-
+	
 							</div>
 						</div>
 						<!--End Advanced Tables -->

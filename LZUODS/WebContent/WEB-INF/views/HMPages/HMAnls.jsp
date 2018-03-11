@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>活动管理</title>
+    <title>统计分析</title>
 	
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="../assets/materialize/css/materialize.min.css" media="screen,projection" />
@@ -36,16 +36,102 @@ if( party_attrs != null)
 %>
 
 <body>
-	<div id="wapper">
-		<jsp:include page="../public/NavigationBar.jsp"></jsp:include>
-		<div id="page-wapper" style="width:100%; position:absolute; margin-top:80px;">
+	<div id="wrapper">
+		<jsp:include page="../public/NavigationBarHuman.jsp"></jsp:include>
+		<jsp:include page="../public/SideBarHuman.jsp"></jsp:include>
+		<div id="page-wrapper">
+			<div class="header">
+				<h2 class="page-header">
+					<strong>数据统计图表</strong>
+				</h2>
+			</div>
 			<div id="page-inner">
 				<div class="row">
 					<div class="col-md-12">
-						<!--    Context Classes  -->
+						<!-- Advanced Tables -->
 						<div class="card">
-							<div class="card-action"><h2><strong>详细信息</strong></h2></div>
 							<div class="card-content">
+								<div class="row">
+									<div class="col-xs-12 col-sm-6 col-md-4">
+										<div class="card horizontal cardIcon waves-effect waves-dark">
+											<div class="card-image orange">
+												<i class="fa fa-users fa-fw"></i>
+											</div>
+											<div class="card-stacked orange">
+												<div class="card-content white-text">
+													<h4>离退休人员总人数：</h4>
+												</div>
+												<div class="card-action white-text">
+													<strong><%= request.getAttribute(allamount_attrs[0]) %>人</strong>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-12 col-sm-6 col-md-4">
+										<div class="card horizontal cardIcon waves-effect waves-dark">
+											<div class="card-image blue">
+												<i class="fa fa-heart fa-fw"></i>
+											</div>
+											<div class="card-stacked blue">
+												<div class="card-content white-text">
+													<h4>小于100岁的退休人员人数：</h4>
+												</div>
+												<div class="card-action white-text">
+													<strong><%= request.getAttribute("lessthan100") %>人</strong>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-12 col-sm-6 col-md-4">
+										<div class="card horizontal cardIcon waves-effect waves-dark">
+											<div class="card-image green">
+												<i class="fa fa-star fa-fw"></i>
+											</div>
+											<div class="card-stacked green">
+												<div class="card-content white-text">
+													<h4>党员总人数：</h4>
+												</div>
+												<div class="card-action white-text">
+													<strong><%= request.getAttribute(party_attrs[0]) %>人</strong>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="row">
+									<div class="col-xs-12 col-sm-6 col-md-3">
+										<div class="card-panel text-center">
+											<h4>男性人数</h4>
+											<div class="easypiechart" id="easypiechart-blue" data-percent="<%= (long)request.getAttribute(allamount_attrs[2])*100/(long)request.getAttribute(allamount_attrs[0]) %>">
+												<span class="percent"><%= request.getAttribute(allamount_attrs[2]) %></span>
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-12 col-sm-6 col-md-3">
+										<div class="card-panel text-center">
+											<h4>女性人数</h4>
+											<div class="easypiechart" id="easypiechart-red" data-percent="<%= (long)request.getAttribute(allamount_attrs[1])*100/(long)request.getAttribute(allamount_attrs[0]) %>">
+												<span class="percent"><%= request.getAttribute(allamount_attrs[1]) %></span>
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-12 col-sm-6 col-md-3">
+										<div class="card-panel text-center">
+											<h4>男性党员人数</h4>
+											<div class="easypiechart" id="easypiechart-teal" data-percent="<%= (long)request.getAttribute(party_attrs[1])*100/(long)request.getAttribute(party_attrs[0]) %>">
+												<span class="percent"><%= request.getAttribute(party_attrs[1]) %></span>
+											</div>
+										</div>
+									</div>
+									<div class="col-xs-12 col-sm-6 col-md-3">
+										<div class="card-panel text-center">
+											<h4>女性党员人数</h4>
+											<div class="easypiechart" id="easypiechart-orange" data-percent="<%= (long)request.getAttribute(party_attrs[2])*100/(long)request.getAttribute(party_attrs[0]) %>">
+												<span class="percent"><%= request.getAttribute(party_attrs[2]) %></span>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
 						<!--  end  Context Classes  -->
