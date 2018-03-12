@@ -3,7 +3,7 @@ package com.gsb.BasicObject.MBGPOJOBuilder;
 import java.util.Calendar;
 import java.util.List;
 
-import com.gsb.BasicObject.MBGPOJO.AtvInfo;
+import com.gsb.BasicObject.MBGPOJO.SympathyAtv;
 import com.gsb.BasicObject.MBGPOJO.SympathyAtvExample;
 import com.gsb.BasicObject.MBGPOJO.SympathyAtvExample.Criteria;
 
@@ -29,6 +29,13 @@ public class SympathyAtvExampleBuilder {
 	public SympathyAtvExampleBuilder withId( int act_no) {
 		for(Criteria c:cs) {
 			c.andActivityNoEqualTo( act_no);
+		}
+		return this;
+	}
+	public SympathyAtvExampleBuilder equalTo(SympathyAtv changedAtv) {
+		for(Criteria c:cs) {
+			c.andActivityNoEqualTo( changedAtv.getActivityNo());
+			c.andSympathyTimeEqualTo( changedAtv.getSympathyTime());
 		}
 		return this;
 	}

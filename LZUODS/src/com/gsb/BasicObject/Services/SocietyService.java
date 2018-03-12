@@ -10,6 +10,8 @@ import com.gsb.BasicObject.MBGDAO.SocietyMapper;
 import com.gsb.BasicObject.MBGPOJO.Society;
 import com.gsb.BasicObject.MBGPOJO.SocietyExample;
 import com.gsb.BasicObject.MBGPOJO.SocietyExample.Criteria;
+import com.gsb.BasicObject.ServicesInterface.SocietyAdvanceOperate;
+import com.gsb.BasicObject.ServicesInterface.SocietyBasicOperate;
 
 @Service
 public class SocietyService implements SocietyBasicOperate, SocietyAdvanceOperate {

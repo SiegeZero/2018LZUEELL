@@ -3,7 +3,7 @@
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
-
+<%@ page isELIgnored ="false" %>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -52,6 +52,7 @@
 								          	<label for="passwd">密码</label>
 							        	</div>
 							      	</div>
+									<input type="hidden" name="target_addr" value="<%=request.getAttribute("last_addr")%>">
 									<input type="hidden" name="login_status" value="<%=request.getAttribute("login_status")%>">
 							 	</div>
 							      	<div class="row">

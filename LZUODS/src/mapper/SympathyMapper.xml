@@ -6,6 +6,10 @@
     <result column="acitivity_no" jdbcType="INTEGER" property="acitivityNo" />
     <result column="sympathy_time" jdbcType="DATE" property="sympathyTime" />
   </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapForShow" type="com.gsb.BasicObject.Beans.SympathyWithName">
+    <association property="person_name" column="sys_no"
+			javaType="string" select="selectNameWithId" />
+  </resultMap>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -67,7 +71,10 @@
   <sql id="Base_Column_List">
     sys_no, acitivity_no, sympathy_time
   </sql>
-  <select id="selectByExample" parameterType="com.gsb.BasicObject.MBGPOJO.SympathyExample" resultMap="BaseResultMap">
+  <select id="selectNameWithId" resultType="string">
+  	select name from basic_info_table where sys_no=#{sys_no}
+  </select>
+  <select id="selectByExample" parameterType="com.gsb.BasicObject.MBGPOJO.SympathyExample" resultMap="ResultMapForShow">
     select
     <if test="distinct">
       distinct

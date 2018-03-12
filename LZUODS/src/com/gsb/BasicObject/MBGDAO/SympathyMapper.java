@@ -1,5 +1,6 @@
 package com.gsb.BasicObject.MBGDAO;
 
+import com.gsb.BasicObject.Beans.SympathyWithName;
 import com.gsb.BasicObject.MBGPOJO.Sympathy;
 import com.gsb.BasicObject.MBGPOJO.SympathyExample;
 import java.util.List;
@@ -14,7 +15,7 @@ public interface SympathyMapper {
 
     int insertSelective(Sympathy record);
 
-    List<Sympathy> selectByExample(SympathyExample example);
+    List<SympathyWithName> selectByExample(SympathyExample example);
 
     int updateByExampleSelective(@Param("record") Sympathy record, @Param("example") SympathyExample example);
 

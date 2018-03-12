@@ -27,28 +27,28 @@ public class LoginFilter implements Filter {
 		
 	}
 	
-	AuthAccount auth;
+	private static AuthAccount auth;
 
 	@Override
 	public void doFilter(ServletRequest servlet_request, ServletResponse servlet_response, FilterChain filterchain)
 			throws IOException, ServletException {
 		
-		System.out.println(auth);
 		HttpServletRequest request = (HttpServletRequest) servlet_request;
         HttpServletResponse response = (HttpServletResponse) servlet_response;
         request.setCharacterEncoding("UTF-8");
         
 
         HttpSession session = request.getSession();
-        ServletContext sc = session.getServletContext();
-        XmlWebApplicationContext cxt = (XmlWebApplicationContext)WebApplicationContextUtils.getWebApplicationContext(sc);
-        if(cxt != null && cxt.getBean("AuthAccount") != null && auth == null)
+        if( null == auth) {
+        	ServletContext sc = session.getServletContext();
+        	XmlWebApplicationContext cxt = (XmlWebApplicationContext)WebApplicationContextUtils.getWebApplicationContext(sc);
         	auth = (AuthAccount) cxt.getBean("AuthAccount");
-        
+        }
         Object o = session.getAttribute("login_staff");
         String noFilterJsp = config.getInitParameter("noFilteredJsp");
         Staff db_staff;
-        if( request.getRequestURI().indexOf( noFilterJsp) != -1) {
+        String last_addr = request.getRequestURI();
+        if( last_addr.indexOf( noFilterJsp) != -1) {
             filterchain.doFilter(servlet_request, servlet_response);
             return;
         }
@@ -64,15 +64,14 @@ public class LoginFilter implements Filter {
         	}
         }
         response.setContentType("text/html; charset=UTF-8");
-		response.getWriter().print("<script>alert('"+tips+"');window.location='/LZUODS/LGM/Login'</script>");
-        //response.sendRedirect("/LZUODS/LGM/Login");
+		response.getWriter().print("<script>alert('"+tips+"');window.location='/LZUODS/LGM/Login?last_addr="+last_addr.substring(7)+"'</script>");
 	}
 
 	private FilterConfig config;
 
 	@Override
 	public void init(FilterConfig arg0) throws ServletException {
-		config = arg0;		
+		config = arg0;
 	}
 
 }

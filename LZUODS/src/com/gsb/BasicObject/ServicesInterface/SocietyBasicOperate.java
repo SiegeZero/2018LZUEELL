@@ -1,4 +1,4 @@
-package com.gsb.BasicObject.Services;
+package com.gsb.BasicObject.ServicesInterface;
 
 import com.gsb.BasicObject.MBGPOJO.Society;
 

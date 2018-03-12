@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.junit.Test;
@@ -16,11 +17,16 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.gsb.BasicObject.Beans.SourcePerson;
+import com.gsb.BasicObject.Beans.SympathyWithName;
 import com.gsb.BasicObject.MBGDAO.DepartmentMapper;
 import com.gsb.BasicObject.MBGDAO.PersonMapper;
 import com.gsb.BasicObject.MBGDAO.SocietyMapper;
+import com.gsb.BasicObject.MBGDAO.SympathyAtvMapper;
+import com.gsb.BasicObject.MBGDAO.SympathyMapper;
 import com.gsb.BasicObject.MBGPOJO.Department;
 import com.gsb.BasicObject.MBGPOJO.Society;
+import com.gsb.BasicObject.MBGPOJO.SympathyAtv;
+import com.gsb.BasicObject.Services.EventService;
 import com.gsb.BasicObject.Services.ReadDBInfos;
 import com.gsb.BasicObject.Services.StoreFileInfos;
 import com.gsb.BasicObject.Services.StoreNewInfos;
@@ -65,7 +71,6 @@ public class TestMapper{
 					
 			}
 		} catch (BiffException | IOException | ParseException e) {
-			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
 	}
@@ -166,6 +171,41 @@ public class TestMapper{
 //		list2.removeAll(list);
 //		System.out.println( list2.get(0));
 		return;
+	}
+	
+	@Autowired
+	EventService event_service;
+	
+	@Test
+	public void testSympathyAtv() {
+		List<SympathyAtv> list = event_service.getAllSympathyAtv();
+		for(SympathyAtv atv: list) {
+			System.out.println( atv.getActivityNo() +"content:"+ atv.getActivityRemark());	
+		}
+	}
+	
+	@Autowired
+	SympathyMapper sympathy_mapper;
+	
+
+	
+	@Test
+	public void testSympathyMapper() {
+//		List<SympathyWithName> list = sympathy_mapper.selectByExample(null);
+//		for(SympathyWithName tmp:list ) {
+//			System.out.println(tmp.getPerson_name());	
+//		}
+//		list = event_service.getAllSympathyWithAtvId(1);
+//		for(SympathyWithName tmp:list ) {
+//			System.out.println(tmp.getPerson_name());	
+//		}
+		List<SympathyAtv> atv_list = event_service.getAllSympathyAtv();
+		List<Map<SympathyAtv, List<SympathyWithName>>> list2 = event_service.showAllAboutSympathyAtv( atv_list);
+		int i=0;
+		for( Map<SympathyAtv, List<SympathyWithName>> map:list2) {
+			System.out.println(atv_list.get(i).getActivityNo());
+			System.out.println(map.get(atv_list.get(i++)));
+		}
 	}
 	
 }
