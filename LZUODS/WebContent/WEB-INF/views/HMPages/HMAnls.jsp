@@ -168,7 +168,10 @@ if( party_attrs != null)
     <script src="../assets/js/dataTables/jquery.dataTables.js"></script>
     <script src="../assets/js/dataTables/dataTables.bootstrap.js"></script>
     <!-- Custom Js -->
-    <script src="../assets/js/custom-scripts.js"></script> 
+    <script src="../assets/js/custom-scripts.js"></script>
+	<script>
+		document.getElementById("Anls").className = "active-menu";
+	</script>
     
 
 </body>

@@ -235,6 +235,9 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
     <script src="../assets/js/dataTables/dataTables.bootstrap.js"></script>
     <!-- Custom Js -->
     <script src="../assets/js/custom-scripts.js"></script> 
+	<script>
+		document.getElementById("HMMang").className = "active"; 
+	</script>
     
 
 </body>

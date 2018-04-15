@@ -20,7 +20,7 @@
     <link href="../assets/css/custom-styles.css" rel="stylesheet" />
     <!-- Google Fonts-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
-    <link rel="stylesheet" href="../assets/js/Lightweight-Chart/cssCharts.css"> 
+    <link rel="stylesheet" href="../assets/js/Lightweight-Chart/cssCharts.css">
 </head>
 
 
@@ -35,7 +35,7 @@
 <body>
 	<div id="wapper">
 		<jsp:include page="../public/NavigationBar.jsp"></jsp:include>
-		<div id="page-wapper" style="width:100%; position:absolute; z-index:700; margin-top:80px;">
+		<div id="page-wapper" style="width: 100%; position: absolute; margin-top: 80px;">
 			<div id="page-inner">
 				<div class="row">
 					<div class="col-md-12">
@@ -44,7 +44,7 @@
 	
 							<div class="card-action"><h2><strong>分会概览</strong></h2></div>
 	
-							<div class="card-content">
+							<div class="container-fluid">
 								<div class="table-responsive">
 									<table class="table table-striped table-bordered table-hover">
 										<thead>
@@ -62,7 +62,7 @@
 											%>
 											<tr>
 												<td><%=row_index + 1%></th>
-												<td><%=s%></td>
+												<td><a href="#"><%=s%></a></td>
 											</tr>
 											<%
 												}
@@ -107,6 +107,9 @@
     <script src="../assets/js/dataTables/dataTables.bootstrap.js"></script>
     <!-- Custom Js -->
     <script src="../assets/js/custom-scripts.js"></script> 
+	<script>
+		document.getElementById("SocietyMang").className = "active"; 
+	</script> 
     
     
 </body>

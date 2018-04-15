@@ -21,7 +21,7 @@
     <link href="../assets/css/custom-styles.css" rel="stylesheet" />
     <!-- Google Fonts-->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
-    <link rel="stylesheet" href="../assets/js/Lightweight-Chart/cssCharts.css"> 
+    <link rel="stylesheet" href="../assets/js/Lightweight-Chart/cssCharts.css">
 </head>
 
 <%@ page import="
@@ -626,6 +626,9 @@ SourcePerson new_person = (SourcePerson)request.getAttribute("new_person");
     <script src="../assets/js/dataTables/dataTables.bootstrap.js"></script>
     <!-- Custom Js -->
     <script src="../assets/js/custom-scripts.js"></script> 
+	<script>
+		document.getElementById("HMMang").className = "active"; 
+	</script> 
     
 
 </body>
