@@ -66,7 +66,7 @@ public class HMController {
 		for( Map<String,Long> tmp:allAmount) {
 			mv.addObject(allamount_attrs[i], tmp.get(allamount_attrs[i++]));
 		}
-		System.out.println( lessthan100);
+		System.out.println( "lessthan100:"+lessthan100);
 		mv.addObject("lessthan100", lessthan100);
 		return mv;
 	}

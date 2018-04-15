@@ -163,6 +163,21 @@
 		<url-pattern>/LGM/*</url-pattern>
 	</servlet-mapping>
 	
+	<servlet>
+		<servlet-name>SympathyManageModule</servlet-name>
+		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+		<init-param>
+			<param-name>contextConfigLocation</param-name>
+			<param-value>classpath:config/SympathyManageModule-config.xml</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SympathyManageModule</servlet-name>
+		<url-pattern>/SPM/*</url-pattern>
+	</servlet-mapping>
+	
+	
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath:root-context.xml</param-value>

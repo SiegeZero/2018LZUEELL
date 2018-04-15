@@ -15,6 +15,10 @@ import com.gsb.BasicObject.MBGPOJO.WorkPlan;
 import com.gsb.BasicObject.MBGPOJO.WorkPlanExample;
 import com.gsb.BasicObject.MBGPOJOBuilder.NotifyExampleBuilder;
 import com.gsb.BasicObject.MBGPOJOBuilder.WorkPlanExampleBuilder;
+import com.gsb.BasicObject.ServicesInterface.FinalJudge;
+import com.gsb.BasicObject.ServicesInterface.MeetingRoomOperate;
+import com.gsb.BasicObject.ServicesInterface.NotifyOperate;
+import com.gsb.BasicObject.ServicesInterface.WorkPlanOperate;
 
 @Service
 public class WorkService implements WorkPlanOperate, NotifyOperate, FinalJudge, MeetingRoomOperate{

@@ -1,4 +1,4 @@
-package com.gsb.BasicObject.Services;
+package com.gsb.BasicObject.ServicesInterface;
 
 import java.util.Calendar;
 import java.util.List;

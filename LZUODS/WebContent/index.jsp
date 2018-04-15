@@ -8,8 +8,12 @@
 </head>
 <%@ page import="com.gsb.BasicObject.MBGPOJO.AtvInfo" %>
 <body>
-<% AtvInfo atv_info = (AtvInfo) request.getAttribute("atv_info"); %>
-活动地点：<%= atv_info!=null?atv_info.getAtvTopic():"没有数据" %>
 <a href="/<%= this.getServletContext().getServletContextName() %>/HMM/Home">Homepage</a>
+<a href="/<%= this.getServletContext().getServletContextName() %>/WKM/Notifications">Notifications</a>
+<a href="/<%= this.getServletContext().getServletContextName() %>/WKM/WorkPlans">WorkPlans</a>
+<a href="/<%= this.getServletContext().getServletContextName() %>/WKM/NotificationAdd">NotificationAdd</a>
+<a href="/<%= this.getServletContext().getServletContextName() %>/WKM/WorkPlanAdd">WorkPlanAdd</a>
+<a href="/<%= this.getServletContext().getServletContextName() %>/SPM/SympathyAtv">SympathyAtvs</a>
+
 </body>
 </html>
