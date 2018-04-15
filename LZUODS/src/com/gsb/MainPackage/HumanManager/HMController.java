@@ -282,7 +282,7 @@ public class HMController {
 	
 	String base_url = "redirect:/HMM/";
 	@RequestMapping(value="/save_basic_info")
-	public String sava_basic_info( HttpServletRequest request) {
+	public String save_basic_info( HttpServletRequest request) {
 		int id = -1;
 		SourcePerson new_person = new SourcePerson();
 		new_person.setName( request.getParameter("name"));
@@ -316,7 +316,7 @@ public class HMController {
 	}
 	
 	@RequestMapping(value="/HMEdit")
-	public ModelAndView add( ModelAndView mv) {
+	public ModelAndView edit( ModelAndView mv) {
 		List<String> nations_list = db_reader.getAllNations();
 		List<Society> societies_list = db_reader.getAllSocieties();
 		List<String> func_list = db_reader.getAllFunc();
@@ -412,7 +412,7 @@ public class HMController {
 	}
 	
 	@RequestMapping(value="/HMAnls")
-	public ModelAndView anls(ModelAndView mv) {
+	public ModelAndView analysis(ModelAndView mv) {
 		List<Map<String, Long>> partyMembersAmount = db_reader.getPartyMembersAmount(-1);
 		long lessthan100 = db_reader.getAllAmountAtRangeToday( 0, 100);
 		int i=0;

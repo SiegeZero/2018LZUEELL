@@ -14,7 +14,6 @@ import com.gsb.BasicObject.MBGDAO.SalaryLibMapper;
 import com.gsb.BasicObject.MBGDAO.SocietyMapper;
 import com.gsb.BasicObject.MBGPOJO.Department;
 import com.gsb.BasicObject.MBGPOJO.PersonExample;
-import com.gsb.BasicObject.MBGPOJO.PersonWithBLOBs;
 import com.gsb.BasicObject.MBGPOJO.SalaryLib;
 import com.gsb.BasicObject.MBGPOJO.Society;
 import com.gsb.BasicObject.MBGPOJO.PersonExample.Criteria;

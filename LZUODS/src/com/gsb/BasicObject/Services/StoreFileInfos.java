@@ -22,7 +22,6 @@ import com.gsb.BasicObject.MBGDAO.SocietyMapper;
 import com.gsb.BasicObject.MBGPOJO.Department;
 import com.gsb.BasicObject.MBGPOJO.Person;
 import com.gsb.BasicObject.MBGPOJO.PersonExample;
-import com.gsb.BasicObject.MBGPOJO.PersonWithBLOBs;
 import com.gsb.BasicObject.MBGPOJO.SalaryLib;
 import com.gsb.BasicObject.MBGPOJO.Society;
 import com.gsb.BasicObject.MBGPOJO.PersonExample.Criteria;
@@ -54,7 +53,7 @@ public class StoreFileInfos {
 		rowAmount = sheet.getRows();
 		colAmount = sheet.getColumns();
 		List<String> names = new ArrayList<>();
-		for (int row_index = 0, col_index = 0; row_index < rowAmount; row_index++) {
+		for (int row_index = 0; row_index < rowAmount; row_index++) {
 			Cell cell = sheet.getCell(2, row_index);
 			names.add(cell.getContents());
 		}
@@ -75,8 +74,6 @@ public class StoreFileInfos {
 		sheet = wb.getSheet(0);
 		rowAmount = sheet.getRows();
 		colAmount = sheet.getColumns();
-		Set<String> contents = new HashSet<>();
-		Map<String, String> tmp = new HashMap<>();
 		for (int row_index = 0, col_index = 0; row_index < rowAmount; row_index++) {
 			Cell cell = sheet.getCell(0, row_index);
 			if (cell.getContents().equals("序号")) {
@@ -232,7 +229,7 @@ public class StoreFileInfos {
 			if (person.getBirthTime() != null)
 				criteria.andBirthTimeEqualTo(person.getBirthTime());
 			personExample.or(criteria);
-			List<SourcePerson> selectByExample = person_mapper.selectByExample(personExample);
+//			List<SourcePerson> selectByExample = person_mapper.selectByExample(personExample);
 		}
 		return true;
 	}
@@ -244,6 +241,7 @@ public class StoreFileInfos {
 	}
 
 	private List<String>[] readStuffFile(File stuffFile, String[] levels) throws BiffException, IOException {
+		@SuppressWarnings("unchecked")
 		List<String>[] results = new ArrayList[levels.length];
 		for( int i=0;i<levels.length;i++ ) {
 			results[i] = new ArrayList<String>();
@@ -251,9 +249,8 @@ public class StoreFileInfos {
 		results[0] = new ArrayList<String>();
 		Workbook wb = Workbook.getWorkbook(stuffFile);
 		Sheet sheet = wb.getSheet(0);
-		int colAmount = sheet.getColumns();
 		int rowAmount = sheet.getRows();
-		int col_index = 0, row_index = 0;
+		int row_index = 0;
 		int current_level = 0;
 		while (row_index < rowAmount) {
 			if (current_level+1<levels.length&&sheet.getCell(0, row_index).getContents().equals(levels[current_level])) {

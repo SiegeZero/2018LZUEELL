@@ -24,7 +24,6 @@ import com.gsb.BasicObject.MBGPOJO.SalaryLib;
 import com.gsb.BasicObject.MBGPOJO.Society;
 import com.gsb.Utils.TypeTransfer;
 import com.gsb.BasicObject.MBGPOJO.PersonExample.Criteria;
-import com.sun.glass.ui.Timer;
 
 @Service
 public class ReadDBInfos {

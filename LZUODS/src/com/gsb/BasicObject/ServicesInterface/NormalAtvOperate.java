@@ -4,8 +4,6 @@ import java.util.Calendar;
 import java.util.List;
 
 import com.gsb.BasicObject.MBGPOJO.AtvInfo;
-import com.gsb.BasicObject.MBGPOJO.AtvInfoExample;
-import com.gsb.BasicObject.MBGPOJO.AtvInfoExample.Criteria;
 
 public interface NormalAtvOperate {
 	int addNormalAtv( AtvInfo newAtv);

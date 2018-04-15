@@ -20,7 +20,7 @@ import org.springframework.web.context.support.XmlWebApplicationContext;
 import com.gsb.BasicObject.MBGPOJO.Staff;
 import com.gsb.BasicObject.Services.AuthAccount;
 
-public class LoginFilter implements Filter {
+public class LoginFilter1 implements Filter {
 
 	@Override
 	public void destroy() {
@@ -48,7 +48,7 @@ public class LoginFilter implements Filter {
         String noFilterJsp = config.getInitParameter("noFilteredJsp");
         Staff db_staff;
         String last_addr = request.getRequestURI();
-        if( true) {
+        if( last_addr.indexOf( noFilterJsp) != -1) {
             filterchain.doFilter(servlet_request, servlet_response);
             return;
         }

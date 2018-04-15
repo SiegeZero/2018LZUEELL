@@ -11,28 +11,34 @@ import org.springframework.stereotype.Service;
 
 import com.gsb.BasicObject.Beans.SympathyWithName;
 import com.gsb.BasicObject.MBGDAO.AtvInfoMapper;
+import com.gsb.BasicObject.MBGDAO.HelpRecordMapper;
 import com.gsb.BasicObject.MBGDAO.SympathyAtvMapper;
 import com.gsb.BasicObject.MBGDAO.SympathyMapper;
 import com.gsb.BasicObject.MBGPOJO.AtvInfo;
 import com.gsb.BasicObject.MBGPOJO.AtvInfoExample;
-import com.gsb.BasicObject.MBGPOJO.SocietyExample;
+import com.gsb.BasicObject.MBGPOJO.HelpRecord;
 import com.gsb.BasicObject.MBGPOJO.Sympathy;
 import com.gsb.BasicObject.MBGPOJO.SympathyAtv;
 import com.gsb.BasicObject.MBGPOJOBuilder.AtvInfoExampleBuilder;
+import com.gsb.BasicObject.MBGPOJOBuilder.HelpRecordExampleBuilder;
 import com.gsb.BasicObject.MBGPOJOBuilder.SympathyAtvExampleBuilder;
 import com.gsb.BasicObject.MBGPOJOBuilder.SympathyExampleBuilder;
+import com.gsb.BasicObject.ServicesInterface.HelpOperate;
 import com.gsb.BasicObject.ServicesInterface.NormalAtvOperate;
 import com.gsb.BasicObject.ServicesInterface.SympathyAtvOperate;
 import com.gsb.BasicObject.ServicesInterface.SympathyOperate;
 
 @Service
-public class EventService implements NormalAtvOperate, SympathyAtvOperate, SympathyOperate{
+public class EventService implements NormalAtvOperate, SympathyAtvOperate, SympathyOperate, HelpOperate{
 
 	@Autowired
 	AtvInfoMapper atvinfo_mapper;
 	
 	@Autowired
 	SympathyAtvMapper sympathy_atv_mapper;
+	
+	@Autowired
+	HelpRecordMapper help_record_mapper;
 	
 	@Autowired
 	SympathyMapper sympathy_mapper;
@@ -229,5 +235,52 @@ public class EventService implements NormalAtvOperate, SympathyAtvOperate, Sympa
 		}
 		return results;
 	}
+
+	@Override
+	public boolean addHelpRecord(HelpRecord newRecord) {
+		Boolean addSuccess = false;
+		HelpRecordExampleBuilder builder = new HelpRecordExampleBuilder();
+		builder.equalTo(newRecord);
+		synchronized( this){
+			if( 0 == help_record_mapper.countByExample( builder.build())) {
+				help_record_mapper.insert( newRecord);
+				if( 1 == help_record_mapper.countByExample( builder.build())) {
+					addSuccess = true;
+				}
+			}
+		}
+		return addSuccess;
+	}
+
+	@Override
+	public boolean delHelpRecord(HelpRecord targetRecord) {
+		HelpRecordExampleBuilder builder = new HelpRecordExampleBuilder();
+		builder.equalTo( targetRecord);
+		boolean isDelSuccess = false;
+		synchronized( this) {
+			if( 1 == help_record_mapper.countByExample( builder.build())) {
+				help_record_mapper.deleteByExample( builder.build());
+				if( 0 == help_record_mapper.countByExample( builder.build())) {
+					isDelSuccess = true;
+				}
+			}
+		}
+		return isDelSuccess;
+	}
+
+	@Override
+	public boolean changeHelpRecord(HelpRecord changedRecord) {
+		HelpRecordExampleBuilder builder = new HelpRecordExampleBuilder();
+		builder.equalTo( changedRecord);
+		boolean isChangeSuccess = false;
+		synchronized( this) {
+			if( 1 == help_record_mapper.countByExample( builder.build())) {
+				help_record_mapper.updateByExample(changedRecord, builder.build());
+				isChangeSuccess = true;
+			}
+		}
+		return isChangeSuccess;
+	}
+
 
 }
