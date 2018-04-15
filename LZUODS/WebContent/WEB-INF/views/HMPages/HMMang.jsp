@@ -274,9 +274,9 @@
 													%>
 													</tr>
 												</table>
-												<div>
-													<button type="submit" title="点击查询">
-														<span class="glyphicon glyphicon-search"></span>
+												<div style="text-align:center; margin-bottom:10px">
+													<button class="btn-floating waves-effect waves-light red" type="submit" title="点击查询">
+														<i class="material-icons">search</i>
 													</button>
 												</div>
 											</div>
@@ -350,7 +350,7 @@
 											%>
 										</tbody>
 									</table>
-									<a class="btn-floating btn-small waves-effect waves-light red" href="../HMM/HMEdit"><i class="material-icons">add</i></a>
+									<div style="text-align:right; margin-right:20px; margin-bottom:20px; title:新增人员"><a class="btn-floating btn-small waves-effect waves-light red" href="../HMM/HMEdit"><i class="material-icons">add</i></a></div>
 								</div>
 	
 							</div>
@@ -481,6 +481,9 @@
 				flag = edu_bg;
 			}
 			
+		</script>
+		<script>
+			document.getElementById("Human").className = "active-menu";
 		</script>
 
 

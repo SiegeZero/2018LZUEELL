@@ -32,8 +32,8 @@
 				<div class="row">
 					<div class="col-md-12">
 						<!--    Context Classes  -->
-						<div class="card" style="width:500px; margin-left:auto; margin-right:auto;">
-							<div class="card-action">
+						<div class="card" style="width:500px; margin-left:auto; margin-right:auto; background:rgba(255,255,255,1)">
+							<div class="card-action" >
 							<div class="card-content">
 								<form action="ahead" method="POST">
 								<div>
