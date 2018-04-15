@@ -82,7 +82,6 @@ if( party_attrs != null)
 											</div>
 										</div>
 									</div>
-									<div></div>
 									<div class="col-xs-12 col-sm-6 col-md-4">
 										<div class="card horizontal cardIcon waves-effect waves-dark">
 											<div class="card-image green">

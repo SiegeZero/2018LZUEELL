@@ -61,7 +61,7 @@ for( Society s:societies_list) {
 					<div class="col-md-12">
 						<!--    Context Classes  -->
 						<div class="card">
-							<div class="card-action"><h2><strong>详细信息</strong></h2></div>
+							<div class="card-action"><h2><strong>条件确认</strong></h2></div>
 							<div class="card-content">
 								<form action="HMMang" method="post">
 								<%
@@ -119,7 +119,7 @@ for( Society s:societies_list) {
 										<strong>选择的年龄范围是：</strong> <input name="age_range" type="text"
 											class="form-control" value="<%=age_range[0]+"-"+age_range[1]%>" readonly /> <input
 											name="deadline" type="text" class="form-control"
-											placeholder="输入一个具体的截止日期，日期输入格式为yyyymmdd">
+											placeholder="如果需要精确到某一天，请在此输入一个具体的截止日期，日期输入格式为yyyymmdd">
 									</div>
 									<%
 									}

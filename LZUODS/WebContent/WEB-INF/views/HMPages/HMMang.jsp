@@ -274,9 +274,9 @@
 													%>
 													</tr>
 												</table>
-												<div>
-													<button type="submit" title="点击查询">
-														<span class="glyphicon glyphicon-search"></span>
+												<div style="text-align:center">
+													<button class="btn waves-effect waves-light red" type="submit" title="点击查询">
+														<span class="Medium material-icons">search</span>
 													</button>
 												</div>
 											</div>
@@ -350,7 +350,7 @@
 											%>
 										</tbody>
 									</table>
-									<a class="btn-floating btn-small waves-effect waves-light red" href="../HMM/HMEdit"><i class="material-icons">add</i></a>
+									<div style="text-align:right; margin-right:20px; margin-bottom:20px"><a class="btn-floating btn-small waves-effect waves-light red" href="../HMM/HMEdit"><i class="material-icons">add</i></a></div>
 								</div>
 	
 							</div>
