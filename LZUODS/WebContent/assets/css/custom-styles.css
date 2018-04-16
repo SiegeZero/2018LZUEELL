@@ -381,6 +381,7 @@ color: #4BD28C;
 .top-navbar .nav > li {
 position: relative;
 display: inline-block;
+height: 60px;
 margin: 0px;
 padding: 0px;
 }
