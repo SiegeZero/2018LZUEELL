@@ -46,7 +46,7 @@ List<SalaryLib> slib_list =(List<SalaryLib>) request.getAttribute("slib_list");
 						                <tr>
 						                    <th>姓名:</th>
 						                    <div class="input-group input-group-sm">
-						                        <td><input name="name" type="text" class="form-control" value="张三" /></td>
+						                        <td><input name="name" type="text" class="form-control" value="张三" required /></td>
 						                    </div>
 						                    <th>性别:</th>
 						                    <div class="input-group input-group-sm">

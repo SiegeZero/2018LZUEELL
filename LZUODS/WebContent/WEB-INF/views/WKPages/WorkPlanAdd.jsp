@@ -38,11 +38,11 @@
 								<form action="add_workplan" method="POST">
 								<div class="row">
 						        	<div class="input-field col s6">
-						          		<input id="title" name="title" type="text" length="30">
+						          		<input id="title" name="title" type="text" required>
 						          		<label for="title">计划标题</label>
 						        	</div>
 							        <div class="input-field col s6">
-							          	<input id="happen_time" name="happen_time" type="text">
+							          	<input id="happen_time" name="happen_time" type="text" required>
 							          	<label for="happen_time">计划时间</label>
 							        </div>
 						        </div>

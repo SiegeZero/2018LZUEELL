@@ -25,11 +25,11 @@ Staff login_staff = (Staff)request.getSession().getAttribute("login_staff");
 	</div>
 
 	<ul class="nav navbar-top-links navbar-right">
-		<li><a class="waves-effect waves-dark active" href="../HMM/Home"><i class="fa fa-home fa-fw"></i> <strong>首页</strong></a></li>
-		<li class="active"><a class="waves-effect waves-dark" href="../HMM/HMMang"><i class="fa fa-users fa-fw"></i> <strong>人员管理</strong></a></li>
-		<li><a class="waves-effect waves-dark" href="../SYM/SocietyMang"><i class="fa fa-flag fa-fw"></i> <strong>分会管理</strong></a></li>
-		<li><a class="waves-effect waves-dark" href="../HMM/EVMang"><i class="fa fa-tasks fa-fw"></i> <strong>活动管理</strong></a></li>
-		<li><a class="waves-effect waves-dark" href="../WKM/WorkPlans" style="margin-right:20px"><i class="fa fa-calendar fa-fw"></i> <strong>工作管理</strong></a></li>
+		<li style="height:60px"><a class="waves-effect waves-dark active" href="../HMM/Home"><i class="fa fa-home fa-fw"></i> <strong>首页</strong></a></li>
+		<li class="active" style="height:60px"><a class="waves-effect waves-dark" href="../HMM/HMMang"><i class="fa fa-users fa-fw"></i> <strong>人员管理</strong></a></li>
+		<li style="height:60px"><a class="waves-effect waves-dark" href="../SYM/SocietyMang"><i class="fa fa-flag fa-fw"></i> <strong>分会管理</strong></a></li>
+		<li style="height:60px"><a class="waves-effect waves-dark" href="../HMM/EVMang"><i class="fa fa-tasks fa-fw"></i> <strong>活动管理</strong></a></li>
+		<li style="height:60px"><a class="waves-effect waves-dark" href="../WKM/WorkPlans" style="margin-right:20px"><i class="fa fa-calendar fa-fw"></i> <strong>工作管理</strong></a></li>
 	</ul>
 </nav>
 

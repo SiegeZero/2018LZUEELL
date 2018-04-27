@@ -78,7 +78,7 @@
 								</div>
 								<%
 									}
-									}
+								}
 								%>
 							</div>
 							<!--  end  Context Classes  -->

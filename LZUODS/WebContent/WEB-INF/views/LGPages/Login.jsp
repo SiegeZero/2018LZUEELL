@@ -26,7 +26,7 @@
 
 <body>
 	<div id="wapper">
-		<jsp:include page="../public/NavigationBar.jsp"></jsp:include>
+	<img style="position:fixed;" src="../assets/img/loginbg.jpg" height="100%" width="100%" /> 
 		<div id="page-wapper" style="width:100%; position:absolute; margin-top:80px;">
 			<div id="page-inner">
 				<div class="row">
