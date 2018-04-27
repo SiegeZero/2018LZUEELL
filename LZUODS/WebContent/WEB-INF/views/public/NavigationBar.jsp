@@ -12,12 +12,12 @@ Staff login_staff = (Staff)request.getSession().getAttribute("login_staff");
 	</div>
 
 	<ul class="nav navbar-top-links navbar-right">
-		<li id="Home"><a class="waves-effect waves-dark active" href="../HMM/Home"><i class="fa fa-home fa-fw"></i> <strong>首页</strong></a></li>
-		<li id="HMMang"><a class="waves-effect waves-dark" href="../HMM/HMMang"><i class="fa fa-users fa-fw"></i> <strong>人员管理</strong></a></li>
-		<li id="SocietyMang"><a class="waves-effect waves-dark" href="../SYM/SocietyMang"><i class="fa fa-flag fa-fw"></i> <strong>分会管理</strong></a></li>
-		<li id="EVMang"><a class="waves-effect waves-dark" href="../HMM/EVMang"><i class="fa fa-tasks fa-fw"></i> <strong>活动管理</strong></a></li>
-		<li id="WorkPlans"><a class="waves-effect waves-dark" href="../WKM/WorkPlans"><i class="fa fa-calendar fa-fw"></i> <strong>工作管理</strong></a></li>
-		<li><a class="dropdown-button waves-effect waves-dark" href="#" data-activates="userdropdown" style="margin-right:20px"><i class="fa fa-user fa-fw"></i> <strong>XXX</strong><i class="material-icons right">arrow_drop_down</i></a></li>
+		<li id="Home" style="height:60px"><a class="waves-effect waves-dark active" href="../HMM/Home"><i class="fa fa-home fa-fw"></i> <strong>首页</strong></a></li>
+		<li id="HMMang" style="height:60px"><a class="waves-effect waves-dark" href="../HMM/HMMang"><i class="fa fa-users fa-fw"></i> <strong>人员管理</strong></a></li>
+		<li id="SocietyMang" style="height:60px"><a class="waves-effect waves-dark" href="../SYM/SocietyMang"><i class="fa fa-flag fa-fw"></i> <strong>分会管理</strong></a></li>
+		<li id="EVMang" style="height:60px"><a class="waves-effect waves-dark" href="../HMM/EVMang"><i class="fa fa-tasks fa-fw"></i> <strong>活动管理</strong></a></li>
+		<li id="WorkPlans" style="height:60px"><a class="waves-effect waves-dark" href="../WKM/WorkPlans"><i class="fa fa-calendar fa-fw"></i> <strong>工作管理</strong></a></li>
+		<li style="height:60px"><a class="dropdown-button waves-effect waves-dark" data-activates="userdropdown" style="margin-right:20px"><i class="fa fa-user fa-fw"></i> <strong>XXX</strong><i class="material-icons right">arrow_drop_down</i></a></li>
 	</ul>
 </nav>
 		<!-- Dropdown Structure -->

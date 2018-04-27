@@ -41,15 +41,13 @@ java.util.List,com.gsb.BasicObject.MBGPOJO.Notification" %>
 		<jsp:include page="../public/NavigationBar.jsp"></jsp:include>
 		<div id="page-wapper" style="width: 100%; position: absolute; margin-top: 80px;">
 			<div id="page-inner">
-				<div class="row">
-					<div class="col-md-12">
 						<div class="card">
 							<div class="card-content">
 								<ul class="tabs tab-demo tabs-fixed-width z-depth-1">
-						        	<li class="tab"><a href="#WorkPlans">工作计划</a></li>
-						        	<li class="tab"><a href="#Notifications">通知列表</a></li>
+						        	<li class="tab" style="background:#f8f8f8"><a href="#WorkPlansTab"><strong>工作计划</strong></a></li>
+						        	<li class="tab" style="background:#f8f8f8"><a href="#NotificationsTab"><strong>通知列表</strong></a></li>
 						    	</ul>
-						    	<%-- <div id="WorkPlans">
+						    	<%-- <div id="WorkPlansTab">
 						    	<%
 								if(workplan_list != null && !workplan_list.isEmpty()) {
 									for(WorkPlan p : workplan_list) { 
@@ -82,17 +80,16 @@ java.util.List,com.gsb.BasicObject.MBGPOJO.Notification" %>
 									%>
 									</ul>
 						    	</div> --%>
-						    	<div id="Notifications">
+						    	<div id="Notifications" class="card">
 						    		<ul class="collapsible" data-collapsible="expandable">
 								    <%
 									if( notify_list != null && !notify_list.isEmpty()) {
 										for( Notification n: notify_list) { 
 									%>
 									    <li>
-									      <div class="collapsible-header" style="font-size: 18px"><%=n.getTitle()%></div>
+									      <div class="card-title collapsible-header" style="font-size: 18px"><strong><%=n.getTitle()%></strong></div>
 									      <div class="collapsible-body">
-									      <hr></hr>
-										  <span style="color:green">计划人Id：<%=n.getPublisherNo() %></br>计划ID：<%=n.getNotificationNo() %></span>
+										  <p><span style="color:green">计划人Id：<%=n.getPublisherNo() %></br>计划ID：<%=n.getNotificationNo() %></span></p>
 										  <hr></hr>
 										  <p><%=new String(n.getNotificationContent()) %></p>
 										  <hr></hr>
@@ -117,8 +114,6 @@ java.util.List,com.gsb.BasicObject.MBGPOJO.Notification" %>
 							</div>
 						</div>
 						<!--  end  Context Classes  -->
-					</div>
-			        </div>
 				</div>
 			</div>
 		</div>
@@ -156,13 +151,17 @@ java.util.List,com.gsb.BasicObject.MBGPOJO.Notification" %>
 			$(document).ready(function(){
 				$('.collapsible').collapsible();
 			});
+			
 			document.getElementById("WorkPlans").className = "active";
+			//tab
 			$(document).ready(function(){
 			    $('ul.tabs').tabs();
 			});
+			
 			$(document).ready(function() {
 				$('.carousel').carousel();
 			})
+			//tippop
 			$(document).ready(function(){
 			    $('.tooltipped').tooltip({delay: 50});
 			});

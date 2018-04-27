@@ -76,14 +76,14 @@
 												</div>
 												<div class="collapsible-body">
 													<ul class="tabs tabs-fixed-width tab-demo z-depth-1">
-														<li class="tab"><a href="#tab1">性别</a></li>
-														<li class="tab"><a href="#tab2">离退情况</a></li>
-														<li class="tab"><a href="#tab3">兵役情况</a></li>
-														<li class="tab"><a href="#tab4">政治面貌</a></li>
-														<li class="tab"><a href="#tab5">在世情况</a></li>
-														<li class="tab"><a href="#tab6">贫困状况</a></li>
-														<li class="tab"><a href="#tab7">慰问情况</a></li>
-														<li class="tab"><a href="#tab8">学历</a></li>
+														<li class="tab" style="background:#f8f8f8"><a href="#tab1">性别</a></li>
+														<li class="tab" style="background:#f8f8f8"><a href="#tab2">离退情况</a></li>
+														<li class="tab" style="background:#f8f8f8"><a href="#tab3">兵役情况</a></li>
+														<li class="tab" style="background:#f8f8f8"><a href="#tab4">政治面貌</a></li>
+														<li class="tab" style="background:#f8f8f8"><a href="#tab5">在世情况</a></li>
+														<li class="tab" style="background:#f8f8f8"><a href="#tab6">贫困状况</a></li>
+														<li class="tab" style="background:#f8f8f8"><a href="#tab7">慰问情况</a></li>
+														<li class="tab" style="background:#f8f8f8"><a href="#tab8">学历</a></li>
 													</ul>
 													<div id="tab1" class="col s12">
 														</br>
@@ -348,8 +348,7 @@
 											%>
 											<tr>
 												<td><span><%=cow_index + 1%></span></td>
-												<td><a
-													href="HMDtal?id=<%=person_list.get(cow_index).getSysNo()%>">
+												<td><a href="HMDtal?id=<%=person_list.get(cow_index).getSysNo()%>" target="_blank">
 														<%=person_list.get(cow_index).getName()%>
 												</a></td>
 												<td><%=person_list.get(cow_index).getGender()%></td>

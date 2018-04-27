@@ -38,7 +38,7 @@
 								<form action="add_notify" method="POST">
 								<div class="row">
 						        	<div class="input-field col s6">
-						          		<input id="title" name="title" type="text" length="30">
+						          		<input id="title" name="title" type="text" required>
 						          		<label for="title">通知标题</label>
 						        	</div>
 									<input name="society_no" type="hidden" value="1" >
