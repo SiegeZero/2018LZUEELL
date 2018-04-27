@@ -19,7 +19,6 @@ import org.springframework.web.context.support.XmlWebApplicationContext;
 
 import com.gsb.BasicObject.MBGPOJO.Staff;
 import com.gsb.BasicObject.Services.AuthAccount;
-import com.gsb.Utils.Decorator;
 
 public class LoginFilter implements Filter {
 
@@ -34,8 +33,11 @@ public class LoginFilter implements Filter {
 	public void doFilter(ServletRequest servlet_request, ServletResponse servlet_response, FilterChain filterchain)
 			throws IOException, ServletException {
 		
-		HttpServletRequest request = Decorator.asUTF8((HttpServletRequest) servlet_request);
+		HttpServletRequest request = (HttpServletRequest) servlet_request;
         HttpServletResponse response = (HttpServletResponse) servlet_response;
+        request.setCharacterEncoding("UTF-8");
+        
+
         HttpSession session = request.getSession();
         if( null == auth) {
         	ServletContext sc = session.getServletContext();
@@ -46,7 +48,12 @@ public class LoginFilter implements Filter {
         String noFilterJsp = config.getInitParameter("noFilteredJsp");
         Staff db_staff;
         String last_addr = request.getRequestURI();
-        if( true) {
+        if( last_addr.indexOf( noFilterJsp) != -1 
+        		|| last_addr.contains(".css") 
+        		|| last_addr.contains(".js") 
+        		|| last_addr.contains(".png")
+        		|| last_addr.contains(".jpg")
+        		|| last_addr.contains(".gif")) {
             filterchain.doFilter(servlet_request, servlet_response);
             return;
         }
@@ -61,7 +68,9 @@ public class LoginFilter implements Filter {
         		tips = "用户名或密码错误，请重新登录！";
         	}
         }
-		Decorator.asUTF8(response).getWriter().print("<script>alert('"+tips+"');window.location='/LZUODS/LGM/Login?last_addr="+last_addr.substring(7)+"'</script>");
+        response.setContentType("text/html; charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+		response.getWriter().print("<script>alert('"+tips+"');window.location='/LZUODS/LGM/Login?last_addr="+last_addr.substring(7)+"'</script>");
 	}
 
 	private FilterConfig config;

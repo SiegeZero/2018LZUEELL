@@ -30,7 +30,7 @@
 </head>
 
 <%@page import="java.util.List,com.gsb.BasicObject.MBGPOJO.WorkPlan,
-java.util.List,com.gsb.BasicObject.MBGPOJO.Notification" %>
+com.gsb.BasicObject.MBGPOJO.Notification" %>
 <%
 	List<WorkPlan> workplan_list = (List<WorkPlan>) request.getAttribute("workplan_list");
 	List<Notification> notify_list = (List<Notification>)request.getAttribute("notify_list");
@@ -43,11 +43,11 @@ java.util.List,com.gsb.BasicObject.MBGPOJO.Notification" %>
 			<div id="page-inner">
 						<div class="card">
 							<div class="card-content">
-								<ul class="tabs tab-demo tabs-fixed-width z-depth-1">
+								<ul class="tabs tab-demo tabs-fixed-width z-depth-1" style="overflow:hidden;">
 						        	<li class="tab" style="background:#f8f8f8"><a href="#WorkPlansTab"><strong>工作计划</strong></a></li>
 						        	<li class="tab" style="background:#f8f8f8"><a href="#NotificationsTab"><strong>通知列表</strong></a></li>
 						    	</ul>
-						    	<%-- <div id="WorkPlansTab">
+						    	<div id="WorkPlansTab" class="container-fluid">
 						    	<%
 								if(workplan_list != null && !workplan_list.isEmpty()) {
 									for(WorkPlan p : workplan_list) { 
@@ -58,13 +58,16 @@ java.util.List,com.gsb.BasicObject.MBGPOJO.Notification" %>
 												<img class="activator" src="../assets/img/workspace.jpg">
 											</div>
 											<div class="card-content">
-												<span class="card-title activator grey-text text-darken-4"><%=p.getTitle()%><i
-													class="material-icons right">more_vert</i></span>
-												</p>
+												<span class="card-title activator grey-text text-darken-4"><%=p.getTitle()%>
+												<i class="fa fa-expand right" style="line-height:50px; vertical-align:middle;" title="展开卡片"></i></span>
+												</br>
 												<span class="card-title activator grey-text text-darken-5" style="font-size: 14px">创建时间:<%=p.getHappenDate()%></span>
 											</div>
 											<div class="card-reveal">
-												<span class="card-title grey-text text-darken-4"><%=p.getTitle()%><i class="material-icons right">close</i> </span>
+												<span class="card-title grey-text text-darken-4"><%=p.getTitle()%>
+												<i class="fa fa-trash-o right" title="删除计划" style="color:#f00; line-height:48px; vertical-align:middle"></i>
+												<a href="#"><i class="fa fa-edit right" title="修改计划"  style="color:#00f; margin-right:20px; line-height:48px; vertical-align:middle"></i></a>
+										  	<i class="fa fa-compress right" title="收起卡片" style="line-height:48px;  margin-right:20px; vertical-align:middle"></i> </span>
 												<hr></hr>
 												<p style="color:green"><span>计划人Id：<%=p.getSysNo() %></span><span style="float:right">计划状态：<%=p.getStatus() %></span></p>
 												<hr></hr>
@@ -79,15 +82,19 @@ java.util.List,com.gsb.BasicObject.MBGPOJO.Notification" %>
 									}
 									%>
 									</ul>
-						    	</div> --%>
-						    	<div id="Notifications" class="card">
+						    	</div>
+						    	<div id="NotificationsTab" class="card">
 						    		<ul class="collapsible" data-collapsible="expandable">
 								    <%
 									if( notify_list != null && !notify_list.isEmpty()) {
 										for( Notification n: notify_list) { 
 									%>
 									    <li>
-									      <div class="card-title collapsible-header" style="font-size: 18px"><strong><%=n.getTitle()%></strong></div>
+									      <div class="card-title collapsible-header" style="font-size: 18px"><strong><%=n.getTitle()%></strong>
+										  	<a href="Notification?nid=<%=n.getNotificationNo()%>"><i class="fa fa-trash-o right" title="删除通知" style="color:#f00; line-height:50px; vertical-align:middle"></i></a>
+										  	<a href="Notification?nid=<%=n.getNotificationNo()%>"><i class="fa fa-edit right" title="修改通知" style="color:#00f;  line-height:50px; vertical-align:middle"></i></a>
+									      	<span class="card-title activator grey-text text-darken-5 right" style="font-size: 14px; margin-right:40px;">发布时间:<%=n.getPublishTime()%></span>
+									      </div>
 									      <div class="collapsible-body">
 										  <p><span style="color:green">计划人Id：<%=n.getPublisherNo() %></br>计划ID：<%=n.getNotificationNo() %></span></p>
 										  <hr></hr>
@@ -107,7 +114,7 @@ java.util.List,com.gsb.BasicObject.MBGPOJO.Notification" %>
 								      <i class="large material-icons">add</i>
 								    </a>
 								    <ul>
-								      <li><a class="btn-floating green tooltipped" href="../WKM/WorkPlalnAdd" data-position="left" data-delay="50" data-tooltip="添加计划"><i class="material-icons">subject</i></a></li>
+								      <li><a class="btn-floating green tooltipped" href="../WKM/WorkPlanAdd" data-position="left" data-delay="50" data-tooltip="添加计划"><i class="material-icons">subject</i></a></li>
 								      <li><a class="btn-floating red tooltipped" href="../WKM/NotificationAdd" data-position="left" data-delay="50" data-tooltip="发布通知"><i class="material-icons">chat_bubble_outline</i></a></li>
 								    </ul>
 							  	</div>

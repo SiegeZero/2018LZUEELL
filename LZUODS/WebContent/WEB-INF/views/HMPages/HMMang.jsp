@@ -75,7 +75,7 @@
 													<i class="material-icons">games</i>高级查询
 												</div>
 												<div class="collapsible-body">
-													<ul class="tabs tabs-fixed-width tab-demo z-depth-1">
+													<ul class="tabs tabs-fixed-width tab-demo z-depth-1" style="overflow:hidden;">
 														<li class="tab" style="background:#f8f8f8"><a href="#tab1">性别</a></li>
 														<li class="tab" style="background:#f8f8f8"><a href="#tab2">离退情况</a></li>
 														<li class="tab" style="background:#f8f8f8"><a href="#tab3">兵役情况</a></li>
@@ -149,24 +149,35 @@
 													</div>
 													<div id="tab4" class="col s12">
 														</br>
-														<ul class="nav navbar-nav" id="political_status">
+														<ul class="nav navbar-nav" id="political_status" style="width:100%">
 														<li><b>选择：&nbsp;&nbsp;&nbsp;&nbsp;</b></li>
+														<li style="width:90%">
+														<table>
+														<tr>
 															<%
-																List<String> political_status_str = (List<String>) request.getAttribute("political_status_str");
-																for (int li_index = 0; political_status_list != null
-																		&& li_index < political_status_list.size(); li_index++) {
+															List<String> political_status_str = (List<String>) request.getAttribute("political_status_str");
+															for (int li_index = 0; political_status_list != null && li_index < political_status_list.size(); li_index++) {
+																	if (li_index % 8 == 0) {
 															%>
-															<li><input type="checkbox" class="filled-in"
+														</tr>
+														<tr>
+															<%
+																}
+															%>
+															<td><input type="checkbox" class="filled-in"
 																id="political_status<%=li_index%>"
 																name="political_status" onClick="select_attribute"
 																value="<%=political_status_list.get(li_index).equals("") ? "无数据" : political_status_list.get(li_index)%>"
 																<%=political_status_str != null
 						&& political_status_str.contains(political_status_list.get(li_index)) ? "checked" : ""%> />
 																<label for="political_status<%=li_index%>"><%=political_status_list.get(li_index).equals("") ? "无数据" : political_status_list.get(li_index)%></label>
-															</li>
+															</td>
 															<%
 																}
 															%>
+														</tr>
+														</table>
+														</li>
 														</ul>
 														</br>
 													</div>
@@ -229,23 +240,33 @@
 													</div>
 													<div id="tab8" class="col s12">
 														</br>
-														<ul class="nav navbar-nav" id="edu_bg">
+														<ul class="nav navbar-nav" id="edu_bg" style="width:100%">
 														<li><b>选择：&nbsp;&nbsp;&nbsp;&nbsp;</b></li>
+														<li style="width:90%"><table>
+														<tr>
 															<%
-																List<String> edu_bg_str = (List<String>) request.getAttribute("edu_bg_str");
-																for (int li_index = 0; edu_bg_list != null && li_index < edu_bg_list.size(); li_index++) {
+															List<String> edu_bg_str = (List<String>) request.getAttribute("edu_bg_str");
+															for (int li_index = 0; edu_bg_list != null && li_index < edu_bg_list.size(); li_index++) {
+																	if (li_index % 8 == 0) {
 															%>
-															
-															<li><input type="checkbox" class="filled-in"
+														</tr>
+														<tr>
+															<%
+																}
+															%>
+															<td><input type="checkbox" class="filled-in"
 																name="edu_bg" id="edu_bg<%=li_index%>"
 																value="<%=edu_bg_list.get(li_index).equals("") ? "无数据" : edu_bg_list.get(li_index)%>"
 																onClick="select_attribute"
 																<%=edu_bg_str != null && edu_bg_str.contains(edu_bg_list.get(li_index)) ? "checked" : ""%> />
 																<label for="edu_bg<%=li_index%>"><%=edu_bg_list.get(li_index).equals("") ? "无数据" : edu_bg_list.get(li_index)%></label>
-															</li>
+															</td>
 															<%
 																}
 															%>
+														</tr>
+														</table>
+														</li>
 														</ul>
 														</br>
 													</div>

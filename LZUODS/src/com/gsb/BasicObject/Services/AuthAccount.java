@@ -23,7 +23,8 @@ public class AuthAccount {
 			Staff db_staff = list.get(0);
 			String eypted_from_db = Eypt.md5( db_staff.getPassword());
 			if( source.getPassword().equals(eypted_from_db)) {
-				source.setFinalGoal( db_staff.getFinalGoal());;
+				source.setName(db_staff.getName());
+				source.setFinalGoal( db_staff.getFinalGoal());
 				source.setGender( db_staff.getGender());
 				source.setSysLevel( db_staff.getSysLevel());
 				source.setSysNo( db_staff.getSysNo());

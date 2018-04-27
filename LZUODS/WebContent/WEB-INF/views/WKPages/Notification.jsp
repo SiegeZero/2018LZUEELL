@@ -24,6 +24,30 @@
     <link rel="stylesheet" href="../assets/js/Lightweight-Chart/cssCharts.css"> 
 </head>
 
+<%@ page
+	import="java.util.List,
+		java.util.ArrayList,
+		com.gsb.BasicObject.MBGPOJO.Notification,
+		java.util.Map,
+		java.util.HashMap,
+		com.gsb.Utils.Decorator;"%>
+<%  
+	String action = "add_notify";
+	String page_title = "发布通知";
+	String notification_title= "";
+	String notification_content = "";
+	Object o = request.getAttribute("notification");
+	if( o != null && o instanceof Notification) {
+		Notification n = (Notification) o;
+		notification_title = n.getTitle();
+		notification_content = new String(n.getNotificationContent());
+		page_title = "修改通知";
+		action = "change_notify";
+	}else{
+		Decorator.asUTF8(response).getWriter().print("<script>alert('通知不存在');window.location='../WKM/WorkManage'</script>");
+	}
+%>
+
 <body>
 	<div id="wapper">
 		<jsp:include page="../public/NavigationBar.jsp"></jsp:include>
@@ -33,12 +57,12 @@
 					<div class="col-md-12">
 						<!--    Context Classes  -->
 						<div class="card">
-							<div class="card-action"><h2><strong>发布通知</strong></h2></div>
+							<div class="card-action"><h2><strong><%=page_title %></strong></h2></div>
 							<div class="card-content">
-								<form action="add_notify" method="POST">
+								<form action="<%=action %>" method="POST">
 								<div class="row">
 						        	<div class="input-field col s6">
-						          		<input id="title" name="title" type="text" length="40" required>
+						          		<input id="title" name="title" type="text" value="<%=notification_title %>" required>
 						          		<label for="title">通知标题</label>
 						        	</div>
 									<input name="society_no" type="hidden" value="1" >
@@ -47,7 +71,7 @@
 						        </div>
 						        <div class="row">
 							        <div class="input-field col s12">
-							          	<textarea id="textarea" name="content" class="materialize-textarea"></textarea>
+							          	<textarea id="textarea" name="content" class="materialize-textarea"> <%=notification_content%></textarea>
 							          	<label for="textarea">通知内容</label>
 							        </div>
 							     </div>

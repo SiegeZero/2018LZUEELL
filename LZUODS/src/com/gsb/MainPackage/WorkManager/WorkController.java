@@ -29,10 +29,19 @@ public class WorkController {
 	
 	@Autowired
 	WorkService work_service;
+	
+
+	@RequestMapping( value="/WorkManage")
+	public ModelAndView work_manage(ModelAndView mv) {
+		mv.addObject("notify_list", work_service.showAllNotification());
+		mv.addObject("workplan_list", work_service.showAllWorkplans());
+		return mv;
+	}
 
 	@RequestMapping( value="/Notification")
 	public ModelAndView show_a_notification(@RequestParam("nid") String nid, ModelAndView mv) {
 		mv.addObject("notification", work_service.getNotificationByNId(Integer.parseInt(nid)));
+		System.out.println(work_service.getNotificationByNId(Integer.parseInt(nid)));
 		return mv;
 	}
 	
@@ -63,7 +72,7 @@ public class WorkController {
 		targetNotification.setPublisherNo( Integer.parseInt(request.getParameter("publisher_no")));
 		targetNotification.setPublishTime( TypeTransfer.Str2Date(request.getParameter("publish_time")));
 		boolean result = work_service.delNotification(targetNotification);
-		Decorator.asUTF8(response).getWriter().print("<script>alert('通知删除结果为："+(result?"是":"否")+"'); window.location = \"Notifications\";</script>");
+		Decorator.asUTF8(response).getWriter().print("<script>alert('通知删除结果为："+(result?"是":"否")+"'); window.location = \"WorkManage\";</script>");
 	}
 	@RequestMapping( value="/change_notify")
 	public void change_notify( ModelAndView mv, HttpServletRequest request, HttpServletResponse response) throws ParseException, IOException {
@@ -76,7 +85,7 @@ public class WorkController {
 		changedNotification.setPublisherNo( Integer.parseInt(request.getParameter("publisher_no")));
 		changedNotification.setPublishTime( TypeTransfer.Str2Date(request.getParameter("publish_time")));
 		boolean result = work_service.changeNotification(changedNotification);
-		Decorator.asUTF8(response).getWriter().print("<script>alert('通知修改结果为："+(result?"是":"否")+"'); window.location = \"Notifications\";</script>");
+		Decorator.asUTF8(response).getWriter().print("<script>alert('通知修改结果为："+(result?"是":"否")+"'); window.location = \"WorkManage\";</script>");
 	}
 	
 	@RequestMapping(value="/add_notify" ,method=RequestMethod.POST)
@@ -89,7 +98,7 @@ public class WorkController {
 		newNotification.setPublisherNo( Integer.parseInt(request.getParameter("publisher_no")));
 		newNotification.setPublishTime( TypeTransfer.Str2Date(request.getParameter("publish_time")));
 		int notification_no = work_service.addNotification(newNotification);
-		Decorator.asUTF8(response).getWriter().print("<script>alert('新添加的通知Id为："+notification_no+"'); window.location = \"Notifications\";</script>");
+		Decorator.asUTF8(response).getWriter().print("<script>alert('新添加的通知Id为："+notification_no+"'); window.location = \"WorkManage\";</script>");
 	}
 	
 	@RequestMapping(value="/WorkPlans")
@@ -121,7 +130,7 @@ public class WorkController {
 		targetWorkPlan.setSysNo(sys_no);
 		targetWorkPlan.setHappenDate( TypeTransfer.Str2Date(request.getParameter("happen_time")));
 		boolean result = work_service.delPlan(targetWorkPlan);
-		Decorator.asUTF8(response).getWriter().print("<script>alert('工作计划删除结果为："+(result?"是":"否")+"'); window.location = \"Notifications\";</script>");
+		Decorator.asUTF8(response).getWriter().print("<script>alert('工作计划删除结果为："+(result?"是":"否")+"'); window.location = \"WorkManage\";</script>");
 	}
 
 	@RequestMapping( value="/change_workplan")
@@ -137,7 +146,7 @@ public class WorkController {
 		changedWorkPlan.setSysNo(sys_no);
 		changedWorkPlan.setHappenDate( TypeTransfer.Str2Date(request.getParameter("happen_time")));
 		boolean result = work_service.changePlan(changedWorkPlan);
-		Decorator.asUTF8(response).getWriter().print("<script>alert('工作计划变更结果为："+(result?"是":"否")+"'); window.location = \"Notifications\";</script>");
+		Decorator.asUTF8(response).getWriter().print("<script>alert('工作计划变更结果为："+(result?"是":"否")+"'); window.location = \"WorkManage\";</script>");
 	}
 	@RequestMapping(value="/add_workplan" ,method=RequestMethod.POST)
 	public void add_workplan(ModelAndView mv, HttpServletRequest request, HttpServletResponse response) throws ParseException, IOException {
@@ -152,7 +161,7 @@ public class WorkController {
 		newPlan.setSysNo(sys_no);
 		newPlan.setHappenDate( TypeTransfer.Str2Date(request.getParameter("happen_time")));
 		boolean result = work_service.addPlan(newPlan);
-        Decorator.asUTF8(response).getWriter().print("<script>alert('计划添加结果为："+(result?"成功":"失败")+"'); window.location = \"WorkPlans\";</script>");
+        Decorator.asUTF8(response).getWriter().print("<script>alert('计划添加结果为："+(result?"成功":"失败")+"'); window.location = \"WorkManage\";</script>");
 	}
 
 	private int readSysNo(HttpServletRequest request) {

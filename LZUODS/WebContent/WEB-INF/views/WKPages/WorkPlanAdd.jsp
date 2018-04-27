@@ -38,7 +38,7 @@
 								<form action="add_workplan" method="POST">
 								<div class="row">
 						        	<div class="input-field col s6">
-						          		<input id="title" name="title" type="text" required>
+						          		<input id="title" name="title" type="text" length="20" required>
 						          		<label for="title">计划标题</label>
 						        	</div>
 							        <div class="input-field col s6">

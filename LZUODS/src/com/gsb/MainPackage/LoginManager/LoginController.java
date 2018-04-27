@@ -50,9 +50,10 @@ public class LoginController {
 		return "redirect:"+target_addr;
 	}
 	
+	@RequestMapping( value="/leave", method=RequestMethod.GET)
 	public String leave( HttpSession session) {
 		session.setAttribute("login_staff", null);
-		return "redirect:/LGM/Login";
+		return "redirect:/LGM/Login?last_addr=/HMM/Home";
 	}
 	
 }
