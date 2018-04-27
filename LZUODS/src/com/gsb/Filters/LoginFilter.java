@@ -19,6 +19,7 @@ import org.springframework.web.context.support.XmlWebApplicationContext;
 
 import com.gsb.BasicObject.MBGPOJO.Staff;
 import com.gsb.BasicObject.Services.AuthAccount;
+import com.gsb.Utils.Decorator;
 
 public class LoginFilter implements Filter {
 
@@ -33,11 +34,8 @@ public class LoginFilter implements Filter {
 	public void doFilter(ServletRequest servlet_request, ServletResponse servlet_response, FilterChain filterchain)
 			throws IOException, ServletException {
 		
-		HttpServletRequest request = (HttpServletRequest) servlet_request;
+		HttpServletRequest request = Decorator.asUTF8((HttpServletRequest) servlet_request);
         HttpServletResponse response = (HttpServletResponse) servlet_response;
-        request.setCharacterEncoding("UTF-8");
-        
-
         HttpSession session = request.getSession();
         if( null == auth) {
         	ServletContext sc = session.getServletContext();
@@ -63,9 +61,7 @@ public class LoginFilter implements Filter {
         		tips = "用户名或密码错误，请重新登录！";
         	}
         }
-        response.setContentType("text/html; charset=UTF-8");
-        response.setCharacterEncoding("UTF-8");
-		response.getWriter().print("<script>alert('"+tips+"');window.location='/LZUODS/LGM/Login?last_addr="+last_addr.substring(7)+"'</script>");
+		Decorator.asUTF8(response).getWriter().print("<script>alert('"+tips+"');window.location='/LZUODS/LGM/Login?last_addr="+last_addr.substring(7)+"'</script>");
 	}
 
 	private FilterConfig config;

@@ -27,6 +27,7 @@ public class WorkService implements WorkPlanOperate, NotifyOperate, FinalJudge, 
 	@Autowired
 	WorkPlanMapper workplan_mapper;
 	
+	
 	@Override
 	public boolean addPlan(WorkPlan newPlan) {
 		WorkPlanExampleBuilder builder = new WorkPlanExampleBuilder();
@@ -180,6 +181,11 @@ public class WorkService implements WorkPlanOperate, NotifyOperate, FinalJudge, 
 		}
 		WorkPlanExample example = builder.build();
 		return workplan_mapper.selectByExampleWithBLOBs(example);
+	}
+
+	@Override
+	public Notification getNotificationByNId(int nid) {
+		return notify_mapper.selectByPrimaryKey(nid);
 	}
 	
 }
