@@ -18,33 +18,6 @@
 			<li>
 				<a href="#" class="waves-effect waves-dark"><i class="fa fa-qrcode"></i> 其他功能</a>
 			</li>
-			<li>
-				<a href="#" class="waves-effect waves-dark"><i class="fa fa-plus"></i> 展开下拉Demo<span class="fa arrow"></span></a>
-				<ul class="nav nav-second-level">
-					<li>
-						<a href="#">二级菜单</a>
-					</li>
-					<li>
-						<a href="#">二级菜单</a>
-					</li>
-					<li>
-						<a href="#">二级菜单<span class="fa arrow"></span></a>
-						<ul class="nav nav-third-level">
-							<li>
-								<a href="#">三级菜单</a>
-							</li>
-							<li>
-								<a href="#">三级菜单</a>
-							</li>
-							<li>
-								<a href="#">三级菜单</a>
-							</li>
-
-						</ul>
-
-					</li>
-				</ul>
-			</li>
 		</ul>
 
 	</div>

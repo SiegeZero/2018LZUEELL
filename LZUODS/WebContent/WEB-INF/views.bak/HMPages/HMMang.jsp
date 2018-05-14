@@ -361,7 +361,7 @@
 												</button>
 												<input type="text" name="title_lv_condition"
 													value="<%=request.getAttribute("title_lv_str") != null ? request.getAttribute("title_lv_str") : ""%>"
-													placeholder="输入职级查询" class="form-control" />
+													placeholder="输入职务查询" class="form-control" />
 											</center>
 										</div>
 										<div style="display: none" id="title_lv">

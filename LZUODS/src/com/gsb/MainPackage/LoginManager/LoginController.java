@@ -20,7 +20,11 @@ import com.gsb.Utils.Eypt;
 @Controller
 public class LoginController {
 	@RequestMapping(value="/Login", method=RequestMethod.GET)
-	public ModelAndView login( ModelAndView mv, HttpSession session,@RequestParam("last_addr")String last_addr) {
+	public ModelAndView login( ModelAndView mv, HttpSession session, HttpServletRequest request) {
+		String last_addr = request.getParameter("last_addr");
+		if(last_addr == null || last_addr.equals("") || last_addr.startsWith("/LGM")){
+			last_addr = "/HMM/HMMang";
+		}
 		Object o = session.getAttribute("login_staff");
 		boolean login_status = false;
 		if( null != o) {

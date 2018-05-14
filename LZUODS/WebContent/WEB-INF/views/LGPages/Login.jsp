@@ -26,7 +26,6 @@
 
 <body>
 	<div id="wapper">
-	<img style="position:fixed;" src="../assets/img/bg-img.jpg" height="100%" width="100%" /> 
 		<div id="page-wapper" style="width:100%; position:absolute; margin-top:80px;">
 			<div id="page-inner">
 				<div class="row">
@@ -40,16 +39,14 @@
 								<div class="row col s12">
 							      	<div class="row">
 								        <div class="input-field">
-								        	<i class="material-icons prefix" style="line-height:40px; vertical-align:middle">perm_identity</i>
-								          <input id="account" name="account" type="text" class="validate">
-								          <label for="account">用户名</label>
+								        	<input id="account" name="account" type="text" class="validate"/>
+								          	<label for="account"><i class="fa fa-user fa-fw"></i>用户名</label>
 								        </div>
 							        </div>
 							      	<div class="row">
 							        	<div class="input-field">
-							        		<i class="material-icons prefix" style="line-height:40px; vertical-align:middle">vpn_key</i>
-								          	<input id="passwd" name="passwd" type="password" class="validate">
-								          	<label for="passwd">密码</label>
+							        		<input id="passwd" name="passwd" type="password" class="validate" />
+								          	<label for="passwd"><i class="fa fa-key fa-fw"></i>密码</label>
 							        	</div>
 							      	</div>
 									<input type="hidden" name="target_addr" value="<%=request.getAttribute("last_addr")%>">

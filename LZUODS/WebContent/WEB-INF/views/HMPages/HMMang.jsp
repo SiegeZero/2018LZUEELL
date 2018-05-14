@@ -72,7 +72,7 @@
 										<ul class="collapsible" data-collapsible="accordion">
 											<li>
 												<div class="collapsible-header">
-													<i class="material-icons">games</i>高级查询
+													<i class="fa fa-folder-open fa-fw"></i>高级查询
 												</div>
 												<div class="collapsible-body">
 													<ul class="tabs tabs-fixed-width tab-demo z-depth-1" style="overflow:hidden;">
@@ -88,7 +88,7 @@
 													<div id="tab1" class="col s12">
 														</br>
 														<ul class="nav navbar-nav" id="gender">
-														<li><b>选择：&nbsp;&nbsp;&nbsp;&nbsp;</b></li>
+														<li><b style="color:#F44336">选择：&nbsp;&nbsp;&nbsp;&nbsp;</b></li>
 															<li><input type="radio" value="男" name="gender"
 																id="gender0" onClick="select_attribute" /> <label
 																for="gender0">男</label></li>
@@ -273,11 +273,41 @@
 
 													<table class="table">
 														<tr>
+															<th style="vertical-align: middle">姓名：</th>
+															<td colspan="8">
+																<div class="input-field">
+																	<input type="text" class="validate" name="name_condition"
+																	value="<%=request.getAttribute("name_str") != null ? request.getAttribute("name_str") : ""%>"
+																	placeholder="输入姓名查询，多个姓名用空格分隔开" /> 
+																</div>
+															</td>
+														</tr>
+														<tr>
+															<th style="vertical-align: middle">职级：</th>
+															<td colspan="8">
+																<div class="input-field">
+																	<input type="text" class="validate" name="func_condition"
+																	value="<%=request.getAttribute("func_str") != null ? request.getAttribute("func_str") : ""%>"
+																	placeholder="输入职级查询，多个职级用空格分隔开" /> 
+																</div>
+															</td>
+														</tr>
+														<tr>
+															<th style="vertical-align: middle">职务：</th>
+															<td colspan="8">
+																<div class="input-field">
+																	<input type="text" class="validate" name="title_lv_str"
+																	value="<%=request.getAttribute("title_lv_str") != null ? request.getAttribute("title_lv_str") : ""%>"
+																	placeholder="输入职务查询，多个职务用空格分隔开" /> 
+																</div>
+															</td>
+														</tr>
+														<tr>
 															<th style="vertical-align: middle">年龄：</th>
 															<td colspan="2">
 																<div class="input-field">
-																	<input id="min_age" type="number" class="validate"
-																		name="age" /> <label for="min_age">最小年龄</label>
+																	<input id="min_age" type="number" class="validate" name="age" /> 
+																	<label for="min_age">最小年龄</label>
 																</div>
 															</td>
 															<td colspan="2">
@@ -340,7 +370,7 @@
 										</ul>
 									</form>
 									<table class="table table-striped table-bordered table-hover"
-										id="dataTables-example">
+										id="personitem">
 										<thead>
 											<tr>
 												<th class="info" style="width: 5%">序号</th>
@@ -389,10 +419,11 @@
 											%>
 										</tbody>
 									</table>
-									<div
-										style="text-align: right; margin-right: 20px; margin-bottom: 20px; title: 新增人员">
-										<a class="btn-floating btn-small waves-effect waves-light red"
-											href="../HMM/HMEdit"><i class="material-icons">add</i></a>
+									<div style="text-align: right; margin-right: 20px; margin-bottom: 20px; title: 新增人员">
+										<a class="btn-floating btn-small waves-effect waves-light red" href="../HMM/HMEdit"><i class="material-icons">add</i></a>
+										<button class="dt-button buttons-excel buttons-html5" tabindex="0" aria-controls="personitem">
+										<span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Excel</font></font></span>
+										</button>
 									</div>
 								</div>
 
@@ -443,13 +474,23 @@
 		<script src="../assets/js/dataTables/dataTables.bootstrap.js"></script>
 		<script>
 			$(document).ready(function() {
-				$('#dataTables-example').dataTable();
+				$('#personitem').dataTable();
 			});
 		</script>
 		<!-- Custom Js -->
 		<script src="../assets/js/custom-scripts.js"></script>
 		<script>
 			document.getElementById("Human").className = "active-menu";
+		</script>
+		<script>
+		$(document).ready(function() {
+		    $('#personitem').DataTable( {
+		        dom: 'Bfrtip',
+		        buttons: [
+		            'excel'
+		        ]
+		    } );
+		} );
 		</script>
 </body>
 
