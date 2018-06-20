@@ -1,5 +1,6 @@
 package com.gsb.MainPackage.HumanManager;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -24,6 +25,7 @@ import com.gsb.BasicObject.MBGPOJO.Society;
 import com.gsb.BasicObject.MBGPOJO.PersonExample.Criteria;
 import com.gsb.BasicObject.Services.ReadDBInfos;
 import com.gsb.BasicObject.Services.SingleAddOperate;
+import com.gsb.Utils.TypeTransfer;
 
 
 @Controller
@@ -79,7 +81,6 @@ public class HMController {
 		PersonExample example=new PersonExample();
 		Criteria c = example.createCriteria();
 		String name_condition = request.getParameter("name_condition");
-		String title_lv_condition = request.getParameter("title_lv_condition");
 		String age_range = request.getParameter("age_range");
 		String[] nations = request.getParameterValues("nations");
 		String[] societies = request.getParameterValues("society");
@@ -87,12 +88,34 @@ public class HMController {
 		String[] edu_bg = request.getParameterValues("edu_bg");
 		String[] political_status = request.getParameterValues("political_status");
 		
-		String gender = request.getParameter("gender");
+		String latest_sympathy_year = request.getParameter("latest_sympathy_year");
+		if( latest_sympathy_year!= null && !latest_sympathy_year.equals("全选")) {
+			if( latest_sympathy_year.equals( "本年已慰问") || latest_sympathy_year.equals( "本年未慰问")) {
+				try {
+					Date thisYear = TypeTransfer.Str2Date(""+Calendar.getInstance().get(Calendar.YEAR)+"0101");
+					c.andLatestSympathyYearGreaterThanOrEqualTo( thisYear);
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			mv.addObject( "latest_sympathy_year", latest_sympathy_year);
+		}
 		
+		String is_help_needed = request.getParameter("is_help_needed");
+		if( is_help_needed!= null && !is_help_needed.equals("全选")) {
+			if( is_help_needed.equals( "是") || is_help_needed.equals( "否")) {
+				c.andIsHelpNeededEqualTo( is_help_needed.equals("是")?true:false);
+			}
+			mv.addObject( "is_help_needed", is_help_needed);
+		}
+		
+		String gender = request.getParameter("gender");
 		if( gender!= null && !gender.equals("全部")) {
 			if( gender.equals( "男") || gender.equals( "女")) {
 				c.andGenderEqualTo(gender);
-			} 
+			}
+			mv.addObject( "gender", gender);
 		}
 		
 		String physical_situation = request.getParameter("physical_situation");
@@ -102,6 +125,7 @@ public class HMController {
 			} else if( physical_situation.equals( "在世")){
 				c.andPhysicalSituationNotLike( "%死亡%");
 			}
+			mv.addObject("physical_situation",physical_situation);
 		}
 		String[] conscription_situation = request.getParameterValues("conscription_situation");
 		if( name_condition != null && !removeUselessHeaderStr(name_condition).equals("") ) {
@@ -138,7 +162,7 @@ public class HMController {
 			}
 			mv.addObject("func_str",func_condition);
 		}
-
+		String title_lv_condition = request.getParameter("title_lv_condition");
 		if( title_lv_condition != null&& !removeUselessHeaderStr(title_lv_condition).equals("") ) {
 			String str = " ";
 			if( title_lv_condition.contains("\t")) {

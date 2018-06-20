@@ -45,6 +45,8 @@ String[] cs_str = request.getParameterValues("conscription_situation");
 String[] political_str = request.getParameterValues("political_status");
 String physical_str = request.getParameter("physical_situation");
 String[] edu_bg = request.getParameterValues("edu_bg");
+String is_help_needed = request.getParameter("is_help_needed");
+String latest_sympathy_year = request.getParameter("latest_sympathy_year");
 Map<Integer, String> societies_map = new HashMap<>();
 List<Society> societies_list = (List<Society>) request.getAttribute("societies_list");
 for( Society s:societies_list) {
@@ -100,8 +102,31 @@ for( Society s:societies_list) {
 									</div>
 									<%
 									}
+									if(is_help_needed!=null && !is_help_needed.equals("")) {
+									%>
+									<div class="container-fluid">
+										<strong>选择的贫困情况包含：</strong>
+										<input name="is_help_needed" type="text"
+											class="form-control"
+											value="<%=is_help_needed %>"
+											readonly />
+									</div>
+									<%
+									}
+									if(latest_sympathy_year!=null && !latest_sympathy_year.equals("")) {
+									%>
+									<div class="container-fluid">
+										<strong>选择的慰问情况包含：</strong>
+										<input name="latest_sympathy_year" type="text"
+											class="form-control"
+											value="<%=latest_sympathy_year %>"
+											readonly />
+									</div>
+									<%
+									}
 									if( quit_office_types!=null && quit_office_types.length!=0) {
 									%>
+									
 									<div class="container-fluid">
 										<strong>选择的离退休情况包含：</strong>
 										<%for(int index=0;index< quit_office_types.length;index++){ %>

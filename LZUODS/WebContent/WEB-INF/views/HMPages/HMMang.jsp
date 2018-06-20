@@ -47,6 +47,11 @@
 			.getAttribute("conscription_situation_list");
 	List<String> political_status_list = (List<String>) request.getAttribute("political_status_list");
 	List<String> edu_bg_list = (List<String>) request.getAttribute("edu_bg_list");
+	String physical_situation = (String) request.getAttribute("physical_situation");
+	String gender = (String) request.getAttribute( "gender");
+	String age_range = (String) request.getAttribute("age_range");
+	String is_help_needed = (String) request.getAttribute("is_help_needed");
+	String latest_sympathy_year = (String) request.getAttribute( "latest_sympathy_year");
 %>
 
 <body>
@@ -89,13 +94,16 @@
 														</br>
 														<ul class="nav navbar-nav" id="gender">
 														<li><b style="color:#F44336">选择：&nbsp;&nbsp;&nbsp;&nbsp;</b></li>
-															<li><input type="radio" value="男" name="gender"
+															<li><input type="radio" value="男" name="gender" 
+																<%=gender != null && gender.equals("男") ? "checked" : ""%>
 																id="gender0" onClick="select_attribute" /> <label
 																for="gender0">男</label></li>
-															<li><input type="radio" value="女" name="gender"
+															<li><input type="radio" value="女" name="gender" 
+																<%=gender != null && gender.equals("女") ? "checked" : ""%>
 																id="gender1" onClick="select_attribute" /> <label
 																for="gender1">女</label></li>
 															<li><input type="radio" value="全选" name="gender"
+																<%=gender != null && gender.equals("全选") ? "checked" : ""%>
 																id="gender2" onClick="select_attribute" /> <label
 																for="gender2">全选</label></li>
 														</ul>
@@ -183,17 +191,23 @@
 													</div>
 													<div id="tab5" class="col s12">
 														</br>
+														<%
+														List<String> physicla_str = (List<String>) request.getAttribute("quit_office_type_str");
+														%>
 														<ul class="nav navbar-nav" id="physical_situation">
 														<li><b>选择：&nbsp;&nbsp;&nbsp;&nbsp;</b></li>
-															<li><input type="radio" value="在世"
+															<li><input type="radio" value="在世" 
+																<%=physical_situation != null && physical_situation.equals("在世") ? "checked":"" %>
 																name="physical_situation" id="physical_situation0"
 																onClick="select_attribute" /> <label
 																for="physical_situation0">在世</label></li>
-															<li><input type="radio" value="离世"
+															<li><input type="radio" value="离世" 
+																<%=physical_situation != null && physical_situation.equals("离世") ? "checked":"" %>
 																name="physical_situation" id="physical_situation1"
 																onClick="select_attribute" /> <label
 																for="physical_situation1">离世</label></li>
-															<li><input type="radio" value="全选"
+															<li><input type="radio" value="全选" 
+																<%=physical_situation != null && physical_situation.equals("全部") ? "checked":"" %>
 																name="physical_situation" id="physical_situation2"
 																onClick="select_attribute" /> <label
 																for="physical_situation2">全选</label></li>
@@ -205,17 +219,20 @@
 														<ul class="nav navbar-nav" id="is_help_needed">
 														<li><b>选择：&nbsp;&nbsp;&nbsp;&nbsp;</b></li>
 															<li><input type="radio" value="是"
+																<%=is_help_needed != null && is_help_needed.equals("是") ? "checked":"" %>
 																name="is_help_needed" id="is_help_needed0"
 																onClick="select_attribute" /> <label
-																for="is_needed_help0"|>是</label></li>
+																for="is_help_needed0">是</label></li>
 															<li><input type="radio" value="否"
+																<%=is_help_needed != null && is_help_needed.equals("否") ? "checked":"" %>
 																name="is_help_needed" id="is_help_needed1"
 																onClick="select_attribute" /> <label
-																for="is_needed_help1">否</label></li>
+																for="is_help_needed1">否</label></li>
 															<li><input type="radio" value="全选"
+																<%=is_help_needed != null && is_help_needed.equals("全选") ? "checked":"" %>
 																name="is_help_needed" id="is_help_needed2"
 																onClick="select_attribute" /> <label
-																for="is_needed_help2">全选</label></li>
+																for="is_help_needed2">全选</label></li>
 														</ul>
 														</br>
 													</div>
@@ -224,14 +241,17 @@
 														<ul class="nav navbar-nav" id="latest_sympathy_year">
 														<li><b>选择：&nbsp;&nbsp;&nbsp;&nbsp;</b></li>
 															<li><input type="radio" value="本年已慰问"
+																<%=latest_sympathy_year != null && latest_sympathy_year.equals("本年已慰问") ? "checked":"" %>
 																name="latest_sympathy_year" id="latest_sympathy_year0"
 																onClick="select_attribute" /> <label
 																for="latest_sympathy_year0">本年已慰问</label></li>
 															<li><input type="radio" value="本年未慰问"
+																<%=latest_sympathy_year != null && latest_sympathy_year.equals("本年未慰问") ? "checked":"" %>
 																name="latest_sympathy_year" id="latest_sympathy_year1"
 																onClick="select_attribute" /> <label
-																for="latest_sympathy_year1">本年已本年未慰问</label></li>
+																for="latest_sympathy_year1">本年未慰问</label></li>
 															<li><input type="radio" value="全选"
+																<%=latest_sympathy_year != null && latest_sympathy_year.equals("全选") ? "checked":"" %>
 																name="latest_sympathy_year" id="latest_sympathy_year2"
 																onClick="select_attribute" /> <label
 																for="latest_sympathy_year2">全选</label></li>
@@ -296,7 +316,7 @@
 															<th style="vertical-align: middle">职务：</th>
 															<td colspan="8">
 																<div class="input-field">
-																	<input type="text" class="validate" name="title_lv_str"
+																	<input type="text" class="validate" name="title_lv_condition"
 																	value="<%=request.getAttribute("title_lv_str") != null ? request.getAttribute("title_lv_str") : ""%>"
 																	placeholder="输入职务查询，多个职务用空格分隔开" /> 
 																</div>
@@ -306,13 +326,16 @@
 															<th style="vertical-align: middle">年龄：</th>
 															<td colspan="2">
 																<div class="input-field">
-																	<input id="min_age" type="number" class="validate" name="age" /> 
+																	<input id="min_age" type="number" class="validate" name="age"
+																		value="<%=age_range!=null?age_range.split("-")[0]:"" %>"
+																	 /> 
 																	<label for="min_age">最小年龄</label>
 																</div>
 															</td>
 															<td colspan="2">
 																<div class="input-field">
 																	<input id="max_age" type="number" class="validate"
+																		value="<%=age_range!=null?age_range.split("-")[1]:"" %>"
 																		name="age" /> <label for="max_age">最大年龄</label>
 																</div>
 															</td>
