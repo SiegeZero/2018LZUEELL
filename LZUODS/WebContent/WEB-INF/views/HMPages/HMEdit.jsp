@@ -76,7 +76,7 @@ List<SalaryLib> slib_list =(List<SalaryLib>) request.getAttribute("slib_list");
 						                    </div>
 						                    <th>所在分会:</th>
 						                    <div class="input-group input-group-sm">
-						                        <td><input name="society" type="text" class="form-control" value="机关一分会" /></td>
+						                        <td><input name="society" type="text" class="form-control" value="一分会" /></td>
 						                    </div>
 						                </tr>
 						                <tr>
@@ -119,7 +119,7 @@ List<SalaryLib> slib_list =(List<SalaryLib>) request.getAttribute("slib_list");
 						                <tr>
 						                    <th>联系方式:</th>
 						                    <div  class="input-group input-group-sm">
-						                        <td><input name="telephone_num" type="text" class="form-control" value="" /></td>
+						                        <td><input name="telephone_num" type="text" class="form-control" value="1234567890" /></td>
 						                    </div>
 						                    <th>养老模式:</th>
 						                    <div  class="input-group input-group-sm">
@@ -127,7 +127,7 @@ List<SalaryLib> slib_list =(List<SalaryLib>) request.getAttribute("slib_list");
 						                    </div>
 						                    <th>身体状况：</th>
 							                    <div class="input-group input-group-sm">
-							                        <td><input name="physical_situation"  type="text" class="form-control" value="" /></td>
+							                        <td><input name="physical_situation"  type="text" class="form-control" value="健康" /></td>
 							                    </div>
 						                </tr>
 						            </table>
@@ -148,7 +148,7 @@ List<SalaryLib> slib_list =(List<SalaryLib>) request.getAttribute("slib_list");
 						                        <td><input name="end_time" type="text" class="form-control" value="20171231" /></td>
 						                    </div>
 						                    <div class="input-group input-group-sm">
-						                        <td><input name="dept" type="text" class="form-control" value="离退休处"  /></td>
+						                        <td><input name="dept" type="text" class="form-control" value="工作单位"  /></td>
 						                    </div>
 						                </tr>
 						            </table>
@@ -160,7 +160,7 @@ List<SalaryLib> slib_list =(List<SalaryLib>) request.getAttribute("slib_list");
 						                </tr>
 						                <tr>
 						                    <div class="input-group input-group-sm">
-						                        <td><input name="living_situation"  type="text" class="form-control" value="" /></td>
+						                        <td><input name="living_situation"  type="text" class="form-control" value="家庭状况" /></td>
 						                    </div>
 						                </tr>
 						            </table>
@@ -168,11 +168,11 @@ List<SalaryLib> slib_list =(List<SalaryLib>) request.getAttribute("slib_list");
 						        <div>
 						            <table class="table">
 						                <tr class="info">
-						                    <th>居住住址</th>
+						                    <th>居住地址</th>
 						                </tr>
 						                <tr>
 						                    <div class="input-group input-group-sm">
-						                        <td><input name="address" type="text" class="form-control" /></td>
+						                        <td><input name="address" type="text" class="form-control" value="居住地址"/></td>
 						                    </div>
 						                </tr>
 						            </table>

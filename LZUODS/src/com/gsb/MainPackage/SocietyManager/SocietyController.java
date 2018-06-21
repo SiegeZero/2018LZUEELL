@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.gsb.BasicObject.MBGDAO.SocietyMapper;
 import com.gsb.BasicObject.Services.SocietyService;
 
 @Controller
@@ -20,7 +19,7 @@ public class SocietyController {
 	SocietyService society_service;
 	@RequestMapping(value="/SocietyMang")
 	public ModelAndView society( ModelAndView mv) {
-		mv.addObject("societies_list",society_service.getAllSocietiesName());
+		mv.addObject("societies_list",society_service.getAllSocieties());
 		return mv;
 	}
 

@@ -1,3 +1,4 @@
+<%@page import="com.gsb.Utils.TypeTransfer"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -34,7 +35,6 @@
 List<Society> society_list =(List<Society>) request.getAttribute("societies_list");
 List<SalaryLib> slib_list =(List<SalaryLib>) request.getAttribute("slib_list");
 SourcePerson person = (SourcePerson)request.getAttribute("target");
-SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 %>
 <body>
 	<div id="wapper">
@@ -75,7 +75,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 								                <tr>
 								                    <th>出生日期:</th>
 								                    <div class="input-group input-group-sm">
-								                        <td><input name="birth_date" type="text" class="form-control" value="<%=sdf.format(person.getBirthTime()) %>" /></td>
+								                        <td><input name="birth_date" type="text" class="form-control" value="<%=TypeTransfer.Date2Str(person.getBirthTime()) %>" /></td>
 								                    </div>
 								                    <th>工资编号:</th>
 								                    <div class="input-group input-group-sm">
@@ -83,7 +83,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 								                    </div>
 								                    <th>工资库:</th>
 								                    <div class="input-group input-group-sm">
-								                        <td><input name="slary_lib" type="text" class="form-control" value="<%=person.getSlib().getSalaryVersion() %>" /></td>
+								                        <td><input name="salary_lib" type="text" class="form-control" value="<%=person.getSlib().getSalaryVersion()==null?"":person.getSlib().getSalaryVersion() %>" /></td>
 								                    </div>
 								                    <th>所在分会:</th>
 								                    <div class="input-group input-group-sm">
@@ -124,7 +124,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 									                    </div>
 								                    <th>慰问情况：</th>
 									                    <div class="input-group input-group-sm">
-									                        <td><input name="lastest_sympathy_year" type="text" class="form-control" value="<%=person.getLatestSympathyYear() %>" /></td>
+									                        <td><input name="lastest_sympathy_year" type="text" class="form-control" value="<%=TypeTransfer.Date2Str(person.getLatestSympathyYear()) %>" /></td>
 									                    </div>
 								                </tr>
 								                <tr>
@@ -138,7 +138,7 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 									                    </div>
 								                    <th>养老模式:</th>
 								                    <div  class="input-group input-group-sm">
-								                        <td><input name="pension_model_no" type="text" class="form-control" value="" /></td>
+								                        <td><input name="pension_model_no" type="text" class="form-control" value="<%=person.getPensionModelNo()==null?-1:person.getPensionModelNo() %>" /></td>
 								                    </div>
 								                </tr>
 											</tbody>
@@ -152,10 +152,10 @@ SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
 								                </tr>
 								                <tr>
 								                	<div class="input-group input-group-sm">
-								                        <td><input name="start_time" type="text" class="form-control" value="<%=sdf.format(person.getJobStartTime()) %>" /></td>
+								                        <td><input name="start_time" type="text" class="form-control" value="<%=TypeTransfer.Date2Str(person.getJobStartTime()) %>" /></td>
 								                    </div>
 								                    <div class="input-group input-group-sm">
-								                        <td><input name="end_time" type="text" class="form-control" value="<%=sdf.format(person.getJobEndTime()) %>" /></td>
+								                        <td><input name="end_time" type="text" class="form-control" value="<%=TypeTransfer.Date2Str(person.getJobEndTime()) %>" /></td>
 								                    </div>
 								                    <div class="input-group input-group-sm">
 								                        <td><input name="dept" type="text" class="form-control" value="<%=person.getDept().getDeptName() %>"  /></td>

@@ -88,6 +88,9 @@ public class SocietyService implements SocietyBasicOperate, SocietyAdvanceOperat
 		}
 		return nameList;
 	}
+	
+	
+	
 
 	@Override
 	public Society getInfoByExample(SocietyExample example) {
@@ -97,6 +100,11 @@ public class SocietyService implements SocietyBasicOperate, SocietyAdvanceOperat
 			target = list.get(0);
 		}
 		return target;
+	}
+
+	@Override
+	public List<Society> getAllSocieties() {
+		return society_mapper.selectByExample( null);
 	}
 
 	

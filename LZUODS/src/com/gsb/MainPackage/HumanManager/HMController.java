@@ -383,7 +383,7 @@ public class HMController {
 		new_person.setBirth( request.getParameter("birth_date"));
 		new_person.setSalaryNo( request.getParameter( "salary_no"));
 		new_person.setDept( request.getParameter( "dept"));
-		new_person.setSlib( request.getParameter("slary_lib"));
+		new_person.setSlib( request.getParameter("salary_lib"));
 		new_person.setFunc( request.getParameter( "func"));
 		new_person.setSociety( request.getParameter("society"));
 		new_person.setTitleLv( request.getParameter( "title_lv"));
@@ -398,6 +398,8 @@ public class HMController {
 		new_person.setAddress( request.getParameter("address"));
 		new_person.setTelephoneNum( request.getParameter("telephone_num"));
 		new_person.setPhysicalSituation( request.getParameter("physical_situation"));
+		new_person.setLastest_sympathy_year( request.getParameter("lastest_sympathy_year"));
+		new_person.setPensionModelNo( Integer.parseInt(request.getParameter("pension_model_no")));
 		mv.addObject("target", db_reader.getBasicInfosBy(id));
 		mv.addObject("new_person", new_person);
 		return mv;
@@ -405,8 +407,6 @@ public class HMController {
 	
 	@RequestMapping(value="/update_basic_info")
 	public String update_basic_info( HttpServletRequest request) {
-		int id = 2139;
-		// TODO 数据库插入数据，生成id
 		SourcePerson new_person = new SourcePerson();
 		new_person.setSysNo( Integer.parseInt(request.getParameter("sys_no")));
 		new_person.setName( request.getParameter("name"));
@@ -416,7 +416,7 @@ public class HMController {
 		new_person.setBirth( request.getParameter("birth_date"));
 		new_person.setSalaryNo( request.getParameter( "salary_no"));
 		new_person.setDept( request.getParameter( "dept"));
-		new_person.setSlib( request.getParameter("slary_lib"));
+		new_person.setSlib( request.getParameter("salary_lib"));
 		new_person.setFunc( request.getParameter( "func"));
 		new_person.setSociety( request.getParameter("society"));
 		new_person.setTitleLv( request.getParameter( "title_lv"));
@@ -431,6 +431,8 @@ public class HMController {
 		new_person.setAddress( request.getParameter("address"));
 		new_person.setTelephoneNum( request.getParameter("telephone_num"));
 		new_person.setPhysicalSituation( request.getParameter("physical_situation"));
+		new_person.setLastest_sympathy_year( request.getParameter("lastest_sympathy_year"));
+		new_person.setPensionModelNo( Integer.parseInt(request.getParameter("pension_model_no")));
 		sao.updatePersonInfo( new_person);
 		return "redirect:/HMM/HMDtal?id="+new_person.getSysNo();
 	}

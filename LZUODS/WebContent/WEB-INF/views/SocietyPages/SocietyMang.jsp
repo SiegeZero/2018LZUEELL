@@ -29,7 +29,7 @@
 	,com.gsb.BasicObject.Beans.SourcePerson
 	,com.gsb.BasicObject.MBGPOJO.Society"%>
 <%
-	List<String> societies_list = (List<String>) request.getAttribute("societies_list");
+	List<Society> societies_list = (List<Society>) request.getAttribute("societies_list");
 %>
 
 <body>
@@ -58,11 +58,13 @@
 									    <tbody>
 											<%
 												for (int row_index = 0; societies_list != null && row_index < societies_list.size(); row_index++) {
-													String s = societies_list.get(row_index);
+													Society s = societies_list.get(row_index);
 											%>
 											<tr>
 												<td><%=row_index + 1%></th>
-												<td><a href="#"><%=s%></a></td>
+												<td><a href="#"><%=s.getSocietyName()%></a></td>
+												<td><%=s.getSocietyLeader() %></td>
+												<td><%=0%></td>
 											</tr>
 											<%
 												}

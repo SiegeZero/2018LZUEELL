@@ -94,7 +94,7 @@ public class ReadDBInfos {
 	}
 	
 	public SourcePerson getBasicInfosBy( Integer sysNo) {
-		return (SourcePerson) person_mapper.selectByPrimaryKey(sysNo);
+		return person_mapper.selectByPrimaryKey( sysNo);
 	}
 
 	

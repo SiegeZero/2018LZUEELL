@@ -303,22 +303,22 @@
 															</td>
 														</tr>
 														<tr>
-															<th style="vertical-align: middle">职级：</th>
+															<th style="vertical-align: middle">行政级别：</th>
 															<td colspan="8">
 																<div class="input-field">
 																	<input type="text" class="validate" name="func_condition"
 																	value="<%=request.getAttribute("func_str") != null ? request.getAttribute("func_str") : ""%>"
-																	placeholder="输入职级查询，多个职级用空格分隔开" /> 
+																	placeholder="输入行政级别查询，多个行政级别用空格分隔开" /> 
 																</div>
 															</td>
 														</tr>
 														<tr>
-															<th style="vertical-align: middle">职务：</th>
+															<th style="vertical-align: middle">职称：</th>
 															<td colspan="8">
 																<div class="input-field">
 																	<input type="text" class="validate" name="title_lv_condition"
 																	value="<%=request.getAttribute("title_lv_str") != null ? request.getAttribute("title_lv_str") : ""%>"
-																	placeholder="输入职务查询，多个职务用空格分隔开" /> 
+																	placeholder="输入职称查询，多个职称用空格分隔开" /> 
 																</div>
 															</td>
 														</tr>
@@ -341,6 +341,7 @@
 															</td>
 														</tr>
 														<tr>
+														<th>分会：</th>
 															<%
 																List<Integer> societies_str = (List<Integer>) request.getAttribute("societies_str");
 																for (int row_index = 0; societies_list != null && row_index < societies_list.size(); row_index++) {
@@ -349,7 +350,7 @@
 															%>
 														</tr>
 														<tr>
-															<th>分会：</th>
+															<th>&nbsp&nbsp&nbsp</th>
 															<%
 																}
 															%>
@@ -364,18 +365,24 @@
 																}
 															%>
 														</tr>
+														<tr>
 														<th>民族：</th>
 														<%
 															List<String> nations_str = (List<String>) request.getAttribute("nations_str");
 															for (int row_index = 0; nations_list != null && row_index < nations_list.size(); row_index++) {
-														%>
-
+																if (row_index % 8 == 0) {
+															%>
+														</tr>
+															<th>&nbsp&nbsp&nbsp</th>
+															<%
+																}
+															%>
 														<td><input type="checkbox" class="filled-in"
 															name="nations" id="nation<%=row_index%>)"
 															value="<%=nations_list.get(row_index)%>"
 															onClick="select_attribute"
 															<%=nations_str != null && nations_str.contains(nations_list.get(row_index)) ? "checked" : ""%> />
-															<label for="nation<%=row_index%>)"><%=nations_list.get(row_index)%></label></td>
+															<label for="nation<%=row_index%>)"><%=nations_list.get(row_index)%>族</label></td>
 
 														<%
 															}
@@ -403,7 +410,7 @@
 												<th class="info" style="width: 9%">出生日期</th>
 												<th class="info" style="width: 8%">所在分会</th>
 												<th class="info" style="width: 10%">职称</th>
-												<th class="info" style="width: 8%">职务</th>
+												<th class="info" style="width: 8%">行政级别</th>
 												<th class="info" style="width: 8%">政治面貌</th>
 												<th class="info" style="width: 15%">联系方式</th>
 												<th class="info" style="width: 20%">家庭住址</th>

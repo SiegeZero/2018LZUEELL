@@ -46,10 +46,12 @@ public class SourcePerson extends PersonWithBLOBs implements Serializable {
 		int societyNo = societies_map.get( this.society.getSocietyName());
 		this.setSocietyNo( societyNo);
 		this.society.setSocietyNo( societyNo);
-		if( this.slib.getSalaryVersion() != null) {
+		if( this.slib.getSalaryVersion() != null && !this.slib.getSalaryVersion().equals("")) {
 			int slibNo = slib_map.get( this.slib.getSalaryVersion());
 			this.setSalaryLibNo( slibNo);
 			this.slib.setSalaryLibNo( slibNo);
+		} else {
+			this.slib.setSalaryVersion("");
 		}
 		if( conscriptio_situation != null)
 			this.setConscriptionSituation( conscriptio_situation.equals("非军属")?"":conscriptio_situation);
@@ -68,6 +70,12 @@ public class SourcePerson extends PersonWithBLOBs implements Serializable {
 			end_job = end_job.substring(0,4).concat("0101");
 		} else if( end_job.endsWith("00")) {
 			end_job = end_job.substring(0,6).concat("01");
+		}
+
+		if( lastest_sympathy_year.endsWith("0000")) {
+			lastest_sympathy_year = lastest_sympathy_year.substring(0,4).concat("0101");
+		} else if( lastest_sympathy_year.endsWith("00")) {
+			lastest_sympathy_year = lastest_sympathy_year.substring(0,6).concat("01");
 		}
 		
 		try {
@@ -88,7 +96,13 @@ public class SourcePerson extends PersonWithBLOBs implements Serializable {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
-		
+
+		try {
+			this.setLatestSympathyYear( lastest_sympathy_year.equals("")?null:TypeTransfer.Str2Date(lastest_sympathy_year));
+		} catch (ParseException e) {
+			// TODO 自动生成的 catch 块
+			e.printStackTrace();
+		}
 		return this;
 	}
 	

@@ -10,7 +10,7 @@ public class TypeTransfer {
 	
 	public static String Date2Str( Date source, String pattern) {
 		if( null == source) {
-			return null;
+			return "";
 		}
 		if( !sdf.toPattern().equals(pattern)) {
 			sdf.applyPattern(pattern);
@@ -27,22 +27,10 @@ public class TypeTransfer {
 		return sdf.parse(source);
 	}
 	public static String Date2Str( Date source) {
-		if( null == source) {
-			return null;
-		}
-		if( !sdf.toPattern().equals( "yyyyMMdd")) {
-			sdf.applyPattern( "yyyyMMdd");
-		}
-		return sdf.format(source);
+		return TypeTransfer.Date2Str( source, "yyyyMMdd");
 	}
 	public static Date Str2Date( String source) throws ParseException {
-		if( null == source) {
-			return null;
-		}
-		if( !sdf.toPattern().equals( "yyyyMMdd")) {
-			sdf.applyPattern( "yyyyMMdd");
-		}
-		return sdf.parse(source);
+		return TypeTransfer.Str2Date( source, "yyyyMMdd");
 	}
 	
 }
