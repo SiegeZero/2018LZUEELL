@@ -197,6 +197,32 @@ public class ReadDBInfos {
 		}
 		return results;
 	}
+	
+	public static Criteria addAgeCondition( Criteria c, int left_bound, int right_bound, Calendar reference) {
+		
+		if( reference == null) {
+			reference = Calendar.getInstance();
+		}
+		if( left_bound != 0 && right_bound != 0) {
+			int during = right_bound - left_bound;
+			reference.add( Calendar.YEAR, -left_bound);
+			Date right_param = reference.getTime();
+			reference.add( Calendar.YEAR, -during-1);
+			reference.add(Calendar.DATE, 1);
+			Date left_param = reference.getTime();
+			c.andBirthTimeBetween( left_param, right_param);
+		} else if( left_bound == 0) {
+			reference.add( Calendar.YEAR, -right_bound-1);
+			reference.add(Calendar.DATE, 1);
+			Date left_param = reference.getTime();
+			c.andBirthTimeGreaterThanOrEqualTo(left_param);
+		} else if( right_bound == 0) {
+			reference.add( Calendar.YEAR, -left_bound);
+			Date left_param = reference.getTime();
+			c.andBirthTimeLessThanOrEqualTo(left_param);
+		}
+		return c;
+	}
 
 	private PersonExample getAgeExample( int societyNo, int left_bound, int right_bound, Calendar reference) {
 		PersonExample example = new PersonExample();
@@ -204,24 +230,13 @@ public class ReadDBInfos {
 		if( societyNo != -1) {
 			c.andSocietyNoEqualTo( societyNo);
 		}
-		int during = right_bound - left_bound;
-		if( reference == null) {
-			reference = Calendar.getInstance();
-		}
-		reference.add( Calendar.YEAR, -left_bound);
-		Date right_param = reference.getTime();
-		
-		reference.add( Calendar.YEAR, -during);
-		reference.add(Calendar.DATE, 1);
-		Date left_param = reference.getTime();
-		c.andPhysicalSituationNotLike("%死亡%");
-		c.andBirthTimeBetween( left_param, right_param);
+		c = addAgeCondition( c, left_bound, right_bound, reference);
+		c.andPhysicalSituationNotLike("%离世%");
 		return example;
 	}
 	
 	public long getAmountAtRange(int societyNo, int left_bound, int right_bound, Calendar reference) {
 		long amount = person_mapper.countByExample(getAgeExample( societyNo, left_bound, right_bound, reference));
-		System.out.println( );
 		return amount;
 	}
 /**

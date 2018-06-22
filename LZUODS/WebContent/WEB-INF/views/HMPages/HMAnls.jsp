@@ -74,10 +74,10 @@ if( party_attrs != null)
 											</div>
 											<div class="card-stacked blue">
 												<div class="card-content white-text">
-													<h4>小于100岁的退休人员人数：</h4>
+													<h4>大于等于100岁的退休人员人数：</h4>
 												</div>
 												<div class="card-action white-text">
-													<strong><%= request.getAttribute("lessthan100") %>人</strong>
+													<strong><%= request.getAttribute("ge100") %>人</strong>
 												</div>
 											</div>
 										</div>
@@ -110,7 +110,7 @@ if( party_attrs != null)
 									<div class="col-xs-12 col-sm-6 col-md-3">
 										<div class="card-panel text-center">
 											<h4>女性人数</h4>
-											<div class="easypiechart" id="easypiechart-red" data-percent="<%= (long)request.getAttribute(allamount_attrs[1])*100/(long)request.getAttribute(allamount_attrs[0]) %>">
+											<div class="easypiechart" id="easypiechart-red" data-percent="<%=(long)request.getAttribute(allamount_attrs[1])*100/(long)request.getAttribute(allamount_attrs[0]) %>">
 												<span class="percent"><%= request.getAttribute(allamount_attrs[1]) %></span>
 											</div>
 										</div>
@@ -118,7 +118,7 @@ if( party_attrs != null)
 									<div class="col-xs-12 col-sm-6 col-md-3">
 										<div class="card-panel text-center">
 											<h4>男性党员人数</h4>
-											<div class="easypiechart" id="easypiechart-teal" data-percent="<%= (long)request.getAttribute(party_attrs[1])*100/(long)request.getAttribute(party_attrs[0]) %>">
+											<div class="easypiechart" id="easypiechart-teal" data-percent="<%=(long)request.getAttribute(party_attrs[0])==0?0:(long)request.getAttribute(party_attrs[1])*100/(long)request.getAttribute(party_attrs[0]) %>">
 												<span class="percent"><%= request.getAttribute(party_attrs[1]) %></span>
 											</div>
 										</div>
@@ -126,7 +126,7 @@ if( party_attrs != null)
 									<div class="col-xs-12 col-sm-6 col-md-3">
 										<div class="card-panel text-center">
 											<h4>女性党员人数</h4>
-											<div class="easypiechart" id="easypiechart-orange" data-percent="<%= (long)request.getAttribute(party_attrs[2])*100/(long)request.getAttribute(party_attrs[0]) %>">
+											<div class="easypiechart" id="easypiechart-orange" data-percent="<%=(long)request.getAttribute(party_attrs[0])==0?0:(long)request.getAttribute(party_attrs[2])*100/(long)request.getAttribute(party_attrs[0]) %>">
 												<span class="percent"><%= request.getAttribute(party_attrs[2]) %></span>
 											</div>
 										</div>

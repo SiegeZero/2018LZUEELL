@@ -138,12 +138,12 @@ for( Society s:societies_list) {
 									}
 					
 									if(age_range!=null && age_range.length == 2 
-											&& !age_range[0].equals("") && !age_range[1].equals("")) {
+											&& (!age_range[0].equals("") || !age_range[1].equals(""))) {
 									%>
 									<div class="container-fluid">
 										<strong>选择的年龄范围是：</strong> <input name="age_range" type="text"
-											class="form-control" value="<%=age_range[0]+"-"+age_range[1]%>" readonly /> <input
-											name="deadline" type="text" class="form-control"
+											class="form-control" value="<%=(age_range[0].equals("")?"0":age_range[0])+"-"+(age_range[1].equals("")?"0":age_range[1])%>" readonly />
+										<input name="deadline" type="text" class="form-control"
 											placeholder="如果需要精确到某一天，请在此输入一个具体的截止日期，日期输入格式为yyyymmdd">
 									</div>
 									<%

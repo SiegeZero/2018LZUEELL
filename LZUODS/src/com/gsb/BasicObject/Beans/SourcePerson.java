@@ -40,10 +40,16 @@ public class SourcePerson extends PersonWithBLOBs implements Serializable {
 	}
 
 	public PersonWithBLOBs format(Map<String, Integer> depts_map, Map<String, Integer> societies_map, Map<String, Integer> slib_map){
-		int deptNo = depts_map.get( this.dept.getDeptName());
+		int deptNo = -1;
+		if( depts_map.containsKey( this.dept.getDeptName())) {
+			deptNo = depts_map.get( this.dept.getDeptName());
+		}
 		this.setDeptNo( deptNo);
 		this.dept.setDeptNo(deptNo);
-		int societyNo = societies_map.get( this.society.getSocietyName());
+		int societyNo = -1;
+		if( societies_map.containsKey( this.society.getSocietyName())) {
+			societyNo = societies_map.get( this.society.getSocietyName());
+		}
 		this.setSocietyNo( societyNo);
 		this.society.setSocietyNo( societyNo);
 		if( this.slib.getSalaryVersion() != null && !this.slib.getSalaryVersion().equals("")) {
@@ -79,26 +85,26 @@ public class SourcePerson extends PersonWithBLOBs implements Serializable {
 		}
 		
 		try {
-			this.setBirthTime(birth.equals("")?null:TypeTransfer.Str2Date(birth));
+			this.setBirthTime(birth==null||birth.equals("")?null:TypeTransfer.Str2Date(birth));
 		} catch (ParseException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
 		try {
-			this.setJobStartTime( start_job.equals("")?null:TypeTransfer.Str2Date(start_job));
+			this.setJobStartTime( start_job==null||start_job.equals("")?null:TypeTransfer.Str2Date(start_job));
 		} catch (ParseException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
 		try {
-			this.setJobEndTime( end_job.equals("")?null:TypeTransfer.Str2Date(end_job));
+			this.setJobEndTime( end_job==null||end_job.equals("")?null:TypeTransfer.Str2Date(end_job));
 		} catch (ParseException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();
 		}
 
 		try {
-			this.setLatestSympathyYear( lastest_sympathy_year.equals("")?null:TypeTransfer.Str2Date(lastest_sympathy_year));
+			this.setLatestSympathyYear( lastest_sympathy_year==null||lastest_sympathy_year.equals("")?null:TypeTransfer.Str2Date(lastest_sympathy_year));
 		} catch (ParseException e) {
 			// TODO 自动生成的 catch 块
 			e.printStackTrace();

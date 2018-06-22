@@ -327,7 +327,7 @@
 															<td colspan="2">
 																<div class="input-field">
 																	<input id="min_age" type="number" class="validate" name="age"
-																		value="<%=age_range!=null?age_range.split("-")[0]:"" %>"
+																		value="<%=age_range!=null&&!age_range.split("-")[0].equals("0")?age_range.split("-")[0]:"" %>"
 																	 /> 
 																	<label for="min_age">最小年龄</label>
 																</div>
@@ -335,7 +335,7 @@
 															<td colspan="2">
 																<div class="input-field">
 																	<input id="max_age" type="number" class="validate"
-																		value="<%=age_range!=null?age_range.split("-")[1]:"" %>"
+																		value="<%=age_range!=null&&!age_range.split("-")[1].equals("0")?age_range.split("-")[1]:"" %>"
 																		name="age" /> <label for="max_age">最大年龄</label>
 																</div>
 															</td>
@@ -382,7 +382,7 @@
 															value="<%=nations_list.get(row_index)%>"
 															onClick="select_attribute"
 															<%=nations_str != null && nations_str.contains(nations_list.get(row_index)) ? "checked" : ""%> />
-															<label for="nation<%=row_index%>)"><%=nations_list.get(row_index)%>族</label></td>
+															<label for="nation<%=row_index%>)"><%=nations_list.get(row_index).equals("")?"无数据":(nations_list.get(row_index)+"族")%></label></td>
 
 														<%
 															}
@@ -423,9 +423,13 @@
 												Calendar b = Calendar.getInstance();
 												for (int cow_index = 0; cow_index < person_list.size(); cow_index++) {
 													Date birth = person_list.get(cow_index).getBirthTime();
-													b.setTime(birth);
-													cal.set(Calendar.YEAR, b.get(Calendar.YEAR));
-													Age = (thisYear - b.get(Calendar.YEAR)) - (birth.before(cal.getTime()) ? 0 : 1);
+													if( birth == null || birth.equals("")) {
+														Age = 0;
+													} else{
+														b.setTime(birth);
+														cal.set(Calendar.YEAR, b.get(Calendar.YEAR));
+														Age = (thisYear - b.get(Calendar.YEAR)) - (birth.before(cal.getTime()) ? 0 : 1);
+													}
 											%>
 											<tr>
 												<td><span><%=cow_index + 1%></span></td>

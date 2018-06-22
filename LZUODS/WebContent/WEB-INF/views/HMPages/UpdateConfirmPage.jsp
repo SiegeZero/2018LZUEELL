@@ -460,7 +460,7 @@ SourcePerson new_person = (SourcePerson)request.getAttribute("new_person");
 										<%
 										}
 										if( !new_person.getPensionModelNo().equals( person.getPensionModelNo())
-												&& (person.getPensionModelNo() != null || !new_person.getPensionModelNo().equals(""))) {
+												&& (person.getPensionModelNo() != null || new_person.getPensionModelNo()!=-1)) {
 										%>
 										<tr>
 							                <div class="input-group input-group-sm">
@@ -478,7 +478,7 @@ SourcePerson new_person = (SourcePerson)request.getAttribute("new_person");
 										<%
 										} else{
 										%>
-										<input type="hidden" name="pension_model_no" value="<%=person.getPensionModelNo() %>" />	
+										<input type="hidden" name="pension_model_no" value="<%=person.getPensionModelNo() == null ? "-1": person.getPensionModelNo() %>" />	
 										<%
 										}
 										if( !new_person.getStart_job().equals( TypeTransfer.Date2Str(person.getJobStartTime()))

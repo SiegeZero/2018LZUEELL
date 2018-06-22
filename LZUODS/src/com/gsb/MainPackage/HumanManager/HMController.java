@@ -121,9 +121,9 @@ public class HMController {
 		String physical_situation = request.getParameter("physical_situation");
 		if( physical_situation!= null && !physical_situation.equals("全部")) {
 			if( physical_situation.equals( "离世")) {
-				c.andPhysicalSituationLike( "%死亡%");
+				c.andPhysicalSituationLike( "%离世%");
 			} else if( physical_situation.equals( "在世")){
-				c.andPhysicalSituationNotLike( "%死亡%");
+				c.andPhysicalSituationNotLike( "%离世%");
 			}
 			mv.addObject("physical_situation",physical_situation);
 		}
@@ -179,24 +179,22 @@ public class HMController {
 			}
 			mv.addObject("title_lv_str",title_lv_condition);
 		}
+		String deadline = request.getParameter("deadline");
 		if( age_range != null && ! age_range.equals("全部")) {
 			Calendar cal = Calendar.getInstance();
+			if( deadline!=null && !deadline.equals("")) {
+				try {
+					cal.setTime( TypeTransfer.Str2Date( deadline));
+				} catch (ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 			String smaller_bound =  age_range.substring(0, age_range.indexOf("-"));
 			String bigger_bound = age_range.substring( age_range.indexOf("-")+1);
-			if( !smaller_bound.equals("")&& bigger_bound.equals("")) {
-				cal.add( Calendar.YEAR, -Integer.parseInt( smaller_bound));
-				c.andBirthTimeGreaterThanOrEqualTo( cal.getTime());
-			} else if( !smaller_bound.equals("")&& !bigger_bound.equals("")){
-				cal.add(Calendar.YEAR, -Integer.parseInt(smaller_bound));
-				Date smaller = cal.getTime();
-				cal.add( Calendar.YEAR, -Integer.parseInt(bigger_bound)+Integer.parseInt(smaller_bound));
-				cal.add( Calendar.DATE, 1);
-				Date near_bigger = cal.getTime();
-				c.andBirthTimeBetween( near_bigger, smaller);
-			} else if( smaller_bound.equals("")&& !bigger_bound.equals("")) {
-				cal.add( Calendar.YEAR, -Integer.parseInt( bigger_bound));
-				c.andBirthTimeLessThan( cal.getTime());
-			}
+			int left_bound = Integer.parseInt( smaller_bound);
+			int right_bound = Integer.parseInt(bigger_bound);
+			c = ReadDBInfos.addAgeCondition(c, left_bound, right_bound, cal);
 			mv.addObject("age_range", age_range);
 		}
 		
@@ -330,6 +328,7 @@ public class HMController {
 		new_person.setConscriptio_situation( request.getParameter( "conscription_situation"));
 		new_person.setNeed_help(request.getParameter("is_help_needed"));
 		new_person.setLivingSituation( request.getParameter("living_situation"));
+		new_person.setLastest_sympathy_year( request.getParameter("lastest_sympathy_year"));
 		new_person.setAddress( request.getParameter("address"));
 		id = sao.addAPerson( new_person);
 		String redirect_url = base_url + "Error";
@@ -399,7 +398,7 @@ public class HMController {
 		new_person.setTelephoneNum( request.getParameter("telephone_num"));
 		new_person.setPhysicalSituation( request.getParameter("physical_situation"));
 		new_person.setLastest_sympathy_year( request.getParameter("lastest_sympathy_year"));
-		new_person.setPensionModelNo( Integer.parseInt(request.getParameter("pension_model_no")));
+		new_person.setPensionModelNo( request.getParameter("pension_model_no").equals("")?-1:Integer.parseInt(request.getParameter("pension_model_no")));
 		mv.addObject("target", db_reader.getBasicInfosBy(id));
 		mv.addObject("new_person", new_person);
 		return mv;
@@ -432,7 +431,7 @@ public class HMController {
 		new_person.setTelephoneNum( request.getParameter("telephone_num"));
 		new_person.setPhysicalSituation( request.getParameter("physical_situation"));
 		new_person.setLastest_sympathy_year( request.getParameter("lastest_sympathy_year"));
-		new_person.setPensionModelNo( Integer.parseInt(request.getParameter("pension_model_no")));
+		new_person.setPensionModelNo( request.getParameter("pension_model_no").equals("")?-1:Integer.parseInt(request.getParameter("pension_model_no")));
 		sao.updatePersonInfo( new_person);
 		return "redirect:/HMM/HMDtal?id="+new_person.getSysNo();
 	}
@@ -440,7 +439,7 @@ public class HMController {
 	@RequestMapping(value="/HMAnls")
 	public ModelAndView analysis(ModelAndView mv) {
 		List<Map<String, Long>> partyMembersAmount = db_reader.getPartyMembersAmount(-1);
-		long lessthan100 = db_reader.getAllAmountAtRangeToday( 0, 100);
+		long ge100 = db_reader.getAllAmountAtRangeToday( 100, 0);
 		int i=0;
 		String[] party_attrs = new String[] {"党员总人数", "女性党员人数", "男性党员人数"};
 		mv.addObject("party_attrs", party_attrs);
@@ -454,8 +453,8 @@ public class HMController {
 		for( Map<String,Long> tmp:allAmount) {
 			mv.addObject(allamount_attrs[i], tmp.get(allamount_attrs[i++]));
 		}
-		System.out.println( lessthan100);
-		mv.addObject("lessthan100", lessthan100);
+		System.out.println( ge100);
+		mv.addObject("ge100", ge100);
 		return mv;
 	}
 	
