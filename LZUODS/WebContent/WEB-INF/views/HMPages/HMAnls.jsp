@@ -59,7 +59,7 @@ if( party_attrs != null)
 											</div>
 											<div class="card-stacked orange">
 												<div class="card-content white-text">
-													<h4>离退休干部总人数：</h4>
+													<h4>离退休人员总人数：</h4>
 												</div>
 												<div class="card-action white-text">
 													<strong><%= request.getAttribute(allamount_attrs[0]) %>人</strong>
@@ -74,7 +74,7 @@ if( party_attrs != null)
 											</div>
 											<div class="card-stacked blue">
 												<div class="card-content white-text">
-													<h4>大于等于100岁的退休干部人数：</h4>
+													<h4>大于等于100岁的退休人员人数：</h4>
 												</div>
 												<div class="card-action white-text">
 													<strong><%= request.getAttribute("ge100") %>人</strong>
@@ -101,7 +101,7 @@ if( party_attrs != null)
 								<div class="row">
 									<div class="col-xs-12 col-sm-6 col-md-3">
 										<div class="card-panel text-center">
-											<h4>男性离退休干部人数</h4>
+											<h4>男性人数</h4>
 											<div class="easypiechart" id="easypiechart-blue" data-percent="<%= (long)request.getAttribute(allamount_attrs[2])*100/(long)request.getAttribute(allamount_attrs[0]) %>">
 												<span class="percent"><%= request.getAttribute(allamount_attrs[2]) %></span>
 											</div>
@@ -109,7 +109,7 @@ if( party_attrs != null)
 									</div>
 									<div class="col-xs-12 col-sm-6 col-md-3">
 										<div class="card-panel text-center">
-											<h4>女性离退休干部人数</h4>
+											<h4>女性人数</h4>
 											<div class="easypiechart" id="easypiechart-red" data-percent="<%=(long)request.getAttribute(allamount_attrs[1])*100/(long)request.getAttribute(allamount_attrs[0]) %>">
 												<span class="percent"><%= request.getAttribute(allamount_attrs[1]) %></span>
 											</div>

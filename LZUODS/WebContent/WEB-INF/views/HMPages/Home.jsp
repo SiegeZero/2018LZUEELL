@@ -48,7 +48,7 @@ if( party_attrs != null)
 							<div class="card-content">
 							    <div class="container-fluid">
 							        <p class="alert alert-info">
-							        	<strong>大于等于100岁的退休干部人数：<%= request.getAttribute("ge100") %></strong>
+							        	<strong>少于100岁的退休人员人数：<%= request.getAttribute("lessthan100") %></strong>
 									</p>
 							    </div>
 							    <%
