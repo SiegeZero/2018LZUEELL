@@ -26,10 +26,13 @@
 
 <%@page
 	import="java.util.List
-	,com.gsb.BasicObject.Beans.SourcePerson
-	,com.gsb.BasicObject.MBGPOJO.Society"%>
+		,java.util.Map
+		,com.gsb.BasicObject.Beans.SourcePerson
+		,com.gsb.BasicObject.MBGPOJO.Society
+	"%>
 <%
 	List<Society> societies_list = (List<Society>) request.getAttribute("societies_list");
+	Map<Integer, Long> amounts = (Map<Integer, Long>)request.getAttribute("amount_each_society");
 %>
 
 <body>
@@ -59,12 +62,16 @@
 											<%
 												for (int row_index = 0; societies_list != null && row_index < societies_list.size(); row_index++) {
 													Society s = societies_list.get(row_index);
+													long amount = 0;
+													if(amounts.containsKey( s.getSocietyNo())) {
+														amount = amounts.get( s.getSocietyNo());
+													}
 											%>
 											<tr>
 												<td><%=row_index + 1%></th>
-												<td><a href="#"><%=s.getSocietyName()%></a></td>
-												<td><%=s.getSocietyLeader() %></td>
-												<td><%=0%></td>
+												<td><a href="#"><%=s.getSocietyName()==null?"":s.getSocietyName()%></a></td>
+												<td><%=s.getSocietyLeader()==null?"":s.getSocietyLeader() %></td>
+												<td><%=amount %></td>
 											</tr>
 											<%
 												}

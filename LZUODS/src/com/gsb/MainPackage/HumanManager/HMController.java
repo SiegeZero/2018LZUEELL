@@ -54,7 +54,7 @@ public class HMController {
 	@RequestMapping(value="/Home")
 	public ModelAndView home(ModelAndView mv) {
 		List<Map<String, Long>> partyMembersAmount = db_reader.getPartyMembersAmount(-1);
-		long lessthan100 = db_reader.getAllAmountAtRangeToday( 0, 100);
+		long ge100 = db_reader.getAllAmountAtRangeToday( 100, 0);
 		int i=0;
 		String[] party_attrs = new String[] {"党员总人数", "女性党员人数", "男性党员人数"};
 		mv.addObject("party_attrs", party_attrs);
@@ -68,8 +68,7 @@ public class HMController {
 		for( Map<String,Long> tmp:allAmount) {
 			mv.addObject(allamount_attrs[i], tmp.get(allamount_attrs[i++]));
 		}
-		System.out.println( "lessthan100:"+lessthan100);
-		mv.addObject("lessthan100", lessthan100);
+		mv.addObject("ge100", ge100);
 		return mv;
 	}
 	
@@ -126,6 +125,8 @@ public class HMController {
 				c.andPhysicalSituationNotLike( "%离世%");
 			}
 			mv.addObject("physical_situation",physical_situation);
+		} else {
+			c.andPhysicalSituationNotLike( "%离世%");
 		}
 		String[] conscription_situation = request.getParameterValues("conscription_situation");
 		if( name_condition != null && !removeUselessHeaderStr(name_condition).equals("") ) {

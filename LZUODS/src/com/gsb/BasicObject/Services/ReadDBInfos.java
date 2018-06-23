@@ -270,39 +270,41 @@ public class ReadDBInfos {
 		tmp = person_mapper.countByExample(example);
 		System.out.println( "third:"+tmp);
 	}
-	
-	public List<Long> getAmountEachSociety() {
+*/
+	public Map<Integer, Long> getAmountEachSociety( int isAlive) {
 		long total_person = person_mapper.countByExample(null);
-		List values = new ArrayList<Long>();
-		List<Society> selectByExample = society_mapper.selectByExample(null);
+		List<Society> societies = society_mapper.selectByExample(null);
+		Map<Integer, Long> result = new HashMap<>();
 		PersonExample example = null;
 		Criteria c = null;
-		for (Society s : selectByExample) {
+		for (Society s : societies) {
 			example = new PersonExample();
 			c = example.createCriteria();
 			c.andSocietyNoEqualTo(s.getSocietyNo());
 			example.or(c);
+			if( 1 == isAlive) {
+				c.andPhysicalSituationNotLike("离世");
+			} else if( 0 == isAlive) {
+				c.andPhysicalSituationLike("离世");
+			}
 			long amount = person_mapper.countByExample(example);
 			c.andGenderEqualTo("男");
 			example.or(c);
 			long male_amount = person_mapper.countByExample(example);
 			long female_amount = amount - male_amount;
-			values.add(amount);
-			values.add(male_amount);
-			values.add(female_amount);
+			result.put( s.getSocietyNo(), amount);
+//			result.put( s.getSocietyNo(), male_amount);
+//			result.put( s.getSocietyNo(), female_amount);
 			if( debugging) {
 				System.out.println(
 						s.getSocietyName() + "共有：" + amount + "人，占总人数百分比为：" + df.format(amount * 100.0 / total_person));
-				System.out.println("--分会男性人数：" + male_amount + "，占分会总人数百分比为：" + df.format(male_amount * 100.0 / amount));
-				System.out
-						.println("--分会女性人数：" + female_amount + "，占分会总人数百分比为：" + df.format(female_amount * 100.0 / amount));
+//				System.out.println("--分会男性人数：" + male_amount + "，占分会总人数百分比为：" + df.format(male_amount * 100.0 / amount));
+//				System.out.println("--分会女性人数：" + female_amount + "，占分会总人数百分比为：" + df.format(female_amount * 100.0 / amount));
 			}
 
 		}
-		
-		return values;
+		return result;
 	}
- */
 	
 	public long getAllAmountAtRange(int left_bound, int right_bound, Calendar reference ) {
 		return getAmountAtRange( -1, left_bound, right_bound, reference);
