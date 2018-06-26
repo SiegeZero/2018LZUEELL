@@ -192,7 +192,6 @@
 													<div id="tab5" class="col s12">
 														</br>
 														<%
-														List<String> physicla_str = (List<String>) request.getAttribute("quit_office_type_str");
 														%>
 														<ul class="nav navbar-nav" id="physical_situation">
 														<li><b>选择：&nbsp;&nbsp;&nbsp;&nbsp;</b></li>

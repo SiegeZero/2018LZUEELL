@@ -13,6 +13,8 @@ import com.gsb.Utils.Eypt;
 @Service
 public class AuthAccount {
 	
+//	public static Logger logger;
+	
 	@Autowired
 	StaffMapper staff_mapper;
 	
