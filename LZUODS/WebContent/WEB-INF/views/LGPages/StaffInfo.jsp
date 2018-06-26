@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>登录</title>
+    <title>职工管理</title>
 	
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="../assets/materialize/css/materialize.min.css" media="screen,projection" />
@@ -33,37 +33,33 @@
 						<!--    Context Classes  -->
 						<div class="card" style="width:500px; margin-left:auto; margin-right:auto; background:rgba(255,255,255,1)">
 							<div class="card-action" >
-							<div class="card-content">
-								<form action="ahead" method="POST">
-								<div>
-								<div class="row col s12">
-							      	<div class="row">
-								        <div class="input-field">
-								        	<input id="account" name="account" type="text" class="validate"/>
-								          	<label for="account"><i class="fa fa-user fa-fw"></i>用户名</label>
-								        </div>
-							        </div>
-							      	<div class="row">
-							        	<div class="input-field">
-							        		<input id="passwd" name="passwd" type="password" class="validate" />
-								          	<label for="passwd"><i class="fa fa-key fa-fw"></i>密码</label>
-							        	</div>
-							      	</div>
-									<input type="hidden" name="target_addr" value="<%=request.getAttribute("last_addr")%>">
-									<input type="hidden" name="login_status" value="<%=request.getAttribute("login_status")%>">
-							 	</div>
-							      	<div class="row">
-										<center>
-									        <a href="#"><button type="button" class="btn waves-effect waves-light" style="margin-right:20px">注册
-									        	<span class="fa fa-plane fa-fw"></span>
-									        </button></a>
-									    	<button type="submit" class="btn waves-effect waves-light">登录
-									    		<span class="fa fa-check fa-fw"></span>
-										  	</button>
-									    </center>
-							      	</div>
-							    </div>
-								</form>
+								<div class="row">
+									<div class="col s12">
+										<table class="centered">
+											<thead>
+												<tr>
+													<th>用户名</th>
+													<th>密码</th>
+													<th>姓名</th>
+													<th>性别</th>
+													<th>电话</th>
+												</tr>
+											</thead>
+											<tbody>
+												<%
+												for(int tr_index = 0; tr_index < 10; tr_index++){
+												%>
+												<tr>
+													<td>admin</td>
+													<td>123456</td>
+													<td>admin</td>
+													<td>男</td>
+													<td>1234567</td>
+												</tr>
+												<%} %>
+											</tbody>
+										</table>
+									</div>
 								</div>
 							</div>
 						</div>

@@ -7,7 +7,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>登录</title>
+    <title>注册</title>
 	
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" href="../assets/materialize/css/materialize.min.css" media="screen,projection" />
@@ -34,35 +34,38 @@
 						<div class="card" style="width:500px; margin-left:auto; margin-right:auto; background:rgba(255,255,255,1)">
 							<div class="card-action" >
 							<div class="card-content">
-								<form action="ahead" method="POST">
-								<div>
-								<div class="row col s12">
-							      	<div class="row">
-								        <div class="input-field">
-								        	<input id="account" name="account" type="text" class="validate"/>
-								          	<label for="account"><i class="fa fa-user fa-fw"></i>用户名</label>
-								        </div>
-							        </div>
-							      	<div class="row">
-							        	<div class="input-field">
-							        		<input id="passwd" name="passwd" type="password" class="validate" />
-								          	<label for="passwd"><i class="fa fa-key fa-fw"></i>密码</label>
-							        	</div>
-							      	</div>
-									<input type="hidden" name="target_addr" value="<%=request.getAttribute("last_addr")%>">
-									<input type="hidden" name="login_status" value="<%=request.getAttribute("login_status")%>">
-							 	</div>
-							      	<div class="row">
-										<center>
-									        <a href="#"><button type="button" class="btn waves-effect waves-light" style="margin-right:20px">注册
-									        	<span class="fa fa-plane fa-fw"></span>
-									        </button></a>
-									    	<button type="submit" class="btn waves-effect waves-light">登录
-									    		<span class="fa fa-check fa-fw"></span>
+								<form action="" method="POST">
+									<div class="row">
+										<div class="input-field col s12">
+							          		<input id="account" type="text" class="validate">
+							          		<label for="account">用户名</label>
+							          	</div>
+									</div>
+									<div class="row">
+										<div class="input-field col s12">
+							          		<input id="password" type="text" class="validate">
+							          		<label for="password">密码</label>
+							          	</div>
+									</div>
+									<div class="row">
+										<div class="input-field col s12">
+							          		<input id="name" type="text" class="validate">
+							          		<label for="name">姓名</label>
+							          	</div>
+									</div>
+									<div class="row">
+										<div class="input-field col s12">
+							          		<input id="telephone" type="number" class="validate">
+							          		<label for="telephone">电话号码</label>
+							          	</div>
+									</div>
+								    <div class="row">
+									    <center>
+									    	<button type="submit" class="btn waves-effect waves-light" name="action">保存
+									    		<span class="glyphicon glyphicon-floppy-save"></span>
 										  	</button>
 									    </center>
-							      	</div>
-							    </div>
+								    </div>
 								</form>
 								</div>
 							</div>

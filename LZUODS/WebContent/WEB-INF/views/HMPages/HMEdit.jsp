@@ -178,7 +178,7 @@ List<SalaryLib> slib_list =(List<SalaryLib>) request.getAttribute("slib_list");
 						            </table>
 								    <div>
 									    <center>
-									        <a href="../HMM/HMMang""><button type="button" class="btn waves-effect waves-light" style="margin-right:20px">返回
+									        <a href="../HMM/HMMang"><button type="button" class="btn waves-effect waves-light" style="margin-right:20px">返回
 									        	<span class="glyphicon glyphicon-remove"></span>
 									        </button></a>
 									    	<button type="submit" class="btn waves-effect waves-light" name="action">保存
