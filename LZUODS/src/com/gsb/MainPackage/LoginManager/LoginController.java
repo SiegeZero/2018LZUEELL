@@ -27,7 +27,7 @@ public class LoginController {
 	@RequestMapping(value="/Login", method=RequestMethod.GET)
 	public ModelAndView login( ModelAndView mv, HttpSession session, HttpServletRequest request) {
 		String last_addr = request.getParameter("last_addr");
-		if(last_addr == null || last_addr.equals("") || last_addr.startsWith("/LGM")){
+		if(last_addr == null || last_addr.equals("") || last_addr.startsWith("/LGM") || last_addr.equals("/")){
 			last_addr = "/HMM/HMMang";
 		}
 		Object o = session.getAttribute("login_staff");
