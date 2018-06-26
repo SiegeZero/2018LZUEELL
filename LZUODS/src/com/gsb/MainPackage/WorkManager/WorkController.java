@@ -65,17 +65,14 @@ public class WorkController {
 	public void del_notify( ModelAndView mv, HttpServletRequest request, HttpServletResponse response) throws ParseException, IOException {
 		Notification targetNotification = new Notification();
 		Decorator.asUTF8(request);
-		targetNotification.setNotificationContent( request.getParameter("content").getBytes());
-		targetNotification.setNotificationContent(request.getParameter("content").getBytes());
 		targetNotification.setNotificationNo( Integer.parseInt(request.getParameter("nid")));
 		boolean result = work_service.delNotification(targetNotification);
-		Decorator.asUTF8(response).getWriter().print("<script>alert('通知删除结果为："+(result?"是":"否")+"'); window.location = \"WorkManage\";</script>");
+		Decorator.asUTF8(response).getWriter().print("<script>alert('通知删除结果为："+(result?"成功":"失败")+"'); window.location = \"WorkManage\";</script>");
 	}
 	@RequestMapping( value="/change_notify")
 	public void change_notify( ModelAndView mv, HttpServletRequest request, HttpServletResponse response) throws ParseException, IOException {
 		Notification changedNotification = new Notification();
 		Decorator.asUTF8(request);
-		changedNotification.setNotificationContent( request.getParameter("content").getBytes());
 		changedNotification.setNotificationContent(request.getParameter("content").getBytes());
 		changedNotification.setTitle(request.getParameter("title"));
 		changedNotification.setSocietyNo( Integer.parseInt(request.getParameter("society_no")));

@@ -54,8 +54,8 @@
 							 	</div>
 							      	<div class="row">
 										<center>
-									        <button type="reset" class="btn waves-effect waves-light" style="margin-right:20px">重置
-									        	<span class="glyphicon glyphicon-remove"></span>
+									        <button type="button" class="btn waves-effect waves-light" style="margin-right:20px">注册
+									        	<span class="fa fa-key fa-fw"></span>
 									        </button></a>
 									    	<button type="submit" class="btn waves-effect waves-light">登录
 									    		<span class="fa fa-check fa-fw"></span>

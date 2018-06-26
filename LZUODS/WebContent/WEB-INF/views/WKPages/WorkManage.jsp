@@ -91,7 +91,7 @@ com.gsb.BasicObject.MBGPOJO.Notification" %>
 									%>
 									    <li>
 									      <div class="card-title collapsible-header" style="font-size: 18px"><strong><%=n.getTitle()%></strong>
-										  	<a href="Notification?nid=<%=n.getNotificationNo()%>"><i class="fa fa-trash-o right" title="删除通知" style="color:#f00; line-height:50px; vertical-align:middle"></i></a>
+										  	<a href="del_notify?nid=<%=n.getNotificationNo()%>"><i class="fa fa-trash-o right" title="删除通知" style="color:#f00; line-height:50px; vertical-align:middle"></i></a>
 										  	<a href="Notification?nid=<%=n.getNotificationNo()%>"><i class="fa fa-edit right" title="修改通知" style="color:#00f;  line-height:50px; vertical-align:middle"></i></a>
 									      	<span class="card-title activator grey-text text-darken-5 right" style="font-size: 14px; margin-right:40px;">发布时间:<%=n.getPublishTime()%></span>
 									      </div>

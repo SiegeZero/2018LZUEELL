@@ -24,7 +24,7 @@ Staff login_staff = (Staff)request.getSession().getAttribute("login_staff");
 		<ul id="userdropdown" class="dropdown-content">
 			<li><a href="#"><i class="fa fa-user fa-fw"></i>个人资料</a>
 			</li>
-			<li><a href="#"><i class="fa fa-gear fa-fw"></i> 系统设置</a>
+			<li><a href="#"><i class="fa fa-gear fa-fw"></i>用户列表</a>
 			</li>
 			<li><a href="../LGM/leave"><i class="fa fa-sign-out fa-fw"></i>登出</a>
 			</li>
